@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://cgftbkhelwema"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3jxj"]
+size = Vector3(8.394775, 0.18554688, 11.481384)
+
 [node name="Node3D" type="Node3D" unique_id=1627927271]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=404436929]
@@ -7,8 +10,11 @@
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=835381634]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/MeshInstance3D" unique_id=646253177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.838501, -0.40722656, -2.4986267)
+shape = SubResource("BoxShape3D_o3jxj")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1188418479]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1055193278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020028055, 0, -2.5714152)
+use_collision = true
