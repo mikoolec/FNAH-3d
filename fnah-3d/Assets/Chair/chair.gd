@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-@onready var player = $"../CharacterBody3D"
+@onready var player = $"../Player"
 @onready var sit_point = $SitPoint
 
 func interact():
