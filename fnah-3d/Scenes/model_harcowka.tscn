@@ -1,5 +1,18 @@
-[gd_scene format=3 uid="uid://dqveypev6fnls"]
+[gd_scene format=3 uid="uid://b68rkowybhb1e"]
 
 [ext_resource type="PackedScene" uid="uid://b86r454m3vmtg" path="res://Assets/blend/model_harcowka.blend" id="1_5ilb7"]
+[ext_resource type="PackedScene" uid="uid://dae7tktuo73ne" path="res://Assets/Chair/chair.tscn" id="2_aykef"]
+[ext_resource type="PackedScene" path="res://Assets/Player/player.tscn" id="3_ijxm5"]
+[ext_resource type="Script" uid="uid://5sumin7y571o" path="res://Assets/Player/player.gd" id="4_oppbp"]
 
 [node name="model_harcowka" unique_id=1188094649 instance=ExtResource("1_5ilb7")]
+
+[node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03858328, 0.04124602, 6.5230255)
+
+[node name="Player" parent="." index="3" unique_id=985857779 instance=ExtResource("3_ijxm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.75412)
+script = ExtResource("4_oppbp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4" unique_id=653292237]
+transform = Transform3D(1, 0, 0, 0, 0.6960005, 0.7180413, 0, -0.7180413, 0.6960005, 11.048943, 9.827882, 16.847057)
