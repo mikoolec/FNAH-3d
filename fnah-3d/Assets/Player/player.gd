@@ -24,7 +24,7 @@ var is_using_computer = false
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-@onready var chair = $"."
+@onready var chair = $"../Chair"
 @onready var computer = $"."
 
 @export var computer_ui = "../Screen"
