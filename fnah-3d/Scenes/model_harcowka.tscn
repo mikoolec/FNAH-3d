@@ -2,8 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://b86r454m3vmtg" path="res://Assets/blend/model_harcowka.blend" id="1_5ilb7"]
 [ext_resource type="PackedScene" uid="uid://dae7tktuo73ne" path="res://Assets/Chair/chair.tscn" id="2_aykef"]
-[ext_resource type="PackedScene" path="res://Assets/Player/player.tscn" id="3_ijxm5"]
-[ext_resource type="Script" uid="uid://5sumin7y571o" path="res://Assets/Player/player.gd" id="4_oppbp"]
+[ext_resource type="PackedScene" uid="uid://phicum10035h" path="res://Assets/Player/player.tscn" id="3_ijxm5"]
+[ext_resource type="PackedScene" uid="uid://cgwa61b5j1p2r" path="res://Assets/PC/PC.tscn" id="4_ijxm5"]
+[ext_resource type="Script" uid="uid://c41ibo38fw0v1" path="res://Assets/PC/PC.gd" id="5_oppbp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
+size = Vector3(0.8553467, 1, 1)
 
 [node name="model_harcowka" unique_id=1188094649 instance=ExtResource("1_5ilb7")]
 
@@ -12,7 +16,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03858328, 0.04124602, 6.523
 
 [node name="Player" parent="." index="3" unique_id=985857779 instance=ExtResource("3_ijxm5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.75412)
-script = ExtResource("4_oppbp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4" unique_id=653292237]
 transform = Transform3D(1, 0, 0, 0, 0.6960005, 0.7180413, 0, -0.7180413, 0.6960005, 11.048943, 9.827882, 16.847057)
+
+[node name="PC" type="StaticBody3D" parent="." index="5" unique_id=221058516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9253705, 1.5628345, 6.0793552)
+script = ExtResource("5_oppbp")
+
+[node name="PC" parent="PC" index="0" unique_id=1551015543 instance=ExtResource("4_ijxm5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PC" index="1" unique_id=861170105]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.27018988, 0)
+shape = SubResource("BoxShape3D_oppbp")
