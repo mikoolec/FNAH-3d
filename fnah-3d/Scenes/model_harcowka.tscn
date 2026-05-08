@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dqveypev6fnls"]
+
+[ext_resource type="PackedScene" uid="uid://b86r454m3vmtg" path="res://Assets/blend/model_harcowka.blend" id="1_5ilb7"]
+
+[node name="model_harcowka" unique_id=1188094649 instance=ExtResource("1_5ilb7")]
