@@ -2,4 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://bib6awp16ryj" path="res://Assets/blend/drzwi.blend" id="1_t4vj5"]
 
-[node name="drzwi" unique_id=1117768734 instance=ExtResource("1_t4vj5")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4vj5"]
+size = Vector3(0.1463623, 0.98999023, 2.0674133)
+
+[node name="drzwi" unique_id=91442167 instance=ExtResource("1_t4vj5")]
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1086004559) index="1" unique_id=421022715]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 1.0195621, 0.46622804)
+bone_name = "Door Bone"
+bone_idx = 1
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" unique_id=130193140]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="0" unique_id=940931249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015197754, 0.4630127, 0.09629822)
+shape = SubResource("BoxShape3D_t4vj5")
