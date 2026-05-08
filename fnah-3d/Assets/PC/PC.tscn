@@ -2,7 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://51hib8h75c52" path="res://Assets/PC/retrocomputer.glb" id="1_igxpg"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_aoen1"]
+
 [node name="FAB converted" unique_id=1551015543 instance=ExtResource("1_igxpg")]
 
 [node name="PC" parent="FAB converted model/retrocomputer_fbx/RootNode" parent_id_path=PackedInt32Array(461789100) index="0" unique_id=542140348]
 transform = Transform3D(7.54979e-06, 100, 4.371139e-06, 0, -4.371139e-06, 100, 100, -7.54979e-06, -3.3001182e-13, 0, 0, 0)
+
+[node name="Screen" type="MeshInstance3D" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="3" unique_id=1785680024]
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 1.0185698e-16, 0.3, 0, -0.3, 6.9716434e-23, -1.3113417e-08, 0.20439401, -3.0256686e-08, 0.33916488)
+mesh = SubResource("QuadMesh_aoen1")

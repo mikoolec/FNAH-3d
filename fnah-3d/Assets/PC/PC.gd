@@ -1,7 +1,7 @@
 extends Node3D
 
-@onready var view_point = $"../view_point"
-@onready var player = $CharacterBody3D
+@onready var view_point = $view_point
+@onready var player = $"../Player"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,4 +12,9 @@ func _process(delta: float) -> void:
 	pass
 
 func interact():
-	pass
+	if !player.is_using_computer:
+		player.enter_computer()
+
+func interact2():
+	if player.is_using_computer:
+		player.exit_computer()
