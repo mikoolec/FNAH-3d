@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://cgwa61b5j1p2r"]
 
 [ext_resource type="PackedScene" uid="uid://51hib8h75c52" path="res://Assets/PC/retrocomputer.glb" id="1_igxpg"]
+[ext_resource type="PackedScene" uid="uid://b47e7a26o2q3y" path="res://Assets/PC/pc_control.tscn" id="2_qat3p"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aoen1"]
+viewport_path = NodePath("FAB converted model/retrocomputer_fbx/RootNode/PC/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qat3p"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_aoen1")
 
 [sub_resource type="QuadMesh" id="QuadMesh_aoen1"]
 
@@ -10,5 +18,11 @@
 transform = Transform3D(7.54979e-06, 100, 4.371139e-06, 0, -4.371139e-06, 100, 100, -7.54979e-06, -3.3001182e-13, 0, 0, 0)
 
 [node name="Screen" type="MeshInstance3D" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="3" unique_id=1785680024]
-transform = Transform3D(-1.3113417e-08, 0, 0.3, 1.0185698e-16, 0.3, 0, -0.3, 6.9716434e-23, -1.3113417e-08, 0.20439401, -3.0256686e-08, 0.33916488)
+transform = Transform3D(5.7320567e-16, 1.3113417e-08, 0.3, 0.3, -1.3113417e-08, 0, 1.3113417e-08, 0.3, -1.3113417e-08, 0.20439401, -3.0256686e-08, 0.33916488)
+material_override = SubResource("StandardMaterial3D_qat3p")
 mesh = SubResource("QuadMesh_aoen1")
+
+[node name="SubViewport" type="SubViewport" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="4" unique_id=1085676022]
+size = Vector2i(1024, 1024)
+
+[node name="PCControl" parent="FAB converted model/retrocomputer_fbx/RootNode/PC/SubViewport" index="0" unique_id=397611687 instance=ExtResource("2_qat3p")]
