@@ -19,24 +19,25 @@ var camOffset = PI / 2
 enum State { FREE, SITTING, TRANSITION }
 var current_state = State.FREE
 var walk_locked:bool = false
+var camera_locked:bool = false
 
 var is_using_computer = false
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var chair = $"../Chair"
-@onready var computer = $"."
-
-@export var computer_ui = "../Screen"
+@onready var computer = $"../PC"
+@onready var computer_ui = $"../PCScreen"
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(60))
+		if !camera_locked:
+			head.rotate_y(-event.relative.x * SENSITIVITY)
+			camera.rotate_x(-event.relative.y * SENSITIVITY)
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(60))
 	
 	if current_state == State.SITTING and event.is_action_pressed("jump"):
 		stand_up()
@@ -173,38 +174,42 @@ func enter_computer():
 	if is_using_computer: return
 	
 	is_using_computer = true
-	current_state = State.TRANSITION # Blokujemy ruch gracza
+	current_state = State.TRANSITION
 	
-	# 1. Zapisujemy pozycję kamery przed animacją, żeby móc wrócić
-	var original_cam_transform = $Head/Camera3D.transform
+	# Blokujemy myszkę i ruch
+	walk_locked = true
+	camera_locked = true
 	
-	# 2. Tween dla kamery
 	var tween = create_tween().set_parallel(true)
 	
-	# Kamera leci do ViewPoint komputera (globalnie)
-	tween.tween_property($Head/Camera3D, "global_transform", computer.view_point.global_transform, 0.8)\
+	# 1. Kamera leci do view_point komputera
+	# Używamy global_transform, żeby kamera idealnie pokryła się z punktem w świecie
+	tween.tween_property(camera, "global_transform", computer.view_point.global_transform, 0.8)\
 		.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 	
-	# 3. Po zakończeniu lotu - otwieramy menu 2D
+	# 2. Po zakończeniu lotu otwieramy UI
 	tween.chain().finished.connect(func():
 		open_computer_ui()
 	)
 
 func open_computer_ui():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	computer_ui.visible = true
-	# Możesz tutaj dodać animację pojawiania się menu (np. Fade In)
+	if computer_ui:
+		computer_ui.visible = true
 
 func exit_computer():
-	computer_ui.visible = false
+	if computer_ui:
+		computer_ui.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	# Płynny powrót kamery na swoje miejsce w głowie gracza
 	var tween = create_tween()
-	tween.tween_property($Head/Camera3D, "transform", Transform3D.IDENTITY, 0.6)\
-		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	# Powrót kamery do domyślnej pozycji w głowie (0,0,0 względem Head)
+	tween.tween_property(camera, "transform", Transform3D.IDENTITY, 0.6)\
+		.set_trans(Tween.TRANS_CUBIC)
 	
 	tween.finished.connect(func():
-		current_state = State.SITTING
+		current_state = State.FREE # Lub SITTING, jeśli siedzisz
+		walk_locked = false
+		camera_locked = false
 		is_using_computer = false
-)
+	)
