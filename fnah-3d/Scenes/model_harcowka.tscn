@@ -5,13 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://phicum10035h" path="res://Assets/Player/player.tscn" id="3_ijxm5"]
 [ext_resource type="PackedScene" uid="uid://cgwa61b5j1p2r" path="res://Assets/PC/PC.tscn" id="4_ijxm5"]
 [ext_resource type="Script" uid="uid://c41ibo38fw0v1" path="res://Assets/PC/PC.gd" id="5_oppbp"]
+[ext_resource type="PackedScene" path="res://Scenes/drzwi.tscn" id="6_flkvd"]
+[ext_resource type="Script" uid="uid://bvj7pu7e524ob" path="res://Scenes/drzwi.gd" id="7_shit0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1, 1)
 
-[node name="model_harcowka" unique_id=916430054 instance=ExtResource("1_5ilb7")]
+[node name="model_harcowka" unique_id=774415394 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=748132125]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=1913498419]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -35,3 +37,7 @@ shape = SubResource("BoxShape3D_oppbp")
 
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328, 0.4)
+
+[node name="drzwi" parent="." index="10" unique_id=1117768734 instance=ExtResource("6_flkvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90036726, 0.023463726, 4.1460586)
+script = ExtResource("7_shit0")

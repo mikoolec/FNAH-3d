@@ -15,3 +15,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_te3fx")
 expand_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1598941554]
