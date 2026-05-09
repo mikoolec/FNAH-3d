@@ -10,9 +10,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1, 1)
 
-[node name="model_harcowka" unique_id=774415394 instance=ExtResource("1_5ilb7")]
+[node name="model_harcowka" unique_id=1878585927 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=2116125222]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=35062627]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
