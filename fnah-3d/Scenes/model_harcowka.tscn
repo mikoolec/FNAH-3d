@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://c41ibo38fw0v1" path="res://Assets/PC/PC.gd" id="5_oppbp"]
 [ext_resource type="PackedScene" uid="uid://b47e7a26o2q3y" path="res://Assets/PC/pc_control.tscn" id="6_b0dvl"]
 [ext_resource type="PackedScene" uid="uid://wtcsgm3kjh3r" path="res://Scenes/drzwi.tscn" id="6_flkvd"]
-[ext_resource type="Script" uid="uid://gt8mfkj3p1lu" path="res://Assets/PC/pc_control.gd" id="7_2cncr"]
-[ext_resource type="PackedScene" path="res://Scenes/kanapa.tscn" id="7_shit0"]
-[ext_resource type="PackedScene" path="res://Scenes/kuchnia.tscn" id="9_2cncr"]
+[ext_resource type="Script" path="res://Assets/PC/pc_control.gd" id="7_2cncr"]
+[ext_resource type="PackedScene" uid="uid://dyascavoj1bmd" path="res://Scenes/kanapa.tscn" id="7_shit0"]
+[ext_resource type="PackedScene" uid="uid://cp0f6vl8lrc0t" path="res://Scenes/kuchnia.tscn" id="9_2cncr"]
 [ext_resource type="PackedScene" uid="uid://cmo2d58oey2i2" path="res://Scenes/stol_kuchenny.tscn" id="11_ewqah"]
 [ext_resource type="PackedScene" uid="uid://castu1b1biuhm" path="res://Scenes/lawka.tscn" id="12_1mxhv"]
 
@@ -18,11 +18,7 @@ size = Vector3(0.8553467, 1, 1)
 
 [node name="model_harcowka" unique_id=1085567311 instance=ExtResource("1_5ilb7")]
 
-<<<<<<< Updated upstream
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=449609638]
-=======
 [node name="HarcowkaPodloga" parent="." index="0" unique_id=1394600791]
->>>>>>> Stashed changes
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
