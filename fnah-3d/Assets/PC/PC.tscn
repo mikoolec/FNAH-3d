@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgwa61b5j1p2r"]
 
 [ext_resource type="PackedScene" uid="uid://51hib8h75c52" path="res://Assets/PC/retrocomputer.glb" id="1_igxpg"]
+[ext_resource type="PackedScene" uid="uid://umjdmfu8b2ee" path="res://Scenes/laptop.tscn" id="2_qat3p"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qat3p"]
 viewport_path = NodePath("SubViewport")
@@ -17,10 +18,22 @@ size = Vector2(1, 0.85)
 
 [node name="FAB converted" unique_id=1551015543 instance=ExtResource("1_igxpg")]
 
-[node name="PC" parent="FAB converted model/retrocomputer_fbx/RootNode" parent_id_path=PackedInt32Array(461789100) index="0" unique_id=542140348]
+[node name="PC" parent="FAB converted model/retrocomputer_fbx/RootNode" parent_id_path=PackedInt32Array(1853189308) index="0" unique_id=143592973]
 transform = Transform3D(7.54979e-06, 100, 4.371139e-06, 0, -4.371139e-06, 100, 100, -7.54979e-06, -3.3001182e-13, 0, 0, 0)
 
+[node name="PC_M_PCBody_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="0" unique_id=279725582]
+visible = false
+
+[node name="PC_M_Screen_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="1" unique_id=959420984]
+visible = false
+
+[node name="PC_M_Keys_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="2" unique_id=304703069]
+visible = false
+
 [node name="Screen" type="MeshInstance3D" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="3" unique_id=1785680024]
-transform = Transform3D(5.7320567e-16, 1.3113417e-08, 0.3, 0.3, -1.3113417e-08, 0, 1.3113417e-08, 0.3, -1.3113417e-08, 0.20439401, -3.0256686e-08, 0.33916488)
+transform = Transform3D(1.9217339e-10, -0.049665224, 0.31775075, 0.5767756, -1.928084e-08, -1.2029115e-09, 2.1125029e-08, 0.52687556, 0.029952353, -0.039961606, -9.499493e-09, 0.28634438)
 material_override = SubResource("StandardMaterial3D_t2pjm")
 mesh = SubResource("QuadMesh_aoen1")
+
+[node name="laptop" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="4" unique_id=1256288998 instance=ExtResource("2_qat3p")]
+transform = Transform3D(7.54979e-08, -2.220446e-16, 1, 1, -4.371139e-08, -7.54979e-08, 4.371139e-08, 1, -3.0780735e-15, 0.15888211, -0.0005839587, -2.5524945e-11)

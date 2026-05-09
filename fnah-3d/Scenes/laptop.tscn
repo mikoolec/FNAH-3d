@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://umjdmfu8b2ee"]
+
+[ext_resource type="PackedScene" uid="uid://d01jct17jueh0" path="res://Assets/blend/laptop.blend" id="1_63bx0"]
+
+[node name="laptop" unique_id=1256288998 instance=ExtResource("1_63bx0")]
