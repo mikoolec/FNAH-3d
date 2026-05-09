@@ -4,22 +4,29 @@
 [ext_resource type="Script" uid="uid://cnah4opp0m3ku" path="res://Scenes/doors.gd" id="2_7b6sn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4vj5"]
+resource_local_to_scene = true
 size = Vector3(0.1463623, 0.98999023, 2.0674133)
 
 [node name="drzwi" unique_id=91442167 instance=ExtResource("1_t4vj5")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1586608007) index="0" unique_id=1791844984]
-bones/1/rotation = Quaternion(-0.5, -0.50000006, -0.5, 0.5)
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(2108610762) index="0" unique_id=1086004559]
+bones/1/rotation = Quaternion(-0.7071068, 0, 0, 0.7071068)
 bones/2/rotation = Quaternion(0.7071068, 0, 0.7071068, 0)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1" unique_id=421022715]
-transform = Transform3D(-1.1920929e-07, 1, -5.9604645e-08, 5.9604645e-08, 0, 1, 1, 5.9604645e-08, -1.1920929e-07, 0, 1.0195621, 0.46622804)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 1.0195621, 0.46622804)
 bone_name = "Door Bone"
 bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("..")
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" unique_id=130193140]
+transform = Transform3D(1, 0, 0, 7.1054274e-15, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_7b6sn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="0" unique_id=940931249]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015197754, 0.4630127, 0.09629822)
 shape = SubResource("BoxShape3D_t4vj5")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1628346244]
+callback_mode_process = 0
