@@ -10,16 +10,16 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1, 1)
 
-[node name="model_harcowka" unique_id=1878585927 instance=ExtResource("1_5ilb7")]
+[node name="model_harcowka" unique_id=1261956732 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=35062627]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=943606884]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03858328, 0.04124602, 6.5230255)
 
 [node name="Player" parent="." index="3" unique_id=985857779 instance=ExtResource("3_ijxm5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.75412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24343824, 8.75412)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4" unique_id=653292237]
 transform = Transform3D(-0.6340694, 0.5552442, -0.5382006, 0, 0.6960005, 0.7180413, 0.77327615, 0.455288, -0.4413126, 12.631382, 1.9368281, 2.0514464)

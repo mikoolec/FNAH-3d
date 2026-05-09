@@ -2,7 +2,7 @@ extends AnimatableBody3D
 
 @onready var animPlayer = $"../../../../AnimationPlayer"
 
-var open:bool = true
+var open:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
