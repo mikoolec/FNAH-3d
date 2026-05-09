@@ -27,6 +27,8 @@ var is_using_computer = false
 @onready var camera = $Head/Camera3D
 @onready var chair = $"../Chair"
 @onready var computer = $"../PC"
+@onready var collision_shape_chair: CollisionShape3D = $CollisionShape3D
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -47,9 +49,15 @@ func _physics_process(delta: float) -> void:
 	if %SeeCast.is_colliding() and !is_using_computer:
 		var target = %SeeCast.get_collider()
 		if target.has_method("interact"):
-			%InteractText.show()
-			if Input.is_action_just_pressed("interact"):
-				target.interact()
+			if target == computer:
+				if current_state == State.SITTING:	
+					%InteractText.show()
+					if Input.is_action_just_pressed("interact"):
+						target.interact()
+			else:
+				%InteractText.show()
+				if Input.is_action_just_pressed("interact"):
+					target.interact()
 		if target.has_method("interact2"):
 			%Interact2Text.show()
 			if Input.is_action_just_pressed("interact2"):
@@ -108,6 +116,7 @@ func sit_down():
 	walk_locked = true
 	# 1. Wyłączamy kolizje, żeby gracz nie utknął w krześle
 	$CollisionShape3D.disabled = true
+	collision_shape_chair.disabled = true
 	
 	# Wewnątrz sit_down, przed stworzeniem tweena:
 	$Head.global_rotation.y = fposmod($Head.global_rotation.y, TAU)
@@ -166,6 +175,7 @@ func stand_up():
 
 func _on_stand_up_finished():
 	$CollisionShape3D.disabled = false # Włączamy fizykę z powrotem
+	collision_shape_chair.disabled = false
 	current_state = State.FREE
 	walk_locked = false
 
@@ -195,8 +205,8 @@ func exit_computer():
 		.set_trans(Tween.TRANS_CUBIC)
 	
 	tween.finished.connect(func():
-		current_state = State.FREE # Lub SITTING, jeśli siedzisz
-		walk_locked = false
+		current_state = State.SITTING # Lub SITTING, jeśli siedzisz
+		walk_locked = true
 		camera_locked = false
 		is_using_computer = false
 	)

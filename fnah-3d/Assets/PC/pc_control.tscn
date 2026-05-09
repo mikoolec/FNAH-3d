@@ -19,6 +19,7 @@ expand_mode = 3
 
 [node name="MouseCursor" type="Sprite2D" parent="." unique_id=1598941554]
 top_level = true
+position = Vector2(512, 512)
 scale = Vector2(0.06989794, 0.06989794)
 texture = ExtResource("2_0myl8")
 offset = Vector2(210, 420)

@@ -6,5 +6,3 @@ extends StaticBody3D
 func interact():
 	if player.current_state == player.State.FREE:
 		player.sit_down()
-	else:
-		player.stand_up()
