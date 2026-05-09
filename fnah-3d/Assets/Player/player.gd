@@ -14,7 +14,7 @@ const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 var t_bob = 0.0
 
-var camOffset = PI / 2
+var camOffset = PI/2
 
 enum State { FREE, SITTING, TRANSITION }
 var current_state = State.FREE
@@ -157,10 +157,10 @@ func stand_up():
 	
 	var tween2 = create_tween().set_parallel(true) # Pozwala animować kilka rzeczy naraz
 	# Obracamy krzesło
-	tween2.tween_property(chair, "rotation:y", 0.0, 0.3).set_trans(Tween.TRANS_SINE)
+	tween2.tween_property(chair, "rotation:y", deg_to_rad(90), 0.3).set_trans(Tween.TRANS_SINE)
 	# Obracamy kamerę/głowę gracza do tej samej rotacji
 	# Zakładamy, że player.head to węzeł kontrolujący obrót głowy
-	var target_angle = deg_to_rad(90.0)
+	var target_angle = deg_to_rad(180)
 	# Obliczamy najkrótszą drogę (wynik będzie w zakresie -PI do PI)
 	var angle_diff = wrapf(target_angle - head.rotation.y, -PI, PI)
 	# Nowy cel to: obecna rotacja + najkrótsza droga
