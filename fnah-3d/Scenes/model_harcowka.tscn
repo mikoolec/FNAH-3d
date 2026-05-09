@@ -66,3 +66,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.161682, 4.7683716e-07, -0.
 
 [node name="KitchenTable" parent="." index="15" unique_id=1066404003 instance=ExtResource("11_ewqah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9105644, 0.0019641519, -1.7944614)
+
+[node name="Chair2" parent="." index="16" unique_id=1987837344 instance=ExtResource("2_aykef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.898021, 0.007533692, -2.9910626)
