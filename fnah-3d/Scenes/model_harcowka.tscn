@@ -38,4 +38,7 @@ shape = SubResource("BoxShape3D_oppbp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328, 0.4)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6004608, 0.023464203, 4.777381)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, -1.4966143, -0.040350556, 2.0295227)
+
+[node name="drzwi2" parent="." index="11" unique_id=1987753368 instance=ExtResource("6_flkvd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 4.0986023, -0.021396518, -1.0565022)
