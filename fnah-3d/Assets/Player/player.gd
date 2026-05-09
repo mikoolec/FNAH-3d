@@ -157,7 +157,7 @@ func stand_up():
 	
 	var tween2 = create_tween().set_parallel(true) # Pozwala animować kilka rzeczy naraz
 	# Obracamy krzesło
-	tween2.tween_property(chair, "rotation:y", 0.0, 1.0).set_trans(Tween.TRANS_SINE)
+	tween2.tween_property(chair, "rotation:y", 0.0, 0.3).set_trans(Tween.TRANS_SINE)
 	# Obracamy kamerę/głowę gracza do tej samej rotacji
 	# Zakładamy, że player.head to węzeł kontrolujący obrót głowy
 	var target_angle = deg_to_rad(90.0)
@@ -166,7 +166,7 @@ func stand_up():
 	# Nowy cel to: obecna rotacja + najkrótsza droga
 	var shortest_target = head.rotation.y + angle_diff
 	
-	tween2.tween_property(head, "rotation:y", shortest_target, 1.0).set_trans(Tween.TRANS_SINE)
+	tween2.tween_property(head, "rotation:y", shortest_target, 0.3).set_trans(Tween.TRANS_SINE)
 	await tween2.finished
 
 	# Obliczamy pozycję końcową: 1.2 metra przed krzesłem (w stronę jego przodu)
