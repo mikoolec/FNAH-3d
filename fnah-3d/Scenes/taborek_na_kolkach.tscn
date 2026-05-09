@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bkek5434jb7n"]
+
+[ext_resource type="PackedScene" uid="uid://c0c33kth22mce" path="res://Assets/blend/taborek_na_kolkach.blend" id="1_cshxb"]
+
+[node name="taborek_na_kolkach" unique_id=678923500 instance=ExtResource("1_cshxb")]
