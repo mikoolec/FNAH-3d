@@ -18,6 +18,15 @@ texture = ExtResource("1_te3fx")
 expand_mode = 3
 
 [node name="MouseCursor" type="Sprite2D" parent="." unique_id=1598941554]
+top_level = true
 scale = Vector2(0.06989794, 0.06989794)
 texture = ExtResource("2_0myl8")
 offset = Vector2(210, 420)
+
+[node name="Button" type="Button" parent="." unique_id=625329877]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 281.0
+offset_right = 533.0
+offset_bottom = 312.0
+text = "Button"

@@ -23,6 +23,16 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("escape"): player.exit_computer()
 		else: subview.push_input(event)
+	elif event is InputEventMouseButton:
+		#Forward left and middle mouse button events to subviewport
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			var mouse_event = InputEventMouseButton.new()
+			mouse_event.button_index = event.button_index
+			mouse_event.pressed = event.pressed
+			mouse_event.position = pc_control.pc_mouse_pos
+			mouse_event.global_position = pc_control.pc_mouse_pos
+			
+			subview.push_input(mouse_event)
 	elif event is InputEventMouseMotion:
 		pc_control.pc_mouse_pos += event.relative
 		pc_control.pc_mouse_pos.x = clamp(pc_control.pc_mouse_pos.x, 0.0, subview.size.x - 10.0)
