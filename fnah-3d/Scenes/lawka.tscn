@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://castu1b1biuhm"]
+
+[ext_resource type="PackedScene" uid="uid://n8uill3tb7uk" path="res://Assets/blend/lawka.blend" id="1_2mtgl"]
+
+[node name="lawka" unique_id=1868315928 instance=ExtResource("1_2mtgl")]
