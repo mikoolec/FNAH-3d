@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cmo2d58oey2i2"]
+
+[ext_resource type="PackedScene" uid="uid://dx3uaffxoeinq" path="res://Assets/blend/KitchenTable.blend" id="1_hmvs6"]
+
+[node name="KitchenTable" unique_id=1066404003 instance=ExtResource("1_hmvs6")]
