@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://cgwa61b5j1p2r" path="res://Assets/PC/PC.tscn" id="4_ijxm5"]
 [ext_resource type="Script" uid="uid://c41ibo38fw0v1" path="res://Assets/PC/PC.gd" id="5_oppbp"]
 [ext_resource type="PackedScene" uid="uid://wtcsgm3kjh3r" path="res://Scenes/drzwi.tscn" id="6_flkvd"]
+[ext_resource type="PackedScene" uid="uid://dyascavoj1bmd" path="res://Scenes/kanapa.tscn" id="7_shit0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1, 1)
 
-[node name="model_harcowka" unique_id=1632037236 instance=ExtResource("1_5ilb7")]
+[node name="model_harcowka" unique_id=2031920200 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=1084199616]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=304761067]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -45,3 +46,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 4.0986
 
 [node name="drzwi3" parent="." index="12" unique_id=451362588 instance=ExtResource("6_flkvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 13.141063, -0.0068350434, 2.9544713)
+
+[node name="kanapa" parent="." index="13" unique_id=2000616939 instance=ExtResource("7_shit0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.443441, 4.7683716e-07, -0.5122602)
