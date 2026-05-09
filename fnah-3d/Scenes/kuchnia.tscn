@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cp0f6vl8lrc0t"]
+
+[ext_resource type="PackedScene" uid="uid://cg8d3ynfdfm6c" path="res://Assets/blend/kuchnia.blend" id="1_33wtu"]
+
+[node name="kuchnia" unique_id=1084482582 instance=ExtResource("1_33wtu")]
