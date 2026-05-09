@@ -5,15 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://phicum10035h" path="res://Assets/Player/player.tscn" id="3_ijxm5"]
 [ext_resource type="PackedScene" uid="uid://cgwa61b5j1p2r" path="res://Assets/PC/PC.tscn" id="4_ijxm5"]
 [ext_resource type="Script" uid="uid://c41ibo38fw0v1" path="res://Assets/PC/PC.gd" id="5_oppbp"]
+[ext_resource type="PackedScene" uid="uid://b47e7a26o2q3y" path="res://Assets/PC/pc_control.tscn" id="6_b0dvl"]
 [ext_resource type="PackedScene" uid="uid://wtcsgm3kjh3r" path="res://Scenes/drzwi.tscn" id="6_flkvd"]
-[ext_resource type="PackedScene" uid="uid://dyascavoj1bmd" path="res://Scenes/kanapa.tscn" id="7_shit0"]
+[ext_resource type="Script" uid="uid://gt8mfkj3p1lu" path="res://Assets/PC/pc_control.gd" id="7_2cncr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1, 1)
 
-[node name="model_harcowka" unique_id=2031920200 instance=ExtResource("1_5ilb7")]
+[node name="model_harcowka" unique_id=75018502 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=304761067]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=1883873447]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -31,6 +32,13 @@ script = ExtResource("5_oppbp")
 
 [node name="PC" parent="PC" index="0" unique_id=1551015543 instance=ExtResource("4_ijxm5")]
 
+[node name="SubViewport" type="SubViewport" parent="PC/PC" index="1" unique_id=1977465613]
+physics_object_picking = true
+size = Vector2i(1024, 1024)
+
+[node name="PCControl" parent="PC/PC/SubViewport" index="0" unique_id=397611687 instance=ExtResource("6_b0dvl")]
+script = ExtResource("7_2cncr")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PC" index="1" unique_id=861170105]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.27018988, 0)
 shape = SubResource("BoxShape3D_oppbp")
@@ -46,6 +54,3 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 4.0986
 
 [node name="drzwi3" parent="." index="12" unique_id=451362588 instance=ExtResource("6_flkvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 13.141063, -0.0068350434, 2.9544713)
-
-[node name="kanapa" parent="." index="13" unique_id=2000616939 instance=ExtResource("7_shit0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.443441, 4.7683716e-07, -0.5122602)

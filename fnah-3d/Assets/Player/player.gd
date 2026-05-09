@@ -44,7 +44,7 @@ func _unhandled_input(event):
 func _physics_process(delta: float) -> void:
 	%InteractText.hide()
 	%Interact2Text.hide()
-	if %SeeCast.is_colliding():
+	if %SeeCast.is_colliding() and !is_using_computer:
 		var target = %SeeCast.get_collider()
 		if target.has_method("interact"):
 			%InteractText.show()

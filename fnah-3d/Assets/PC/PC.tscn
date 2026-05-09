@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://cgwa61b5j1p2r"]
 
 [ext_resource type="PackedScene" uid="uid://51hib8h75c52" path="res://Assets/PC/retrocomputer.glb" id="1_igxpg"]
-[ext_resource type="PackedScene" uid="uid://b47e7a26o2q3y" path="res://Assets/PC/pc_control.tscn" id="2_qat3p"]
-[ext_resource type="Script" uid="uid://gt8mfkj3p1lu" path="res://Assets/PC/pc_control.gd" id="3_t2pjm"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qat3p"]
 viewport_path = NodePath("SubViewport")
@@ -26,10 +24,3 @@ transform = Transform3D(7.54979e-06, 100, 4.371139e-06, 0, -4.371139e-06, 100, 1
 transform = Transform3D(5.7320567e-16, 1.3113417e-08, 0.3, 0.3, -1.3113417e-08, 0, 1.3113417e-08, 0.3, -1.3113417e-08, 0.20439401, -3.0256686e-08, 0.33916488)
 material_override = SubResource("StandardMaterial3D_t2pjm")
 mesh = SubResource("QuadMesh_aoen1")
-
-[node name="SubViewport" type="SubViewport" parent="." index="1" unique_id=1085676022]
-physics_object_picking = true
-size = Vector2i(1024, 1024)
-
-[node name="PCControl" parent="SubViewport" index="0" unique_id=397611687 instance=ExtResource("2_qat3p")]
-script = ExtResource("3_t2pjm")
