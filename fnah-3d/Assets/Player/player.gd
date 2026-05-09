@@ -27,7 +27,6 @@ var is_using_computer = false
 @onready var camera = $Head/Camera3D
 @onready var chair = $"../Chair"
 @onready var computer = $"../PC"
-@onready var computer_ui = $"../PCScreen"
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -186,20 +185,8 @@ func enter_computer():
 	# Używamy global_transform, żeby kamera idealnie pokryła się z punktem w świecie
 	tween.tween_property(camera, "global_transform", computer.view_point.global_transform, 0.8)\
 		.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-	
-	# 2. Po zakończeniu lotu otwieramy UI
-	tween.chain().finished.connect(func():
-		open_computer_ui()
-	)
-
-func open_computer_ui():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if computer_ui:
-		computer_ui.visible = true
 
 func exit_computer():
-	if computer_ui:
-		computer_ui.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	var tween = create_tween()
