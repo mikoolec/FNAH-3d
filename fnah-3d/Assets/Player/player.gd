@@ -118,28 +118,28 @@ func sit_down():
 	$CollisionShape3D.disabled = true
 	collision_shape_chair.disabled = true
 	
-	# Wewnątrz sit_down, przed stworzeniem tweena:
-	$Head.global_rotation.y = fposmod($Head.global_rotation.y, TAU)
-	var target_y = fposmod(chair.global_rotation.y, TAU)
+	# Pobieramy kąt startowy głowy i kąt docelowy krzesła
+	var start_rot_y = $Head.global_rotation.y
+	var target_rot_y = chair.global_rotation.y + deg_to_rad(90)
 
-	# Sprawdź, czy nie lepiej obrócić się w drugą stronę (krótsza droga)
-	if abs(target_y - $Head.global_rotation.y) > PI:
-		if target_y > $Head.global_rotation.y:
-			$Head.global_rotation.y += TAU
-		else:
-			$Head.global_rotation.y -= TAU
-	# 2. Płynne przesuwanie (Tween)
+	# Tworzymy Tween
 	var tween = create_tween().set_parallel(true)
-	# Przesuń gracza do punktu siedzenia
-	tween.tween_property(self, "global_position", chair.sit_point.global_position, 0.5)
-	# Obróć ciało gracza w stronę przodu krzesła
-	#tween.tween_property(self, "global_basis", chair.global_basis, 0.5)
+
+	# 1. Płynne przesuwanie pozycji (to co masz w kodzie)
+	tween.tween_property(self, "global_position", chair.sit_point.global_position, 0.5)\
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+	# 2. NOWOŚĆ: Płynna rotacja głowy z gwarancją NAJKRÓTSZEJ drogi
+	tween.tween_method(
+		func(value: float):
+			# lerp_angle automatycznie wybiera obrót w lewo lub w prawo, 
+			# zależnie od tego, co ma bliżej (droga nigdy nie przekroczy 180 stopni)
+			$Head.global_rotation.y = lerp_angle(start_rot_y, target_rot_y, value),
+		0.0, # Wartość startowa suwaka 'value'
+		1.0, # Wartość końcowa suwaka 'value'
+		0.5  # Czas trwania w sekundach
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
-	var target_rotation = chair.global_rotation.y + camOffset
-	# 2. Płynne obrócenie "Głowy" gracza (oś Y) do rotacji krzesła
-	tween.tween_property($Head, "global_rotation:y", target_rotation, 0.5)\
-		.set_trans(Tween.TRANS_SINE)
-		
 	# 3. Płynne wyprostowanie wzroku kamery (oś X na zero), żeby nie patrzyła w podłogę
 	tween.tween_property($Head/Camera3D, "rotation:x", 0.0, 0.5)\
 		.set_trans(Tween.TRANS_SINE)
@@ -172,7 +172,7 @@ func stand_up():
 	# Obliczamy pozycję końcową: 1.2 metra przed krzesłem (w stronę jego przodu)
 	# Używamy transformacji krzesła, aby wiedzieć, gdzie jest jego przód
 	var exit_offset = chair.global_transform.basis.z * 1.2
-	var exit_position = global_position + exit_offset
+	var exit_position = global_position - exit_offset
 	
 	# Tworzymy Tween dla płynnego wstawania
 	var tween = create_tween().set_parallel(true)

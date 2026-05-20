@@ -1,84 +1,94 @@
 [gd_scene format=3 uid="uid://b47e7a26o2q3y"]
 
-[ext_resource type="Texture2D" uid="uid://bdmhbuvwlxn2g" path="res://Assets/PC/tapeta.jpeg" id="1_te3fx"]
+[ext_resource type="Script" uid="uid://gt8mfkj3p1lu" path="res://Assets/PC/pc_control.gd" id="1_70naa"]
 [ext_resource type="Texture2D" uid="uid://b71hv8lhlq8vc" path="res://Assets/PC/cursor.png" id="2_0myl8"]
+[ext_resource type="Script" uid="uid://bvdnfpb4oklm7" path="res://Assets/PC/draggable_panel.gd" id="3_h4i1i"]
+[ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="5_gvvqa"]
+[ext_resource type="Texture2D" uid="uid://dn4idxx7cs1yu" path="res://Assets/PC/Aplikacje/Ikony/chrome.png" id="5_vupqa"]
 
-[node name="PCControl" type="Control" unique_id=397611687]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vupqa"]
+load_path = "res://.godot/imported/tapeta.jpeg-3bd1e2eedb708fe7cc2080449ae28a7a.s3tc.ctex"
+
+[node name="PCControl" type="Control" unique_id=397611687 node_paths=PackedStringArray("panel_windows")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 4
+script = ExtResource("1_70naa")
+panel_windows = [NodePath("BrowserWindow")]
 
 [node name="BG" type="TextureRect" parent="." unique_id=1058513700]
 custom_minimum_size = Vector2(1024, 1024)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("1_te3fx")
-expand_mode = 3
+texture = SubResource("CompressedTexture2D_vupqa")
+expand_mode = 1
+
+[node name="BrowserIcon" type="TextureButton" parent="." unique_id=1760967398]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 222.0
+offset_right = 975.0
+offset_bottom = 337.0
+texture_normal = ExtResource("5_vupqa")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BrowserIcon" unique_id=1528482124]
+layout_mode = 0
+offset_top = 110.0
+offset_right = 115.0
+offset_bottom = 152.0
+theme_override_font_sizes/font_size = 30
+text = "Chrome"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BrowserWindow" type="PanelContainer" parent="." unique_id=852004038]
+visible = false
+layout_mode = 1
+offset_left = 262.0
+offset_top = 337.0
+offset_right = 762.0
+offset_bottom = 687.0
+script = ExtResource("3_h4i1i")
+
+[node name="ColorRect" type="ColorRect" parent="BrowserWindow" unique_id=1655238914]
+layout_mode = 2
+color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BrowserWindow" unique_id=1376848104]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ColorRect" type="ColorRect" parent="BrowserWindow/MarginContainer" unique_id=2094355634]
+layout_mode = 2
+
+[node name="PasekKontrolny" type="HBoxContainer" parent="BrowserWindow" unique_id=1911755780]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 2
+
+[node name="CloseButton" type="TextureButton" parent="BrowserWindow/PasekKontrolny" unique_id=779271092]
+custom_minimum_size = Vector2(30, 10)
+layout_mode = 2
+texture_normal = ExtResource("5_gvvqa")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="MouseCursor" type="Sprite2D" parent="." unique_id=1598941554]
 top_level = true
+z_index = 100
 position = Vector2(512, 512)
 scale = Vector2(0.06989794, 0.06989794)
 texture = ExtResource("2_0myl8")
 offset = Vector2(210, 420)
 
-[node name="Button" type="Button" parent="." unique_id=625329877]
-layout_mode = 0
-offset_left = 471.0
-offset_top = 281.0
-offset_right = 533.0
-offset_bottom = 312.0
-text = "Button"
-
-[node name="CheckButton" type="CheckButton" parent="." unique_id=211154318]
-layout_mode = 0
-offset_left = 215.0
-offset_top = 286.0
-offset_right = 259.0
-offset_bottom = 310.0
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=1100003247]
-layout_mode = 0
-offset_left = 237.0
-offset_top = 153.0
-offset_right = 272.0
-offset_bottom = 187.0
-
-[node name="MenuButton" type="MenuButton" parent="." unique_id=223977766]
-layout_mode = 0
-offset_left = 354.0
-offset_top = 123.0
-offset_right = 406.0
-offset_bottom = 172.0
-text = "Co"
-
-[node name="OptionButton" type="OptionButton" parent="." unique_id=1269890367]
-layout_mode = 0
-offset_left = 386.0
-offset_top = 204.0
-offset_right = 466.0
-offset_bottom = 233.0
-selected = 0
-item_count = 2
-popup/item_0/text = "Digga"
-popup/item_0/id = 0
-popup/item_1/text = "Was"
-popup/item_1/id = 1
-
-[node name="LinkButton" type="LinkButton" parent="." unique_id=1077437649]
-layout_mode = 0
-offset_left = 475.0
-offset_top = 148.0
-offset_right = 511.0
-offset_bottom = 178.0
-text = "Sus"
-uri = "https://www.myinstants.com/en/instant/amongus-sus-74999/?utm_source=copy&utm_medium=share"
-
-[node name="LineEdit" type="LineEdit" parent="." unique_id=1452130700]
-layout_mode = 0
-offset_left = 109.0
-offset_top = 79.0
-offset_right = 343.0
-offset_bottom = 110.0
+[connection signal="pressed" from="BrowserIcon" to="." method="_on_browser_icon_pressed"]
+[connection signal="pressed" from="BrowserWindow/PasekKontrolny/CloseButton" to="." method="_on_close_button_pressed"]

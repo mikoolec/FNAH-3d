@@ -22,4 +22,4 @@ visible = false
 [node name="sit_point" type="Marker3D" parent="." unique_id=816658]
 
 [node name="taborek_na_kolkach" parent="." unique_id=678923500 instance=ExtResource("3_4ijd3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.612871e-05, 0.008870125, 0.0037934184)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009, 0)
