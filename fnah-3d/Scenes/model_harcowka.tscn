@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://c41ibo38fw0v1" path="res://Assets/PC/PC.gd" id="5_oppbp"]
 [ext_resource type="PackedScene" uid="uid://b47e7a26o2q3y" path="res://Assets/PC/pc_control.tscn" id="6_b0dvl"]
 [ext_resource type="PackedScene" uid="uid://wtcsgm3kjh3r" path="res://Scenes/drzwi.tscn" id="6_flkvd"]
-[ext_resource type="PackedScene" path="res://Scenes/kanapa.tscn" id="7_shit0"]
-[ext_resource type="PackedScene" path="res://Scenes/kuchnia.tscn" id="9_2cncr"]
+[ext_resource type="PackedScene" uid="uid://dyascavoj1bmd" path="res://Scenes/kanapa.tscn" id="7_shit0"]
+[ext_resource type="PackedScene" uid="uid://cp0f6vl8lrc0t" path="res://Scenes/kuchnia.tscn" id="9_2cncr"]
 [ext_resource type="PackedScene" uid="uid://cmo2d58oey2i2" path="res://Scenes/stol_kuchenny.tscn" id="11_ewqah"]
 [ext_resource type="PackedScene" uid="uid://castu1b1biuhm" path="res://Scenes/lawka.tscn" id="12_1mxhv"]
 
@@ -17,11 +17,14 @@ size = Vector3(0.8553467, 1.0141602, 1.2485352)
 
 [node name="model_harcowka" unique_id=1085567311 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=1248934091]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=2125601499]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 6.8652816, 0.041246258, -3.1026275)
+
+[node name="sit_point" parent="Chair" index="2" unique_id=816658]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0, 0, 0)
 
 [node name="Player" parent="." index="3" unique_id=985857779 instance=ExtResource("3_ijxm5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3334093, -0.24343824, 8.75412)
@@ -50,7 +53,7 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=1290762198]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=625874203]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
@@ -67,6 +70,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.369241, 0.0008390546, -5.62
 
 [node name="kanapa" parent="." index="14" unique_id=2000616939 instance=ExtResource("7_shit0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.161682, 4.7683716e-07, -0.50823104)
+
+[node name="Seat1" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="1" unique_id=312355204 node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="Seat2" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="2" unique_id=1076469297 node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="Seat3" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="3" unique_id=2039160215 node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
+
+[node name="Seat4" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="4" unique_id=930066509 node_paths=PackedStringArray("player")]
+player = NodePath("../../../Player")
 
 [node name="KitchenTable" parent="." index="15" unique_id=1066404003 instance=ExtResource("11_ewqah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9105644, 0.0019641519, -1.7944614)
@@ -88,3 +103,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0
 
 [node name="lawka4" parent="." index="21" unique_id=796782229 instance=ExtResource("12_1mxhv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.029079437, 0.024364471, 7.6109047)
+
+[editable path="Chair"]
+[editable path="kanapa"]

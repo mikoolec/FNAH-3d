@@ -28,6 +28,9 @@ var is_using_computer = false
 @onready var chair = $"../Chair"
 @onready var computer = $"../PC"
 @onready var collision_shape_chair: CollisionShape3D = $CollisionShape3D
+var current_furniture: Node3D = null
+var current_sit_point: Node3D = null
+var current_exit_point: Node3D = null
 
 
 func _ready():
@@ -67,12 +70,15 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
+		#  WSTAW TO:
 	match current_state:
 		State.SITTING:
-			chair.global_rotation.y = $Head.global_rotation.y - camOffset
+			# Obracamy mebel tylko, jeśli nazywa się "Chair" (Twoje obrotowe krzesło)
+			if current_furniture and current_furniture.name == "Chair":
+				current_furniture.global_rotation.y = $Head.global_rotation.y - camOffset
 		State.TRANSITION:
 			pass
-	
+
 	if walk_locked:
 		velocity.x = 0.0
 		velocity.z = 0.0
@@ -111,40 +117,47 @@ func _headbob (time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 
-func sit_down():
+func sit_down_on_furniture(furniture_node: Node3D, target_sit_point: Node3D, target_exit_point: Node3D = null):
 	current_state = State.TRANSITION
 	walk_locked = true
-	# 1. Wyłączamy kolizje, żeby gracz nie utknął w krześle
-	$CollisionShape3D.disabled = true
-	collision_shape_chair.disabled = true
 	
-	# Pobieramy kąt startowy głowy i kąt docelowy krzesła
+	# Zapamiętujemy mebel i dokładne miejsce siedzenia
+	current_furniture = furniture_node
+	current_sit_point = target_sit_point
+	current_exit_point = target_exit_point
+	
+	# Wyłączamy kolizje gracza
+	$CollisionShape3D.disabled = true
+	
+	# Jeśli mebel ma swoją własną kolizję główną, też ją wyłączamy, żeby nie było błędów fizyki
+	if current_furniture.has_node("CollisionShape3D"):
+		current_furniture.get_node("CollisionShape3D").disabled = true
+	
 	var start_rot_y = $Head.global_rotation.y
-	var target_rot_y = chair.global_rotation.y + deg_to_rad(90)
+	# Obracamy głowę w stronę, w którą patrzy mebel
+	var target_rot_y = current_sit_point.global_rotation.y + deg_to_rad(180)
 
-	# Tworzymy Tween
 	var tween = create_tween().set_parallel(true)
 
-	# 1. Płynne przesuwanie pozycji (to co masz w kodzie)
-	tween.tween_property(self, "global_position", chair.sit_point.global_position, 0.5)\
+	# Płynnie przesuwamy gracza do wybranego sit_pointu (działa dla krzesła i każdego punktu kanapy)
+	tween.tween_property(self, "global_position", current_sit_point.global_position, 0.5)\
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
-	# 2. NOWOŚĆ: Płynna rotacja głowy z gwarancją NAJKRÓTSZEJ drogi
+	# Płynna rotacja głowy gracza
 	tween.tween_method(
 		func(value: float):
-			# lerp_angle automatycznie wybiera obrót w lewo lub w prawo, 
-			# zależnie od tego, co ma bliżej (droga nigdy nie przekroczy 180 stopni)
 			$Head.global_rotation.y = lerp_angle(start_rot_y, target_rot_y, value),
-		0.0, # Wartość startowa suwaka 'value'
-		1.0, # Wartość końcowa suwaka 'value'
-		0.5  # Czas trwania w sekundach
+		0.0, 1.0, 0.5
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
-	# 3. Płynne wyprostowanie wzroku kamery (oś X na zero), żeby nie patrzyła w podłogę
-	tween.tween_property($Head/Camera3D, "rotation:x", 0.0, 0.5)\
-		.set_trans(Tween.TRANS_SINE)
+	# Prostowanie wzroku kamery
+	tween.tween_property($Head/Camera3D, "rotation:x", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
 	
 	tween.chain().finished.connect(_on_sit_finished)
+
+# Zachowujemy starą funkcję dla kompatybilności z Twoim starym krzesłem:
+func sit_down():
+	sit_down_on_furniture(chair, chair.sit_point)
 
 func _on_sit_finished():
 	current_state = State.SITTING
@@ -153,45 +166,52 @@ func stand_up():
 	if current_state != State.SITTING:
 		return
 		
-	current_state = State.TRANSITION # Blokujemy sterowanie na czas wstawania
+	current_state = State.TRANSITION
 	
-	var tween2 = create_tween().set_parallel(true) # Pozwala animować kilka rzeczy naraz
-	# Obracamy krzesło
-	tween2.tween_property(chair, "rotation:y", deg_to_rad(90), 0.3).set_trans(Tween.TRANS_SINE)
-	# Obracamy kamerę/głowę gracza do tej samej rotacji
-	# Zakładamy, że player.head to węzeł kontrolujący obrót głowy
+	var tween2 = create_tween().set_parallel(true)
+	
+	# Resetujemy rotację mebla TYLKO jeśli to było obrotowe krzesło
+	if current_furniture and current_furniture.name == "Chair":
+		tween2.tween_property(current_furniture, "rotation:y", deg_to_rad(90), 0.3).set_trans(Tween.TRANS_SINE)
+	
 	var target_angle = deg_to_rad(180)
-	# Obliczamy najkrótszą drogę (wynik będzie w zakresie -PI do PI)
 	var angle_diff = wrapf(target_angle - head.rotation.y, -PI, PI)
-	# Nowy cel to: obecna rotacja + najkrótsza droga
 	var shortest_target = head.rotation.y + angle_diff
 	
 	tween2.tween_property(head, "rotation:y", shortest_target, 0.3).set_trans(Tween.TRANS_SINE)
 	await tween2.finished
 
-	# Obliczamy pozycję końcową: 1.2 metra przed krzesłem (w stronę jego przodu)
-	# Używamy transformacji krzesła, aby wiedzieć, gdzie jest jego przód
-	var exit_offset = chair.global_transform.basis.z * 1.2
-	var exit_position = global_position - exit_offset
+	# Obliczamy pozycję wyjściową z przodu mebla, na którym aktualnie siedzimy
+	var exit_position: Vector3
+	if current_exit_point:
+		# Jeśli mebel (jak nasza nowa kanapa) ma zdefiniowany punkt wyjścia, użyj go!
+		exit_position = current_exit_point.global_position
+	else:
+		# Jeśli to stare krzesło i nie ma punktu wyjścia, użyj starego automatycznego obliczenia
+		var exit_offset = current_furniture.global_transform.basis.z * 1.2
+		exit_position = global_position - exit_offset
 	
-	# Tworzymy Tween dla płynnego wstawania
 	var tween = create_tween().set_parallel(true)
 	
-	# 1. Płynnie przesuwamy gracza na nogi przed krzesło
 	tween.tween_property(self, "global_position", exit_position, 0.4)\
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
-	# 2. Opcjonalnie: upewnij się, że wzrok wraca do poziomu (oś X kamery)
 	tween.tween_property($Head/Camera3D, "rotation:x", 0.0, 0.4)
 
-	# Po zakończeniu animacji przywracamy wolność
 	tween.chain().finished.connect(_on_stand_up_finished)
 
 func _on_stand_up_finished():
-	$CollisionShape3D.disabled = false # Włączamy fizykę z powrotem
-	collision_shape_chair.disabled = false
+	$CollisionShape3D.disabled = false
+	if current_furniture and current_furniture.has_node("CollisionShape3D"):
+		current_furniture.get_node("CollisionShape3D").disabled = false
+		
 	current_state = State.FREE
 	walk_locked = false
+	
+	# Czyścimy referencje, bo już stoimy na nogach
+	current_furniture = null
+	current_sit_point = null
+	current_exit_point = null
 
 func enter_computer():
 	if is_using_computer: return

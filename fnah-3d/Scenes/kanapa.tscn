@@ -1,5 +1,65 @@
 [gd_scene format=3 uid="uid://dyascavoj1bmd"]
 
 [ext_resource type="PackedScene" uid="uid://b8p03u6jsng5e" path="res://Assets/blend/kanapa.blend" id="1_mmm8l"]
+[ext_resource type="Script" uid="uid://dmwr3mt8x3umx" path="res://Scripts/kanapa_seat_1.gd" id="2_akjy5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27frg"]
+size = Vector3(0.74779415, 0.5472412, 0.7919922)
 
 [node name="kanapa" unique_id=2000616939 instance=ExtResource("1_mmm8l")]
+
+[node name="Seat1" type="Area3D" parent="Kanapa" parent_id_path=PackedInt32Array(905763469) index="1" unique_id=312355204]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1980815, 0.70789665, 0.33374715)
+script = ExtResource("2_akjy5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kanapa/Seat1" index="0" unique_id=88671270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08552933, 0.008972168, -0.104003906)
+shape = SubResource("BoxShape3D_27frg")
+
+[node name="sit_point" type="Node3D" parent="Kanapa/Seat1" index="1" unique_id=416543258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.9058228, -0.021249652)
+
+[node name="stand_point" type="Node3D" parent="Kanapa/Seat1" index="2" unique_id=1701261039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.6081269, 0.82883584)
+
+[node name="Seat2" type="Area3D" parent="Kanapa" parent_id_path=PackedInt32Array(905763469) index="2" unique_id=1076469297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4260974, 0.70789665, 0.33374715)
+script = ExtResource("2_akjy5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kanapa/Seat2" index="0" unique_id=357553608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06947374, 0.008972168, -0.104003906)
+shape = SubResource("BoxShape3D_27frg")
+
+[node name="sit_point" type="Node3D" parent="Kanapa/Seat2" index="1" unique_id=1328508985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.9058228, -0.021249652)
+
+[node name="stand_point" type="Node3D" parent="Kanapa/Seat2" index="2" unique_id=64018462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.6081269, 0.82883584)
+
+[node name="Seat3" type="Area3D" parent="Kanapa" parent_id_path=PackedInt32Array(905763469) index="3" unique_id=2039160215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30871034, 0.70789665, 0.33374715)
+script = ExtResource("2_akjy5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kanapa/Seat3" index="0" unique_id=48766578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08552933, 0.008972168, -0.104003906)
+shape = SubResource("BoxShape3D_27frg")
+
+[node name="sit_point" type="Node3D" parent="Kanapa/Seat3" index="1" unique_id=499802882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.9058228, -0.021249652)
+
+[node name="stand_point" type="Node3D" parent="Kanapa/Seat3" index="2" unique_id=1798208917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.6081269, 0.82883584)
+
+[node name="Seat4" type="Area3D" parent="Kanapa" parent_id_path=PackedInt32Array(905763469) index="4" unique_id=930066509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0806944, 0.70789665, 0.33374715)
+script = ExtResource("2_akjy5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kanapa/Seat4" index="0" unique_id=1278300655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06947374, 0.008972168, -0.104003906)
+shape = SubResource("BoxShape3D_27frg")
+
+[node name="sit_point" type="Node3D" parent="Kanapa/Seat4" index="1" unique_id=759277181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.9058228, -0.021249652)
+
+[node name="stand_point" type="Node3D" parent="Kanapa/Seat4" index="2" unique_id=1580000806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1710608, -0.6081269, 0.82883584)
