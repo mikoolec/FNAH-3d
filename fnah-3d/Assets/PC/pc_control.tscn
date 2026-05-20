@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b71hv8lhlq8vc" path="res://Assets/PC/cursor.png" id="2_0myl8"]
 [ext_resource type="Texture2D" uid="uid://bxpt4gob1fxc5" path="res://Assets/PC/Aplikacje/Ikony/printer.png" id="3_gvvqa"]
 [ext_resource type="Script" uid="uid://bvdnfpb4oklm7" path="res://Assets/PC/draggable_panel.gd" id="3_h4i1i"]
+[ext_resource type="Script" uid="uid://chhd0of65raek" path="res://Assets/PC/browser.gd" id="5_1sy4e"]
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="5_gvvqa"]
 [ext_resource type="Texture2D" uid="uid://dn4idxx7cs1yu" path="res://Assets/PC/Aplikacje/Ikony/chrome.png" id="5_vupqa"]
 
@@ -87,8 +88,29 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+script = ExtResource("5_1sy4e")
 
 [node name="ColorRect" type="ColorRect" parent="BrowserWindow/MarginContainer" unique_id=2094355634]
+layout_mode = 2
+
+[node name="App" type="VBoxContainer" parent="BrowserWindow/MarginContainer" unique_id=227325883]
+layout_mode = 2
+
+[node name="PasekAdresu" type="HBoxContainer" parent="BrowserWindow/MarginContainer/App" unique_id=1879022364]
+layout_mode = 2
+mouse_filter = 0
+alignment = 1
+
+[node name="UrlInput" type="LineEdit" parent="BrowserWindow/MarginContainer/App/PasekAdresu" unique_id=1130617127]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Search" type="Button" parent="BrowserWindow/MarginContainer/App/PasekAdresu" unique_id=1379917522]
+layout_mode = 2
+text = "Search"
+
+[node name="ContentZone" type="Control" parent="BrowserWindow/MarginContainer/App" unique_id=1929082529]
+custom_minimum_size = Vector2(0, 275)
 layout_mode = 2
 
 [node name="PasekKontrolny" type="HBoxContainer" parent="BrowserWindow" unique_id=1911755780]

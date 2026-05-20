@@ -9,7 +9,7 @@ size = Vector3(0.1463623, 0.98999023, 2.0674133)
 
 [node name="drzwi" unique_id=91442167 instance=ExtResource("1_t4vj5")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(2108610762) index="0" unique_id=1086004559]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1586608007) index="0" unique_id=1791844984]
 bones/1/rotation = Quaternion(-0.7071068, 0, 0, 0.7071068)
 bones/2/rotation = Quaternion(0.7071068, 0, 0.7071068, 0)
 
@@ -28,5 +28,5 @@ script = ExtResource("2_7b6sn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015197754, 0.4630127, 0.09629822)
 shape = SubResource("BoxShape3D_t4vj5")
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1628346244]
+[node name="AnimationPlayer" parent="." index="1" unique_id=1380305073]
 callback_mode_process = 0
