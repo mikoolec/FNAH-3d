@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gt8mfkj3p1lu" path="res://Assets/PC/pc_control.gd" id="1_70naa"]
 [ext_resource type="Texture2D" uid="uid://b71hv8lhlq8vc" path="res://Assets/PC/cursor.png" id="2_0myl8"]
+[ext_resource type="Texture2D" uid="uid://bxpt4gob1fxc5" path="res://Assets/PC/Aplikacje/Ikony/printer.png" id="3_gvvqa"]
 [ext_resource type="Script" uid="uid://bvdnfpb4oklm7" path="res://Assets/PC/draggable_panel.gd" id="3_h4i1i"]
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="5_gvvqa"]
 [ext_resource type="Texture2D" uid="uid://dn4idxx7cs1yu" path="res://Assets/PC/Aplikacje/Ikony/chrome.png" id="5_vupqa"]
@@ -16,7 +17,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
 script = ExtResource("1_70naa")
-panel_windows = [NodePath("BrowserWindow")]
+panel_windows = [NodePath("BrowserWindow"), NodePath("PrinterWindow")]
 
 [node name="BG" type="TextureRect" parent="." unique_id=1058513700]
 custom_minimum_size = Vector2(1024, 1024)
@@ -43,6 +44,27 @@ offset_right = 115.0
 offset_bottom = 152.0
 theme_override_font_sizes/font_size = 30
 text = "Chrome"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="PrinterIcon" type="TextureButton" parent="." unique_id=1255545113]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 222.0
+offset_right = 156.0
+offset_bottom = 337.0
+texture_normal = ExtResource("3_gvvqa")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="PrinterIcon" unique_id=44529717]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 111.0
+offset_right = 113.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 30
+text = "Printer"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -75,7 +97,53 @@ layout_mode = 2
 size_flags_vertical = 0
 alignment = 2
 
-[node name="CloseButton" type="TextureButton" parent="BrowserWindow/PasekKontrolny" unique_id=779271092]
+[node name="Label" type="Label" parent="BrowserWindow/PasekKontrolny" unique_id=1672938462]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Browser"
+
+[node name="CloseBrowserButton" type="TextureButton" parent="BrowserWindow/PasekKontrolny" unique_id=779271092]
+custom_minimum_size = Vector2(30, 10)
+layout_mode = 2
+texture_normal = ExtResource("5_gvvqa")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PrinterWindow" type="PanelContainer" parent="." unique_id=428964142]
+visible = false
+layout_mode = 1
+offset_left = 262.0
+offset_top = 337.0
+offset_right = 762.0
+offset_bottom = 687.0
+script = ExtResource("3_h4i1i")
+
+[node name="ColorRect" type="ColorRect" parent="PrinterWindow" unique_id=870363623]
+layout_mode = 2
+color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="PrinterWindow" unique_id=389303771]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ColorRect" type="ColorRect" parent="PrinterWindow/MarginContainer" unique_id=1397525113]
+layout_mode = 2
+
+[node name="PasekKontrolny" type="HBoxContainer" parent="PrinterWindow" unique_id=274772488]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 2
+
+[node name="Label" type="Label" parent="PrinterWindow/PasekKontrolny" unique_id=1951728801]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Printer"
+
+[node name="ClosePrinterButton" type="TextureButton" parent="PrinterWindow/PasekKontrolny" unique_id=1679067376]
 custom_minimum_size = Vector2(30, 10)
 layout_mode = 2
 texture_normal = ExtResource("5_gvvqa")
@@ -91,4 +159,6 @@ texture = ExtResource("2_0myl8")
 offset = Vector2(210, 420)
 
 [connection signal="pressed" from="BrowserIcon" to="." method="_on_browser_icon_pressed"]
-[connection signal="pressed" from="BrowserWindow/PasekKontrolny/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="PrinterIcon" to="." method="_on_printer_icon_pressed"]
+[connection signal="pressed" from="BrowserWindow/PasekKontrolny/CloseBrowserButton" to="." method="_on_close_browser_button_pressed"]
+[connection signal="pressed" from="PrinterWindow/PasekKontrolny/ClosePrinterButton" to="." method="_on_close_printer_button_pressed"]
