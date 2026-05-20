@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dyascavoj1bmd"]
 
 [ext_resource type="PackedScene" uid="uid://b8p03u6jsng5e" path="res://Assets/blend/kanapa.blend" id="1_mmm8l"]
-[ext_resource type="Script" uid="uid://dmwr3mt8x3umx" path="res://Scripts/kanapa_seat_1.gd" id="2_akjy5"]
+[ext_resource type="Script" uid="uid://dmwr3mt8x3umx" path="res://Scripts/kanapa_seat.gd" id="2_akjy5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_27frg"]
 size = Vector3(0.74779415, 0.5472412, 0.7919922)

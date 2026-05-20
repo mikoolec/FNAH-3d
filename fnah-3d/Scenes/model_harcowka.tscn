@@ -23,8 +23,14 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 6.8652816, 0.041246258, -3.1026275)
 
-[node name="sit_point" parent="Chair" index="2" unique_id=816658]
+[node name="ChairSitArea" parent="Chair" index="3" unique_id=659081482 node_paths=PackedStringArray("player")]
+player = NodePath("../../Player")
+
+[node name="sit_point" parent="Chair/ChairSitArea" index="0" unique_id=816658]
 transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 0, 0, 0)
+
+[node name="stand_point" parent="Chair/ChairSitArea" index="1" unique_id=655518334]
+transform = Transform3D(0.9999999, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 0.9999999, 0, 0, -0.671906)
 
 [node name="Player" parent="." index="3" unique_id=985857779 instance=ExtResource("3_ijxm5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3334093, -0.24343824, 8.75412)

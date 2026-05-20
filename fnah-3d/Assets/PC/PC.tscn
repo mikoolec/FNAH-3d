@@ -18,16 +18,16 @@ size = Vector2(1, 0.85)
 
 [node name="FAB converted" unique_id=1551015543 instance=ExtResource("1_igxpg")]
 
-[node name="PC" parent="FAB converted model/retrocomputer_fbx/RootNode" parent_id_path=PackedInt32Array(461789100) index="0" unique_id=542140348]
+[node name="PC" parent="FAB converted model/retrocomputer_fbx/RootNode" parent_id_path=PackedInt32Array(1853189308) index="0" unique_id=143592973]
 transform = Transform3D(7.54979e-06, 100, 4.371139e-06, 0, -4.371139e-06, 100, 100, -7.54979e-06, -3.3001182e-13, 0, 0, 0)
 
-[node name="PC_M_PCBody_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="0" unique_id=1793100359]
+[node name="PC_M_PCBody_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="0" unique_id=279725582]
 visible = false
 
-[node name="PC_M_Screen_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="1" unique_id=1013973198]
+[node name="PC_M_Screen_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="1" unique_id=959420984]
 visible = false
 
-[node name="PC_M_Keys_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="2" unique_id=1031493354]
+[node name="PC_M_Keys_0" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="2" unique_id=304703069]
 visible = false
 
 [node name="Screen" type="MeshInstance3D" parent="FAB converted model/retrocomputer_fbx/RootNode/PC" index="3" unique_id=1785680024]

@@ -73,9 +73,11 @@ func _physics_process(delta: float) -> void:
 		#  WSTAW TO:
 	match current_state:
 		State.SITTING:
-			# Obracamy mebel tylko, jeśli nazywa się "Chair" (Twoje obrotowe krzesło)
+			# Jeśli siedzimy na obiekcie o nazwie "Chair", obracamy go za myszką
 			if current_furniture and current_furniture.name == "Chair":
-				current_furniture.global_rotation.y = $Head.global_rotation.y - camOffset
+				# Krzesło obraca się tam, gdzie patrzy głowa, ale odejmujemy 90 stopni,
+				# ponieważ Twój oryginalny system siadania zakładał przesunięcie osi mebla
+				current_furniture.global_rotation.y = $Head.global_rotation.y - deg_to_rad(90)
 		State.TRANSITION:
 			pass
 
@@ -170,10 +172,12 @@ func stand_up():
 	
 	var tween2 = create_tween().set_parallel(true)
 	
-	# Resetujemy rotację mebla TYLKO jeśli to było obrotowe krzesło
+	# Jeśli to krzesło, resetujemy jego rotację do wartości domyślnej (np. 90 stopni)
 	if current_furniture and current_furniture.name == "Chair":
+		# Tutaj wpisz kąt domyślny krzesła, gdy nikt na nim nie siedzi (u Ciebie było to deg_to_rad(90))
 		tween2.tween_property(current_furniture, "rotation:y", deg_to_rad(90), 0.3).set_trans(Tween.TRANS_SINE)
 	
+	# Obracamy głowę gracza do pozycji stojącej (180 stopni względem pokoju)
 	var target_angle = deg_to_rad(180)
 	var angle_diff = wrapf(target_angle - head.rotation.y, -PI, PI)
 	var shortest_target = head.rotation.y + angle_diff
@@ -181,23 +185,21 @@ func stand_up():
 	tween2.tween_property(head, "rotation:y", shortest_target, 0.3).set_trans(Tween.TRANS_SINE)
 	await tween2.finished
 
-	# Obliczamy pozycję wyjściową z przodu mebla, na którym aktualnie siedzimy
+	# --- TUTAJ JEST REWELACJA ---
+	# Ponieważ dodałeś stand_point do krzesła, ta sekcja (którą pisaliśmy wcześniej)
+	# automatycznie i idealnie postawi gracza na punkcie stand_point krzesła!
 	var exit_position: Vector3
 	if current_exit_point:
-		# Jeśli mebel (jak nasza nowa kanapa) ma zdefiniowany punkt wyjścia, użyj go!
 		exit_position = current_exit_point.global_position
 	else:
-		# Jeśli to stare krzesło i nie ma punktu wyjścia, użyj starego automatycznego obliczenia
 		var exit_offset = current_furniture.global_transform.basis.z * 1.2
 		exit_position = global_position - exit_offset
-	
+		
 	var tween = create_tween().set_parallel(true)
-	
 	tween.tween_property(self, "global_position", exit_position, 0.4)\
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
 	tween.tween_property($Head/Camera3D, "rotation:x", 0.0, 0.4)
-
 	tween.chain().finished.connect(_on_stand_up_finished)
 
 func _on_stand_up_finished():
