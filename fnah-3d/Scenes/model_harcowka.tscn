@@ -112,14 +112,14 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.029079437, 0.024364471, 7.6109047)
 
 [node name="BaseSlot" parent="." index="22" unique_id=951693370 groups=["slots"] instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.752066, 0, 6.4185266)
+transform = Transform3D(0.7767944, 0, -0.62975436, 0, 1, 0, 0.62975436, 0, 0.7767944, 9.191463, 0.9894232, -5.7782197)
 default_item = "klucz"
 
 [node name="CollisionShape3D" parent="BaseSlot" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48272407, 0)
+transform = Transform3D(0.71168286, 0, -0.70250094, 0, 1, 0, 0.70250094, 0, 0.71168286, 0.058891296, 0.17535102, 0.31636238)
 
 [node name="BaseSlot2" parent="." index="23" unique_id=271659622 instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.919893, 0, 3.9292321)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.919893, 0.21216238, 3.9292321)
 slot_type = 2
 
 [editable path="Chair"]

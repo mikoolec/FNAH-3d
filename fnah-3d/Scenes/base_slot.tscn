@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b8g2n3y0pxeqo" path="res://Scripts/ItemSlot.gd" id="1_oc6oa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oc6oa"]
+size = Vector3(0.6374512, 0.3852539, 0.49560547)
 
 [node name="BaseSlot" type="Area3D" unique_id=951693370]
 script = ExtResource("1_oc6oa")
