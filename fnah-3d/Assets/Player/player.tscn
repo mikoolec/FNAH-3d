@@ -28,6 +28,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -9.967301e-08, -1, 0, 2.2802527, -4.371139e-08, 0, -0.002844572, 0)
 collide_with_areas = true
 
+[node name="Hand" type="Node3D" parent="Head/Camera3D" unique_id=1844126608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29117334, -0.7540102)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1136534965]
 
 [node name="BoxContainer" type="BoxContainer" parent="CanvasLayer" unique_id=715465059]

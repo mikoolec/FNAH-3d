@@ -32,6 +32,11 @@ var current_furniture: Node3D = null
 var current_sit_point: Node3D = null
 var current_exit_point: Node3D = null
 
+@onready var hand = $Head/Camera3D/Hand
+
+# Zmienna trzymająca ID przedmiotu, który gracz aktualnie niesie
+var holding_item: String = ItemDB.NONE
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -47,24 +52,34 @@ func _unhandled_input(event):
 		stand_up()
 
 func _physics_process(delta: float) -> void:
+	# --- POPRAWIONY BLOK INTERAKCJI ---
 	%InteractText.hide()
 	%Interact2Text.hide()
+	
 	if %SeeCast.is_colliding() and !is_using_computer:
 		var target = %SeeCast.get_collider()
+		
 		if target.has_method("interact"):
 			if target == computer:
-				if current_state == State.SITTING:	
+				if current_state == State.SITTING:  
 					%InteractText.show()
 					if Input.is_action_just_pressed("interact"):
 						target.interact()
 			else:
+				# Dla wszystkich innych obiektów (sloty, krzesła itp.)
 				%InteractText.show()
 				if Input.is_action_just_pressed("interact"):
-					target.interact()
+					# Sprawdzamy, czy obiekt to nasz slot (czy oczekuje argumentu 'player')
+					if target.has_method("_update_visuals"): # Tylko ItemSlot ma tę funkcję
+						target.interact(self)
+					else:
+						target.interact() # Dla krzesła i reszty świata bez argumentu
+
 		if target.has_method("interact2"):
 			%Interact2Text.show()
 			if Input.is_action_just_pressed("interact2"):
 				target.interact2()
+	# --- KONIEC POPRAWIONEGO BLOKU ---
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -246,3 +261,32 @@ func exit_computer():
 		camera_locked = false
 		is_using_computer = false
 	)
+
+
+func collect_item(item_id: String) -> void:
+	holding_item = item_id
+	
+	# Na wszelki wypadek czyścimy rękę, jeśli coś tam było
+	for child in hand.get_children():
+		child.queue_free()
+	
+	# Ładujemy scenę z naszej bazy danych
+	var scene = ItemDB.get_item_scene(item_id)
+	if scene:
+		var item_instance = scene.instantiate()
+		hand.add_child(item_instance)
+		
+		# WAŻNE: Jeśli Twoja scena przedmiotu ma własny skrypt, kolizje lub fizykę,
+		# tutaj możemy je wyłączyć, żeby przedmiot w ręce nie blokował gracza.
+		if item_instance.has_node("CollisionShape3D"):
+			item_instance.get_node("CollisionShape3D").disabled = true
+
+func drop_item() -> String:
+	var dropped = holding_item
+	holding_item = ItemDB.NONE
+	
+	# Usuwamy model z ręki
+	for child in hand.get_children():
+		child.queue_free()
+		
+	return dropped
