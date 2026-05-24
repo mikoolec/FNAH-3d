@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bi73yqijptqai"]
+
+[ext_resource type="Script" uid="uid://csxs86pba5man" path="res://Assets/PC/Aplikacje/Ikony/desktop_file.gd" id="1_y7pl3"]
+
+[node name="DesktopFile" type="Button" unique_id=938357495]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_y7pl3")

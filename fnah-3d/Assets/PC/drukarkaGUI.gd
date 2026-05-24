@@ -1,0 +1,19 @@
+extends Control # Skrypt okna drukarki
+
+# 1. CZY DRUKARKA MOŻE PRZYJĄĆ TO, CO NIESIE MYSZKA?
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	# Sprawdzamy, czy to co przeciągamy, to słownik i czy ma typ "file_document"
+	if typeof(data) == TYPE_DICTIONARY and data.get("type") == "file_document":
+		return true
+	return false
+
+# 2. CO SIĘ STANIE, GDY GRACZ PUŚCI LEWY PRZYCISK MYSZY NAD OKNEM DRUKARKI?
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	var dropped_file_name = data["file_name"]
+	
+	# Odpalasz swoją logikę drukowania!
+	rozpocznij_drukowanie(dropped_file_name)
+
+func rozpocznij_drukowanie(file_name: String) -> void:
+	print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
+	# Tutaj dajesz animację drukowania, dźwięk drukarki itp.
