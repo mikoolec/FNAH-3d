@@ -1,0 +1,21 @@
+# ItemDB.gd
+extends Node
+
+# Tutaj wpisujesz unikalne nazwy (ID) swoich przedmiotów.
+# Używaj dokładnie takich samych nazw w całym projekcie.
+const KNIFE = "noz"
+const SHEET = "kartka"
+const KEY = "klucz"
+const NONE = "brak"
+
+# Słownik, który łączy tekstowe ID z plikiem sceny .tscn
+# WPISZ TUTAJ SWOJE DOKŁADNE ŚCIEŻKI DO PLIKÓW!
+const ITEM_SCENES = {
+	KEY: "res://Scenes//Klucz.tscn"
+}
+
+# Bezpieczna funkcja do pobierania sceny
+func get_item_scene(item_id: String) -> PackedScene:
+	if ITEM_SCENES.has(item_id):
+		return load(ITEM_SCENES[item_id])
+	return null
