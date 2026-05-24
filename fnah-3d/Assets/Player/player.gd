@@ -52,28 +52,36 @@ func _unhandled_input(event):
 		stand_up()
 
 func _physics_process(delta: float) -> void:
-	# --- POPRAWIONY BLOK INTERAKCJI ---
+	# --- POPRAWIONY BLOK INTERAKCJI DLA DRZWI ---
 	%InteractText.hide()
 	%Interact2Text.hide()
 	
 	if %SeeCast.is_colliding() and !is_using_computer:
 		var target = %SeeCast.get_collider()
 		
+		# Ustalamy, kto ostatecznie odpowiada za interakcję (węzeł lub jego rodzic)
+		var interact_target = null
 		if target.has_method("interact"):
-			if target == computer:
+			interact_target = target
+		elif target.get_parent() and target.get_parent().has_method("interact"):
+			interact_target = target.get_parent()
+		elif target.get_parent() and target.get_parent().get_parent() and target.get_parent().get_parent().has_method("interact"):
+			interact_target = target.get_parent().get_parent().get_parent()
+
+		if interact_target:
+			if interact_target == computer:
 				if current_state == State.SITTING:  
 					%InteractText.show()
 					if Input.is_action_just_pressed("interact"):
-						target.interact()
+						interact_target.interact()
 			else:
-				# Dla wszystkich innych obiektów (sloty, krzesła itp.)
+				# Dla wszystkich innych obiektów (drzwi, sloty, krzesła)
 				%InteractText.show()
 				if Input.is_action_just_pressed("interact"):
-					# Sprawdzamy, czy obiekt to nasz slot (czy oczekuje argumentu 'player')
-					if target.has_method("_update_visuals"): # Tylko ItemSlot ma tę funkcję
-						target.interact(self)
+					if interact_target.has_method("_update_visuals"): 
+						interact_target.interact(self)
 					else:
-						target.interact() # Dla krzesła i reszty świata bez argumentu
+						interact_target.interact()
 
 		if target.has_method("interact2"):
 			%Interact2Text.show()

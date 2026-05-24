@@ -12,13 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://cmo2d58oey2i2" path="res://Scenes/stol_kuchenny.tscn" id="11_ewqah"]
 [ext_resource type="PackedScene" uid="uid://castu1b1biuhm" path="res://Scenes/lawka.tscn" id="12_1mxhv"]
 [ext_resource type="PackedScene" uid="uid://xkdmfbdncti2" path="res://Scenes/base_slot.tscn" id="12_qao3v"]
+[ext_resource type="PackedScene" uid="uid://0n6kaimaikw" path="res://Scenes/drzwi_g.tscn" id="13_qao3v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1.0141602, 1.2485352)
 
-[node name="model_harcowka" unique_id=1085567311 instance=ExtResource("1_5ilb7")]
+[node name="model_harcowka" unique_id=938364089 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=2125601499]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=312980662]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -60,7 +61,7 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=625874203]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=129313204]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
@@ -121,6 +122,9 @@ transform = Transform3D(0.71168286, 0, -0.70250094, 0, 1, 0, 0.70250094, 0, 0.71
 [node name="BaseSlot2" parent="." index="23" unique_id=271659622 instance=ExtResource("12_qao3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.919893, 0.21216238, 3.9292321)
 slot_type = 2
+
+[node name="drzwi_G" parent="." index="24" unique_id=599315374 instance=ExtResource("13_qao3v")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.714424, -0.49628788, 15.587837)
 
 [editable path="Chair"]
 [editable path="kanapa"]

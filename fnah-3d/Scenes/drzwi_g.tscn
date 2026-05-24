@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://0n6kaimaikw"]
+
+[ext_resource type="PackedScene" uid="uid://bufcmco2jfal0" path="res://Assets/blend/drzwi_G.blend" id="1_o0ab8"]
+[ext_resource type="Script" uid="uid://c1quh5fsfgn4s" path="res://Scenes/drzwi_g.gd" id="2_35m10"]
+[ext_resource type="Script" uid="uid://cganpw5rlwa0w" path="res://Scenes/door_g_op.gd" id="3_fsumm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pldky"]
+size = Vector3(0.2043457, 2.00708, 1.2023926)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsumm"]
+size = Vector3(0.19384766, 2.0095215, 1.2002563)
+
+[node name="drzwi_G" unique_id=828573807 instance=ExtResource("1_o0ab8")]
+script = ExtResource("2_35m10")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1583377368) index="0" unique_id=2006481327]
+bones/1/rotation = Quaternion(-0.27854306, -0.64993376, -0.27854303, 0.64993364)
+bones/2/rotation = Quaternion(0.92717177, 2.0108551e-08, -4.926526e-08, 0.37463653)
+bones/3/rotation = Quaternion(0.27698877, 0.6505977, -0.2769888, 0.65059745)
+bones/4/rotation = Quaternion(0.9260068, -1.9420403e-08, 1.423019e-07, -0.37750682)
+
+[node name="BoneAttachment3D_L" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="5" unique_id=811387511]
+transform = Transform3D(-2.3841858e-07, 0.72083294, 0.6931087, 8.940697e-08, 0.69310886, -0.7208328, -1, -1.7881393e-07, -2.3841854e-07, 0, 0, -1.2)
+bone_name = "Drzwi L"
+bone_idx = 3
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Armature/Skeleton3D/BoneAttachment3D_L" index="0" unique_id=216818044]
+script = ExtResource("3_fsumm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D_L/AnimatableBody3D" index="0" unique_id=5612725]
+transform = Transform3D(1, 1.7146637e-07, 7.27602e-08, -1.7146633e-07, 0.6948216, 0.71918225, 7.276016e-08, -0.7191823, 0.6948218, -0.0008545568, 1.107275, -0.35359925)
+shape = SubResource("BoxShape3D_pldky")
+
+[node name="BoneAttachment3D_R" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="6" unique_id=184611473]
+transform = Transform3D(-1.1920929e-07, 0.7241379, -0.68965507, 1.1920929e-07, 0.68965507, 0.7241379, 1, 2.9802319e-08, -1.1920929e-07, 0, 0, 1.2)
+bone_name = "Drzwi R"
+bone_idx = 1
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Armature/Skeleton3D/BoneAttachment3D_R" index="0" unique_id=1760271736]
+script = ExtResource("3_fsumm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D_R/AnimatableBody3D" index="0" unique_id=1843726105]
+transform = Transform3D(1, 0, 0, 0, 0.68243223, -0.7309487, 0, 0.7309488, 0.6824322, -0.0026855469, 1.1247108, 0.33103853)
+shape = SubResource("BoxShape3D_fsumm")
