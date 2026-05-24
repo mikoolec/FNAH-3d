@@ -52,75 +52,60 @@ func _unhandled_input(event):
 		stand_up()
 
 func _physics_process(delta: float) -> void:
-	# --- POPRAWIONY BLOK INTERAKCJI DLA DRZWI ---
 	%InteractText.hide()
 	%Interact2Text.hide()
 	
 	if %SeeCast.is_colliding() and !is_using_computer:
 		var target = %SeeCast.get_collider()
 		
-		# Ustalamy, kto ostatecznie odpowiada za interakcję (węzeł lub jego rodzic)
-		var interact_target = null
 		if target.has_method("interact"):
-			interact_target = target
-		elif target.get_parent() and target.get_parent().has_method("interact"):
-			interact_target = target.get_parent()
-		elif target.get_parent() and target.get_parent().get_parent() and target.get_parent().get_parent().has_method("interact"):
-			interact_target = target.get_parent().get_parent().get_parent()
-
-		if interact_target:
-			if interact_target == computer:
+			if target == computer:
 				if current_state == State.SITTING:  
 					%InteractText.show()
 					if Input.is_action_just_pressed("interact"):
-						interact_target.interact()
+						target.interact()
 			else:
-				# Dla wszystkich innych obiektów (drzwi, sloty, krzesła)
+				# Dla wszystkich innych obiektów (sloty, krzesła itp.)
 				%InteractText.show()
 				if Input.is_action_just_pressed("interact"):
-					if interact_target.has_method("_update_visuals"): 
-						interact_target.interact(self)
+					# Sprawdzamy, czy obiekt to nasz slot (czy oczekuje argumentu 'player')
+					if target.has_method("_update_visuals"): # Tylko ItemSlot ma tę funkcję
+						target.interact(self)
 					else:
-						interact_target.interact()
+						target.interact() # Dla krzesła i reszty świata bez argumentu
 
 		if target.has_method("interact2"):
 			%Interact2Text.show()
 			if Input.is_action_just_pressed("interact2"):
 				target.interact2()
-	# --- KONIEC POPRAWIONEGO BLOKU ---
 	
-	# Add the gravity.
+	# Dodawanie grawitacji (Naprawiony podwójny minus)
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-		#  WSTAW TO:
+	# Logika siedzenia (Wcięcia wyciągnięte całkowicie w lewo)
 	match current_state:
 		State.SITTING:
-			# Jeśli siedzimy na obiekcie o nazwie "Chair", obracamy go za myszką
 			if current_furniture and current_furniture.name == "Chair":
-				# Krzesło obraca się tam, gdzie patrzy głowa, ale odejmujemy 90 stopni,
-				# ponieważ Twój oryginalny system siadania zakładał przesunięcie osi mebla
 				current_furniture.global_rotation.y = $Head.global_rotation.y - deg_to_rad(90)
 		State.TRANSITION:
 			pass
-
+	
 	if walk_locked:
 		velocity.x = 0.0
 		velocity.z = 0.0
 		return
 
-	# Handle jump.
+	# Skakanie i bieg
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
-	# Handle sprint.
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Ruch gracza
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction : Vector3 = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -131,8 +116,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0.0
 	
 	# Head bob
-	t_bob += delta * velocity. length() * float(is_on_floor())
-	camera. transform.origin =_headbob(t_bob)
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(t_bob)
 
 	move_and_slide()
 
