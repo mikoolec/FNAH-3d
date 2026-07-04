@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://castu1b1biuhm" path="res://Scenes/lawka.tscn" id="12_1mxhv"]
 [ext_resource type="PackedScene" uid="uid://xkdmfbdncti2" path="res://Scenes/base_slot.tscn" id="12_qao3v"]
 [ext_resource type="PackedScene" uid="uid://0n6kaimaikw" path="res://Scenes/drzwi_g.tscn" id="13_qao3v"]
+[ext_resource type="PackedScene" uid="uid://uap3wn7pa3nn" path="res://Assets/blend/TrashFiller.blend" id="13_yj5vp"]
 [ext_resource type="PackedScene" uid="uid://dhuou1c7b1pwd" path="res://Scenes/smierniki.tscn" id="14_43243"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
@@ -147,6 +148,9 @@ shape = SubResource("ConcavePolygonShape3D_8n43u")
 
 [node name="smierniki" parent="." index="26" unique_id=1147673523 instance=ExtResource("14_43243")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.360748, 0.6215158, 0.21397)
+
+[node name="TrashFiller" parent="." index="27" unique_id=1339683213 instance=ExtResource("13_yj5vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.361398, -0.6567035, 0.22006476)
 
 [editable path="Chair"]
 [editable path="kanapa"]

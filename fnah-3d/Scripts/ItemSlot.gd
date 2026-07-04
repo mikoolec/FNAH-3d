@@ -31,7 +31,9 @@ func _update_visuals() -> void:
 			# Wyłączamy kolizję samego przedmiotu, bo to SLOT ma swoją własną kolizję do klikania
 			if item_instance.has_node("CollisionShape3D"):
 				item_instance.get_node("CollisionShape3D").disabled = true
-
+	elif slot_type == SlotType.TRASH:
+		var filler = $"../TrashFiller"
+		filler.position.y = -0.65 + (float(trash_capacity)/10)*(0.563+0.65)
 # Główna funkcja interakcji wywoływana przez gracz_process
 func interact(player) -> void:
 	match slot_type:
@@ -63,11 +65,12 @@ func interact(player) -> void:
 						trash_capacity = 0
 					else:
 						trash_capacity += 1
+						print("wyrzucono cos, aktualne zapelnienie to", trash_capacity)
 			else:
 				player.collect_item(current_item)
 				print("podniesiono smieci - oprozniono smietnik")
 				trash_capacity = 0
-				
+			_update_visuals()
 
 # Failsafe: szuka w całej grze slotu typu SINGLE, który zgubił ten przedmiot i go respi
 func _handle_failsafe(item_id: String) -> void:
