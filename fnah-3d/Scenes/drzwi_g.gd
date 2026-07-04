@@ -4,6 +4,10 @@ extends Node3D
 
 var open: bool = false
 
+func _ready() -> void:
+	if anim_player:
+		anim_player.play("Close");
+
 func toggle_doors() -> void:
 	if anim_player:
 		if !open:

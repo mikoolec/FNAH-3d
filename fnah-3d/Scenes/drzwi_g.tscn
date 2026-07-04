@@ -13,7 +13,7 @@ size = Vector3(0.19384766, 2.0095215, 1.2002563)
 [node name="drzwi_G" unique_id=828573807 instance=ExtResource("1_o0ab8")]
 script = ExtResource("2_35m10")
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1583377368) index="0" unique_id=2006481327]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(486355324) index="0" unique_id=843607147]
 bones/1/rotation = Quaternion(-0.27854306, -0.64993376, -0.27854303, 0.64993364)
 bones/2/rotation = Quaternion(0.92717177, 2.0108551e-08, -4.926526e-08, 0.37463653)
 bones/3/rotation = Quaternion(0.27698877, 0.6505977, -0.2769888, 0.65059745)
