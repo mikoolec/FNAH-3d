@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://castu1b1biuhm" path="res://Scenes/lawka.tscn" id="12_1mxhv"]
 [ext_resource type="PackedScene" uid="uid://xkdmfbdncti2" path="res://Scenes/base_slot.tscn" id="12_qao3v"]
 [ext_resource type="PackedScene" uid="uid://0n6kaimaikw" path="res://Scenes/drzwi_g.tscn" id="13_qao3v"]
+[ext_resource type="PackedScene" uid="uid://dhuou1c7b1pwd" path="res://Scenes/smierniki.tscn" id="14_43243"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1.0141602, 1.2485352)
@@ -26,7 +27,7 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="model_harcowka" unique_id=1085567311 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=2056794849]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=29126942]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -68,7 +69,7 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=101829460]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=2064276768]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
@@ -86,16 +87,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.369241, 0.0008390546, -5.62
 [node name="kanapa" parent="." index="14" unique_id=2000616939 instance=ExtResource("7_shit0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.161682, 4.7683716e-07, -0.50823104)
 
-[node name="Seat1" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="1" unique_id=312355204 node_paths=PackedStringArray("player")]
+[node name="Seat1" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="1" unique_id=312355204 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat2" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="2" unique_id=1076469297 node_paths=PackedStringArray("player")]
+[node name="Seat2" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="2" unique_id=1076469297 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat3" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="3" unique_id=2039160215 node_paths=PackedStringArray("player")]
+[node name="Seat3" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="3" unique_id=2039160215 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat4" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 905763469) index="4" unique_id=930066509 node_paths=PackedStringArray("player")]
+[node name="Seat4" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="4" unique_id=930066509 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
 [node name="KitchenTable" parent="." index="15" unique_id=1066404003 instance=ExtResource("11_ewqah")]
@@ -124,8 +125,12 @@ transform = Transform3D(0.7767944, 0, -0.62975436, 0, 1, 0, 0.62975436, 0, 0.776
 default_item = "klucz"
 
 [node name="BaseSlot2" parent="." index="23" unique_id=271659622 instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.919893, 0.21216238, 3.9292321)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.473911, 0.2121619, -0.009588003)
 slot_type = 2
+default_item = "woreksmieci"
+
+[node name="CollisionShape3D" parent="BaseSlot2" index="0" unique_id=1643366966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12208557, 0.35723877, 0.23504639)
 
 [node name="drzwi_G" parent="." index="24" unique_id=599315374 instance=ExtResource("13_qao3v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.714424, -0.49628788, 15.587837)
@@ -140,5 +145,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_yj5vp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Drukarka" index="1" unique_id=1812730584]
 shape = SubResource("ConcavePolygonShape3D_8n43u")
 
+[node name="smierniki" parent="." index="26" unique_id=1147673523 instance=ExtResource("14_43243")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.360748, 0.6215158, 0.21397)
+
 [editable path="Chair"]
 [editable path="kanapa"]
+[editable path="BaseSlot2"]

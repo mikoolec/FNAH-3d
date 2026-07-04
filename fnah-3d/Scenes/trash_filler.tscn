@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://8vr70gi2h7hk"]
+
+[ext_resource type="PackedScene" uid="uid://uap3wn7pa3nn" path="res://Assets/blend/TrashFiller.blend" id="1_scnhb"]
+
+[node name="TrashFiller" unique_id=1339683213 instance=ExtResource("1_scnhb")]

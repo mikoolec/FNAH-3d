@@ -7,11 +7,13 @@ const KNIFE = "noz"
 const SHEET = "kartka"
 const KEY = "klucz"
 const NONE = "brak"
+const TRASHBAG = "woreksmieci"
 
 # Słownik, który łączy tekstowe ID z plikiem sceny .tscn
 # WPISZ TUTAJ SWOJE DOKŁADNE ŚCIEŻKI DO PLIKÓW!
 const ITEM_SCENES = {
-	KEY: "res://Scenes//Klucz.tscn"
+	KEY: "res://Scenes/Items/Klucz.tscn",
+	TRASHBAG: "res://Scenes/Items/WorekSmieci.tscn"
 }
 
 # Bezpieczna funkcja do pobierania sceny

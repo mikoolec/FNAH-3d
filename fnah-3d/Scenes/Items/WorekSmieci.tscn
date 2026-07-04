@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ctyaoqx1fhl34"]
+
+[ext_resource type="PackedScene" uid="uid://c2f61ixbixj3k" path="res://Assets/blend/WorekSmieci.blend" id="1_7v6ei"]
+
+[node name="WorekSmieci" unique_id=1442750828 instance=ExtResource("1_7v6ei")]

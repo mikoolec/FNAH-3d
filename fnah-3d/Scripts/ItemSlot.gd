@@ -8,6 +8,7 @@ enum SlotType { SPAWNER, SINGLE, TRASH }
 @export var default_item: String = ItemDB.NONE # Jaki przedmiot tu leży na starcie?
 
 var current_item: String = ItemDB.NONE
+var trash_capacity: int = 0
 
 func _ready() -> void:
 	current_item = default_item
@@ -21,7 +22,7 @@ func _update_visuals() -> void:
 			child.queue_free()
 	
 	# Jeśli w slocie coś leży, tworzymy tego model
-	if current_item != ItemDB.NONE:
+	if ( current_item != ItemDB.NONE ) && ( slot_type != SlotType.TRASH ):
 		var scene = ItemDB.get_item_scene(current_item)
 		if scene:
 			var item_instance = scene.instantiate()
@@ -53,9 +54,20 @@ func interact(player) -> void:
 
 		SlotType.TRASH:
 			# Jeśli gracz coś trzyma, śmietnik to zabiera i bezpowrotnie niszczy
-			if player.holding_item != ItemDB.NONE:
-				var destroyed_item = player.drop_item()
-				_handle_failsafe(destroyed_item)
+			if ( player.holding_item != ItemDB.NONE ) && ( player.holding_item != ItemDB.TRASHBAG ) :
+				if trash_capacity <= 10:
+					var destroyed_item = player.drop_item()
+					_handle_failsafe(destroyed_item)
+					if trash_capacity == 10:
+						player.collect_item(current_item)
+						trash_capacity = 0
+					else:
+						trash_capacity += 1
+			else:
+				player.collect_item(current_item)
+				print("podniesiono smieci - oprozniono smietnik")
+				trash_capacity = 0
+				
 
 # Failsafe: szuka w całej grze slotu typu SINGLE, który zgubił ten przedmiot i go respi
 func _handle_failsafe(item_id: String) -> void:
