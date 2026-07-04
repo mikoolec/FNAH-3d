@@ -31,9 +31,10 @@ expand_mode = 1
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1118968193]
 custom_minimum_size = Vector2(1024, 1024)
-layout_mode = 0
+layout_mode = 1
 offset_right = 1024.0
 offset_bottom = 1024.0
+columns = 6
 
 [node name="BrowserIcon" type="TextureButton" parent="." unique_id=1760967398]
 layout_mode = 0
