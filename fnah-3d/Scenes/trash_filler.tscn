@@ -3,3 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://uap3wn7pa3nn" path="res://Assets/blend/TrashFiller.blend" id="1_scnhb"]
 
 [node name="TrashFiller" unique_id=1339683213 instance=ExtResource("1_scnhb")]
+
+[node name="Cube" parent="." index="0" unique_id=1963333344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.010230482, 0)
+
+[node name="Cube_001" parent="." index="1" unique_id=217080873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10798233, 0.010230482, -1.4929731)

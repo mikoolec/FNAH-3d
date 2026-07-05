@@ -36,7 +36,7 @@ func _update_visuals() -> void:
 				item_instance.get_node("CollisionShape3D").disabled = true
 	elif slot_type == SlotType.TRASH:
 		var filler = $"../TrashFiller"
-		filler.position.y = -0.65 + (float(trash_capacity)/10)*(0.563+0.65)
+		filler.scale.y = (float(trash_capacity)/10)
 # Główna funkcja interakcji wywoływana przez gracz_process
 func interact(player) -> void:
 	match slot_type:

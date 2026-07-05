@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b0vocic3sqdjf"]
+
+[ext_resource type="PackedScene" uid="uid://dirljqsowvhu0" path="res://Assets/blend/BigTrash.blend" id="1_dbcw4"]
+
+[node name="BigTrash" unique_id=969654742 instance=ExtResource("1_dbcw4")]
