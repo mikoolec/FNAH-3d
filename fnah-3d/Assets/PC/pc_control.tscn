@@ -141,7 +141,6 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="PrinterWindow" type="PanelContainer" parent="." unique_id=428964142]
-visible = false
 layout_mode = 1
 offset_left = 262.0
 offset_top = 337.0
@@ -170,6 +169,21 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 310)
 layout_mode = 2
 script = ExtResource("7_dfng5")
+
+[node name="LabelPrinterApp" type="Label" parent="PrinterWindow/MarginContainer/App/GUI" unique_id=1516034397]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 122.0
+offset_right = 336.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Upusć tu plik"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PasekKontrolny" type="HBoxContainer" parent="PrinterWindow" unique_id=274772488]
 custom_minimum_size = Vector2(0, 32)

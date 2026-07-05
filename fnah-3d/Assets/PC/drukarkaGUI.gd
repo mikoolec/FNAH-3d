@@ -20,6 +20,8 @@ func rozpocznij_drukowanie(file_name: String) -> void:
 	if drukarka.kartkaIn:
 		print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
 		drukarka.kartkaIn = false
+		$LabelPrinterApp.text = "Drukowanie..."
 	else:
 		print("Drukarka: Brak papieru.")
+		$LabelPrinterApp.text = "Drukarka: Bak papieru."
 	
