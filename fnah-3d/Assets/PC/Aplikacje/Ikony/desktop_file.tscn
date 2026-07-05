@@ -1,8 +1,28 @@
 [gd_scene format=3 uid="uid://bi73yqijptqai"]
 
 [ext_resource type="Script" uid="uid://csxs86pba5man" path="res://Assets/PC/Aplikacje/Ikony/desktop_file.gd" id="1_y7pl3"]
+[ext_resource type="Texture2D" uid="uid://re3ak3ied5i1" path="res://Assets/PC/Aplikacje/Ikony/PDF_icon.png" id="2_m4xiy"]
 
-[node name="DesktopFile" type="Button" unique_id=938357495]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="DesktopFile" type="VBoxContainer" unique_id=35603737]
+custom_minimum_size = Vector2(115, 157)
+offset_right = 80.0
+offset_bottom = 100.0
+mouse_filter = 0
+alignment = 1
 script = ExtResource("1_y7pl3")
+
+[node name="IconTexture" type="TextureRect" parent="." unique_id=812594911]
+custom_minimum_size = Vector2(115, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_m4xiy")
+expand_mode = 1
+
+[node name="FileNameLabel" type="Label" parent="." unique_id=388666831]
+custom_minimum_size = Vector2(115, 42)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+autowrap_mode = 1
