@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://b0vocic3sqdjf"]
 
-[ext_resource type="PackedScene" uid="uid://dirljqsowvhu0" path="res://Assets/blend/BigTrash.blend" id="1_dbcw4"]
+[ext_resource type="PackedScene" uid="uid://dn2wunr773bp1" path="res://Assets/blend/BigTrash.blend" id="1_dbcw4"]
 
-[node name="BigTrash" unique_id=969654742 instance=ExtResource("1_dbcw4")]
+[node name="BigTrash" unique_id=435024031 instance=ExtResource("1_dbcw4")]
+
+[node name="Cube_003" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(768329032) index="1" unique_id=1756066060]
+visible = false
