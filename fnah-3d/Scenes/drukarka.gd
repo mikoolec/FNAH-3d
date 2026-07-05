@@ -22,10 +22,3 @@ func _process(delta: float) -> void:
 		mat.albedo_color = Color.WHITE
 	else:
 		mat.albedo_color = Color.RED
-
-func interact():
-	kartkaIn = false
-		
-
-func interact2():
-	kartkaIn = true

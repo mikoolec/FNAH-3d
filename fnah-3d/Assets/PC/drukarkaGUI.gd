@@ -16,4 +16,5 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 func rozpocznij_drukowanie(file_name: String) -> void:
 	print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
-	# Tutaj dajesz animację drukowania, dźwięk drukarki itp.
+	
+	

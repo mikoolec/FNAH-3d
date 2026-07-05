@@ -2,13 +2,16 @@
 extends Area3D # Możesz też użyć StaticBody3D, jeśli wolisz
 
 # Typy slotów do wyboru w edytorze
-enum SlotType { SPAWNER, SINGLE, TRASH }
+enum SlotType { SPAWNER, SINGLE, TRASH, PRINTER }
 
 @export var slot_type: SlotType = SlotType.SINGLE
 @export var default_item: String = ItemDB.NONE # Jaki przedmiot tu leży na starcie?
 
 var current_item: String = ItemDB.NONE
 var trash_capacity: int = 0
+
+@onready var drukarka: StaticBody3D = $"../Drukarka"
+
 
 func _ready() -> void:
 	current_item = default_item
@@ -70,6 +73,15 @@ func interact(player) -> void:
 				player.collect_item(current_item)
 				print("podniesiono smieci - oprozniono smietnik")
 				trash_capacity = 0
+			_update_visuals()
+			
+		SlotType.PRINTER:
+			if ( player.holding_item == ItemDB.KEY ) :
+				var destroyed_item = player.drop_item()
+				_handle_failsafe(destroyed_item)
+				print("Drukarka kartka in")
+				drukarka.kartkaIn = true
+				
 			_update_visuals()
 
 # Failsafe: szuka w całej grze slotu typu SINGLE, który zgubił ten przedmiot i go respi

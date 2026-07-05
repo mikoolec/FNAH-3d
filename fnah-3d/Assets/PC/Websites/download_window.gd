@@ -28,4 +28,4 @@ func _on_download_finished() -> void:
 	if pulpit_ref and pulpit_ref.has_method("spawn_file_on_desktop"):
 		pulpit_ref.spawn_file_on_desktop(target_file_name)
 	visible = false
-	queue_free() # Zamykamy okienko pobierania
+	hide()
