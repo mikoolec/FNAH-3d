@@ -23,5 +23,5 @@ func rozpocznij_drukowanie(file_name: String) -> void:
 		$LabelPrinterApp.text = "Drukowanie..."
 	else:
 		print("Drukarka: Brak papieru.")
-		$LabelPrinterApp.text = "Drukarka: Bak papieru."
+		$LabelPrinterApp.text = "Drukarka: Brak papieru."
 	
