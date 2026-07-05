@@ -1,5 +1,7 @@
 extends Control # Skrypt okna drukarki
 
+@onready var drukarka: StaticBody3D = $"../../../../../../../../Drukarka"
+
 # 1. CZY DRUKARKA MOŻE PRZYJĄĆ TO, CO NIESIE MYSZKA?
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	# Sprawdzamy, czy to co przeciągamy, to słownik i czy ma typ "file_document"
@@ -15,6 +17,9 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	rozpocznij_drukowanie(dropped_file_name)
 
 func rozpocznij_drukowanie(file_name: String) -> void:
-	print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
-	
+	if drukarka.kartkaIn:
+		print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
+		drukarka.kartkaIn = false
+	else:
+		print("Drukarka: Brak papieru.")
 	
