@@ -28,11 +28,11 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="model_harcowka" unique_id=1085567311 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=2034692458]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=1946349419]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
-transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 6.8652816, 0.041246258, -3.1026275)
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 8.935064, 0.041246258, -3.1026275)
 
 [node name="ChairSitArea" parent="Chair" index="3" unique_id=659081482 node_paths=PackedStringArray("player")]
 player = NodePath("../../Player")
@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3334093, -0.24343824, 8.75
 transform = Transform3D(-0.6340694, 0.5552442, -0.5382006, 0, 0.6960005, 0.7180413, 0.77327615, 0.455288, -0.4413126, 12.631382, 1.9368281, 2.0514464)
 
 [node name="PC" type="StaticBody3D" parent="." index="5" unique_id=221058516]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.865, 0.875, -2)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.93243, 0.875, -2)
 script = ExtResource("5_oppbp")
 
 [node name="PC" parent="PC" index="0" unique_id=1551015543 instance=ExtResource("4_ijxm5")]
@@ -70,20 +70,23 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=1895585568]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=1662252716]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
+[node name="HarcowkaSciany" parent="." index="7" unique_id=2105935046]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
+
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, -1.4966143, -0.040350556, 2.0295227)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, -0.86919695, -0.040350556, 2.0295227)
 
 [node name="drzwi2" parent="." index="11" unique_id=1987753368 instance=ExtResource("6_flkvd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 4.0986023, -0.021396518, -1.0565022)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 6.683721, -0.021396518, -1.0565022)
 
 [node name="drzwi3" parent="." index="12" unique_id=451362588 instance=ExtResource("6_flkvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 13.141063, -0.0068350434, 2.9544713)
 
 [node name="kuchnia" parent="." index="13" unique_id=1084482582 instance=ExtResource("9_2cncr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.369241, 0.0008390546, -5.622803)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.57894, 0.0008390546, -5.622803)
 
 [node name="kanapa" parent="." index="14" unique_id=2000616939 instance=ExtResource("7_shit0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.161682, 4.7683716e-07, -0.50823104)
@@ -101,7 +104,7 @@ player = NodePath("../../../Player")
 player = NodePath("../../../Player")
 
 [node name="KitchenTable" parent="." index="15" unique_id=1066404003 instance=ExtResource("11_ewqah")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9105644, 0.0019641519, -1.7944614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.980347, 0.0019641519, -1.7944614)
 
 [node name="lawka" parent="." index="16" unique_id=1868315928 instance=ExtResource("12_1mxhv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9369144, 0.01190114, 11.91688)
@@ -134,7 +137,7 @@ default_item = "woreksmieci"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12208557, 0.35723877, 0.23504639)
 
 [node name="drzwi_G" parent="." index="24" unique_id=599315374 instance=ExtResource("13_qao3v")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.714424, -0.49628788, 15.587837)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.714424, -0.49628788, 14.602457)
 
 [node name="Drukarka" type="StaticBody3D" parent="." index="25" unique_id=2454130]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27366066, 0.6813755, 11.619855)
