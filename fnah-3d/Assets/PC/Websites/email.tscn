@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bki4wvku1hmri"]
+
+[ext_resource type="Script" uid="uid://ckmmd5uoi8706" path="res://Assets/PC/Websites/email.gd" id="1_ron7p"]
+
+[node name="Email" type="Control" unique_id=495903474]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ron7p")
+
+[node name="LoginPanel" type="PanelContainer" parent="." unique_id=319032305]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginPanel" unique_id=45124324]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LoginPanel/VBoxContainer" unique_id=934915550]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Wprowadź mail i hasło"
+
+[node name="EmailInput" type="LineEdit" parent="LoginPanel/VBoxContainer" unique_id=3441284]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="PasswordInput" type="LineEdit" parent="LoginPanel/VBoxContainer" unique_id=295821170]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="LoginButton" type="Button" parent="LoginPanel/VBoxContainer" unique_id=2083008432]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Login"
+
+[node name="ErrorLabel" type="Label" parent="LoginPanel/VBoxContainer" unique_id=567991795]
+layout_mode = 2
+
+[node name="MainPanel" type="PanelContainer" parent="." unique_id=695635342]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MainPanel" unique_id=1066077852]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/HSplitContainer" unique_id=1498285793]
+layout_mode = 2
+
+[node name="EmailListContainer" type="VBoxContainer" parent="MainPanel/HSplitContainer/ScrollContainer" unique_id=793587111]
+layout_mode = 2
+
+[node name="EmailPreview" type="PanelContainer" parent="MainPanel/HSplitContainer" unique_id=1515616244]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/HSplitContainer/EmailPreview" unique_id=264438619]
+layout_mode = 2
+
+[node name="SenderLabel" type="Label" parent="MainPanel/HSplitContainer/EmailPreview/VBoxContainer" unique_id=1747461386]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="SubjectLabel" type="Label" parent="MainPanel/HSplitContainer/EmailPreview/VBoxContainer" unique_id=169240387]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="BodyLabel" type="RichTextLabel" parent="MainPanel/HSplitContainer/EmailPreview/VBoxContainer" unique_id=1566627840]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+selection_enabled = true
+
+[node name="AttachmentSection" type="HBoxContainer" parent="MainPanel/HSplitContainer/EmailPreview/VBoxContainer" unique_id=678025221]
+layout_mode = 2

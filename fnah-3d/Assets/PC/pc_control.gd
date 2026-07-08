@@ -8,9 +8,20 @@ var pc_mouse_pos:Vector2 = Vector2(512, 512)
 
 const DESKTOP_FILE_SCENE = preload("res://Assets/PC/Aplikacje/Ikony/desktop_file.tscn")
 
+# Centralny magazyn maili na pulpicie (istnieje zawsze)
+var all_received_emails: Array = []
+
+# Referencja do instancji aplikacji (gdy jest otwarta, ma wartość. Gdy zamknięta = null)
+var active_email_app: Control = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# Przykładowy stoper generujący maile
+	var timer = Timer.new()
+	timer.wait_time = 15.0
+	timer.autostart = true
+	timer.timeout.connect(_on_email_timer_timeout)
+	add_child(timer)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -41,3 +52,13 @@ func _on_close_browser_button_pressed() -> void:
 
 func _on_close_printer_button_pressed() -> void:
 	printerWindow.visible = false
+
+func _on_email_timer_timeout() -> void:
+	# 1. Losujemy maila z bazy (do stałej pamięci pulpitu)
+	var new_mail = EmailDatabase.get_random_email()
+	all_received_emails.push_front(new_mail)
+	print("Nowy mail przyszedł na serwer komputera!")
+	
+	# 2. Jeśli aplikacja mailowa jest AKTUALNIE OTWARTA, natychmiast ją odświeżamy
+	if is_instance_valid(active_email_app):
+		active_email_app.refresh_from_pc(all_received_emails)
