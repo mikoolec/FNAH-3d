@@ -79,12 +79,11 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="BrowserWindow" type="PanelContainer" parent="." unique_id=852004038]
-visible = false
 layout_mode = 1
 offset_left = 262.0
 offset_top = 337.0
-offset_right = 762.0
-offset_bottom = 687.0
+offset_right = 962.0
+offset_bottom = 837.0
 script = ExtResource("3_h4i1i")
 
 [node name="ColorRect" type="ColorRect" parent="BrowserWindow" unique_id=1655238914]
@@ -111,15 +110,16 @@ mouse_filter = 0
 alignment = 1
 
 [node name="UrlInput" type="LineEdit" parent="BrowserWindow/MarginContainer/App/PasekAdresu" unique_id=1130617127]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+select_all_on_focus = true
 
 [node name="Search" type="Button" parent="BrowserWindow/MarginContainer/App/PasekAdresu" unique_id=1379917522]
 layout_mode = 2
 text = "Search"
 
 [node name="ContentZone" type="Control" parent="BrowserWindow/MarginContainer/App" unique_id=1929082529]
-custom_minimum_size = Vector2(0, 275)
+custom_minimum_size = Vector2(0, 425)
 layout_mode = 2
 
 [node name="PasekKontrolny" type="HBoxContainer" parent="BrowserWindow" unique_id=1911755780]
@@ -131,7 +131,11 @@ alignment = 2
 [node name="Label" type="Label" parent="BrowserWindow/PasekKontrolny" unique_id=1672938462]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "Browser"
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "            Browser"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CloseBrowserButton" type="TextureButton" parent="BrowserWindow/PasekKontrolny" unique_id=779271092]
 custom_minimum_size = Vector2(30, 10)
