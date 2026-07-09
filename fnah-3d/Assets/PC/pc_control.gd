@@ -2,6 +2,7 @@ extends Control
 @onready var mouse_cursor:Sprite2D = $MouseCursor
 @onready var browserWindow = $BrowserWindow
 @onready var printerWindow = $PrinterWindow
+@onready var download_window: PanelContainer = $BrowserWindow/DownloadWindow
 var pc_mouse_pos:Vector2 = Vector2(512, 512)
 
 @export var panel_windows:Array[DraggablePanelContainer]
@@ -62,3 +63,10 @@ func _on_email_timer_timeout() -> void:
 	# 2. Jeśli aplikacja mailowa jest AKTUALNIE OTWARTA, natychmiast ją odświeżamy
 	if is_instance_valid(active_email_app):
 		active_email_app.refresh_from_pc(all_received_emails)
+
+func start_file_download(file_name: String) -> void:
+	if is_instance_valid(download_window):
+		# Pokazujemy okno i odpalamy pobieranie, przekazując pulpit (self) do stworzenia pliku na końcu
+		download_window.start_download(file_name, self)
+	else:
+		print("Błąd: Nie znaleziono DownloadWindow w BrowserWindow!")

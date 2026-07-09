@@ -9,7 +9,6 @@ extends Control
 @onready var path_label: Label = $MainPanel/VBoxContainer/PathLabel
 @onready var back_button: Button = $MainPanel/VBoxContainer/BackButton
 
-@onready var downloadWindow = $DownloadWindow
 @onready var pc = get_node("../../../../..")
 
 # Słownik przechowujący wygenerowaną strukturę danych internetu
@@ -106,6 +105,7 @@ func _on_back_pressed() -> void:
 	
 func _on_file_downloaded(file_name: String) -> void:
 	# Odpalamy funkcję
-	downloadWindow.start_download(file_name, pc)
+	if pc and pc.has_method("start_file_download"):
+		pc.start_file_download(file_name)
 	# Tutaj możesz dodać kod gry, np. dodanie przedmiotu do ekwipunku gracza:
 	# Ekwipunek.dodaj_plik(file_name)

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="5_gvvqa"]
 [ext_resource type="Texture2D" uid="uid://dn4idxx7cs1yu" path="res://Assets/PC/Aplikacje/Ikony/chrome.png" id="5_vupqa"]
 [ext_resource type="Script" uid="uid://po0njib63phb" path="res://Assets/PC/drukarkaGUI.gd" id="7_dfng5"]
+[ext_resource type="Script" uid="uid://ccst3jwykkv7v" path="res://Assets/PC/Websites/download_window.gd" id="7_j7r86"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vupqa"]
 load_path = "res://.godot/imported/tapeta.jpeg-3bd1e2eedb708fe7cc2080449ae28a7a.s3tc.ctex"
@@ -79,6 +80,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="BrowserWindow" type="PanelContainer" parent="." unique_id=852004038]
+visible = false
 layout_mode = 1
 offset_left = 262.0
 offset_top = 337.0
@@ -143,6 +145,23 @@ layout_mode = 2
 texture_normal = ExtResource("5_gvvqa")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="DownloadWindow" type="PanelContainer" parent="BrowserWindow" unique_id=434697458]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("7_j7r86")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BrowserWindow/DownloadWindow" unique_id=563171858]
+layout_mode = 2
+
+[node name="FileNameLabel" type="Label" parent="BrowserWindow/DownloadWindow/VBoxContainer" unique_id=1599278084]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="BrowserWindow/DownloadWindow/VBoxContainer" unique_id=1253866656]
+layout_mode = 2
 
 [node name="PrinterWindow" type="PanelContainer" parent="." unique_id=428964142]
 visible = false

@@ -13,6 +13,7 @@ extends Control
 @onready var body_label: RichTextLabel = $MainPanel/HSplitContainer/EmailPreview/VBoxContainer/BodyLabel
 @onready var attachment_section: HBoxContainer = $MainPanel/HSplitContainer/EmailPreview/VBoxContainer/AttachmentSection
 
+
 # Przechowywanie odebranych maili gracza
 var received_emails: Array = []
 var pc_control: Control # Referencja do pulpitu, potrzebna do pobierania załączników
@@ -99,11 +100,8 @@ func show_email_preview(mail: Dictionary) -> void:
 		attachment_section.add_child(dl_btn)
 
 func _download_attachment(file_name: String) -> void:
-	# Wykorzystujemy system pobierania, który zrobiliśmy w poprzednich krokach!
-	# Tworzymy plik bezpośrednio na pulpicie za pomocą metody spawn_file_on_desktop
-	if pc_control and pc_control.has_method("spawn_file_on_desktop"):
-		pc_control.spawn_file_on_desktop(file_name)
-		print("Pobrano załącznik z maila: ", file_name)
+	if pc_control and pc_control.has_method("start_file_download"):
+		pc_control.start_file_download(file_name)
 
 func clear_preview() -> void:
 	sender_label.text = ""
