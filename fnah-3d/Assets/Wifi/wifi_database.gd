@@ -19,6 +19,6 @@ static var networks = {
 		"password": "super_tajne_haslo_123",
 		"speed_multiplier": 0.2, # Super szybki internet (pobieranie błyskawiczne)
 		"security": "WPA3-Enterprise",
-		"is_available": false # Pojawi się np. dopiero po zhackowaniu czegoś
+		"is_available": true # Pojawi się np. dopiero po zhackowaniu czegoś
 	}
 }

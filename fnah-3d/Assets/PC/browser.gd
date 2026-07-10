@@ -9,6 +9,7 @@ const INTERNET_PAGES = {
 	"skibidi.pl": "res://Assets/PC/Websites/skibidi_pl.tscn",
 	"sharepoint.com": "res://Assets/PC/Websites/sharepoint.tscn",
 	"email.com": "res://Assets/PC/Websites/email.tscn",
+	"noIntenet": "res://Assets/PC/Websites/noInternet.tscn",
 	"404": "res://Assets/PC/Websites/error_404.tscn" # Strona, gdy link nie istnieje
 }
 
@@ -26,11 +27,6 @@ func _on_url_submitted(new_url: String) -> void:
 	load_page(clean_url)
 
 func load_page(url: String) -> void:
-	if not NetworkManager.is_connected_to_internet:
-		# Zamiast strony wczytaj panel błędu "Brak połączenia z internetem"
-		#show_error_page("Brak internetu. Sprawdź połączenie Wi-Fi.")
-		return
-	
 	# 1. Usunięcie starej strony z ekranu, jeśli jakaś jest
 	if current_page_node:
 		current_page_node.queue_free()
@@ -41,7 +37,9 @@ func load_page(url: String) -> void:
 		page_path = INTERNET_PAGES[url]
 	else:
 		page_path = INTERNET_PAGES["404"] # Jeśli nie ma, daj błąd 404
-		
+	
+	if not NetworkManager.is_connected_to_internet: page_path = INTERNET_PAGES["noIntenet"]
+	
 	# 3. Załadowanie nowej sceny (instancjonowanie)
 	var page_scene = load(page_path)
 	if page_scene:

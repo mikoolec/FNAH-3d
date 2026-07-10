@@ -82,57 +82,6 @@ text = "Printer"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="TaskBar" type="PanelContainer" parent="." unique_id=1826863902]
-layout_mode = 1
-offset_top = 974.0
-offset_right = 1024.0
-offset_bottom = 1024.0
-
-[node name="ColorRect" type="ColorRect" parent="TaskBar" unique_id=1395210332]
-layout_mode = 2
-color = Color(0.13807207, 0.31589776, 0.64846677, 1)
-
-[node name="GridContainer" type="GridContainer" parent="TaskBar" unique_id=1972186185]
-custom_minimum_size = Vector2(175, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_constants/h_separation = 20
-columns = 2
-
-[node name="WifiButton" type="TextureButton" parent="TaskBar/GridContainer" unique_id=3702912]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture_normal = ExtResource("4_aurmi")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("5_rakx0")
-wifi_connected_icon = ExtResource("4_aurmi")
-wifi_disconnected_icon = ExtResource("6_xa222")
-
-[node name="WifiPopup" type="PanelContainer" parent="TaskBar/GridContainer/WifiButton" unique_id=1472270674]
-custom_minimum_size = Vector2(375, 310)
-layout_mode = 1
-offset_left = -200.0
-offset_top = -310.0
-offset_right = 50.0
-offset_bottom = -10.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TaskBar/GridContainer/WifiButton/WifiPopup" unique_id=465621307]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="TaskBar/GridContainer/WifiButton/WifiPopup/VBoxContainer" unique_id=368254965]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="List" type="VBoxContainer" parent="TaskBar/GridContainer/WifiButton/WifiPopup/VBoxContainer/ScrollContainer" unique_id=1487223115]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Zegar" type="Label" parent="TaskBar/GridContainer" unique_id=2047786125]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "00:00"
-
 [node name="BrowserWindow" type="PanelContainer" parent="." unique_id=852004038]
 visible = false
 layout_mode = 1
@@ -280,6 +229,57 @@ layout_mode = 2
 texture_normal = ExtResource("5_gvvqa")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="TaskBar" type="PanelContainer" parent="." unique_id=1826863902]
+layout_mode = 1
+offset_top = 974.0
+offset_right = 1024.0
+offset_bottom = 1024.0
+
+[node name="ColorRect" type="ColorRect" parent="TaskBar" unique_id=1395210332]
+layout_mode = 2
+color = Color(0.13807207, 0.31589776, 0.64846677, 1)
+
+[node name="GridContainer" type="GridContainer" parent="TaskBar" unique_id=1972186185]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/h_separation = 20
+columns = 2
+
+[node name="WifiButton" type="TextureButton" parent="TaskBar/GridContainer" unique_id=3702912]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("4_aurmi")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_rakx0")
+wifi_connected_icon = ExtResource("4_aurmi")
+wifi_disconnected_icon = ExtResource("6_xa222")
+
+[node name="WifiPopup" type="PanelContainer" parent="TaskBar/GridContainer/WifiButton" unique_id=1472270674]
+custom_minimum_size = Vector2(375, 310)
+layout_mode = 1
+offset_left = -200.0
+offset_top = -310.0
+offset_right = 50.0
+offset_bottom = -10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskBar/GridContainer/WifiButton/WifiPopup" unique_id=465621307]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TaskBar/GridContainer/WifiButton/WifiPopup/VBoxContainer" unique_id=368254965]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="List" type="VBoxContainer" parent="TaskBar/GridContainer/WifiButton/WifiPopup/VBoxContainer/ScrollContainer" unique_id=1487223115]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Zegar" type="Label" parent="TaskBar/GridContainer" unique_id=2047786125]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "00:00"
 
 [node name="MouseCursor" type="Sprite2D" parent="." unique_id=1598941554]
 top_level = true

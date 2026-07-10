@@ -18,7 +18,7 @@ func start_download(file_name: String, pulpit: Control) -> void:
 	
 	# Płynna animacja paska postępu za pomocą Tweena
 	var tween = create_tween()
-	tween.tween_property(progress_bar, "value", 100.0, download_time)\
+	tween.tween_property(progress_bar, "value", 100.0, download_time * NetworkManager.current_speed_multiplier)\
 		.set_trans(Tween.TRANS_LINEAR)
 		
 	# Wywołanie funkcji po zakończeniu pobierania
