@@ -38,7 +38,7 @@ func _ready() -> void:
 # --- LOGOWANIE ---
 func _on_login_pressed() -> void:
 	# Przykładowe dane logowania
-	if email_input.text == "gracz@poczta.pl" and password_input.text == "haslo123":
+	if email_input.text == "" and password_input.text == "":
 		login_panel.hide()
 		main_panel.show()
 		refresh_email_list()

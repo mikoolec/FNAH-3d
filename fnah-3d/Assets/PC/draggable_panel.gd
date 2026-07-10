@@ -28,4 +28,4 @@ func _gui_input(event: InputEvent) -> void:
 		# Clamp to viewport bounds
 		var viewport_size = get_viewport().size
 		position.x = clamp(position.x, 0, viewport_size.x - size.x)
-		position.y = clamp(position.y, 0, viewport_size.y - size.y - 30.0)
+		position.y = clamp(position.y, 0, viewport_size.y - size.y - 50.0)

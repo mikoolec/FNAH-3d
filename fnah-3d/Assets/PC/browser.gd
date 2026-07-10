@@ -26,6 +26,11 @@ func _on_url_submitted(new_url: String) -> void:
 	load_page(clean_url)
 
 func load_page(url: String) -> void:
+	if not NetworkManager.is_connected_to_internet:
+		# Zamiast strony wczytaj panel błędu "Brak połączenia z internetem"
+		#show_error_page("Brak internetu. Sprawdź połączenie Wi-Fi.")
+		return
+	
 	# 1. Usunięcie starej strony z ekranu, jeśli jakaś jest
 	if current_page_node:
 		current_page_node.queue_free()
@@ -43,3 +48,6 @@ func load_page(url: String) -> void:
 		current_page_node = page_scene.instantiate()
 		content_zone.add_child(current_page_node)
 		url_input.text = url # Aktualizujemy pasek adresu
+
+func _on_search_pressed() -> void:
+	_on_url_submitted(url_input.text)
