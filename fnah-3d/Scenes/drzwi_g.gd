@@ -10,8 +10,9 @@ func _ready() -> void:
 
 func toggle_doors() -> void:
 	if anim_player:
-		if !open:
-			anim_player.play("Open")
-		else:
-			anim_player.play("Close")
-		open = !open
+		if ( !anim_player.is_playing() ):
+			if !open:
+				anim_player.play("Open")
+			else:
+				anim_player.play("Close")
+			open = !open

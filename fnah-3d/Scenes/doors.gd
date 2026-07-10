@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	pass
 
 func interact():
-	if !open: animPlayer.play("Open Door")
-	else: animPlayer.play("Close Door")
-	open = !open
+	if ( !animPlayer.is_playing() ):
+		if !open: animPlayer.play("Open Door")
+		else: animPlayer.play("Close Door")
+		open = !open
