@@ -4,5 +4,5 @@
 
 [node name="BigTrash" unique_id=435024031 instance=ExtResource("1_dbcw4")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1585688998) index="0" unique_id=768329032]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1440548617) index="0" unique_id=825471008]
 bones/1/rotation = Quaternion(-1.0746377e-06, 9.2473826e-08, 0.9332523, 0.3592219)

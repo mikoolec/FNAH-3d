@@ -34,6 +34,9 @@ size = Vector3(1.0175171, 1.0189514, 1.0185547)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8n43u"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wtdwr"]
+size = Vector3(2.0620728, 1.8475342, 1.888916)
+
 [node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
 [node name="HarcowkaPodloga" parent="." index="0" unique_id=1335628343]
@@ -179,8 +182,17 @@ shape = SubResource("ConcavePolygonShape3D_8n43u")
 [node name="BigTrash" parent="." index="32" unique_id=435024031 instance=ExtResource("17_tl1uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.00468, 0.38102967, 20.525906)
 
+[node name="BaseSlot4" parent="." index="33" unique_id=127520544 instance=ExtResource("12_qao3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.95451, -0.5166364, 20.71238)
+slot_type = 4
+
+[node name="CollisionShape3D" parent="BaseSlot4" index="0" unique_id=1643366966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04812622, 0.94000244, -0.19274902)
+shape = SubResource("BoxShape3D_wtdwr")
+
 [editable path="Chair"]
 [editable path="kanapa"]
 [editable path="BaseSlot"]
 [editable path="BaseSlot2"]
 [editable path="BaseSlot3"]
+[editable path="BaseSlot4"]

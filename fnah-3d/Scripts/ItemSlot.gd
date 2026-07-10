@@ -2,7 +2,7 @@
 extends Area3D # Możesz też użyć StaticBody3D, jeśli wolisz
 
 # Typy slotów do wyboru w edytorze
-enum SlotType { SPAWNER, SINGLE, TRASH, PRINTER }
+enum SlotType { SPAWNER, SINGLE, TRASH, PRINTER, BIGTRASH }
 
 @export var slot_type: SlotType = SlotType.SINGLE
 @export var default_item: String = ItemDB.NONE # Jaki przedmiot tu leży na starcie?
@@ -74,6 +74,14 @@ func interact(player) -> void:
 				print("podniesiono smieci - oprozniono smietnik")
 				trash_capacity = 0
 			_update_visuals()
+		
+		SlotType.BIGTRASH:
+			if ( player.holding_item != ItemDB.NONE ):
+				var destroyed_item = player.drop_item()
+				_handle_failsafe(destroyed_item)
+				var bigtrash = $"../BigTrash".get_child(3)
+				bigtrash.play("Throw")
+				
 			
 		SlotType.PRINTER:
 			if ( player.holding_item == ItemDB.KEY ) :
