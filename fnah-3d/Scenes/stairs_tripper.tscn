@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://1e74bwwgk7ff"]
+
+[ext_resource type="Script" uid="uid://bhewteh02be3o" path="res://Scripts/stairs_tripper.gd" id="1_nhp3r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbxbp"]
+
+[node name="StairsTripper" type="Area3D" unique_id=834129770]
+script = ExtResource("1_nhp3r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1081097488]
+shape = SubResource("BoxShape3D_fbxbp")

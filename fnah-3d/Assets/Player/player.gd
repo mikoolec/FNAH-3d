@@ -9,6 +9,10 @@ const SENSITIVITY = 0.01
 
 var gravity = 20
 
+const DAMPING_UPHILL = 10.0  # Mocne hamowanie przy potknięciu pod górę
+const DAMPING_DOWNHILL = 1.2 # Małe hamowanie, pozwala sturlać się na sam dół
+const DAMPING_FLAT = 8.0     # Standardowe hamowanie na płaskim
+
 #bob variables
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
@@ -37,6 +41,8 @@ var current_exit_point: Node3D = null
 # Zmienna trzymająca ID przedmiotu, który gracz aktualnie niesie
 var holding_item: String = ItemDB.NONE
 
+var is_ragdolling: bool = false
+@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -92,8 +98,31 @@ func _physics_process(delta: float) -> void:
 			pass
 	
 	if walk_locked:
-		velocity.x = 0.0
-		velocity.z = 0.0
+		if is_ragdolling:
+			# Wyznaczamy aktualne tarcie na podstawie nachylenia terenu
+			var current_damping = DAMPING_FLAT
+			
+			if is_on_floor():
+				# Pobieramy wektor normalny podłoża (pokazuje, w którą stronę nachylona jest płaszczyzna)
+				var floor_normal = get_floor_normal()
+				# Sprawdzamy relację między kierunkiem ruchu (velocity) a nachyleniem podłoża
+				var slope_direction = velocity.dot(floor_normal)
+				
+				if slope_direction < -0.1:
+					# Ruch pod górę (prędkość idzie "przeciw" nachyleniu) -> szybkie zatrzymanie
+					current_damping = DAMPING_UPHILL
+				elif slope_direction > 0.1:
+					# Ruch w dół (prędkość pokrywa się ze spadkiem) -> długie staczanie
+					current_damping = DAMPING_DOWNHILL
+
+			# Aplikujemy dynamicznie wyliczone tarcie
+			velocity.x = move_toward(velocity.x, 0.0, current_damping * delta)
+			velocity.z = move_toward(velocity.z, 0.0, current_damping * delta)
+			
+			move_and_slide()
+		else:
+			velocity.x = 0.0
+			velocity.z = 0.0
 		return
 
 	# Skakanie i bieg
@@ -283,3 +312,73 @@ func drop_item() -> String:
 		child.queue_free()
 		
 	return dropped
+	
+func start_ragdoll() -> void:
+	if is_ragdolling:
+		return
+		
+	is_ragdolling = true
+	walk_locked = true
+	
+	# 1. Pobieramy kierunek ruchu na podstawie aktualnej prędkości (obcinamy oś Y)
+	var move_direction = Vector3(velocity.x, 0.0, velocity.z).normalized()
+	
+	# Jeśli gracz stał w miejscu, domyślnie leci w przód
+	if move_direction == Vector3.ZERO:
+		move_direction = -head.global_transform.basis.z.normalized()
+	
+	# 2. Nadajemy impuls fizyczny w stronę faktycznego ruchu
+	velocity.x = move_direction.x * SPRINT_SPEED
+	velocity.z = move_direction.z * SPRINT_SPEED
+	velocity.y = 1.5 # Lekkie podbicie ciała na początku potknięcia
+
+	# 3. Przeliczamy kierunek ruchu na lokalną przestrzeń głowy, 
+	# aby kamera leciała w stronę pędu (nawet przy biegu w bok/tył)
+	var local_dir = head.global_transform.basis.inverse() * move_direction
+	
+	var target_pos_z = local_dir.z * 0.6
+	var target_pos_x = local_dir.x * 0.6
+
+	# 4. Wykopyrtka kamery po łuku za pomocą Tweena
+	var tween = create_tween().set_parallel(true)
+	
+	# Ruch kamery w stronę upadku z zachowaniem Twoich odległości (0.6 / 1.2)
+	tween.tween_property(camera, "position:z", target_pos_z, 0.35).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(camera, "position:x", target_pos_x, 0.35).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(camera, "position:y", -1.2, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	# Rotacja dynamiczna: 
+	# local_dir.z odpowiada za przód/tył, a local_dir.x za boki.
+	# Mnożymy Twoje bazowe -60 stopni przez kierunek przodu, a 5 stopni przez kierunek boków.
+	var target_rot_x = deg_to_rad(-60) * max(0.2, -local_dir.z) # Jeśli lecisz w tył, nie zanurkuje twarzą w ziemię
+	var target_rot_z = deg_to_rad(45) * -local_dir.x # Jeśli lecisz w bok, kamera mocniej przechyli się w tę stronę
+	
+	# Jeśli upadasz czysto w tył (local_dir.z > 0.5), odchylamy głowę lekko w tył zamiast w przód
+	if local_dir.z > 0.5:
+		target_rot_x = deg_to_rad(30)
+
+	# Rotacja kamery dopasowana do wektora pędu
+	tween.tween_property(camera, "rotation:x", target_rot_x, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(camera, "rotation:z", target_rot_z, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	# Odliczanie 4 sekund leżenia na ziemi do momentu wstania
+	get_tree().create_timer(1.2).timeout.connect(stop_ragdoll)
+
+
+func stop_ragdoll() -> void:
+	# Płynny powrót kamery do punktu zero wewnątrz węzła Head (poziom oczu)
+	var tween = create_tween().set_parallel(true)
+	
+	# Reset pozycji do (0, 0, 0) względem Head z Twoim TRANS_CUBIC i EASE_IN (0.6s)
+	tween.tween_property(camera, "position", Vector3.ZERO, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	
+	# Reset rotacji kamery do pionu (0.6s, EASE_IN)
+	tween.tween_property(camera, "rotation:x", 0.0, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(camera, "rotation:z", 0.0, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	
+	await tween.finished
+	
+	# Przywrócenie sterowania i reset prędkości
+	velocity = Vector3.ZERO
+	is_ragdolling = false
+	walk_locked = false

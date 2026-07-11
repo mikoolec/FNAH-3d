@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dhuou1c7b1pwd" path="res://Scenes/smierniki.tscn" id="14_43243"]
 [ext_resource type="Script" uid="uid://duvgkq5f87pfn" path="res://Scenes/drukarka.gd" id="16_8n43u"]
 [ext_resource type="PackedScene" uid="uid://b0vocic3sqdjf" path="res://Scenes/big_trash.tscn" id="17_tl1uk"]
+[ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="18_wtdwr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.8553467, 1.0141602, 1.2485352)
@@ -37,9 +38,21 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_wtdwr"]
 size = Vector3(2.0620728, 1.8475342, 1.888916)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4d3l"]
+size = Vector3(2.737732, 0.9487915, 2.598877)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ip1yl"]
+size = Vector3(2.942749, 1.5195313, 2.4561157)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_coq7e"]
+size = Vector3(2.942749, 1.1933594, 3.1567688)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qvfyu"]
+size = Vector3(2.942749, 1.3257446, 2.3638992)
+
 [node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=1335628343]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=1533617779]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -81,10 +94,10 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=226062493]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=67716320]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
-[node name="HarcowkaSciany" parent="." index="7" unique_id=1006179142]
+[node name="HarcowkaSciany" parent="." index="7" unique_id=1642111255]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
@@ -190,9 +203,33 @@ slot_type = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04812622, 0.94000244, -0.19274902)
 shape = SubResource("BoxShape3D_wtdwr")
 
+[node name="StairsTripper" parent="." index="34" unique_id=834129770 instance=ExtResource("18_wtdwr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.54702, -0.20925045, 10.068745)
+
+[node name="CollisionShape3D" parent="StairsTripper" index="0" unique_id=1081097488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.038238525, -0.025604248, -0.040893555)
+shape = SubResource("BoxShape3D_x4d3l")
+
+[node name="StairsTripper2" parent="." index="35" unique_id=1201256112 instance=ExtResource("18_wtdwr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.587383, -0.64668214, 10.838206)
+
+[node name="CollisionShape3D" parent="StairsTripper2" index="0" unique_id=1081097488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43585205, -0.25976563, -0.6957092)
+shape = SubResource("BoxShape3D_ip1yl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StairsTripper2" index="1" unique_id=1579581288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4208603, -1.15625, -3.41568)
+shape = SubResource("BoxShape3D_coq7e")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StairsTripper2" index="2" unique_id=1586059812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4077301, -1.9684144, -6.1646767)
+shape = SubResource("BoxShape3D_qvfyu")
+
 [editable path="Chair"]
 [editable path="kanapa"]
 [editable path="BaseSlot"]
 [editable path="BaseSlot2"]
 [editable path="BaseSlot3"]
 [editable path="BaseSlot4"]
+[editable path="StairsTripper"]
+[editable path="StairsTripper2"]
