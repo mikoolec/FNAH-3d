@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cd2s7p1epdb4f"]
+
+[ext_resource type="PackedScene" uid="uid://bfpyuighpab4l" path="res://Assets/blend/RTV_Tower.blend" id="1_ot847"]
+
+[node name="RTV_Tower" unique_id=461998840 instance=ExtResource("1_ot847")]

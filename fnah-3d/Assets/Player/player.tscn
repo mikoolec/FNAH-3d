@@ -22,14 +22,16 @@ shape = SubResource("ConvexPolygonShape3D_f3sb7")
 [node name="Head" type="Node3D" parent="." unique_id=1694829369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6176076, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1148150415]
+[node name="CameraRoll" type="Node3D" parent="Head" unique_id=1617450875]
 
-[node name="SeeCast" type="RayCast3D" parent="Head/Camera3D" unique_id=688789735]
+[node name="Camera3D" type="Camera3D" parent="Head/CameraRoll" unique_id=1148150415]
+
+[node name="SeeCast" type="RayCast3D" parent="Head/CameraRoll/Camera3D" unique_id=688789735]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -9.967301e-08, -1, 0, 2.2802527, -4.371139e-08, 0, -0.002844572, 0)
 collide_with_areas = true
 
-[node name="Hand" type="Node3D" parent="Head/Camera3D" unique_id=1844126608]
+[node name="Hand" type="Node3D" parent="Head/CameraRoll/Camera3D" unique_id=1844126608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29117334, -0.7540102)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1136534965]

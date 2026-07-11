@@ -28,7 +28,8 @@ var camera_locked:bool = false
 var is_using_computer = false
 
 @onready var head = $Head
-@onready var camera = $Head/Camera3D
+@onready var camera_roll = $Head/CameraRoll
+@onready var camera = $Head/CameraRoll/Camera3D
 @onready var chair = $"../Chair"
 @onready var computer = $"../PC"
 @onready var collision_shape_chair: CollisionShape3D = $CollisionShape3D
@@ -36,7 +37,7 @@ var current_furniture: Node3D = null
 var current_sit_point: Node3D = null
 var current_exit_point: Node3D = null
 
-@onready var hand = $Head/Camera3D/Hand
+@onready var hand = $Head/CameraRoll/Camera3D/Hand
 
 # Zmienna trzymająca ID przedmiotu, który gracz aktualnie niesie
 var holding_item: String = ItemDB.NONE
@@ -190,7 +191,7 @@ func sit_down_on_furniture(furniture_node: Node3D, target_sit_point: Node3D, tar
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
 	# Prostowanie wzroku kamery
-	tween.tween_property($Head/Camera3D, "rotation:x", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_property($Head/CameraRoll/Camera3D, "rotation:x", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
 	
 	tween.chain().finished.connect(_on_sit_finished)
 
@@ -332,51 +333,49 @@ func start_ragdoll() -> void:
 	velocity.z = move_direction.z * SPRINT_SPEED
 	velocity.y = 1.5 # Lekkie podbicie ciała na początku potknięcia
 
-	# 3. Przeliczamy kierunek ruchu na lokalną przestrzeń głowy, 
-	# aby kamera leciała w stronę pędu (nawet przy biegu w bok/tył)
+	# 3. Przeliczamy kierunek ruchu na lokalną przestrzeń głowy
 	var local_dir = head.global_transform.basis.inverse() * move_direction
 	
 	var target_pos_z = local_dir.z * 0.6
 	var target_pos_x = local_dir.x * 0.6
 
-	# 4. Wykopyrtka kamery po łuku za pomocą Tweena
+	# 4. Wykopyrtka kamery za pomocą Tweena na węźle CameraRoll
 	var tween = create_tween().set_parallel(true)
 	
-	# Ruch kamery w stronę upadku z zachowaniem Twoich odległości (0.6 / 1.2)
-	tween.tween_property(camera, "position:z", target_pos_z, 0.35).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(camera, "position:x", target_pos_x, 0.35).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tween.tween_property(camera, "position:y", -1.2, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	# Pozycja zmieniana na CameraRoll
+	tween.tween_property(camera_roll, "position:z", target_pos_z, 0.35).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(camera_roll, "position:x", target_pos_x, 0.35).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(camera_roll, "position:y", -1.2, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	
-	# Rotacja dynamiczna: 
-	# local_dir.z odpowiada za przód/tył, a local_dir.x za boki.
-	# Mnożymy Twoje bazowe -60 stopni przez kierunek przodu, a 5 stopni przez kierunek boków.
-	var target_rot_x = deg_to_rad(-60) * max(0.2, -local_dir.z) # Jeśli lecisz w tył, nie zanurkuje twarzą w ziemię
-	var target_rot_z = deg_to_rad(45) * -local_dir.x # Jeśli lecisz w bok, kamera mocniej przechyli się w tę stronę
+	var target_rot_x = deg_to_rad(-60) * max(0.2, -local_dir.z)
+	var target_rot_z = deg_to_rad(45) * -local_dir.x
 	
-	# Jeśli upadasz czysto w tył (local_dir.z > 0.5), odchylamy głowę lekko w tył zamiast w przód
 	if local_dir.z > 0.5:
 		target_rot_x = deg_to_rad(30)
 
-	# Rotacja kamery dopasowana do wektora pędu
+	# Podział rotacji: X (przód/tył) na Camera3D, Z (przechył na bok) na CameraRoll
 	tween.tween_property(camera, "rotation:x", target_rot_x, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	tween.tween_property(camera, "rotation:z", target_rot_z, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(camera_roll, "rotation:z", target_rot_z, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-	# Odliczanie 4 sekund leżenia na ziemi do momentu wstania
+	# Odliczanie do momentu wstania
 	get_tree().create_timer(1.2).timeout.connect(stop_ragdoll)
 
-
 func stop_ragdoll() -> void:
-	# Płynny powrót kamery do punktu zero wewnątrz węzła Head (poziom oczu)
 	var tween = create_tween().set_parallel(true)
 	
-	# Reset pozycji do (0, 0, 0) względem Head z Twoim TRANS_CUBIC i EASE_IN (0.6s)
-	tween.tween_property(camera, "position", Vector3.ZERO, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	# Reset pozycji i rotacji Z na CameraRoll
+	tween.tween_property(camera_roll, "position", Vector3.ZERO, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(camera_roll, "rotation:z", 0.0, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	
-	# Reset rotacji kamery do pionu (0.6s, EASE_IN)
+	# Reset rotacji X na Camera3D
 	tween.tween_property(camera, "rotation:x", 0.0, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	tween.tween_property(camera, "rotation:z", 0.0, 0.6).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	
 	await tween.finished
+	
+	# Sztywne zerowanie dla pewności, zapobiega błędom zaokrągleń
+	camera_roll.rotation.z = 0.0
+	camera_roll.rotation.y = 0.0
+	camera_roll.rotation.x = 0.0
 	
 	# Przywrócenie sterowania i reset prędkości
 	velocity = Vector3.ZERO

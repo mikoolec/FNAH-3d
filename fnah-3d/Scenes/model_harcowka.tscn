@@ -18,9 +18,10 @@
 [ext_resource type="Script" uid="uid://duvgkq5f87pfn" path="res://Scenes/drukarka.gd" id="16_8n43u"]
 [ext_resource type="PackedScene" uid="uid://b0vocic3sqdjf" path="res://Scenes/big_trash.tscn" id="17_tl1uk"]
 [ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="18_wtdwr"]
+[ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
-size = Vector3(0.8553467, 1.0141602, 1.2485352)
+size = Vector3(0.903183, 1.6994629, 1.2485352)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8n43u"]
 size = Vector3(0.7365818, 0.15712738, 0.5477371)
@@ -53,9 +54,18 @@ size = Vector3(2.942749, 1.1933594, 3.1567688)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qvfyu"]
 size = Vector3(2.942749, 1.3257446, 2.3638992)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x4d3l"]
+
+[sub_resource type="Sky" id="Sky_ip1yl"]
+sky_material = SubResource("ProceduralSkyMaterial_x4d3l")
+
+[sub_resource type="Environment" id="Environment_coq7e"]
+background_mode = 2
+sky = SubResource("Sky_ip1yl")
+
 [node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=1533617779]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=792466423]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -91,16 +101,16 @@ size = Vector2i(1024, 1024)
 panel_windows = []
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PC" index="1" unique_id=861170105]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.12698746, 0.17132568, 0)
 shape = SubResource("BoxShape3D_oppbp")
 
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=67716320]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=1521502335]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
-[node name="HarcowkaSciany" parent="." index="7" unique_id=1642111255]
+[node name="HarcowkaSciany" parent="." index="7" unique_id=938387430]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
@@ -228,6 +238,12 @@ shape = SubResource("BoxShape3D_coq7e")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StairsTripper2" index="2" unique_id=1586059812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4077301, -1.9684144, -6.1646767)
 shape = SubResource("BoxShape3D_qvfyu")
+
+[node name="RTV_Tower" parent="." index="36" unique_id=461998840 instance=ExtResource("19_x4d3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.695668, 0.9237114, 25.28426)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="37" unique_id=427808505]
+environment = SubResource("Environment_coq7e")
 
 [editable path="Chair"]
 [editable path="kanapa"]
