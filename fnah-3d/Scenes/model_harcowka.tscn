@@ -25,6 +25,9 @@ size = Vector3(0.8553467, 1.0141602, 1.2485352)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8n43u"]
 size = Vector3(0.7365818, 0.15712738, 0.5477371)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bw2u"]
+size = Vector3(1.079773, 1.2730713, 2.1552124)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl1uk"]
 size = Vector3(1.0175171, 1.0189514, 1.0185547)
 
@@ -162,7 +165,8 @@ slot_type = 2
 default_item = "woreksmieci"
 
 [node name="CollisionShape3D" parent="BaseSlot2" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12208557, 0.35723877, 0.23504639)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11021423, 0.35510254, 0.22006226)
+shape = SubResource("BoxShape3D_1bw2u")
 
 [node name="BaseSlot3" parent="." index="24" unique_id=1884734402 instance=ExtResource("12_qao3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.294, 0.68, 11.6)
