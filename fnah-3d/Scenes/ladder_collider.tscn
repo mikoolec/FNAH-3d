@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dtldg80lddwet"]
+
+[ext_resource type="Script" uid="uid://v1yt7vg4himb" path="res://Scripts/ladder_collider.gd" id="1_0xs0p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ddkdp"]
+
+[node name="LadderCollider" type="Area3D" unique_id=1381544667]
+script = ExtResource("1_0xs0p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=442654818]
+shape = SubResource("BoxShape3D_ddkdp")

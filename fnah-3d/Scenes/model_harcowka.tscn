@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b0vocic3sqdjf" path="res://Scenes/big_trash.tscn" id="17_tl1uk"]
 [ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="18_wtdwr"]
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
+[ext_resource type="PackedScene" uid="uid://dtldg80lddwet" path="res://Scenes/ladder_collider.tscn" id="20_ip1yl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.903183, 1.6994629, 1.2485352)
@@ -63,9 +64,12 @@ sky_material = SubResource("ProceduralSkyMaterial_x4d3l")
 background_mode = 2
 sky = SubResource("Sky_ip1yl")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pr21s"]
+size = Vector3(1.107666, 12.768372, 1)
+
 [node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=792466423]
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=973166886]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
@@ -107,10 +111,10 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=1521502335]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=806885433]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
-[node name="HarcowkaSciany" parent="." index="7" unique_id=938387430]
+[node name="HarcowkaSciany" parent="." index="7" unique_id=2063497038]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
@@ -245,6 +249,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.695668, 0.9237114, 25.28426
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="37" unique_id=427808505]
 environment = SubResource("Environment_coq7e")
 
+[node name="LadderCollider" parent="." index="38" unique_id=1381544667 instance=ExtResource("20_ip1yl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.743265, -0.23170185, 25.258007)
+
+[node name="CollisionShape3D" parent="LadderCollider" index="0" unique_id=442654818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18493652, 5.884186, 0)
+shape = SubResource("BoxShape3D_pr21s")
+
 [editable path="Chair"]
 [editable path="kanapa"]
 [editable path="BaseSlot"]
@@ -253,3 +264,4 @@ environment = SubResource("Environment_coq7e")
 [editable path="BaseSlot4"]
 [editable path="StairsTripper"]
 [editable path="StairsTripper2"]
+[editable path="LadderCollider"]

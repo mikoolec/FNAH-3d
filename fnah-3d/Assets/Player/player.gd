@@ -8,6 +8,7 @@ const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.01
 
 var gravity = 20
+var climb_speed = 5
 
 const DAMPING_UPHILL = 10.0  # Mocne hamowanie przy potknięciu pod górę
 const DAMPING_DOWNHILL = 1.2 # Małe hamowanie, pozwala sturlać się na sam dół
@@ -26,6 +27,7 @@ var walk_locked:bool = false
 var camera_locked:bool = false
 
 var is_using_computer = false
+var player_climbing = false
 
 @onready var head = $Head
 @onready var camera_roll = $Head/CameraRoll
@@ -88,7 +90,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Dodawanie grawitacji (Naprawiony podwójny minus)
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		if !player_climbing:
+			velocity.y -= gravity * delta
 	
 	# Logika siedzenia (Wcięcia wyciągnięte całkowicie w lewo)
 	match current_state:
@@ -129,6 +132,12 @@ func _physics_process(delta: float) -> void:
 	# Skakanie i bieg
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
+	if Input.is_action_pressed("jump") and GameplayNumbers.is_player_in_any_zone():
+		player_climbing = true
+		velocity.y = climb_speed
+	else:
+		player_climbing = false
 	
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED

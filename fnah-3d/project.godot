@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 ItemDB="*uid://buwhwt1paltm7"
 NetworkManager="*uid://ldejddyftdtm"
+GameplayNumbers="*uid://b1rcyd5qr1ryp"
 
 [display]
 
