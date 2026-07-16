@@ -31,7 +31,7 @@ func _update_icon(connected: bool) -> void:
 
 # Dynamiczne budowanie listy sieci w wyskakującym okienku
 func _build_wifi_list() -> void:
-	var list_container = $WifiPopup/VBoxContainer/ScrollContainer/List # Wyszukaj swój VBox na listę
+	var list_container = $WifiPopup/VBoxContainer/ScrollContainer/List
 	
 	# Czyszczenie starej listy
 	for child in list_container.get_children():
@@ -44,23 +44,32 @@ func _build_wifi_list() -> void:
 		# Pokazujemy tylko sieci, które są aktualnie "dostępne" w grze
 		if data["is_available"]:
 			var btn = Button.new()
-			btn.text = wifi_name #+ " (" + data["security"] + ")"
 			
-			# Jeśli to aktualna sieć, zaznacz ją
+			# Sprawdzamy, czy to jest sieć, z którą jesteśmy aktualnie połączeni
 			if NetworkManager.current_wifi_name == wifi_name:
-				btn.text += " [POŁĄCZONO]"
+				btn.text = wifi_name + " [POŁĄCZONO]"
+				# Kliknięcie tej sieci wywoła rozłączenie
+				btn.pressed.connect(func(): _attempt_disconnect())
+			else:
+				btn.text = wifi_name #+ " (" + data["security"] + ")"
+				# Kliknięcie innej sieci wywoła próbę połączenia
+				btn.pressed.connect(func(): _attempt_connect(wifi_name, data))
 				
-			btn.pressed.connect(func(): _attempt_connect(wifi_name, data))
 			list_container.add_child(btn)
 
 func _attempt_connect(wifi_name: String, data: Dictionary) -> void:
-	# Jeśli sieć wymaga hasła i nie jesteśmy z nią połączeni
-	if data["password"] != "" and NetworkManager.current_wifi_name != wifi_name:
-		# Tutaj możesz wywołać małe okienko LineEdit do wpisania hasła.
-		# Jeśli wpisane hasło == data["password"], wywołujesz:
+	# Jeśli sieć wymaga hasła
+	if data["password"] != "":
+		# Tutaj możesz w przyszłości wstawić okienko na hasło. 
+		# Na razie łączymy bezpośrednio:
 		NetworkManager.connect_to_net(wifi_name)
 	else:
 		# Sieć otwarta
 		NetworkManager.connect_to_net(wifi_name)
 		
+	wifi_popup.hide()
+
+func _attempt_disconnect() -> void:
+	# Wywołujemy rozłączenie w globalnym managerze
+	NetworkManager.disconnect_from_net()
 	wifi_popup.hide()

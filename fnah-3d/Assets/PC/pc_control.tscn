@@ -117,7 +117,20 @@ alignment = 1
 [node name="UrlInput" type="LineEdit" parent="BrowserWindow/MarginContainer/App/PasekAdresu" unique_id=1130617127]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+text = "adfsdfsefe"
 select_all_on_focus = true
+
+[node name="PageProgressBar" type="ProgressBar" parent="BrowserWindow/MarginContainer/App/PasekAdresu/UrlInput" unique_id=1227817615]
+visible = false
+modulate = Color(0, 0, 0, 0.5882353)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
 
 [node name="Search" type="Button" parent="BrowserWindow/MarginContainer/App/PasekAdresu" unique_id=1379917522]
 layout_mode = 2
@@ -258,6 +271,7 @@ wifi_connected_icon = ExtResource("4_aurmi")
 wifi_disconnected_icon = ExtResource("6_xa222")
 
 [node name="WifiPopup" type="PanelContainer" parent="TaskBar/GridContainer/WifiButton" unique_id=1472270674]
+visible = false
 custom_minimum_size = Vector2(375, 310)
 layout_mode = 1
 offset_left = -200.0
