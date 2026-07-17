@@ -13,6 +13,7 @@ extends Control
 @onready var body_label: RichTextLabel = $MainPanel/HSplitContainer/EmailPreview/VBoxContainer/BodyLabel
 @onready var attachment_section: HBoxContainer = $MainPanel/HSplitContainer/EmailPreview/VBoxContainer/AttachmentSection
 
+@onready var browser: MarginContainer = get_node("../../..")
 
 # Przechowywanie odebranych maili gracza
 var received_emails: Array = []
@@ -39,6 +40,10 @@ func _ready() -> void:
 func _on_login_pressed() -> void:
 	# Przykładowe dane logowania
 	if email_input.text == "" and password_input.text == "":
+		var success = await browser.loadProgress(0.5)
+		if !success:
+			browser.load_page("noIntenet")
+			return
 		login_panel.hide()
 		main_panel.show()
 		refresh_email_list()
@@ -54,7 +59,7 @@ func receive_new_email() -> void:
 	received_emails.push_front(new_mail)
 	
 	# Jeśli gracz jest zalogowany, odświeżamy listę na ekranie
-	if main_panel.visible:
+	if main_panel.visible and NetworkManager.is_connected_to_internet:
 		refresh_email_list()
 
 # --- WYŚWIETLANIE LISTY ---
@@ -78,6 +83,12 @@ func refresh_email_list() -> void:
 
 # --- PODGLĄD MAILA I ZAŁĄCZNIKI ---
 func show_email_preview(mail: Dictionary) -> void:
+	var success = await browser.loadProgress(0.5)
+	
+	if !success:
+		browser.load_page("noIntenet")
+		return
+	
 	sender_label.text = "Od: " + mail["sender"]
 	subject_label.text = "Temat: " + mail["subject"]
 	body_label.text = mail["body"] # RichTextLabel automatycznie obsłuży np. [b]pogrubienie[/b]
@@ -110,5 +121,5 @@ func clear_preview() -> void:
 
 func refresh_from_pc(new_emails_list: Array) -> void:
 	received_emails = new_emails_list
-	if main_panel.visible:
+	if main_panel.visible and NetworkManager.is_connected_to_internet:
 		refresh_email_list()

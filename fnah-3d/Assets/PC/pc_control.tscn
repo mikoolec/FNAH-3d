@@ -83,7 +83,6 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="BrowserWindow" type="PanelContainer" parent="." unique_id=852004038]
-visible = false
 layout_mode = 1
 offset_left = 262.0
 offset_top = 337.0
@@ -117,7 +116,6 @@ alignment = 1
 [node name="UrlInput" type="LineEdit" parent="BrowserWindow/MarginContainer/App/PasekAdresu" unique_id=1130617127]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-text = "adfsdfsefe"
 select_all_on_focus = true
 
 [node name="PageProgressBar" type="ProgressBar" parent="BrowserWindow/MarginContainer/App/PasekAdresu/UrlInput" unique_id=1227817615]
@@ -177,6 +175,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="BrowserWindow/DownloadWindow/VBoxContainer" unique_id=1253866656]
+layout_mode = 2
+
+[node name="InputBlocker" type="Control" parent="BrowserWindow" unique_id=1502048948]
+visible = false
 layout_mode = 2
 
 [node name="PrinterWindow" type="PanelContainer" parent="." unique_id=428964142]

@@ -10,6 +10,7 @@ extends Control
 @onready var back_button: Button = $MainPanel/VBoxContainer/BackButton
 
 @onready var pc = get_node("../../../../..")
+@onready var browser: MarginContainer = get_node("../../..")
 
 # Słownik przechowujący wygenerowaną strukturę danych internetu
 var file_system = {}
@@ -46,13 +47,16 @@ func _on_login_attempt() -> void:
 
 # --- LOGIKA PRZEGLĄDANIA ---
 func open_directory(dir_data: Dictionary, dir_name: String) -> void:
+	var success = await browser.loadProgress(1.5)
+	
+	if !success:
+		browser.load_page("noIntenet")
+		return
+	
 	# Czyścimy starą listę plików/folderów z ekranu
 	for child in items_container.get_children():
 		child.queue_free()
-	
-	
-	
-	
+		
 	current_dir = dir_data
 	
 	# POPRAWKA 1: Zawsze budujemy czysty tekst od zera, bez względu na to, czy wchodzimy, czy się cofamy

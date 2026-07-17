@@ -4,9 +4,8 @@ extends MarginContainer
 @onready var content_zone: Control = $App/ContentZone
 @onready var progress_bar: ProgressBar = $App/PasekAdresu/UrlInput/PageProgressBar
 
-@export var base_load_time: float = 1.5
-
 var current_tween: Tween
+var is_loading_page = false
 
 # Rejestr stron: "wpisywany link": "ścieżka do sceny"
 const INTERNET_PAGES = {
@@ -26,7 +25,7 @@ func _ready() -> void:
 	# Podłączamy wciśnięcie Enter w pasku adresu
 	url_input.text_submitted.connect(_on_url_submitted)
 	# Ładujemy stronę startową na początek
-	load_page("google.pl")
+	#load_page("google.pl")
 
 func _on_url_submitted(new_url: String) -> void:
 	# Czyszczenie wpisu z wielkich liter i spacji
@@ -34,6 +33,7 @@ func _on_url_submitted(new_url: String) -> void:
 	load_page(clean_url)
 
 func load_page(url: String) -> void:
+	if is_loading_page: return
 	# 1. Usunięcie starej strony z ekranu, jeśli jakaś jest
 	if current_page_node:
 		current_page_node.queue_free()
@@ -52,10 +52,10 @@ func load_page(url: String) -> void:
 		if page_scene:
 			current_page_node = page_scene.instantiate()
 			content_zone.add_child(current_page_node)
-			url_input.text = url # Aktualizujemy pasek adresu
 		return
-	
-	var success = await loadProgress()
+		
+	is_loading_page = true
+	var success = await loadProgress(1.5)
 	
 	if !success: page_path = INTERNET_PAGES["noIntenet"]
 	
@@ -64,21 +64,23 @@ func load_page(url: String) -> void:
 		current_page_node = page_scene.instantiate()
 		content_zone.add_child(current_page_node)
 		url_input.text = url # Aktualizujemy pasek adresu
+	
+	is_loading_page = false
 
 func _on_search_pressed() -> void:
 	_on_url_submitted(url_input.text)
 
-func loadProgress():
+func loadProgress(load_time: float):
 	if current_tween and current_tween.is_running():
 		current_tween.kill()
 		
-	var load_time = base_load_time * NetworkManager.current_speed_multiplier
+	var final_load_time = load_time * NetworkManager.current_speed_multiplier
 	
 	progress_bar.value = 0.0
 	progress_bar.show()
 	
 	current_tween = create_tween()
-	current_tween.tween_property(progress_bar, "value", 100.0, load_time)\
+	current_tween.tween_property(progress_bar, "value", 100.0, final_load_time)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
 	
