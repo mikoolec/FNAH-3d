@@ -29,6 +29,7 @@ func _update_visuals() -> void:
 		var scene = ItemDB.get_item_scene(current_item)
 		if scene:
 			var item_instance = scene.instantiate()
+			item_instance.rotation = Vector3.ZERO # Zeruje rotację pod spawner
 			add_child(item_instance)
 			
 			# Wyłączamy kolizję samego przedmiotu, bo to SLOT ma swoją własną kolizję do klikania

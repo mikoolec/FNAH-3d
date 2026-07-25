@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2tbxxi2uqeyn"]
+
+[ext_resource type="PackedScene" uid="uid://dfr14rjyslotr" path="res://Assets/blend/kartka.blend" id="1_lgqea"]
+
+[node name="kartka" unique_id=1207149715 instance=ExtResource("1_lgqea")]
+transform = Transform3D(1, 0, 0, 0, 0.95510274, -0.29627487, 0, 0.29627487, 0.95510274, 0, 0, 0)

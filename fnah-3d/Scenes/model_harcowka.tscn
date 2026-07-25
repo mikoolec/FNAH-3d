@@ -67,6 +67,9 @@ sky = SubResource("Sky_ip1yl")
 [sub_resource type="BoxShape3D" id="BoxShape3D_pr21s"]
 size = Vector3(1.107666, 12.768372, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yh4j"]
+size = Vector3(0.46325684, 0.42248535, 0.49560547)
+
 [node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
 [node name="HarcowkaPodloga" parent="." index="0" unique_id=973166886]
@@ -256,6 +259,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.743265, -0.23170185, 25.258
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18493652, 5.884186, 0)
 shape = SubResource("BoxShape3D_pr21s")
 
+[node name="BaseSlot5" parent="." index="39" unique_id=2036686769 instance=ExtResource("12_qao3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5374703, 0.8061031, 6.908432)
+slot_type = 0
+default_item = "kartka"
+
+[node name="CollisionShape3D" parent="BaseSlot5" index="0" unique_id=1643366966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08709717, 0.16473389, 0)
+shape = SubResource("BoxShape3D_5yh4j")
+
 [editable path="Chair"]
 [editable path="kanapa"]
 [editable path="BaseSlot"]
@@ -265,3 +277,4 @@ shape = SubResource("BoxShape3D_pr21s")
 [editable path="StairsTripper"]
 [editable path="StairsTripper2"]
 [editable path="LadderCollider"]
+[editable path="BaseSlot5"]

@@ -13,7 +13,8 @@ const TRASHBAG = "woreksmieci"
 # WPISZ TUTAJ SWOJE DOKŁADNE ŚCIEŻKI DO PLIKÓW!
 const ITEM_SCENES = {
 	KEY: "res://Scenes/Items/Klucz.tscn",
-	TRASHBAG: "res://Scenes/Items/WorekSmieci.tscn"
+	TRASHBAG: "res://Scenes/Items/WorekSmieci.tscn",
+	SHEET: "res://Scenes/Items/kartka.tscn"
 }
 
 # Bezpieczna funkcja do pobierania sceny
