@@ -5,6 +5,7 @@ extends Node
 # Używaj dokładnie takich samych nazw w całym projekcie.
 const KNIFE = "noz"
 const SHEET = "kartka"
+const FILLEDSHEET = "kartkazapis"
 const KEY = "klucz"
 const NONE = "brak"
 const TRASHBAG = "woreksmieci"
@@ -14,7 +15,8 @@ const TRASHBAG = "woreksmieci"
 const ITEM_SCENES = {
 	KEY: "res://Scenes/Items/Klucz.tscn",
 	TRASHBAG: "res://Scenes/Items/WorekSmieci.tscn",
-	SHEET: "res://Scenes/Items/kartka.tscn"
+	SHEET: "res://Scenes/Items/kartka.tscn",
+	FILLEDSHEET: "res://Scenes/Items/kartkazapis.tscn"
 }
 
 # Bezpieczna funkcja do pobierania sceny

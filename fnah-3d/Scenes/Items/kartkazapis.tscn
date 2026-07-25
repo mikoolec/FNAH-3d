@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxj5nhh2cjawk"]
+
+[ext_resource type="PackedScene" uid="uid://carvyqgiawaig" path="res://Assets/blend/kartkazapis.blend" id="1_k8pvc"]
+
+[node name="kartkazapis" unique_id=647041128 instance=ExtResource("1_k8pvc")]
+transform = Transform3D(1, 0, 0, 0, 0.90315557, -0.42931348, 0, 0.42931348, 0.90315557, 0, 0, 0)

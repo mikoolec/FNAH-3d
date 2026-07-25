@@ -70,10 +70,10 @@ size = Vector3(1.107666, 12.768372, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yh4j"]
 size = Vector3(0.46325684, 0.42248535, 0.49560547)
 
-[node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ax3ff"]
+size = Vector3(0.49993896, 0.46887207, 0.7601929)
 
-[node name="HarcowkaPodloga" parent="." index="0" unique_id=973166886]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
+[node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 9.107173, 0.041246258, -3.1026275)
@@ -114,14 +114,17 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaSufit" parent="." index="6" unique_id=806885433]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
+[node name="HarcowkaPodloga" parent="." index="6" unique_id=208947293]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
 
-[node name="HarcowkaSciany" parent="." index="7" unique_id=2063497038]
+[node name="HarcowkaSciany" parent="." index="8" unique_id=290119169]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
 
+[node name="HarcowkaSufit" parent="." index="9" unique_id=1234716044]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
+
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 0.061579823, -0.040350556, 2.0295227)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 0.54758, -0.040350556, 2.0295227)
 
 [node name="drzwi2" parent="." index="11" unique_id=1987753368 instance=ExtResource("6_flkvd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 6.6669297, -0.021396518, -1.0565022)
@@ -268,6 +271,15 @@ default_item = "kartka"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08709717, 0.16473389, 0)
 shape = SubResource("BoxShape3D_5yh4j")
 
+[node name="BaseSlot6" parent="." index="40" unique_id=1803528198 instance=ExtResource("12_qao3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.629548, 0.7805139, 7.502855)
+slot_type = 0
+default_item = "kartkazapis"
+
+[node name="CollisionShape3D" parent="BaseSlot6" index="0" unique_id=1643366966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0687561, 0.041809082, 0.05166626)
+shape = SubResource("BoxShape3D_ax3ff")
+
 [editable path="Chair"]
 [editable path="kanapa"]
 [editable path="BaseSlot"]
@@ -278,3 +290,4 @@ shape = SubResource("BoxShape3D_5yh4j")
 [editable path="StairsTripper2"]
 [editable path="LadderCollider"]
 [editable path="BaseSlot5"]
+[editable path="BaseSlot6"]

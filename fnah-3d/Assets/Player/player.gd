@@ -246,7 +246,7 @@ func stand_up():
 	tween.tween_property(self, "global_position", exit_position, 0.4)\
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property($Head/Camera3D, "rotation:x", 0.0, 0.4)
+	tween.tween_property($Head/CameraRoll/Camera3D, "rotation:x", 0.0, 0.4)
 	tween.chain().finished.connect(_on_stand_up_finished)
 
 func _on_stand_up_finished():
