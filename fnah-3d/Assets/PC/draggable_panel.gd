@@ -14,7 +14,7 @@ func _gui_input(event: InputEvent) -> void:
 				x.is_focused = false
 		self.z_index = 1
 		is_focused = true
-		get_parent().move_child(self, get_parent().get_child_count())
+		get_parent().move_child(self, get_parent().get_child_count() - 2)
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			dragging = true

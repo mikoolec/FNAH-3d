@@ -58,7 +58,7 @@ func _on_email_timer_timeout() -> void:
 	# 1. Losujemy maila z bazy (do stałej pamięci pulpitu)
 	var new_mail = EmailDatabase.get_random_email()
 	all_received_emails.push_front(new_mail)
-	print("Nowy mail przyszedł na serwer komputera!")
+	#print("Nowy mail przyszedł na serwer komputera!")
 	
 	# 2. Jeśli aplikacja mailowa jest AKTUALNIE OTWARTA, natychmiast ją odświeżamy
 	if is_instance_valid(active_email_app):

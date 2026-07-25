@@ -83,6 +83,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="BrowserWindow" type="PanelContainer" parent="." unique_id=852004038]
+visible = false
 layout_mode = 1
 offset_left = 262.0
 offset_top = 337.0
