@@ -64,3 +64,4 @@ func _on_download_finished() -> void:
 	visible = false
 	hide()
 	input_blocker.hide()
+	WindowManager.spawn_error("Plik został pobrany.", false, 5)
