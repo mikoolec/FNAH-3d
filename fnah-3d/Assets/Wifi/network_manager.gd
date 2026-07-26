@@ -7,6 +7,9 @@ var current_wifi_name: String = ""
 var is_connected_to_internet: bool = false
 var current_speed_multiplier: float = 1.0
 
+func _process(delta: float) -> void:
+	if not current_wifi_name == "" and WifiDatabase.networks[current_wifi_name]["is_available"] == false: disconnect_from_net()
+
 func connect_to_net(wifi_name: String) -> void:
 	if WifiDatabase.networks.has(wifi_name):
 		var net_data = WifiDatabase.networks[wifi_name]

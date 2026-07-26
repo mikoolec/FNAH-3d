@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://bvr82bgql0mww"]
+[gd_scene format=3 uid="uid://cqlfj7dc3nbgt"]
 
 [ext_resource type="PackedScene" uid="uid://nom1y8vcpil0" path="res://Assets/blend/router.blend" id="1_2nkap"]
 [ext_resource type="Script" uid="uid://b65ec1utxw0mj" path="res://Scripts/router.gd" id="2_fc2lw"]
-[ext_resource type="Script" uid="uid://wdqlmvifyqgx" path="res://Scripts/interact_transfer_up.gd" id="3_cavi2"]
+[ext_resource type="Script" path="res://Scripts/interact_transfer_up.gd" id="3_cavi2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fc2lw"]
 size = Vector3(1.4120483, 0.61816406, 1.7142944)
