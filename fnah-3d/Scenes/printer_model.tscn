@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dbu1cmyjeiihj"]
+
+[ext_resource type="PackedScene" uid="uid://o5g6c4fvj73n" path="res://Assets/blend/printer.blend" id="1_dftyo"]
+
+[node name="printer" unique_id=20322248 instance=ExtResource("1_dftyo")]

@@ -70,7 +70,7 @@ func interact(player) -> void:
 						trash_capacity = 0
 					else:
 						trash_capacity += 1
-						print("wyrzucono cos, aktualne zapelnienie to", trash_capacity)
+						print("wyrzucono cos, aktualne zapelnienie to ", trash_capacity)
 			elif ( trash_capacity > 0 ):
 				player.collect_item(current_item)
 				print("podniesiono smieci - oprozniono smietnik")

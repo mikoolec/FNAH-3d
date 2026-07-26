@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://uap3wn7pa3nn" path="res://Assets/blend/TrashFiller.blend" id="13_yj5vp"]
 [ext_resource type="PackedScene" uid="uid://dhuou1c7b1pwd" path="res://Scenes/smierniki.tscn" id="14_43243"]
 [ext_resource type="Script" uid="uid://duvgkq5f87pfn" path="res://Scenes/drukarka.gd" id="16_8n43u"]
+[ext_resource type="PackedScene" uid="uid://dbu1cmyjeiihj" path="res://Scenes/printer_model.tscn" id="17_qvfyu"]
 [ext_resource type="PackedScene" uid="uid://b0vocic3sqdjf" path="res://Scenes/big_trash.tscn" id="17_tl1uk"]
 [ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="18_wtdwr"]
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
@@ -33,10 +34,6 @@ size = Vector3(1.079773, 1.2730713, 2.1552124)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jgok"]
 size = Vector3(1.0175171, 1.0189514, 1.0185547)
-
-[sub_resource type="BoxMesh" id="BoxMesh_43243"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yj5vp"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8n43u"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -190,11 +187,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11021423, 0.35510254, 0.22
 shape = SubResource("BoxShape3D_1bw2u")
 
 [node name="DrukarkaSlot" parent="." index="24" unique_id=1884734402 instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.294, 0.68, 11.061016)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6667954, 0.22071028, 14.800371)
 slot_type = 3
 
 [node name="CollisionShape3D" parent="DrukarkaSlot" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020050049, 0.009303868, 0.54568386)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020050049, 0.009303868, 0.4950781)
 shape = SubResource("BoxShape3D_4jgok")
 
 [node name="drzwi_G" parent="." index="25" unique_id=599315374 instance=ExtResource("13_qao3v")]
@@ -207,15 +204,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.360748, 0.6215158, 0.21397
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.361398, 0.032066345, 0.22006476)
 
 [node name="Drukarka" type="StaticBody3D" parent="." index="28" unique_id=2454130]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27366066, 0.6813755, 11.619855)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6373632, 0.29075104, 15.242643)
 script = ExtResource("16_8n43u")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Drukarka" index="0" unique_id=592939293]
-mesh = SubResource("BoxMesh_43243")
-surface_material_override/0 = SubResource("StandardMaterial3D_yj5vp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Drukarka" index="1" unique_id=1812730584]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Drukarka" index="0" unique_id=1812730584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.70015055, 0)
 shape = SubResource("ConcavePolygonShape3D_8n43u")
+
+[node name="printer" parent="Drukarka" index="1" unique_id=20322248 instance=ExtResource("17_qvfyu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.18786418, 0)
 
 [node name="BigTrash" parent="." index="32" unique_id=435024031 instance=ExtResource("17_tl1uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.00468, 0.38102967, 20.525906)
@@ -289,6 +286,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.989687, 12.61148, 25.290604
 [editable path="BaseSlot"]
 [editable path="BaseSlot2"]
 [editable path="DrukarkaSlot"]
+[editable path="Drukarka/printer"]
 [editable path="BaseSlot4"]
 [editable path="StairsTripper"]
 [editable path="StairsTripper2"]
