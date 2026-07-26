@@ -2,43 +2,30 @@ extends Node
 
 const ERROR_WINDOW_SCENE = preload("res://Assets/PC/ErrorWindow.tscn")
 
-func spawn_error(text: String, use_yes_no: bool = false, count: int = 1) -> void:
+func spawn_error(text: String, use_yes_no: bool = false, randomize_position: bool = true) -> bool:
 	var pc_control = get_tree().root.find_child("PCControl", true, false)
 	
 	if not pc_control:
-		print("Błąd: Nie znaleziono pulpitu PCControl!")
-		return
+		return false
 		
-	for i in range(count):
-		var window_instance = ERROR_WINDOW_SCENE.instantiate()
-		
-		# 1. Dodajemy do komputera i przesuwamy na wierzch
-		pc_control.add_child(window_instance)
-		pc_control.move_child(window_instance, -1)
-		
-		# 2. Ustawiamy treść błędu
-		window_instance.setup(text, use_yes_no)
-		
-		# 3. Wymuszamy, aby tarcza blokująca zajęła CAŁY obszar PCControl
-		window_instance.size = pc_control.size
-		window_instance.position = Vector2.ZERO
-		
-		var panel = window_instance.get_node_or_null("WindowPanel")
-		if panel:
-			# Czekamy na przeliczenie marginesów i rozmiaru tekstu
-			await get_tree().process_frame
-			
-			# Odbieramy dokładny rozmiar komputera i rozmiar samego okna
-			var screen_size = pc_control.size
-			var panel_size = panel.size
-			
-			# Matematycznie obliczamy punkt środkowy (Środek Ekranu - Połowa Okienka)
-			panel.position = (screen_size / 2.0) - (panel_size / 2.0)
-			
-			# Jeśli zespawnowano więcej okienek, dodajemy losowe przesunięcie od środka
-			if count > 1:
-				var random_offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
-				panel.position += random_offset
+	var window_instance = ERROR_WINDOW_SCENE.instantiate()
+	pc_control.add_child(window_instance)
+	pc_control.move_child(window_instance, -1)
+	
+	# Rozciągamy tło blokujące na cały ekran
+	window_instance.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	window_instance.setup(text, use_yes_no)
+	
+	var panel = window_instance.get_node_or_null("WindowPanel")
+	if panel:
+		# Jeśli włączone jest losowanie pozycji, dodajemy losowy offset od środka
+		if randomize_position:
+			var random_offset = Vector2(randf_range(-150, 150), randf_range(-150, 150))
+			panel.position += random_offset
+
+	# Czekamy na odpowiedź z okna
+	var result: bool = await window_instance.confirmed
+	return result
 
 # Funkcja generująca kaskadę okienek (efekt mętliku/wirusa)
 # text - treść błędu

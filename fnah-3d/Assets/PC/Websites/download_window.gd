@@ -59,9 +59,46 @@ func _cancel_download(reason: String) -> void:
 	# informujące gracza, że pobieranie się nie udało.
 
 func _on_download_finished() -> void:
-	if pulpit_ref and pulpit_ref.has_method("spawn_file_on_desktop"):
-		pulpit_ref.spawn_file_on_desktop(target_file_name)
 	visible = false
 	hide()
 	input_blocker.hide()
-	WindowManager.spawn_error("Plik został pobrany.", false, 5)
+	
+	# Tworzymy słownik, który posłuży jako przekazywany przez referencję stan
+	var state = {
+		"cancelled": false,
+		"active_popups": 5
+	}
+	
+	for i in range(5):
+		_process_popup(state)
+		await get_tree().create_timer(0.1).timeout
+	
+	# Czekamy, aż wszystkie 5 okienek zostanie zamkniętych
+	while state.active_popups > 0:
+		await get_tree().process_frame
+	
+	# Jeśli gracz nie przerwał procesu w żadnym okienku, tworzymy plik
+	if not state.cancelled:
+		if pulpit_ref and pulpit_ref.has_method("spawn_file_on_desktop"):
+			pulpit_ref.spawn_file_on_desktop(target_file_name)
+
+
+# Funkcja pomocnicza – każde okienko żyje własnym życiem w tle
+func _process_popup(state: Dictionary) -> void:
+	var chance: float = randf()
+	var should_cancel: bool = false
+	
+	if chance < 0.5:
+		var result = await WindowManager.spawn_error("Czy chcesz usunąć ten plik?", true)
+		if result:
+			should_cancel = true
+	else:
+		var result = await WindowManager.spawn_error("Czy chcesz zachować ten plik?", true)
+		if not result:
+			should_cancel = true
+			
+	if should_cancel:
+		state.cancelled = true
+		
+	# Zmniejszamy licznik aktywnych okienek po zamknięciu tego konkretnego
+	state.active_popups -= 1

@@ -1,5 +1,7 @@
 extends Control
 
+signal confirmed(result: bool)
+
 @onready var message_label: Label = $WindowPanel/VBoxContainer/Label
 @onready var btn_ok: Button = $WindowPanel/VBoxContainer/HBoxContainerButtons/BtnOk
 @onready var btn_yes: Button = $WindowPanel/VBoxContainer/HBoxContainerButtons/BtnYes
@@ -20,11 +22,23 @@ func setup(text: String, use_yes_no: bool) -> void:
 		btn_no.hide()
 
 func _ready() -> void:
-	# Podpięcie zamykania okienka pod przyciski
-	btn_ok.pressed.connect(queue_free)
-	btn_yes.pressed.connect(queue_free)
-	btn_no.pressed.connect(queue_free)
-	close_button.pressed.connect(queue_free)
-	
-	# Jeśli masz przycisk X na pasku tytułowym:
-	# $VBoxContainer/TitleBar/CloseButton.pressed.connect(queue_free)
+	btn_ok.pressed.connect(_on_btn_ok_pressed)
+	btn_yes.pressed.connect(_on_btn_yes_pressed)
+	btn_no.pressed.connect(_on_btn_no_pressed)
+	close_button.pressed.connect(_on_btn_exit_pressed)
+
+func _on_btn_ok_pressed() -> void:
+	confirmed.emit(true)
+	queue_free()
+
+func _on_btn_yes_pressed() -> void:
+	confirmed.emit(true)
+	queue_free()
+
+func _on_btn_no_pressed() -> void:
+	confirmed.emit(false)
+	queue_free()
+
+func _on_btn_exit_pressed() -> void:
+	confirmed.emit(false)
+	queue_free()
