@@ -1,5 +1,18 @@
 [gd_scene format=3 uid="uid://bvr82bgql0mww"]
 
 [ext_resource type="PackedScene" uid="uid://nom1y8vcpil0" path="res://Assets/blend/router.blend" id="1_2nkap"]
+[ext_resource type="Script" uid="uid://b65ec1utxw0mj" path="res://Scripts/router.gd" id="2_fc2lw"]
+[ext_resource type="Script" uid="uid://wdqlmvifyqgx" path="res://Scripts/interact_transfer_up.gd" id="3_cavi2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fc2lw"]
+size = Vector3(1.4120483, 0.61816406, 1.7142944)
 
 [node name="router" unique_id=693552608 instance=ExtResource("1_2nkap")]
+script = ExtResource("2_fc2lw")
+
+[node name="Area3D" type="Area3D" parent="." index="8" unique_id=599559212]
+script = ExtResource("3_cavi2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1191863128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009857178, -0.19091797, -0.024261475)
+shape = SubResource("BoxShape3D_fc2lw")
