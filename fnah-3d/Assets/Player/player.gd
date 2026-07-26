@@ -59,6 +59,9 @@ func _unhandled_input(event):
 	
 	if current_state == State.SITTING and event.is_action_pressed("jump"):
 		stand_up()
+	
+	if is_using_panel and event.is_action_pressed("ui_cancel"):
+		exit_panel()
 
 func _physics_process(delta: float) -> void:
 	%InteractText.hide()
@@ -390,3 +393,61 @@ func stop_ragdoll() -> void:
 	velocity = Vector3.ZERO
 	is_ragdolling = false
 	walk_locked = false
+
+var is_using_panel: bool = false
+var current_panel: Node3D = null
+
+func enter_panel(panel_node: Node3D) -> void:
+	if is_using_panel:
+		return
+		
+	is_using_panel = true
+	current_panel = panel_node
+	current_state = State.TRANSITION
+	
+	# Zatrzymujemy postać i obracanie głową
+	walk_locked = true
+	camera_locked = true
+	
+	# Uwalniamy kursor myszy do klikania śrubek, korków i kabli
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# Jeśli panel ma wyznaczony punkt widoku (np. view_point / CameraPoint), leci tam kamera.
+	# W przeciwnym razie ustawia się na wprost panela.
+	var target_transform: Transform3D
+	if panel_node.has_node("view_point"):
+		target_transform = panel_node.get_node("view_point").global_transform
+	else:
+		target_transform = panel_node.global_transform
+		
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(camera, "global_transform", target_transform, 0.6)\
+		.set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+
+func exit_panel() -> void:
+	if not is_using_panel:
+		return
+		
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	var tween = create_tween()
+	tween.tween_property(camera, "transform", Transform3D.IDENTITY, 0.5)\
+		.set_trans(Tween.TRANS_CUBIC)
+		
+	tween.finished.connect(func():
+		current_state = State.FREE
+		walk_locked = false
+		camera_locked = false
+		is_using_panel = false
+		
+		if current_panel:
+			if current_panel.is_cover_open and current_panel.has_method("close_cover"):
+				current_panel.close_cover()
+			
+			# Przywracamy stan początkowy tabletu dopiero po odejściu gracza:
+			current_panel.is_player_focused = false
+			if current_panel.main_area_collision:
+				current_panel.main_area_collision.disabled = false
+				
+			current_panel = null
+	)

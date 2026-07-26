@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://duvgkq5f87pfn" path="res://Scenes/drukarka.gd" id="16_8n43u"]
 [ext_resource type="PackedScene" uid="uid://dbu1cmyjeiihj" path="res://Scenes/printer_model.tscn" id="17_qvfyu"]
 [ext_resource type="PackedScene" uid="uid://b0vocic3sqdjf" path="res://Scenes/big_trash.tscn" id="17_tl1uk"]
+[ext_resource type="PackedScene" uid="uid://bkan6ysj6ke2n" path="res://Scenes/korki_tablet.tscn" id="18_1bw2u"]
 [ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="18_wtdwr"]
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
 [ext_resource type="PackedScene" uid="uid://dtldg80lddwet" path="res://Scenes/ladder_collider.tscn" id="20_ip1yl"]
@@ -214,6 +215,11 @@ shape = SubResource("ConcavePolygonShape3D_8n43u")
 [node name="printer" parent="Drukarka" index="1" unique_id=20322248 instance=ExtResource("17_qvfyu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.18786418, 0)
 
+[node name="Skeleton3D" parent="Drukarka/printer/Armature" parent_id_path=PackedInt32Array(20322248, 1048457266) index="0" unique_id=1063926489]
+bones/0/position = Vector3(-0.21226138, 0.55628204, 7.474141e-08)
+bones/0/rotation = Quaternion(1.1171744e-16, 1.4965067e-08, -0.11138132, 0.99377775)
+bones/0/scale = Vector3(0.6135242, 0.6135242, 0.61352414)
+
 [node name="BigTrash" parent="." index="32" unique_id=435024031 instance=ExtResource("17_tl1uk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.00468, 0.38102967, 20.525906)
 
@@ -280,6 +286,9 @@ shape = SubResource("BoxShape3D_ax3ff")
 
 [node name="router" parent="." index="41" unique_id=693552608 instance=ExtResource("21_coq7e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.989687, 12.61148, 25.290604)
+
+[node name="korki_tablet" parent="." index="42" unique_id=1465434904 instance=ExtResource("18_1bw2u")]
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 2.9003654, 1.5557268, -1.0602815)
 
 [editable path="Chair"]
 [editable path="kanapa"]
