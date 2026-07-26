@@ -9,6 +9,10 @@ const FILLEDSHEET = "kartkazapis"
 const KEY = "klucz"
 const NONE = "brak"
 const TRASHBAG = "woreksmieci"
+const TUSZC = "tuszC"
+const TUSZM = "tuszM"
+const TUSZY = "tuszY"
+const TUSZK = "tuszK"
 
 # Słownik, który łączy tekstowe ID z plikiem sceny .tscn
 # WPISZ TUTAJ SWOJE DOKŁADNE ŚCIEŻKI DO PLIKÓW!
@@ -16,7 +20,11 @@ const ITEM_SCENES = {
 	KEY: "res://Scenes/Items/Klucz.tscn",
 	TRASHBAG: "res://Scenes/Items/WorekSmieci.tscn",
 	SHEET: "res://Scenes/Items/kartka.tscn",
-	FILLEDSHEET: "res://Scenes/Items/kartkazapis.tscn"
+	FILLEDSHEET: "res://Scenes/Items/kartkazapis.tscn",
+	TUSZC: "res://Scenes/Items/tusz_c.tscn",
+	TUSZM: "res://Scenes/Items/tusz_m.tscn",
+	TUSZY: "res://Scenes/Items/tusz_y.tscn",
+	TUSZK: "res://Scenes/Items/tusz_k.tscn"
 }
 
 # Bezpieczna funkcja do pobierania sceny

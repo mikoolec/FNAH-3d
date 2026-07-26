@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://byurhit1c7stu"]
+
+[ext_resource type="PackedScene" uid="uid://boj6ofpn2xuof" path="res://Assets/blend/tuszY.blend" id="1_dt85f"]
+
+[node name="tuszY" unique_id=181481797 instance=ExtResource("1_dt85f")]
