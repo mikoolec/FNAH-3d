@@ -64,13 +64,14 @@ func _on_download_finished() -> void:
 	hide()
 	input_blocker.hide()
 	
+	var random_num: int = randi_range(3, 6)
 	# Tworzymy słownik, który posłuży jako przekazywany przez referencję stan
 	var state = {
 		"cancelled": false,
-		"active_popups": 5
+		"active_popups": random_num
 	}
 	
-	for i in range(5):
+	for i in range(random_num):
 		_process_popup(state)
 		await get_tree().create_timer(0.1).timeout
 	
@@ -84,7 +85,7 @@ func _on_download_finished() -> void:
 			if pulpit_ref and pulpit_ref.has_method("spawn_file_on_desktop"):
 				pulpit_ref.spawn_file_on_desktop(target_file_name)
 		else:
-			for i in range(5):
+			for i in range(randi_range(3, 6)):
 				WindowManager.spawn_error("Brak miejsca na dysku.")
 
 

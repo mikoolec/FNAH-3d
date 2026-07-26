@@ -3,6 +3,12 @@ class_name WifiDatabase
 
 # Definicja sieci Wi-Fi w grze
 static var networks = {
+	"Drukarka": {
+		"password": "123",
+		"speed_multiplier": 0.0, # no internet druhu
+		"security": "WPA2-Personal",
+		"is_available": true # Możesz to zmieniać w locie w grze!
+	},
 	"Domowe_WiFi_2.4G": {
 		"password": "haslo_domowe",
 		"speed_multiplier": 1.0, # Standardowa prędkość

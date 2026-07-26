@@ -11,8 +11,11 @@ func connect_to_net(wifi_name: String) -> void:
 	if WifiDatabase.networks.has(wifi_name):
 		var net_data = WifiDatabase.networks[wifi_name]
 		current_wifi_name = wifi_name
-		current_speed_multiplier = net_data["speed_multiplier"]
-		is_connected_to_internet = true
+		if(net_data["speed_multiplier"] != 0.0):
+			current_speed_multiplier = net_data["speed_multiplier"]
+			is_connected_to_internet = true
+		else:
+			is_connected_to_internet = false
 		connection_changed.emit(true)
 
 func disconnect_from_net() -> void:

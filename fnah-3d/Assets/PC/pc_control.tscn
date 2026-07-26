@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gt8mfkj3p1lu" path="res://Assets/PC/pc_control.gd" id="1_70naa"]
 [ext_resource type="Texture2D" uid="uid://b71hv8lhlq8vc" path="res://Assets/PC/cursor.png" id="2_0myl8"]
+[ext_resource type="PackedScene" uid="uid://bi73yqijptqai" path="res://Assets/PC/Aplikacje/Ikony/desktop_file.tscn" id="2_7rc43"]
 [ext_resource type="Texture2D" uid="uid://bxpt4gob1fxc5" path="res://Assets/PC/Aplikacje/Ikony/printer.png" id="3_gvvqa"]
 [ext_resource type="Script" uid="uid://bvdnfpb4oklm7" path="res://Assets/PC/draggable_panel.gd" id="3_h4i1i"]
 [ext_resource type="Texture2D" uid="uid://tu8fdc8e5d4c" path="res://Assets/Wifi/images/wifi.png" id="4_aurmi"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://smcxgn3tlreu" path="res://Assets/Wifi/images/NoInternet.png" id="6_xa222"]
 [ext_resource type="Script" uid="uid://po0njib63phb" path="res://Assets/PC/drukarkaGUI.gd" id="7_dfng5"]
 [ext_resource type="Script" uid="uid://ccst3jwykkv7v" path="res://Assets/PC/Websites/download_window.gd" id="7_j7r86"]
+[ext_resource type="Script" uid="uid://ddyo40gvpyc32" path="res://Assets/PC/file_load_window.gd" id="11_dxlsn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vupqa"]
 load_path = "res://.godot/imported/tapeta.jpeg-3bd1e2eedb708fe7cc2080449ae28a7a.s3tc.ctex"
@@ -42,6 +44,9 @@ offset_left = 860.0
 offset_top = 450.0
 offset_right = 975.0
 offset_bottom = 600.0
+
+[node name="DesktopFile" parent="GridContainer" unique_id=35603737 instance=ExtResource("2_7rc43")]
+layout_mode = 2
 
 [node name="BrowserIcon" type="TextureButton" parent="." unique_id=1760967398]
 layout_mode = 0
@@ -207,7 +212,6 @@ visible = false
 layout_mode = 2
 
 [node name="PrinterWindow" type="PanelContainer" parent="." unique_id=428964142]
-visible = false
 layout_mode = 1
 offset_left = 262.0
 offset_top = 337.0
@@ -248,9 +252,19 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Upusć tu plik"
+text = "Upuść tu plik"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PrintBtn" type="Button" parent="PrinterWindow/MarginContainer/App/GUI" unique_id=676145499]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 250.0
+offset_right = 400.0
+offset_bottom = 290.0
+theme_override_font_sizes/font_size = 20
+text = "Drukuj"
 
 [node name="PasekKontrolny" type="HBoxContainer" parent="PrinterWindow" unique_id=274772488]
 custom_minimum_size = Vector2(0, 32)
@@ -269,6 +283,27 @@ layout_mode = 2
 texture_normal = ExtResource("5_gvvqa")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="FileLoadWindow" type="PanelContainer" parent="PrinterWindow" unique_id=116156067]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("11_dxlsn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PrinterWindow/FileLoadWindow" unique_id=1078386387]
+layout_mode = 2
+
+[node name="FileNameLabel" type="Label" parent="PrinterWindow/FileLoadWindow/VBoxContainer" unique_id=1127311012]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PrinterWindow/FileLoadWindow/VBoxContainer" unique_id=1834514163]
+layout_mode = 2
+
+[node name="InputBlocker" type="Control" parent="PrinterWindow" unique_id=1428962748]
+visible = false
+layout_mode = 2
 
 [node name="TaskBar" type="PanelContainer" parent="." unique_id=1826863902]
 layout_mode = 1
@@ -334,4 +369,5 @@ offset = Vector2(210, 420)
 [connection signal="pressed" from="PrinterIcon" to="." method="_on_printer_icon_pressed"]
 [connection signal="pressed" from="BrowserWindow/MarginContainer/App/PasekAdresu/Search" to="BrowserWindow/MarginContainer" method="_on_search_pressed"]
 [connection signal="pressed" from="BrowserWindow/PasekKontrolny/CloseBrowserButton" to="." method="_on_close_browser_button_pressed"]
+[connection signal="pressed" from="PrinterWindow/MarginContainer/App/GUI/PrintBtn" to="PrinterWindow/MarginContainer/App/GUI" method="_on_print_btn_pressed"]
 [connection signal="pressed" from="PrinterWindow/PasekKontrolny/ClosePrinterButton" to="." method="_on_close_printer_button_pressed"]
