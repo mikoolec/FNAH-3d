@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bxpt4gob1fxc5" path="res://Assets/PC/Aplikacje/Ikony/printer.png" id="3_gvvqa"]
 [ext_resource type="Script" uid="uid://bvdnfpb4oklm7" path="res://Assets/PC/draggable_panel.gd" id="3_h4i1i"]
 [ext_resource type="Texture2D" uid="uid://tu8fdc8e5d4c" path="res://Assets/Wifi/images/wifi.png" id="4_aurmi"]
+[ext_resource type="Texture2D" uid="uid://cnyl6qit6adpv" path="res://Assets/PC/Aplikacje/Ikony/trashIcon.png" id="4_xa222"]
 [ext_resource type="Script" uid="uid://chhd0of65raek" path="res://Assets/PC/browser.gd" id="5_1sy4e"]
+[ext_resource type="Script" uid="uid://dyxo40ckkhjki" path="res://Assets/PC/trash_icon.gd" id="5_4v0dk"]
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="5_gvvqa"]
 [ext_resource type="Script" uid="uid://cmr2texxxqren" path="res://Assets/PC/wifi_button.gd" id="5_rakx0"]
 [ext_resource type="Texture2D" uid="uid://dn4idxx7cs1yu" path="res://Assets/PC/Aplikacje/Ikony/chrome.png" id="5_vupqa"]
@@ -79,6 +81,28 @@ offset_right = 113.0
 offset_bottom = 153.0
 theme_override_font_sizes/font_size = 30
 text = "Printer"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TrashIcon" type="TextureButton" parent="." unique_id=252698346]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 450.0
+offset_right = 156.0
+offset_bottom = 565.0
+texture_normal = ExtResource("4_xa222")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_4v0dk")
+
+[node name="Label" type="Label" parent="TrashIcon" unique_id=514112079]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 111.0
+offset_right = 113.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 30
+text = "ZHR"
 horizontal_alignment = 1
 vertical_alignment = 2
 
