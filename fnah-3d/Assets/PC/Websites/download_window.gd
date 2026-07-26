@@ -3,6 +3,7 @@ extends PanelContainer
 @onready var file_name_label: Label = $VBoxContainer/FileNameLabel
 @onready var progress_bar: ProgressBar = $VBoxContainer/ProgressBar
 @onready var input_blocker: Control = $"../InputBlocker"
+@onready var grid_container: GridContainer = $"../../GridContainer"
 
 
 # Zmienna, którą możesz dowolnie modyfikować, aby zmienić czas pobierania (w sekundach)
@@ -79,8 +80,12 @@ func _on_download_finished() -> void:
 	
 	# Jeśli gracz nie przerwał procesu w żadnym okienku, tworzymy plik
 	if not state.cancelled:
-		if pulpit_ref and pulpit_ref.has_method("spawn_file_on_desktop"):
-			pulpit_ref.spawn_file_on_desktop(target_file_name)
+		if grid_container.get_child_count() == 0:
+			if pulpit_ref and pulpit_ref.has_method("spawn_file_on_desktop"):
+				pulpit_ref.spawn_file_on_desktop(target_file_name)
+		else:
+			for i in range(5):
+				WindowManager.spawn_error("Brak miejsca na dysku.")
 
 
 # Funkcja pomocnicza – każde okienko żyje własnym życiem w tle
