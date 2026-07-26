@@ -27,5 +27,8 @@ func interact():
 				isWifiWorking = true
 				light_mat.albedo_color = Color(0,1,0)
 				anim_player.play("Press")
+
+func break_wifi():
+	isWifiWorking = false
 	
 	
