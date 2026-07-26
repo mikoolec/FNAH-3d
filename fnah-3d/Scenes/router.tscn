@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bvr82bgql0mww"]
+
+[ext_resource type="PackedScene" uid="uid://nom1y8vcpil0" path="res://Assets/blend/router.blend" id="1_2nkap"]
+
+[node name="router" unique_id=693552608 instance=ExtResource("1_2nkap")]

@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="18_wtdwr"]
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
 [ext_resource type="PackedScene" uid="uid://dtldg80lddwet" path="res://Scenes/ladder_collider.tscn" id="20_ip1yl"]
+[ext_resource type="PackedScene" uid="uid://bvr82bgql0mww" path="res://Scenes/router.tscn" id="21_coq7e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.903183, 1.6994629, 1.2485352)
@@ -65,7 +66,7 @@ background_mode = 2
 sky = SubResource("Sky_ip1yl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pr21s"]
-size = Vector3(1.107666, 12.768372, 1)
+size = Vector3(1.107666, 13.077423, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yh4j"]
 size = Vector3(0.46325684, 0.42248535, 0.49560547)
@@ -259,7 +260,7 @@ environment = SubResource("Environment_coq7e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.743265, -0.23170185, 25.258007)
 
 [node name="CollisionShape3D" parent="LadderCollider" index="0" unique_id=442654818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18493652, 5.884186, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18493652, 6.0387115, 0)
 shape = SubResource("BoxShape3D_pr21s")
 
 [node name="BaseSlot5" parent="." index="39" unique_id=2036686769 instance=ExtResource("12_qao3v")]
@@ -279,6 +280,9 @@ default_item = "kartkazapis"
 [node name="CollisionShape3D" parent="BaseSlot6" index="0" unique_id=1643366966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0687561, 0.041809082, 0.05166626)
 shape = SubResource("BoxShape3D_ax3ff")
+
+[node name="router" parent="." index="41" unique_id=693552608 instance=ExtResource("21_coq7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.989687, 12.61148, 25.290604)
 
 [editable path="Chair"]
 [editable path="kanapa"]
