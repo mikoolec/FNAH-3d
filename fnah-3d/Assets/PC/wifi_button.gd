@@ -22,7 +22,7 @@ func _on_icon_pressed() -> void:
 		_build_wifi_list()
 
 func _update_icon(connected: bool) -> void:
-	if connected:
+	if connected and NetworkManager.is_connected_to_internet:
 		texture_normal = wifi_connected_icon
 		tooltip_text = "Połączono z: " + NetworkManager.current_wifi_name
 	else:

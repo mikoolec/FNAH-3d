@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dh7dql82xq1y7"]
 
 [ext_resource type="Script" uid="uid://d1e10jgm2mmkx" path="res://Assets/PC/error_window.gd" id="1_jx5f4"]
-[ext_resource type="AudioStream" uid="uid://draygc6pu1f2m" path="res://Assets/PC/error.mp3" id="2_21a3q"]
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="2_hbx5c"]
 [ext_resource type="Script" uid="uid://cvgkeeq3cgudn" path="res://Assets/PC/modal_blocker.gd" id="2_r2s6e"]
 
@@ -17,9 +16,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_jx5f4")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1303313968]
-stream = ExtResource("2_21a3q")
 
 [node name="ModalBlocker" type="Button" parent="." unique_id=301612632]
 modulate = Color(1, 1, 1, 0)

@@ -16,7 +16,8 @@ func set_file_data(new_name: String) -> void:
 func _get_drag_data(at_position: Vector2) -> Variant:
 	var drag_data = {
 		"type": "file_document",
-		"file_name": file_name
+		"file_name": file_name,
+		"node": self
 	}
 	
 	# 1. Tworzymy kontener na podgląd
