@@ -24,4 +24,5 @@ func rozpocznij_drukowanie(file_name: String) -> void:
 	else:
 		print("Drukarka: Brak papieru.")
 		$LabelPrinterApp.text = "Drukarka: Brak papieru."
+		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", 100, 0.03)
 	

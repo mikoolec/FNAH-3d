@@ -4,12 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="2_hbx5c"]
 
 [node name="ErrorWindow" type="Control" unique_id=929580156]
+custom_minimum_size = Vector2(1024, 1024)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 376.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_jx5f4")
 
 [node name="ModalBlocker" type="ColorRect" parent="." unique_id=44393552]
@@ -22,6 +26,7 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="WindowPanel" type="Control" parent="." unique_id=65831959]
+custom_minimum_size = Vector2(250, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

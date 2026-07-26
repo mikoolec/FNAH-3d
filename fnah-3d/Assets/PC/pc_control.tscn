@@ -19,8 +19,8 @@ load_path = "res://.godot/imported/tapeta.jpeg-3bd1e2eedb708fe7cc2080449ae28a7a.
 [node name="PCControl" type="Control" unique_id=397611687 node_paths=PackedStringArray("panel_windows")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1024.0
+offset_bottom = 1024.0
 size_flags_horizontal = 4
 script = ExtResource("1_70naa")
 panel_windows = [NodePath("BrowserWindow"), NodePath("PrinterWindow")]
