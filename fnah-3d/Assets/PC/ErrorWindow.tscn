@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dh7dql82xq1y7"]
 
 [ext_resource type="Script" uid="uid://d1e10jgm2mmkx" path="res://Assets/PC/error_window.gd" id="1_jx5f4"]
+[ext_resource type="AudioStream" uid="uid://draygc6pu1f2m" path="res://Assets/PC/error.mp3" id="2_21a3q"]
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="2_hbx5c"]
+[ext_resource type="Script" uid="uid://cvgkeeq3cgudn" path="res://Assets/PC/modal_blocker.gd" id="2_r2s6e"]
 
 [node name="ErrorWindow" type="Control" unique_id=929580156]
 custom_minimum_size = Vector2(1024, 1024)
@@ -16,14 +18,18 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_jx5f4")
 
-[node name="ModalBlocker" type="ColorRect" parent="." unique_id=44393552]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1303313968]
+stream = ExtResource("2_21a3q")
+
+[node name="ModalBlocker" type="Button" parent="." unique_id=301612632]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0)
+script = ExtResource("2_r2s6e")
 
 [node name="WindowPanel" type="Control" parent="." unique_id=65831959]
 custom_minimum_size = Vector2(250, 200)
@@ -98,6 +104,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainerButtons" type="HBoxContainer" parent="WindowPanel/VBoxContainer" unique_id=1723899938]
 layout_mode = 2
@@ -116,3 +123,5 @@ text = "Yes"
 [node name="BtnNo" type="Button" parent="WindowPanel/VBoxContainer/HBoxContainerButtons" unique_id=317380625]
 layout_mode = 2
 text = "No"
+
+[connection signal="button_down" from="ModalBlocker" to="ModalBlocker" method="_on_button_down"]
