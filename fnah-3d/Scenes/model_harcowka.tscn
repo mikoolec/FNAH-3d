@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="18_wtdwr"]
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
 [ext_resource type="PackedScene" uid="uid://dtldg80lddwet" path="res://Scenes/ladder_collider.tscn" id="20_ip1yl"]
-[ext_resource type="PackedScene" uid="uid://bvr82bgql0mww" path="res://Scenes/router.tscn" id="21_coq7e"]
+[ext_resource type="PackedScene" uid="uid://cqlfj7dc3nbgt" path="res://Scenes/router.tscn" id="21_coq7e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.903183, 1.6994629, 1.2485352)
