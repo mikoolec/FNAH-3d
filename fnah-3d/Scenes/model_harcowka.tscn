@@ -31,7 +31,7 @@ size = Vector3(0.7365818, 0.15712738, 0.5477371)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bw2u"]
 size = Vector3(1.079773, 1.2730713, 2.1552124)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tl1uk"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jgok"]
 size = Vector3(1.0175171, 1.0189514, 1.0185547)
 
 [sub_resource type="BoxMesh" id="BoxMesh_43243"]
@@ -189,13 +189,13 @@ default_item = "woreksmieci"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11021423, 0.35510254, 0.22006226)
 shape = SubResource("BoxShape3D_1bw2u")
 
-[node name="BaseSlot3" parent="." index="24" unique_id=1884734402 instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.294, 0.68, 11.6)
+[node name="DrukarkaSlot" parent="." index="24" unique_id=1884734402 instance=ExtResource("12_qao3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.294, 0.68, 11.061016)
 slot_type = 3
 
-[node name="CollisionShape3D" parent="BaseSlot3" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020050049, 0.009303868, 0.022460938)
-shape = SubResource("BoxShape3D_tl1uk")
+[node name="CollisionShape3D" parent="DrukarkaSlot" index="0" unique_id=1643366966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020050049, 0.009303868, 0.54568386)
+shape = SubResource("BoxShape3D_4jgok")
 
 [node name="drzwi_G" parent="." index="25" unique_id=599315374 instance=ExtResource("13_qao3v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.714424, -0.49628788, 14.6242695)
@@ -288,7 +288,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.989687, 12.61148, 25.290604
 [editable path="kanapa"]
 [editable path="BaseSlot"]
 [editable path="BaseSlot2"]
-[editable path="BaseSlot3"]
+[editable path="DrukarkaSlot"]
 [editable path="BaseSlot4"]
 [editable path="StairsTripper"]
 [editable path="StairsTripper2"]

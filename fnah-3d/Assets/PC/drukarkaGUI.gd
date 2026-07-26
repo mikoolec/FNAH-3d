@@ -1,6 +1,7 @@
 extends Control # Skrypt okna drukarki
 
 @onready var drukarka: StaticBody3D = $"../../../../../../../../Drukarka"
+@onready var drukarka_skryptowa: Area3D = $"../../../../../../../../DrukarkaSlot"
 
 # 1. CZY DRUKARKA MOŻE PRZYJĄĆ TO, CO NIESIE MYSZKA?
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
@@ -20,6 +21,7 @@ func rozpocznij_drukowanie(file_name: String) -> void:
 	if drukarka.kartkaIn:
 		print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
 		drukarka.kartkaIn = false
+		drukarka_skryptowa.print_sheet()
 		$LabelPrinterApp.text = "Drukowanie..."
 	else:
 		print("Drukarka: Brak papieru.")

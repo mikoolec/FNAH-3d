@@ -9,6 +9,7 @@ enum SlotType { SPAWNER, SINGLE, TRASH, PRINTER, BIGTRASH }
 
 var current_item: String = ItemDB.NONE
 var trash_capacity: int = 0
+var is_sheet_printed = false
 
 @onready var drukarka: StaticBody3D = $"../Drukarka"
 
@@ -85,12 +86,16 @@ func interact(player) -> void:
 				
 			
 		SlotType.PRINTER:
-			if ( player.holding_item == ItemDB.KEY ) :
+			if ( player.holding_item == ItemDB.SHEET ) :
 				var destroyed_item = player.drop_item()
 				_handle_failsafe(destroyed_item)
 				print("Drukarka kartka in")
 				drukarka.kartkaIn = true
-				
+			if ( player.holding_item == ItemDB.NONE and is_sheet_printed ):
+				player.collect_item(current_item)
+				current_item = ItemDB.NONE
+				_update_visuals()
+			
 			_update_visuals()
 
 # Failsafe: szuka w całej grze slotu typu SINGLE, który zgubił ten przedmiot i go respi
@@ -103,3 +108,9 @@ func _handle_failsafe(item_id: String) -> void:
 				slot.current_item = item_id
 				slot._update_visuals()
 				break
+
+func print_sheet():
+	if slot_type == SlotType.PRINTER:
+		current_item = ItemDB.FILLEDSHEET
+		is_sheet_printed = true
+		_update_visuals()
