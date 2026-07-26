@@ -23,6 +23,9 @@ func _process(delta: float) -> void:
 			anim_player.play("Up")
 			light_mat.albedo_color = Color(1,0,0)
 			isPressing = false
+	
+	if !isRouterOn or !isWifiWorking: WifiDatabase.networks["Harcówka"]["is_available"] = false
+	else: WifiDatabase.networks["Harcówka"]["is_available"] = true
 
 func interact():
 	if anim_player:
