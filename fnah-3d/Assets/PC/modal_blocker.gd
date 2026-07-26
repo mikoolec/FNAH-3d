@@ -1,6 +1,6 @@
 extends Button
 
-@onready var audio_player: AudioStreamPlayer = $"../AudioStreamPlayer"
+@onready var audio_player: AudioStreamPlayer3D = $"../../../../AudioPC"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

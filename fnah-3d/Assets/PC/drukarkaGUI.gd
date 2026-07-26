@@ -31,7 +31,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		return
 	
 	file_load_window.start_download(dropped_file_name, false)
-	if plikWgrany: fileName = dropped_file_name
+	fileName = dropped_file_name
 	# Odpalasz swoją logikę drukowania!
 	#rozpocznij_drukowanie(dropped_file_name)
 
@@ -82,7 +82,7 @@ func _process_popup(state: Dictionary) -> void:
 	var should_cancel: bool = false
 	
 	if chance < 0.5:
-		var result = await WindowManager.spawn_error("Czy chcesz usunąć ten plik?", true)
+		var result = await WindowManager.spawn_error("Czy chcesz zniszczyć kartkę?", true)
 		if result:
 			should_cancel = true
 	else:
