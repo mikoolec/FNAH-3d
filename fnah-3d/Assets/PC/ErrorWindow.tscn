@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="2_hbx5c"]
 [ext_resource type="Script" uid="uid://cvgkeeq3cgudn" path="res://Assets/PC/modal_blocker.gd" id="2_r2s6e"]
 
-[node name="ErrorWindow" type="Control" unique_id=929580156]
+[node name="ErrorWindow" type="Control" unique_id=929580156 groups=["error_windows"]]
 custom_minimum_size = Vector2(1024, 1024)
 layout_mode = 3
 anchors_preset = 15

@@ -27,7 +27,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var dropped_file_name = data["file_name"]
 	if plikWgrany:
-		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", 10, 0.03)
+		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", randi_range(10, 20), 0.03)
 		return
 	
 	file_load_window.start_download(dropped_file_name, false)
@@ -44,8 +44,8 @@ func rozpocznij_drukowanie(file_name: String) -> void:
 		file_load_window.start_download(file_name, true)
 	else:
 		print("Drukarka: Brak papieru.")
-		$LabelPrinterApp.text = "Drukarka: Brak papieru."
-		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", 10, 0.03)
+		#$LabelPrinterApp.text = "Drukarka: Brak papieru."
+		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", randi_range(10, 20), 0.03)
 	
 
 

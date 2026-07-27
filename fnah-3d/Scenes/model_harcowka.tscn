@@ -79,6 +79,9 @@ size = Vector3(0.4935913, 0.64367676, 0.5637207)
 
 [node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
+[node name="HarcowkaPodloga" parent="." index="0" unique_id=2146974415]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
+
 [node name="Chair" parent="." index="2" unique_id=621514326 instance=ExtResource("2_aykef")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 9.107173, 0.041246258, -3.1026275)
 
@@ -126,14 +129,11 @@ shape = SubResource("BoxShape3D_oppbp")
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
 
-[node name="HarcowkaPodloga" parent="." index="6" unique_id=208947293]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
-
-[node name="HarcowkaSciany" parent="." index="8" unique_id=290119169]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
-
-[node name="HarcowkaSufit" parent="." index="9" unique_id=1234716044]
+[node name="HarcowkaSufit" parent="." index="6" unique_id=620270365]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
+
+[node name="HarcowkaSciany" parent="." index="7" unique_id=589895251]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 0.54758, -0.040350556, 2.0295227)
@@ -150,16 +150,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.712617, 0.0008390546, -5.6
 [node name="kanapa" parent="." index="14" unique_id=2000616939 instance=ExtResource("7_shit0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.161682, 4.7683716e-07, -0.50823104)
 
-[node name="Seat1" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="1" unique_id=312355204 node_paths=PackedStringArray("player")]
+[node name="Seat1" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 2103820223) index="1" unique_id=312355204 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat2" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="2" unique_id=1076469297 node_paths=PackedStringArray("player")]
+[node name="Seat2" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 2103820223) index="2" unique_id=1076469297 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat3" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="3" unique_id=2039160215 node_paths=PackedStringArray("player")]
+[node name="Seat3" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 2103820223) index="3" unique_id=2039160215 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat4" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="4" unique_id=930066509 node_paths=PackedStringArray("player")]
+[node name="Seat4" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 2103820223) index="4" unique_id=930066509 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
 [node name="KitchenTable" parent="." index="15" unique_id=1066404003 instance=ExtResource("11_ewqah")]
@@ -228,7 +228,7 @@ shape = SubResource("ConcavePolygonShape3D_8n43u")
 [node name="printer" parent="Drukarka" index="1" unique_id=20322248 instance=ExtResource("17_qvfyu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.18786418, 0)
 
-[node name="Skeleton3D" parent="Drukarka/printer/Armature" parent_id_path=PackedInt32Array(20322248, 1048457266) index="0" unique_id=1063926489]
+[node name="Skeleton3D" parent="Drukarka/printer/Armature" parent_id_path=PackedInt32Array(20322248, 404939456) index="0" unique_id=937693462]
 bones/0/position = Vector3(-0.21226138, 0.55628204, 7.474141e-08)
 bones/0/rotation = Quaternion(1.1171744e-16, 1.4965067e-08, -0.11138132, 0.99377775)
 bones/0/scale = Vector3(0.6135242, 0.6135242, 0.61352414)

@@ -95,3 +95,21 @@ func spawn_window_cascade(text: String, count: int = 25, delay: float = 0.03) ->
 		# Jeśli podano opóźnienie, czekamy przed zespawnowaniem kolejnego okna
 		if delay > 0.0:
 			await get_tree().create_timer(delay).timeout
+
+func _input(event: InputEvent) -> void:
+	# Sprawdzamy, czy wciśnięto klawisz F1 (możesz zmienić na KEY_ESCAPE, KEY_F2 itp.)
+	if event is InputEventKey and event.pressed and not event.is_echo():
+		if event.keycode == KEY_P:
+			_close_all_error_windows()
+
+# Funkcja zamykająca wszystkie okna błędów
+func _close_all_error_windows() -> void:
+	# Znajdujemy wszystkie węzły należące do grupy "error_windows"
+	# (lub szukamy po scenie/klasie)
+	var active_errors = get_tree().get_nodes_in_group("error_windows")
+	
+	for window in active_errors:
+		if is_instance_valid(window):
+			window.queue_free() # Usuwamy okienko
+			
+	print("Zamknięto wszystkie okienka testowe!")

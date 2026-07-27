@@ -22,6 +22,15 @@ func start_download(file_name: String, pulpit: Control) -> void:
 	visible = true
 	input_blocker.show()
 	
+	# 1. Losujemy, czy to pobieranie zakończy się błędem (np. 30% szans)
+	var fail_chance: float = 0.3
+	var will_fail: bool = randf() < fail_chance
+	var fail_at_percent: float = 100.0
+	
+	# 2. Jeśli ma się nie udać, losujemy moment przerwania (np. między 10% a 90%)
+	if will_fail:
+		fail_at_percent = randf_range(10.0, 90.0)
+	
 	# Jeśli poprzednie pobieranie jakimś cudem jeszcze działa, zabijamy je
 	if current_download_tween and current_download_tween.is_running():
 		current_download_tween.kill()
@@ -40,6 +49,10 @@ func start_download(file_name: String, pulpit: Control) -> void:
 		if not NetworkManager.is_connected_to_internet:
 			_cancel_download("Pobieranie przerwane: brak połączenia z siecią.")
 			return # Przerywamy wykonywanie funkcji
+		
+		if progress_bar.value >= fail_at_percent and will_fail:
+			_cancel_download("Błąd pobierania pliku!")
+			return
 			
 		# Czekamy na następną klatkę przed kolejnym sprawdzeniem
 		await get_tree().process_frame
@@ -51,13 +64,20 @@ func start_download(file_name: String, pulpit: Control) -> void:
 func _cancel_download(reason: String) -> void:
 	if current_download_tween and current_download_tween.is_running():
 		current_download_tween.kill()
-		
+	
 	visible = false
 	hide()
 	print(reason)
 	input_blocker.hide()
-	# Tutaj możesz ewentualnie wywołać jakieś małe okienko z błędem na pulpicie,
-	# informujące gracza, że pobieranie się nie udało.
+	
+	var chance: float = randf()
+	
+	if chance < 0.3:
+		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", randi_range(10, 20), 0.03)
+	else:
+		for i in range(randi_range(3, 6)):
+			WindowManager.spawn_error("Nie udało się pobrać pliku.")
+			await get_tree().create_timer(0.1).timeout
 
 func _on_download_finished() -> void:
 	visible = false
