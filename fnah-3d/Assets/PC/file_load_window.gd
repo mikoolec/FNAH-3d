@@ -8,7 +8,7 @@ extends PanelContainer
 @onready var drukarka: Control = $"../MarginContainer/App/GUI"
 @onready var label_printer: Label = $"../MarginContainer/App/GUI/LabelPrinterApp"
 @onready var drukarkaBody: StaticBody3D = $"../../../../../../Drukarka"
-
+@onready var drukarka_skryptowa: Area3D = $"../../../../../../DrukarkaSlot"
 
 # Zmienna, którą możesz dowolnie modyfikować, aby zmienić czas pobierania (w sekundach)
 @export var download_time: float = 10.0
@@ -79,6 +79,8 @@ func _cancel_download(reason: String, stage) -> void:
 	
 	var chance: float = randf()
 	
+	if Stage: label_printer.text = "Plik wgrany."
+	
 	if chance < 0.3:
 		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", randi_range(10, 20), 0.03)
 	else:
@@ -99,6 +101,7 @@ func _on_download_finished() -> void:
 	for i in range(randi_range(3, 6)):
 				if !Stage: WindowManager.spawn_error("Plik wgrany do drukarki.")
 				else:
+					drukarka_skryptowa.print_sheet()
 					WindowManager.spawn_error("Plik wydrukowany.")
 					label_printer.text = "Upuść tu plik"
 				await get_tree().create_timer(0.1).timeout

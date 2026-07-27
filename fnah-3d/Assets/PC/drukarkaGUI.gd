@@ -39,7 +39,6 @@ func rozpocznij_drukowanie(file_name: String) -> void:
 	if drukarka.kartkaIn:
 		print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
 		drukarka.kartkaIn = false
-		drukarka_skryptowa.print_sheet()
 		$LabelPrinterApp.text = "Drukowanie..."
 		file_load_window.start_download(file_name, true)
 	else:
