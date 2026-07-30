@@ -77,7 +77,7 @@ size = Vector3(0.49993896, 0.46887207, 0.7601929)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a847e"]
 size = Vector3(0.4935913, 0.64367676, 0.5637207)
 
-[node name="DrukarkaSlot" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
+[node name="model_harcowka" unique_id=1638579005 instance=ExtResource("1_5ilb7")]
 
 [node name="HarcowkaPodloga" parent="." index="0" unique_id=2146974415]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)

@@ -43,7 +43,7 @@ var breaker_bone_names: Array[String] = [
 
 func _ready() -> void:
 	breaker_states.resize(12)
-	breaker_states.fill(false)
+	breaker_states.fill(true)
 	saved_breaker_states = breaker_states.duplicate()
 	
 	# Zapamiętujemy fabryczne pozycje podstaw kabli z Blendera (Cap1..Cap4 oraz RCap1..RCap4)
