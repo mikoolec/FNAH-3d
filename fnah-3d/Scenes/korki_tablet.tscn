@@ -7,9 +7,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_nhst7"]
 radius = 0.14750975
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_85y4j"]
-height = 0.20947266
-radius = 0.2631836
+[sub_resource type="BoxShape3D" id="BoxShape3D_t3i6k"]
+size = Vector3(0.15533447, 0.22265625, 0.5871582)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_85y4j"]
 size = Vector3(0.23129272, 0.13981628, 0.18981934)
@@ -80,8 +79,8 @@ bone_idx = 9
 script = ExtResource("2_d4ijr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br11/Area3D" index="0" unique_id=718653737]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br12" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="31" unique_id=960860639]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, 0.35894507, -0.4339571)
@@ -92,9 +91,9 @@ bone_idx = 10
 script = ExtResource("2_d4ijr")
 id = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br12/Area3D" index="0" unique_id=2099942812]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br12/Area3D" index="0" unique_id=1521587775]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br13" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="32" unique_id=482685870]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, 0.35894507, -0.14528131)
@@ -105,9 +104,9 @@ bone_idx = 11
 script = ExtResource("2_d4ijr")
 id = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br13/Area3D" index="0" unique_id=125020575]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br13/Area3D" index="0" unique_id=149917255]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br14" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="33" unique_id=1302464281]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, 0.35894507, 0.14339447)
@@ -118,9 +117,9 @@ bone_idx = 12
 script = ExtResource("2_d4ijr")
 id = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br14/Area3D" index="0" unique_id=359563727]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br14/Area3D" index="0" unique_id=855754188]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br15" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="34" unique_id=1639253097]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, 0.35894507, 0.43207026)
@@ -131,9 +130,9 @@ bone_idx = 13
 script = ExtResource("2_d4ijr")
 id = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br15/Area3D" index="0" unique_id=705217745]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br15/Area3D" index="0" unique_id=1580262048]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br16" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="35" unique_id=1169332543]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, 0.35894507, 0.72074604)
@@ -144,9 +143,9 @@ bone_idx = 14
 script = ExtResource("2_d4ijr")
 id = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br16/Area3D" index="0" unique_id=1309647654]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br16/Area3D" index="0" unique_id=1373917467]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br21" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="36" unique_id=1565842914]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, -0.32595247, -0.7226329)
@@ -157,9 +156,9 @@ bone_idx = 15
 script = ExtResource("2_d4ijr")
 id = 6
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br21/Area3D" index="0" unique_id=882547733]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br21/Area3D" index="0" unique_id=1322397619]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br22" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="37" unique_id=1467131037]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, -0.32595247, -0.4339571)
@@ -170,9 +169,9 @@ bone_idx = 16
 script = ExtResource("2_d4ijr")
 id = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br22/Area3D" index="0" unique_id=404789186]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br22/Area3D" index="0" unique_id=973821678]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br23" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="38" unique_id=839681102]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, -0.32595247, -0.14528131)
@@ -183,9 +182,9 @@ bone_idx = 17
 script = ExtResource("2_d4ijr")
 id = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br23/Area3D" index="0" unique_id=463024160]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br23/Area3D" index="0" unique_id=1624895309]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br24" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="39" unique_id=635903014]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, -0.32595247, 0.14339447)
@@ -196,9 +195,9 @@ bone_idx = 18
 script = ExtResource("2_d4ijr")
 id = 9
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br24/Area3D" index="0" unique_id=1527351663]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br24/Area3D" index="0" unique_id=2109551310]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br25" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="40" unique_id=1661084261]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, -0.32595247, 0.43207026)
@@ -209,9 +208,9 @@ bone_idx = 19
 script = ExtResource("2_d4ijr")
 id = 10
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br25/Area3D" index="0" unique_id=997360136]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br25/Area3D" index="0" unique_id=51160077]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Br26" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="41" unique_id=285921223]
 transform = Transform3D(0, -1, -4.7660416e-07, 1, 0, 1.9470724e-07, -1.9470723e-07, -4.7660416e-07, 1, -0.5596099, -0.32595247, 0.72074604)
@@ -222,9 +221,9 @@ bone_idx = 20
 script = ExtResource("2_d4ijr")
 id = 11
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br26/Area3D" index="0" unique_id=1309403427]
-transform = Transform3D(1, 1.9470724e-07, 1.9470389e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.0082092285, 0.02294904, -0.007812798)
-shape = SubResource("CylinderShape3D_85y4j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MAIN ARMATURE/Skeleton3D/Br26/Area3D" index="0" unique_id=1212151513]
+transform = Transform3D(1, 1.9470724e-07, 1.9470056e-07, -1.9470724e-07, -4.3711395e-08, 1, 1.9470724e-07, -1, -4.3711367e-08, 0.004638642, -0.007446587, 0.0019527078)
+shape = SubResource("BoxShape3D_t3i6k")
 
 [node name="Cable1" type="BoneAttachment3D" parent="MAIN ARMATURE/Skeleton3D" parent_id_path=PackedInt32Array(1778507249) index="42" unique_id=1686676120]
 transform = Transform3D(1, 0, -1.5179343e-06, -1.5179343e-06, 0, -1, 0, 1, 0, -0.17735636, 0.5, -0.67701936)

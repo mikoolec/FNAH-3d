@@ -10,9 +10,9 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		GameplayNumbers.active_ladder_zones += 1
-		print("Gracz wszedł do strefy. Suma stref: ", GameplayNumbers.active_ladder_zones)
+		#print("Gracz wszedł do strefy. Suma stref: ", GameplayNumbers.active_ladder_zones)
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		GameplayNumbers.active_ladder_zones -= 1
-		print("Gracz wyszedł ze strefy. Suma stref: ", GameplayNumbers.active_ladder_zones)
+		#print("Gracz wyszedł ze strefy. Suma stref: ", GameplayNumbers.active_ladder_zones)

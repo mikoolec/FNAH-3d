@@ -15,12 +15,17 @@ run/main_scene="uid://b68rkowybhb1e"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://mgd6y01rh6vi"
+
 [autoload]
 
 ItemDB="*uid://buwhwt1paltm7"
 NetworkManager="*uid://ldejddyftdtm"
 GameplayNumbers="*uid://b1rcyd5qr1ryp"
 WindowManager="*uid://brb006x17lwcn"
+Sabotages="*uid://d4dvl23ms1ovc"
 
 [display]
 

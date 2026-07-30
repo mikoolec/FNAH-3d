@@ -42,8 +42,14 @@ var breaker_bone_names: Array[String] = [
 ]
 
 func _ready() -> void:
+	add_to_group("SabotageSources")
+	
 	breaker_states.resize(12)
 	breaker_states.fill(true)
+	
+	for i in range(12):
+		_toggle_breaker(i)
+	
 	saved_breaker_states = breaker_states.duplicate()
 	
 	# Zapamiętujemy fabryczne pozycje podstaw kabli z Blendera (Cap1..Cap4 oraz RCap1..RCap4)
@@ -88,6 +94,8 @@ func interact_with_element(element: Area3D) -> void:
 	# PIERWSZY KLIK: Wchodzimy w tryb focusu
 	if player and not player.is_using_panel:
 		is_player_focused = true
+		Sabotages.break_korki()
+		Sabotages.break_wifi()
 		
 		# Wyłączamy główny collider, żeby promień trafiał bezpośrednio w korki/śruby/kable
 		if main_area_collision:
@@ -152,34 +160,40 @@ func _toggle_breaker(id: int) -> void:
 		tween.tween_method(func(rot: Quaternion):
 			skeleton.set_bone_pose_rotation(bone_idx, rot),
 			start_rot, target_rot, 0.15)
+	
+	if _check_all_breakers_on():
+		Sabotages.fix_korki()
+	else:
+		Sabotages.off_korki()
 
 # --- LOGIKA ŚRUBUJĄCA ---
 func _toggle_screw(id: int) -> void:
-	screw_states[id] = not screw_states[id]
+	# Ignore click if screw is already unscrewed
+	if screw_states[id]:
+		return
+
+	screw_states[id] = true
 	var bone_name = screw_bone_names[id]
 	var bone_idx = skeleton.find_bone(bone_name)
 	
 	if bone_idx != -1:
 		var start_pos = skeleton.get_bone_pose_position(bone_idx)
 		var start_rot = skeleton.get_bone_pose_rotation(bone_idx)
+		var target_pos = Vector3(0,0,0)
 		
-		var target_z = 0.04 if screw_states[id] else 0.0
-		var target_pos = Vector3(start_pos.x, start_pos.y, target_z)
+		target_pos = Vector3(start_pos.x - 0.1, start_pos.y, start_pos.z)
 		
-		var target_rot_z = deg_to_rad(720) if screw_states[id] else 0.0
-		var target_rot = Quaternion(Vector3.FORWARD, target_rot_z)
+		#var target_rot = Quaternion(Vector3.UP, deg_to_rad(180))
 		
 		var tween = create_tween().set_parallel(true)
 		
-		# Animacja przesunięcia
 		tween.tween_method(func(pos: Vector3): 
 			skeleton.set_bone_pose_position(bone_idx, pos), 
 			start_pos, target_pos, 0.4)
 			
-		# Animacja obrotu (slerp)
-		tween.tween_method(func(rot: Quaternion): 
-			skeleton.set_bone_pose_rotation(bone_idx, rot), 
-			start_rot, target_rot, 0.4)
+		#tween.tween_method(func(rot: Quaternion): 
+		#	skeleton.set_bone_pose_rotation(bone_idx, rot), 
+		#	start_rot, target_rot, 0.4)
 		
 		tween.chain().finished.connect(_check_screws_unlocked)
 
@@ -353,5 +367,29 @@ func _drop_cable(cable_id: int) -> void:
 func _check_win_condition() -> void:
 	if not cable_connected.has(false):
 		is_panel_solved = true
-		emit_signal("panel_completed")
-		print("PANEL ROZWIAZANY PRAWIDŁOWO!")
+		
+		Sabotages.fix_korki_kable()
+
+func break_breakers() -> void:
+	if breaker_states.has(true):
+		return
+	
+	var count_to_off: int = randi_range(2, 8)
+	
+	var breaker_indices: Array[int] = []
+	for i in range(breaker_states.size()):
+		breaker_indices.append(i)
+	breaker_indices.shuffle()
+	
+	for i in range(count_to_off):
+		var id_to_toggle: int = breaker_indices[i]
+		_toggle_breaker(id_to_toggle)
+
+
+func _check_all_breakers_on() -> bool:
+	# Jeśli w tablicy NIE MA żadnego wyłączonego korka (false)
+	if not breaker_states.has(true):
+		return true
+	else:
+		return false
+		# TUTAJ wpisz kod, który ma się wykonać (np. zmiana stanu, sygnał, dźwięk)
