@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		$"../../AuthentcatorApp".visible = false
-		$"../../InpostApp".visible = false
+		$"../../SmsApp".visible = false

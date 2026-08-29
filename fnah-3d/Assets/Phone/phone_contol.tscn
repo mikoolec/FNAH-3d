@@ -6,11 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://qfjnff1e27s6" path="res://Assets/Phone/authenticator.png" id="3_6wrfj"]
 [ext_resource type="Script" uid="uid://dehrnwgb23xkr" path="res://Assets/Phone/authenticator_icon.gd" id="3_i6t3s"]
 [ext_resource type="Script" uid="uid://cpjcjiqexmcqr" path="res://Assets/Phone/authentcator_app.gd" id="3_nv22b"]
-[ext_resource type="Texture2D" uid="uid://b1n3v3flytanr" path="res://Assets/Phone/inpostIcon.png" id="5_g0thx"]
+[ext_resource type="Texture2D" uid="uid://b0smq413iqwje" path="res://Assets/Phone/smsIcon.png" id="5_bjppc"]
 [ext_resource type="Script" uid="uid://cp37bxrrgjdm3" path="res://Assets/Phone/allegro_icon.gd" id="6_bjppc"]
 [ext_resource type="Script" uid="uid://co528ymyav82u" path="res://Assets/Phone/home_button.gd" id="7_ri0ti"]
 [ext_resource type="Script" uid="uid://db6cq6non2qh" path="res://Assets/Phone/allegro_app.gd" id="8_g0thx"]
-[ext_resource type="Texture2D" uid="uid://d2ppcqyiuucji" path="res://Assets/Phone/inpost_logo.png" id="9_pj3xj"]
 
 [node name="PhoneContol" type="Control" unique_id=1272140481]
 custom_minimum_size = Vector2(416, 740)
@@ -55,19 +54,19 @@ text = "Authenticator"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="InpostIcon" type="TextureButton" parent="." unique_id=1171413525]
+[node name="SmsIcon" type="TextureButton" parent="." unique_id=1171413525]
 layout_mode = 0
 offset_left = 251.0
 offset_top = 50.0
 offset_right = 366.0
 offset_bottom = 165.0
 mouse_filter = 1
-texture_normal = ExtResource("5_g0thx")
+texture_normal = ExtResource("5_bjppc")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("6_bjppc")
 
-[node name="Label" type="Label" parent="InpostIcon" unique_id=389212058]
+[node name="Label" type="Label" parent="SmsIcon" unique_id=389212058]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -81,7 +80,7 @@ offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
-text = "InPost"
+text = "SMS"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -142,8 +141,7 @@ layout_mode = 2
 max_value = 10.0
 show_percentage = false
 
-[node name="InpostApp" type="PanelContainer" parent="." unique_id=1495389308]
-visible = false
+[node name="SmsApp" type="PanelContainer" parent="." unique_id=1495389308]
 custom_minimum_size = Vector2(416, 740)
 layout_mode = 1
 anchors_preset = 15
@@ -154,17 +152,15 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("8_g0thx")
 
-[node name="ColorRect" type="ColorRect" parent="InpostApp" unique_id=11967360]
+[node name="ColorRect" type="ColorRect" parent="SmsApp" unique_id=11967360]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="TextureRect" type="TextureRect" parent="InpostApp" unique_id=931690335]
-custom_minimum_size = Vector2(300, 150)
+[node name="Label" type="Label" parent="SmsApp" unique_id=1751338147]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("9_pj3xj")
-expand_mode = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Wiadomości"
 
 [node name="ControlBar" type="PanelContainer" parent="." unique_id=1188177621]
 custom_minimum_size = Vector2(0, 50)
