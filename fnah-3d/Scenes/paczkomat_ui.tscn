@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://cg0kbbckawmtl"]
+
+[ext_resource type="Script" uid="uid://cbpbwpral0e0j" path="res://Scripts/paczkomat_ui.gd" id="1_c7fjp"]
+
+[node name="PaczkomatUI" type="Control" unique_id=2147159687]
+custom_minimum_size = Vector2(670, 720)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_c7fjp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=348065901]
+custom_minimum_size = Vector2(670, 720)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DisplayLabel" type="Label" parent="VBoxContainer" unique_id=724883271]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=186815670]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 3
+
+[node name="1" type="Button" parent="VBoxContainer/GridContainer" unique_id=1297705132]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "1"
+
+[node name="2" type="Button" parent="VBoxContainer/GridContainer" unique_id=1118800230]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "2"
+
+[node name="3" type="Button" parent="VBoxContainer/GridContainer" unique_id=604000144]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "3"
+
+[node name="4" type="Button" parent="VBoxContainer/GridContainer" unique_id=1045016268]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "4"
+
+[node name="5" type="Button" parent="VBoxContainer/GridContainer" unique_id=273560011]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "5"
+
+[node name="6" type="Button" parent="VBoxContainer/GridContainer" unique_id=454310853]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "6"
+
+[node name="7" type="Button" parent="VBoxContainer/GridContainer" unique_id=1549421515]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "7"
+
+[node name="8" type="Button" parent="VBoxContainer/GridContainer" unique_id=1169300516]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "8"
+
+[node name="9" type="Button" parent="VBoxContainer/GridContainer" unique_id=1656131397]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "9"
+
+[node name="-" type="Button" parent="VBoxContainer/GridContainer" unique_id=458685376]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+
+[node name="0" type="Button" parent="VBoxContainer/GridContainer" unique_id=232915306]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90
+text = "0"
+
+[node name="-2" type="Button" parent="VBoxContainer/GridContainer" unique_id=547099855]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 90

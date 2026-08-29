@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
 [ext_resource type="PackedScene" uid="uid://dtldg80lddwet" path="res://Scenes/ladder_collider.tscn" id="20_ip1yl"]
 [ext_resource type="PackedScene" uid="uid://cqlfj7dc3nbgt" path="res://Scenes/router.tscn" id="21_coq7e"]
+[ext_resource type="PackedScene" uid="uid://bdm2gggiley5n" path="res://Scenes/paczkomat_inpost.tscn" id="26_ax3ff"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.903183, 1.6994629, 1.2485352)
@@ -329,6 +330,9 @@ default_item = "tuszK"
 [node name="CollisionShape3D" parent="SlotTuszK" index="0" unique_id=1643366966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.0023766756, 0.03252554)
 shape = SubResource("BoxShape3D_a847e")
+
+[node name="paczkomat" parent="." index="47" unique_id=530363288 instance=ExtResource("26_ax3ff")]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 16.089048, 0.94167733, 26.46882)
 
 [editable path="Chair"]
 [editable path="kanapa"]

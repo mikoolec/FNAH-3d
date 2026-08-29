@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bdm2gggiley5n"]
+
+[ext_resource type="PackedScene" uid="uid://bhe5kexys7y01" path="res://Assets/blend/paczkomat.blend" id="1_142cd"]
+[ext_resource type="Script" uid="uid://chvmcyqpd4glb" path="res://Scripts/paczkomat_model_handler.gd" id="2_y2eup"]
+[ext_resource type="PackedScene" uid="uid://cg0kbbckawmtl" path="res://Scenes/paczkomat_ui.tscn" id="3_1hk1u"]
+[ext_resource type="Script" uid="uid://g57f3ypy4yd7" path="res://Scripts/paczko_screen_area.gd" id="4_wvjut"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hk1u"]
+size = Vector3(0.73706055, 0.46166992, 0.030517578)
+
+[sub_resource type="QuadMesh" id="QuadMesh_1hk1u"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wvjut"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rdl7"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_wvjut")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvjut"]
+size = Vector3(0.7709961, 1.0311279, 0.097595215)
+
+[node name="paczkomat" unique_id=530363288 instance=ExtResource("1_142cd")]
+script = ExtResource("2_y2eup")
+
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D11" parent_id_path=PackedInt32Array(1405415216) index="0" unique_id=7534419]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D11/StaticBody3D" index="0" unique_id=1262586321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
+shape = SubResource("BoxShape3D_1hk1u")
+
+[node name="view_point" type="Node3D" parent="." index="44" unique_id=639117811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1662884, -0.26559293, 0.84134424)
+
+[node name="ScreenDisplay" type="MeshInstance3D" parent="." index="45" unique_id=946286849]
+transform = Transform3D(0.67735505, 0, 0, 0, 0.7207718, 0.14587584, 0, -0.106280066, 0.98930293, -1.1638495, -0.17429382, 0.4677102)
+mesh = SubResource("QuadMesh_1hk1u")
+surface_material_override/0 = SubResource("StandardMaterial3D_1rdl7")
+
+[node name="SubViewport" type="SubViewport" parent="." index="46" unique_id=1672969818]
+size = Vector2i(100, 150)
+render_target_update_mode = 4
+
+[node name="PaczkomatUI" parent="SubViewport" index="0" unique_id=2147159687 instance=ExtResource("3_1hk1u")]
+
+[node name="ScreenArea" type="Area3D" parent="." index="47" unique_id=617572247 node_paths=PackedStringArray("view_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2473419, -0.25236773, 0.45654273)
+script = ExtResource("4_wvjut")
+view_point = NodePath("../view_point")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScreenArea" index="0" unique_id=1542402064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.081053495, -0.013225198, 0.083099365)
+shape = SubResource("BoxShape3D_wvjut")
