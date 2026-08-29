@@ -13,6 +13,7 @@ const TUSZC = "tuszC"
 const TUSZM = "tuszM"
 const TUSZY = "tuszY"
 const TUSZK = "tuszK"
+const SHIT = "shit"
 
 # Słownik, który łączy tekstowe ID z plikiem sceny .tscn
 # WPISZ TUTAJ SWOJE DOKŁADNE ŚCIEŻKI DO PLIKÓW!

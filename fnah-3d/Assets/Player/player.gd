@@ -155,7 +155,7 @@ func _physics_process(delta: float) -> void:
 	if %SeeCast.is_colliding() and !is_using_computer:
 		var target = %SeeCast.get_collider()
 		
-		if target.has_method("interact"):
+		if target != null and is_instance_valid(target) and target.has_method("interact"):
 			if target == computer:
 				if current_state == State.SITTING:  
 					%InteractText.show()
@@ -166,15 +166,16 @@ func _physics_process(delta: float) -> void:
 				%InteractText.show()
 				if Input.is_action_just_pressed("interact"):
 					# Sprawdzamy, czy obiekt to nasz slot (czy oczekuje argumentu 'player')
-					if target.has_method("_update_visuals"): # Tylko ItemSlot ma tę funkcję
-						target.interact(self)
-					else:
-						target.interact() # Dla krzesła i reszty świata bez argumentu
-
-		if target.has_method("interact2"):
-			%Interact2Text.show()
-			if Input.is_action_just_pressed("interact2"):
-				target.interact2()
+					if is_instance_valid(target):
+						if target.has_method("_update_visuals"): # Tylko ItemSlot ma tę funkcję
+							target.interact(self)
+						else:
+							target.interact() # Dla krzesła i reszty świata bez argumentu
+		if target != null and is_instance_valid(target):
+			if target.has_method("interact2"):
+				%Interact2Text.show()
+				if Input.is_action_just_pressed("interact2"):
+					target.interact2()
 	
 	# Dodawanie grawitacji (Naprawiony podwójny minus)
 	if not is_on_floor():

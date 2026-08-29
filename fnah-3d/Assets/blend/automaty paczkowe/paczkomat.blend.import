@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bhe5kexys7y01"
-path="res://.godot/imported/paczkomat.blend-888467c0e2bdae8cc41de47a30f3a03c.scn"
+path="res://.godot/imported/paczkomat.blend-926a285528196c1bbc2c9c5b64a0b643.scn"
 
 [deps]
 
-source_file="res://Assets/blend/paczkomat.blend"
-dest_files=["res://.godot/imported/paczkomat.blend-888467c0e2bdae8cc41de47a30f3a03c.scn"]
+source_file="res://Assets/blend/automaty paczkowe/paczkomat.blend"
+dest_files=["res://.godot/imported/paczkomat.blend-926a285528196c1bbc2c9c5b64a0b643.scn"]
 
 [params]
 

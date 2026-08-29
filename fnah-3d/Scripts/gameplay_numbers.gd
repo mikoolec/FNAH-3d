@@ -21,6 +21,8 @@ var paczki: Array[paczka] = []
 
 func _ready() -> void:
 	prepare_package(paczko_firmy.INPOST, 123654, paczka_zawartosc.K)
+	prepare_package(paczko_firmy.DPD, 654123, paczka_zawartosc.C)
+	prepare_package(paczko_firmy.DHL, 123654, paczka_zawartosc.Y)
 
 func is_player_in_any_zone() -> bool:
 	return active_ladder_zones > 0

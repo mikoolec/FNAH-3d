@@ -25,7 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
 [ext_resource type="PackedScene" uid="uid://dtldg80lddwet" path="res://Scenes/ladder_collider.tscn" id="20_ip1yl"]
 [ext_resource type="PackedScene" uid="uid://cqlfj7dc3nbgt" path="res://Scenes/router.tscn" id="21_coq7e"]
-[ext_resource type="PackedScene" uid="uid://bdm2gggiley5n" path="res://Scenes/paczkomat_inpost.tscn" id="26_ax3ff"]
+[ext_resource type="PackedScene" uid="uid://bdm2gggiley5n" path="res://Scenes/automaty paczkowe/paczkomat_inpost.tscn" id="26_ax3ff"]
+[ext_resource type="PackedScene" uid="uid://uxjs5dnqhbcc" path="res://Scenes/automaty paczkowe/dpdomat.tscn" id="27_4jgok"]
+[ext_resource type="PackedScene" uid="uid://bxbge4pqrebhx" path="res://Scenes/automaty paczkowe/dhlomat.tscn" id="28_a847e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.903183, 1.6994629, 1.2485352)
@@ -331,8 +333,14 @@ default_item = "tuszK"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.0023766756, 0.03252554)
 shape = SubResource("BoxShape3D_a847e")
 
-[node name="paczkomat" parent="." index="47" unique_id=530363288 instance=ExtResource("26_ax3ff")]
-transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 16.089048, 0.94167733, 26.46882)
+[node name="dhlomat" parent="." index="47" unique_id=935601138 instance=ExtResource("28_a847e")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 11.612258, 0.94167733, 34.157925)
+
+[node name="dpdomat" parent="." index="48" unique_id=1947690293 instance=ExtResource("27_4jgok")]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 19.389444, 0.9416783, 31.798862)
+
+[node name="paczkomat" parent="." index="49" unique_id=530363288 instance=ExtResource("26_ax3ff")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22.497335, 0.94167733, 25.41338)
 
 [editable path="Chair"]
 [editable path="kanapa"]

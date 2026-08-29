@@ -2,7 +2,7 @@
 extends Area3D # Możesz też użyć StaticBody3D, jeśli wolisz
 
 # Typy slotów do wyboru w edytorze
-enum SlotType { SPAWNER, SINGLE, TRASH, PRINTER, BIGTRASH }
+enum SlotType { SPAWNER, SINGLE, TRASH, PRINTER, BIGTRASH, PARCEL }
 
 @export var slot_type: SlotType = SlotType.SINGLE
 @export var default_item: String = ItemDB.NONE # Jaki przedmiot tu leży na starcie?
@@ -11,12 +11,14 @@ var current_item: String = ItemDB.NONE
 var trash_capacity: int = 0
 var is_sheet_printed = false
 
-@onready var drukarka: StaticBody3D = $"../Drukarka"
+@onready var drukarka: StaticBody3D = get_node_or_null("../Drukarka")
 
 
 func _ready() -> void:
 	current_item = default_item
 	_update_visuals()
+	if slot_type == SlotType.PARCEL:
+		print("urodziłem się w paczkomacie")
 
 func _update_visuals() -> void:
 	# Usuwamy stary model, który aktualnie wyświetlał slot
@@ -31,6 +33,7 @@ func _update_visuals() -> void:
 		if scene:
 			var item_instance = scene.instantiate()
 			item_instance.rotation = Vector3.ZERO # Zeruje rotację pod spawner
+			item_instance.scale = Vector3.ONE
 			add_child(item_instance)
 			
 			# Wyłączamy kolizję samego przedmiotu, bo to SLOT ma swoją własną kolizję do klikania
@@ -97,6 +100,12 @@ func interact(player) -> void:
 				_update_visuals()
 			
 			_update_visuals()
+		
+		SlotType.PARCEL:
+			if ( player.holding_item == ItemDB.NONE ):
+				player.collect_item(current_item)
+				current_item = ItemDB.NONE
+				call_deferred("queue_free")
 
 # Failsafe: szuka w całej grze slotu typu SINGLE, który zgubił ten przedmiot i go respi
 func _handle_failsafe(item_id: String) -> void:
