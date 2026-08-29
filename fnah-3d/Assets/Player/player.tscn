@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://phicum10035h"]
 
 [ext_resource type="Script" uid="uid://5sumin7y571o" path="res://Assets/Player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://bkmtn8cvairpl" path="res://Assets/Player/phone_model.tscn" id="2_6miq6"]
+[ext_resource type="PackedScene" uid="uid://bcks7362cjf0d" path="res://Assets/Phone/phone_interface.tscn" id="3_8ft5u"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tlwt5"]
 
@@ -33,6 +35,9 @@ collide_with_areas = true
 
 [node name="Hand" type="Node3D" parent="Head/CameraRoll/Camera3D" unique_id=1844126608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29117334, -0.7540102)
+
+[node name="PhoneModel" parent="Head/CameraRoll/Camera3D" unique_id=557098054 instance=ExtResource("2_6miq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4429303)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1136534965]
 
@@ -72,3 +77,5 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.3254902, 0.90588236, 1)
 text = "Stand up"
+
+[node name="PhoneInterface" parent="CanvasLayer" unique_id=2049490554 instance=ExtResource("3_8ft5u")]

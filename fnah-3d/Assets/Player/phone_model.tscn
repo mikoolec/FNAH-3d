@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bkmtn8cvairpl"]
+
+[ext_resource type="Script" uid="uid://d07pymwmm4rio" path="res://Assets/Player/phone_model.gd" id="1_ii1yh"]
+[ext_resource type="PackedScene" uid="uid://b2tbxxi2uqeyn" path="res://Scenes/Items/kartka.tscn" id="1_jk6mi"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6ub84"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jk6mi"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_6ub84")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ii1yh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ii1yh"]
+size = Vector3(1, 1, 0.010253906)
+
+[node name="PhoneModel" type="Node3D" unique_id=557098054 node_paths=PackedStringArray("screen_mesh")]
+script = ExtResource("1_ii1yh")
+screen_mesh = NodePath("ScreenMesh")
+
+[node name="kartka" parent="." unique_id=1207149715 instance=ExtResource("1_jk6mi")]
+transform = Transform3D(1, 0, 0, 0, -2.4662842e-07, -0.9999999, 0, 5.6422005, -4.3711385e-08, 0, 0, 0)
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="." unique_id=1844556331]
+transform = Transform3D(0.39999998, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, 0, 0.021088988)
+material_override = SubResource("StandardMaterial3D_jk6mi")
+mesh = SubResource("QuadMesh_ii1yh")
+
+[node name="Area3D" type="Area3D" parent="ScreenMesh" unique_id=1536687403]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScreenMesh/Area3D" unique_id=210635445]
+transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ii1yh")
+
+[connection signal="input_event" from="ScreenMesh/Area3D" to="." method="_on_area_3d_input_event"]

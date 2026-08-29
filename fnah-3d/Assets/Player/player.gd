@@ -47,11 +47,36 @@ var holding_item: String = ItemDB.NONE
 var is_ragdolling: bool = false
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
+# W skrypcie gracza (Player.gd) lub zarządcy telefonu
+@onready var phone_model = $Head/CameraRoll/Camera3D/PhoneModel
+@onready var phone_interface_ui = $CanvasLayer/PhoneInterface
+
+# --- Pozycje telefonu w przestrzeni 3D (współrzędne lokalne wewnątrz Camera3D) ---
+const PHONE_POS_HIDDEN  = Vector3(0.2, -1, -0.6)  # Schowany pod ekranem
+const PHONE_POS_ACTIVE  = Vector3(0.0, -0.15, -0.65) # Na wprost oczu gracza
+const PHONE_POS_PEEKING = Vector3(0.2, -0.6, -0.65) # Lekko opuszczony po prawej
+
+# Kąt patrzenia w dół (w stopniach) potrzebny do przywrócenia telefonu z pozycji PEEKING
+const PEEK_LOOK_DOWN_THRESHOLD: float = -50.0 
+
+enum PhoneState { HIDDEN, ACTIVE, PEEKING }
+var current_phone_state: PhoneState = PhoneState.HIDDEN
+
+var active_tween: Tween
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	set_phone_state(PhoneState.HIDDEN)
+	if phone_model and phone_interface_ui:
+		phone_model.setup_screen(phone_interface_ui)
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
+	if event.is_action_pressed("ui_focus_next") and not is_using_computer and not is_using_panel: # ui_focus_next to domyślnie TAB
+		toggle_phone()
+		get_viewport().set_input_as_handled()
+		return
+	
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
 		if !camera_locked:
 			head.rotate_y(-event.relative.x * SENSITIVITY)
 			camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -62,6 +87,25 @@ func _unhandled_input(event):
 	
 	if is_using_panel and event.is_action_pressed("ui_cancel"):
 		exit_panel()
+
+func _process(_delta: float) -> void:
+	if current_phone_state == PhoneState.HIDDEN:
+		return
+
+	# 3. Wykrywanie myszki przy górnej krawędzi (przejście do PEEKING)
+	if current_phone_state == PhoneState.ACTIVE:
+		var mouse_y = get_viewport().get_mouse_position().y
+		if mouse_y <= 100.0: # Myszka przy samej górze
+			set_phone_state(PhoneState.PEEKING)
+
+	# 4. Wykrywanie spojrzenia w dół (powrót do ACTIVE)
+	elif current_phone_state == PhoneState.PEEKING:
+		# Odczytujemy dokładną lokalną rotację osi X z kamery
+		var camera_pitch_deg = rad_to_deg(camera.rotation.x)
+		
+		# Patrzenie w dół w Godocie to kąt ujemny (np. -20 stopni jest niżej niż -15)
+		if camera_pitch_deg < PEEK_LOOK_DOWN_THRESHOLD:
+			set_phone_state(PhoneState.ACTIVE)
 
 func _physics_process(delta: float) -> void:
 	%InteractText.hide()
@@ -333,6 +377,9 @@ func start_ragdoll() -> void:
 	is_ragdolling = true
 	walk_locked = true
 	
+	set_phone_state(PhoneState.HIDDEN)
+	get_viewport().set_input_as_handled()
+	
 	# 1. Pobieramy kierunek ruchu na podstawie aktualnej prędkości (obcinamy oś Y)
 	var move_direction = Vector3(velocity.x, 0.0, velocity.z).normalized()
 	
@@ -451,3 +498,44 @@ func exit_panel() -> void:
 				
 			current_panel = null
 	)
+
+# --- Zmiana stanów i animacje ---
+
+func toggle_phone() -> void:
+	if current_phone_state == PhoneState.HIDDEN:
+		set_phone_state(PhoneState.ACTIVE)
+	else:
+		set_phone_state(PhoneState.HIDDEN)
+
+func set_phone_state(new_state: PhoneState) -> void:
+	current_phone_state = new_state
+	var target_pos: Vector3
+
+	match current_phone_state:
+		PhoneState.HIDDEN:
+			target_pos = PHONE_POS_HIDDEN
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # Przypisujemy mysz do gry
+
+		PhoneState.ACTIVE:
+			target_pos = PHONE_POS_ACTIVE
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE  # Uwalniamy kursor do klikania w ekran
+
+		PhoneState.PEEKING:
+			target_pos = PHONE_POS_PEEKING
+			
+			# Wyprostowanie wzroku kamery do poziomu (rotation.x = 0)
+			var cam_tween = create_tween()
+			cam_tween.tween_property(camera, "rotation:x", 0.0, 0.15)\
+				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			
+			# Przypisujemy mysz do gry dopiero po zresetowaniu kąta
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	_animate_phone_to(target_pos)
+
+func _animate_phone_to(target_position: Vector3) -> void:
+	if active_tween and active_tween.is_running():
+		active_tween.kill()
+
+	active_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	active_tween.tween_property(phone_model, "position", target_position, 0.25)

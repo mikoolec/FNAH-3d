@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bcks7362cjf0d"]
+
+[ext_resource type="Script" uid="uid://d3eo8muy83k32" path="res://Assets/Phone/phone_interface.gd" id="1_sl8l2"]
+
+[node name="PhoneInterface" type="Control" unique_id=2049490554]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5000.0
+offset_top = -5000.0
+offset_right = -5000.0
+offset_bottom = -5000.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_sl8l2")
+
+[node name="PhonePanel" type="Control" parent="." unique_id=701133125]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="ScreenViewportContainer" type="SubViewportContainer" parent="PhonePanel" unique_id=913012182]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScreenViewport" type="SubViewport" parent="PhonePanel/ScreenViewportContainer" unique_id=1744604386]
+handle_input_locally = false
+render_target_update_mode = 4
