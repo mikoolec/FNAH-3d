@@ -11,8 +11,8 @@ albedo_texture = SubResource("ViewportTexture_6ub84")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ii1yh"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ii1yh"]
-size = Vector3(1, 1, 0.010253906)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ii1yh"]
+data = PackedVector3Array(0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0)
 
 [node name="PhoneModel" type="Node3D" unique_id=557098054 node_paths=PackedStringArray("screen_mesh")]
 script = ExtResource("1_ii1yh")
@@ -28,8 +28,8 @@ mesh = SubResource("QuadMesh_ii1yh")
 
 [node name="Area3D" type="Area3D" parent="ScreenMesh" unique_id=1536687403]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ScreenMesh/Area3D" unique_id=210635445]
-transform = Transform3D(1, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_ii1yh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScreenMesh/Area3D" unique_id=48664350]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_ii1yh")
 
 [connection signal="input_event" from="ScreenMesh/Area3D" to="." method="_on_area_3d_input_event"]

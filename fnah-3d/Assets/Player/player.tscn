@@ -57,6 +57,7 @@ scale = Vector2(2, 2)
 pivot_offset = Vector2(77, 20)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 alignment = 1
 
 [node name="InteractText" type="Label" parent="CanvasLayer/BoxContainer" unique_id=1084235528]

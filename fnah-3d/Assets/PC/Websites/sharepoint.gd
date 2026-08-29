@@ -36,8 +36,10 @@ func _ready() -> void:
 
 # --- LOGIKA LOGOWANIA ---
 func _on_login_attempt() -> void:
-	# Przykładowy kod z telefonu, np. "1234"
-	if code_input.text == "1234":
+	var user_entered_code = code_input.text.strip_edges().replace(" ", "")
+	
+	# Dostęp do zmiennej statycznej bez konieczności szukania węzła w drzewie
+	if user_entered_code == AuthenticatorApp.current_code and AuthenticatorApp.current_code != "":
 		login_panel.hide()
 		main_panel.show()
 		open_directory(file_system, "Root")

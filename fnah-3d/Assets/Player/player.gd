@@ -57,7 +57,7 @@ const PHONE_POS_ACTIVE  = Vector3(0.0, -0.15, -0.65) # Na wprost oczu gracza
 const PHONE_POS_PEEKING = Vector3(0.2, -0.6, -0.65) # Lekko opuszczony po prawej
 
 # Kąt patrzenia w dół (w stopniach) potrzebny do przywrócenia telefonu z pozycji PEEKING
-const PEEK_LOOK_DOWN_THRESHOLD: float = -50.0 
+const PEEK_LOOK_DOWN_THRESHOLD: float = -60.0 
 
 enum PhoneState { HIDDEN, ACTIVE, PEEKING }
 var current_phone_state: PhoneState = PhoneState.HIDDEN
@@ -70,12 +70,53 @@ func _ready():
 	if phone_model and phone_interface_ui:
 		phone_model.setup_screen(phone_interface_ui)
 
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_focus_next") and not is_using_computer and not is_using_panel: # ui_focus_next to domyślnie TAB
+func _input(event: InputEvent) -> void:
+	# 1. Obsługa przycisku TAB (wyciąganie/chowanie telefonu)
+	if event.is_action_pressed("ui_focus_next") and not is_using_computer and not is_using_panel:
 		toggle_phone()
 		get_viewport().set_input_as_handled()
 		return
 	
+	# 2. Przekazywanie ruchu i kliknięć myszy do SubViewport telefonu, gdy jest aktywny
+	if current_phone_state == PhoneState.ACTIVE and event is InputEventMouse:
+		_send_input_to_phone(event)
+
+
+func _send_input_to_phone(event: InputEvent) -> void:
+	var viewport: SubViewport = phone_interface_ui.get_node_or_null("PhonePanel/ScreenViewportContainer/ScreenViewport")
+	if not viewport:
+		return
+
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_origin = camera.project_ray_origin(mouse_pos)
+	var ray_end = ray_origin + camera.project_ray_normal(mouse_pos) * 3.0
+	
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	
+	var result = space_state.intersect_ray(query)
+
+	if result and result.has("uv"):
+		var uv = result.uv
+		# Przeliczamy UV na pozycję w pikselach w SubViewport
+		var viewport_pos = Vector2(uv.x * viewport.size.x, uv.y * viewport.size.y)
+		
+		# KLUCZOWA ZMIANA: Obsługa kliknięcia i ruchu myszy
+		if event is InputEventMouseButton:
+			var mb_event = event.duplicate() as InputEventMouseButton
+			mb_event.position = viewport_pos
+			mb_event.global_position = viewport_pos
+			viewport.push_input(mb_event)
+			
+		elif event is InputEventMouseMotion:
+			var mm_event = event.duplicate() as InputEventMouseMotion
+			mm_event.position = viewport_pos
+			mm_event.global_position = viewport_pos
+			viewport.push_input(mm_event)
+
+func _unhandled_input(event):
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
 		if !camera_locked:
 			head.rotate_y(-event.relative.x * SENSITIVITY)
@@ -95,7 +136,7 @@ func _process(_delta: float) -> void:
 	# 3. Wykrywanie myszki przy górnej krawędzi (przejście do PEEKING)
 	if current_phone_state == PhoneState.ACTIVE:
 		var mouse_y = get_viewport().get_mouse_position().y
-		if mouse_y <= 100.0: # Myszka przy samej górze
+		if mouse_y <= 200.0: # Myszka przy samej górze
 			set_phone_state(PhoneState.PEEKING)
 
 	# 4. Wykrywanie spojrzenia w dół (powrót do ACTIVE)
@@ -378,7 +419,6 @@ func start_ragdoll() -> void:
 	walk_locked = true
 	
 	set_phone_state(PhoneState.HIDDEN)
-	get_viewport().set_input_as_handled()
 	
 	# 1. Pobieramy kierunek ruchu na podstawie aktualnej prędkości (obcinamy oś Y)
 	var move_direction = Vector3(velocity.x, 0.0, velocity.z).normalized()

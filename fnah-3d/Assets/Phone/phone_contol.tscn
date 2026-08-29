@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://i1hii5h7bh61"]
+
+[ext_resource type="Script" uid="uid://b0j5ywni8ttex" path="res://Assets/Phone/phone_contol.gd" id="1_e57jp"]
+[ext_resource type="Texture2D" uid="uid://bfifay0xrggie" path="res://Assets/Phone/tapeta_phone.png" id="1_v87il"]
+[ext_resource type="Texture2D" uid="uid://f0gdq0sm2emo" path="res://Assets/Phone/home.png" id="2_vhrnp"]
+[ext_resource type="Texture2D" uid="uid://qfjnff1e27s6" path="res://Assets/Phone/authenticator.png" id="3_6wrfj"]
+[ext_resource type="Script" uid="uid://dehrnwgb23xkr" path="res://Assets/Phone/authenticator_icon.gd" id="3_i6t3s"]
+[ext_resource type="Script" uid="uid://cpjcjiqexmcqr" path="res://Assets/Phone/authentcator_app.gd" id="3_nv22b"]
+[ext_resource type="Script" uid="uid://co528ymyav82u" path="res://Assets/Phone/home_button.gd" id="7_ri0ti"]
+
+[node name="PhoneContol" type="Control" unique_id=1272140481]
+custom_minimum_size = Vector2(416, 740)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_e57jp")
+
+[node name="BG" type="TextureRect" parent="." unique_id=948821987]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_v87il")
+
+[node name="AuthenticatorIcon" type="TextureButton" parent="." unique_id=1866501918]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 165.0
+offset_bottom = 165.0
+mouse_filter = 1
+texture_normal = ExtResource("3_6wrfj")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_i6t3s")
+
+[node name="Label" type="Label" parent="AuthenticatorIcon" unique_id=65811896]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -103.5
+offset_top = -27.0
+offset_right = 98.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Authenticator"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AuthentcatorApp" type="PanelContainer" parent="." unique_id=196966318]
+visible = false
+custom_minimum_size = Vector2(416, 740)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_nv22b")
+
+[node name="ColorRect" type="ColorRect" parent="AuthentcatorApp" unique_id=1876716483]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="AuthentcatorApp" unique_id=1198442043]
+custom_minimum_size = Vector2(416, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="AuthentcatorApp/PanelContainer" unique_id=1691073648]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("3_6wrfj")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="AuthentcatorApp/PanelContainer" unique_id=661443399]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "Authenticator "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AuthentcatorApp" unique_id=54476191]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CodeLabel" type="Label" parent="AuthentcatorApp/VBoxContainer" unique_id=1827206896]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "123 456"
+
+[node name="ProgressBar" type="ProgressBar" parent="AuthentcatorApp/VBoxContainer" unique_id=103085248]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+max_value = 10.0
+show_percentage = false
+
+[node name="ControlBar" type="PanelContainer" parent="." unique_id=1188177621]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="HomeButton" type="TextureButton" parent="ControlBar" unique_id=91920727]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_vhrnp")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ri0ti")
