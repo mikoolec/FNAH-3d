@@ -7,9 +7,11 @@
 [ext_resource type="Script" uid="uid://dehrnwgb23xkr" path="res://Assets/Phone/authenticator_icon.gd" id="3_i6t3s"]
 [ext_resource type="Script" uid="uid://cpjcjiqexmcqr" path="res://Assets/Phone/authentcator_app.gd" id="3_nv22b"]
 [ext_resource type="Texture2D" uid="uid://b0smq413iqwje" path="res://Assets/Phone/smsIcon.png" id="5_bjppc"]
-[ext_resource type="Script" uid="uid://cp37bxrrgjdm3" path="res://Assets/Phone/allegro_icon.gd" id="6_bjppc"]
+[ext_resource type="Script" uid="uid://cp37bxrrgjdm3" path="res://Assets/Phone/wiadomosci_icon.gd" id="6_bjppc"]
 [ext_resource type="Script" uid="uid://co528ymyav82u" path="res://Assets/Phone/home_button.gd" id="7_ri0ti"]
-[ext_resource type="Script" uid="uid://db6cq6non2qh" path="res://Assets/Phone/allegro_app.gd" id="8_g0thx"]
+[ext_resource type="Script" uid="uid://lvtboclbme1a" path="res://Assets/Phone/messages_app.gd" id="8_bjppc"]
+[ext_resource type="PackedScene" uid="uid://bklsfr2yp6dv5" path="res://Assets/Phone/MessageBubble.tscn" id="9_pj3xj"]
+[ext_resource type="PackedScene" uid="uid://c07mi8d2kp72m" path="res://Assets/Phone/MessageBubbleOutgoing.tscn" id="10_fyqvr"]
 
 [node name="PhoneContol" type="Control" unique_id=1272140481]
 custom_minimum_size = Vector2(416, 740)
@@ -141,7 +143,8 @@ layout_mode = 2
 max_value = 10.0
 show_percentage = false
 
-[node name="SmsApp" type="PanelContainer" parent="." unique_id=1495389308]
+[node name="MessagesApp" type="PanelContainer" parent="." unique_id=1495389308]
+visible = false
 custom_minimum_size = Vector2(416, 740)
 layout_mode = 1
 anchors_preset = 15
@@ -150,17 +153,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("8_g0thx")
+script = ExtResource("8_bjppc")
+incoming_bubble_scene = ExtResource("9_pj3xj")
+outgoing_bubble_scene = ExtResource("10_fyqvr")
 
-[node name="ColorRect" type="ColorRect" parent="SmsApp" unique_id=11967360]
+[node name="ColorRect" type="ColorRect" parent="MessagesApp" unique_id=11967360]
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MessagesApp" unique_id=370842591]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MessagesApp/VBoxContainer" unique_id=1751338147]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Wiadomości"
+horizontal_alignment = 1
+
+[node name="ChatList" type="ItemList" parent="MessagesApp/VBoxContainer" unique_id=1724633123]
+custom_minimum_size = Vector2(0, 617)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 35
+
+[node name="ChatView" type="VBoxContainer" parent="MessagesApp/VBoxContainer" unique_id=1636879379]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MessagesApp/VBoxContainer/ChatView" unique_id=1970471256]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="SmsApp" unique_id=1751338147]
+[node name="BackButton" type="Button" parent="MessagesApp/VBoxContainer/ChatView/PanelContainer" unique_id=601251086]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Wiadomości"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "<"
+
+[node name="ContactNameLabel" type="Label" parent="MessagesApp/VBoxContainer/ChatView/PanelContainer" unique_id=544640652]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Nazwa rozmówcy"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MessagesApp/VBoxContainer/ChatView" unique_id=1318173497]
+custom_minimum_size = Vector2(0, 636)
+layout_mode = 2
+
+[node name="MessagesContainer" type="VBoxContainer" parent="MessagesApp/VBoxContainer/ChatView/ScrollContainer" unique_id=885238973]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ControlBar" type="PanelContainer" parent="." unique_id=1188177621]
 custom_minimum_size = Vector2(0, 50)
