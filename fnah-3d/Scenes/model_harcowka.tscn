@@ -143,16 +143,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.712617, 0.0008390546, -5.6
 [node name="kanapa" parent="." index="14" unique_id=2000616939 instance=ExtResource("7_shit0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.161682, 4.7683716e-07, -0.50823104)
 
-[node name="Seat1" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="1" unique_id=312355204 node_paths=PackedStringArray("player")]
+[node name="Seat1" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1311480877) index="1" unique_id=312355204 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat2" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="2" unique_id=1076469297 node_paths=PackedStringArray("player")]
+[node name="Seat2" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1311480877) index="2" unique_id=1076469297 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat3" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="3" unique_id=2039160215 node_paths=PackedStringArray("player")]
+[node name="Seat3" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1311480877) index="3" unique_id=2039160215 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
-[node name="Seat4" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1407505105) index="4" unique_id=930066509 node_paths=PackedStringArray("player")]
+[node name="Seat4" parent="kanapa/Kanapa" parent_id_path=PackedInt32Array(2000616939, 1311480877) index="4" unique_id=930066509 node_paths=PackedStringArray("player")]
 player = NodePath("../../../Player")
 
 [node name="KitchenTable" parent="." index="15" unique_id=1066404003 instance=ExtResource("11_ewqah")]
@@ -221,9 +221,6 @@ shape = SubResource("ConcavePolygonShape3D_8n43u")
 [node name="printer" parent="Drukarka" index="1" unique_id=20322248 instance=ExtResource("17_qvfyu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.18786418, 0)
 
-[node name="HarcowkaPodloga" parent="." index="31" unique_id=477142712]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
-
 [node name="StairsTripper" parent="." index="32" unique_id=834129770 instance=ExtResource("18_wtdwr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.54702, -0.20925045, 10.068745)
 
@@ -253,10 +250,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 44.4
 environment = SubResource("Environment_coq7e")
 
 [node name="LadderCollider" parent="." index="36" unique_id=1381544667 instance=ExtResource("20_ip1yl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.743265, -0.23170185, 25.258007)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.278313, -0.23170185, -8.692642)
 
 [node name="CollisionShape3D" parent="LadderCollider" index="0" unique_id=442654818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18493652, 6.0387115, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18493652, 6.0387115, -0.3393278)
 shape = SubResource("BoxShape3D_pr21s")
 
 [node name="BaseSlot5" parent="." index="37" unique_id=2036686769 groups=["slots"] instance=ExtResource("12_qao3v")]
@@ -327,10 +324,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.703867, 0.94167733, 32.170
 [node name="orlenomat" parent="." index="48" unique_id=647127689 instance=ExtResource("29_ymqv8")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -12.380043, 0.9416783, 33.588043)
 
-[node name="HarcowkaSciany" parent="." index="50" unique_id=259540951]
+[node name="HarcowkaPodloga" parent="." index="50" unique_id=757798694]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
+
+[node name="HarcowkaSciany" parent="." index="52" unique_id=315674483]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
 
-[node name="HarcowkaSufit" parent="." index="51" unique_id=729111539]
+[node name="HarcowkaSufit" parent="." index="53" unique_id=728842604]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
 [node name="gambling machine" parent="." index="56" unique_id=1062082609 instance=ExtResource("30_u38um")]
