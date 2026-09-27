@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://gljn8olioo66"]
+
+[ext_resource type="PackedScene" uid="uid://qsdkvwjxi177" path="res://Assets/blend/gambling machine.blend" id="1_pcxak"]
+[ext_resource type="Script" uid="uid://b0ti1bp3ak3c" path="res://Scripts/gambling_machine.gd" id="2_ppqfc"]
+[ext_resource type="Script" uid="uid://wdqlmvifyqgx" path="res://Scripts/interact_transfer_up.gd" id="3_kbi5y"]
+[ext_resource type="Script" uid="uid://cgg60pc5m7jbs" path="res://Scripts/wireless_payment.gd" id="4_0wxev"]
+[ext_resource type="Script" uid="uid://clqoidmg7cyu" path="res://Scripts/pass_payout_up.gd" id="5_my7fp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppqfc"]
+size = Vector3(0.3435669, 0.5474243, 0.29959106)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbi5y"]
+size = Vector3(0.103027344, 0.20239258, 0.30255127)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0wxev"]
+height = 0.09640503
+radius = 0.18261719
+
+[node name="gambling machine" unique_id=1062082609 node_paths=PackedStringArray("wh1", "wh2", "wh3", "lev", "animation") instance=ExtResource("1_pcxak")]
+script = ExtResource("2_ppqfc")
+wh1 = NodePath("Wheel1")
+wh2 = NodePath("Wheel2")
+wh3 = NodePath("Wheel3")
+lev = NodePath("Handle")
+animation = NodePath("AnimationPlayer")
+
+[node name="Cube_003" parent="." index="2" unique_id=418680384]
+transform = Transform3D(1, -1.1920929e-07, -1.3435884e-07, 1.1920929e-07, 1, 0, 1.3435884e-07, -1.6016822e-14, 1, -0.47636977, 1.2031875, 0)
+
+[node name="Cylinder_003" parent="." index="6" unique_id=873466302]
+transform = Transform3D(0.09706846, 0.8560388, -0.50771576, 0.31220385, -0.51056635, -0.80115587, -0.94504315, -0.08074388, -0.3168185, -5.1977525, -20.288141, 2.8904335)
+
+[node name="Cylinder_004" parent="." index="7" unique_id=687964757]
+transform = Transform3D(0.9941056, -0.034019783, 0.102940544, -0.04531602, -0.9929568, 0.10946835, 0.09849142, -0.11348795, -0.9886455, -3.9711716, -20.594961, -1.4724146)
+
+[node name="Area3D" type="Area3D" parent="." index="8" unique_id=675361197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42488807, 0.8559285, 0.33977222)
+script = ExtResource("3_kbi5y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=74788839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0340271, 0.31430048, 0.020950317)
+shape = SubResource("BoxShape3D_ppqfc")
+
+[node name="Area3D2" type="Area3D" parent="." index="9" unique_id=1168404748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0427344, -0.10062468)
+script = ExtResource("4_0wxev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" index="0" unique_id=1527229425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44311523, 0.024536133, -0.26101685)
+shape = SubResource("BoxShape3D_kbi5y")
+
+[node name="Cylinder_005" parent="." index="10" unique_id=364945365]
+transform = Transform3D(0.40314892, 0.85295695, 0.33156517, -0.61959404, -0.01223121, 0.7848271, 0.6734792, -0.521838, 0.52355605, 1.6711776, -4.1040945, 0.16539662)
+
+[node name="Cylinder_006" parent="." index="11" unique_id=1846429721]
+transform = Transform3D(-0.8701194, -0.24919501, -0.42519897, -0.3869431, -0.18890773, 0.9025458, -0.3052333, 0.9498504, 0.06794798, -3.327402, -12.888634, 0.4149931)
+
+[node name="Cylinder_007" parent="." index="12" unique_id=2037918667]
+transform = Transform3D(-0.93240637, -0.23475479, 0.27478778, -0.3495292, 0.39237723, -0.85080516, 0.091910146, -0.8893425, -0.44790876, -3.255641, -8.7771435, 1.9846044)
+
+[node name="Cylinder_008" parent="." index="13" unique_id=656096002]
+transform = Transform3D(-0.39308718, 0.12002904, 0.91163343, 0.5067722, -0.7989938, 0.32371366, 0.7672445, 0.58923817, 0.2532469, -1.1058396, -1.6242442, -0.10089004)
+
+[node name="Cylinder_009" parent="." index="14" unique_id=1009791438]
+transform = Transform3D(-0.19690022, 0.025247842, -0.9800984, 0.20695616, -0.9760725, -0.06672129, -0.95833164, -0.21597484, 0.18696368, -3.5763252, -14.651875, -0.38573298)
+
+[node name="Cylinder_010" parent="." index="15" unique_id=1624604257]
+transform = Transform3D(-0.50658, 0.8451668, 0.17049858, 0.8621923, 0.49682766, 0.0989282, -0.0010975748, 0.19711758, -0.9803793, -4.3201156, -15.570297, -0.1487533)
+
+[node name="Cylinder_011" parent="." index="16" unique_id=760195967]
+transform = Transform3D(-0.78714776, -0.6140518, -0.057780858, 0.5883124, -0.7194076, -0.36924374, 0.18516679, -0.32464257, 0.9275346, -2.0483475, -4.1791067, -0.6406436)
+
+[node name="Cylinder_012" parent="." index="17" unique_id=844180148]
+transform = Transform3D(0.30923295, 0.026353026, 0.9506211, 0.26384944, -0.96274906, -0.059139848, 0.91365117, 0.2691088, -0.30466703, -4.1330748, -16.878649, 0.70408696)
+
+[node name="Cylinder_013" parent="." index="18" unique_id=1507512547]
+transform = Transform3D(0.25069824, 0.5245975, -0.8136017, -0.67975295, 0.6937899, 0.2378898, 0.6892651, 0.49340963, 0.5305285, -5.096008, -18.272669, -0.40724388)
+
+[node name="Cylinder_014" parent="." index="19" unique_id=776772336]
+transform = Transform3D(0.7425109, 0.29018885, -0.6037119, 0.075473174, 0.8593019, 0.50586957, 0.66556853, -0.42117772, 0.6161396, 2.0804908, -10.165738, 0.35965207)
+
+[node name="Cylinder_015" parent="." index="20" unique_id=797637216]
+transform = Transform3D(-0.0986408, 0.40875286, -0.9072988, 0.24526641, -0.8736324, -0.42025083, -0.9644244, -0.26398376, -0.014077558, -5.6618943, -20.85336, -0.5951772)
+
+[node name="Cylinder_016" parent="." index="21" unique_id=238789218]
+transform = Transform3D(-0.6566598, -0.7262158, -0.20349053, -0.51433796, 0.23388286, 0.8250789, -0.5515923, 0.64645916, -0.5271019, -3.1917303, -10.756866, -0.043315902)
+
+[node name="Cylinder_017" parent="." index="22" unique_id=1528855875]
+transform = Transform3D(-0.56819606, -0.8108207, 0.14043863, -0.36084652, 0.09212332, -0.92806417, 0.739556, -0.5779992, -0.34492594, 2.0147069, -11.843872, -0.43736225)
+
+[node name="Cylinder_018" parent="." index="23" unique_id=1114450867]
+transform = Transform3D(0.38089886, -0.053545143, -0.923065, 0.45597675, 0.879361, 0.1371469, 0.8043639, -0.47313526, 0.35936296, -5.479611, -23.690569, 0.7624112)
+
+[node name="Cylinder_019" parent="." index="24" unique_id=419662226]
+transform = Transform3D(-0.3565836, 0.7232631, 0.59138703, -0.5491007, -0.6743736, 0.4936686, 0.7558681, -0.1486969, 0.63761485, -2.4460382, -6.4410768, 1.034872)
+
+[node name="Cylinder_020" parent="." index="25" unique_id=665891224]
+transform = Transform3D(0.5634156, 0.5303715, 0.633458, 0.43282148, 0.4636123, -0.7731295, -0.70372474, 0.7097674, 0.031650204, -2.5310895, -9.517147, 0.12884241)
+
+[node name="Area3D3" type="Area3D" parent="." index="33" unique_id=1630271404]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.36146498, 1.0927546, 0)
+script = ExtResource("5_my7fp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D3" index="0" unique_id=1317647650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.122543335, 0)
+shape = SubResource("CylinderShape3D_0wxev")

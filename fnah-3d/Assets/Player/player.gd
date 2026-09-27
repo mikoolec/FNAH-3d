@@ -493,6 +493,8 @@ func enter_panel(panel_node: Node3D) -> void:
 	current_panel = panel_node
 	current_state = State.TRANSITION
 	
+	$CollisionShape3D.disabled = true
+	
 	# Zatrzymujemy postać i obracanie głową
 	walk_locked = true
 	camera_locked = true
@@ -527,6 +529,8 @@ func exit_panel() -> void:
 		walk_locked = false
 		camera_locked = false
 		is_using_panel = false
+		
+		$CollisionShape3D.disabled = false
 		
 		if current_panel:
 			if current_panel.is_cover_open and current_panel.has_method("close_cover"):

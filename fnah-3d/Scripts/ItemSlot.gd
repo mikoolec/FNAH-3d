@@ -85,7 +85,7 @@ func interact(player) -> void:
 			if ( player.holding_item != ItemDB.NONE ):
 				var destroyed_item = player.drop_item()
 				_handle_failsafe(destroyed_item)
-				var bigtrash = $"../BigTrash".get_child(3)
+				var bigtrash = $"..".get_child(4)
 				bigtrash.play("Throw")
 				
 			

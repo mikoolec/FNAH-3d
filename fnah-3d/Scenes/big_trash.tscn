@@ -1,8 +1,21 @@
 [gd_scene format=3 uid="uid://b0vocic3sqdjf"]
 
 [ext_resource type="PackedScene" uid="uid://dn2wunr773bp1" path="res://Assets/blend/BigTrash.blend" id="1_dbcw4"]
+[ext_resource type="PackedScene" uid="uid://xkdmfbdncti2" path="res://Scenes/base_slot.tscn" id="2_tlsu3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b0jus"]
+size = Vector3(1.9484253, 1.7366943, 1.7327881)
 
 [node name="BigTrash" unique_id=435024031 instance=ExtResource("1_dbcw4")]
 
+[node name="BaseSlot" parent="." index="0" unique_id=951693370 instance=ExtResource("2_tlsu3")]
+slot_type = 4
+
+[node name="CollisionShape3D" parent="BaseSlot" index="0" unique_id=1643366966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014251709, 0.046203613, -0.0099487305)
+shape = SubResource("BoxShape3D_b0jus")
+
 [node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1440548617) index="0" unique_id=825471008]
 bones/1/rotation = Quaternion(-1.0746377e-06, 9.2473826e-08, 0.9332523, 0.3592219)
+
+[editable path="BaseSlot"]
