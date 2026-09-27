@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dgmlsgya6tdbj"]
+
+[ext_resource type="PackedScene" uid="uid://c0dw0bxtjopql" path="res://Assets/blend/shitItem.blend" id="1_nppce"]
+
+[node name="shitItem" unique_id=382878146 instance=ExtResource("1_nppce")]
