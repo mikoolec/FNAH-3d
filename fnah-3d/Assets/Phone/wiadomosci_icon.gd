@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		$"../SmsApp".visible = true
+		$"../MessagesApp".visible = true

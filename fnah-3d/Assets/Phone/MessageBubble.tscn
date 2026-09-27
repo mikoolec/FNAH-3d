@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bklsfr2yp6dv5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3p1k"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.29770643, 0.29770648, 0.2977063, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[node name="MessageBubble" type="PanelContainer" unique_id=1598386402]
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r3p1k")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1383731143]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1008842291]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+autowrap_mode = 3
