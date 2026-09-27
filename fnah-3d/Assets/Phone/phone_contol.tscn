@@ -9,9 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://b0smq413iqwje" path="res://Assets/Phone/smsIcon.png" id="5_bjppc"]
 [ext_resource type="Script" uid="uid://cp37bxrrgjdm3" path="res://Assets/Phone/wiadomosci_icon.gd" id="6_bjppc"]
 [ext_resource type="Script" uid="uid://co528ymyav82u" path="res://Assets/Phone/home_button.gd" id="7_ri0ti"]
+[ext_resource type="Script" uid="uid://cym4u6b36g6mt" path="res://Assets/Phone/bank_app.gd" id="8_65c4x"]
 [ext_resource type="Script" uid="uid://lvtboclbme1a" path="res://Assets/Phone/messages_app.gd" id="8_bjppc"]
+[ext_resource type="Texture2D" uid="uid://bsvy0irxgqnnm" path="res://Assets/Phone/mbank.png" id="9_ac7u3"]
 [ext_resource type="PackedScene" uid="uid://bklsfr2yp6dv5" path="res://Assets/Phone/MessageBubble.tscn" id="9_pj3xj"]
 [ext_resource type="PackedScene" uid="uid://c07mi8d2kp72m" path="res://Assets/Phone/MessageBubbleOutgoing.tscn" id="10_fyqvr"]
+[ext_resource type="Texture2D" uid="uid://ciyi18npa33em" path="res://Assets/Phone/blik.png" id="10_xeynh"]
+[ext_resource type="Texture2D" uid="uid://dsmmnuwo5uovx" path="res://Assets/Phone/payment.jpg" id="11_mpkmg"]
 
 [node name="PhoneContol" type="Control" unique_id=1272140481]
 custom_minimum_size = Vector2(416, 740)
@@ -53,6 +57,36 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Authenticator"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BankIcon" type="TextureButton" parent="." unique_id=448554117]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 165.0
+offset_bottom = 365.0
+mouse_filter = 1
+texture_normal = ExtResource("9_ac7u3")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_i6t3s")
+
+[node name="Label" type="Label" parent="BankIcon" unique_id=1834686786]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -103.5
+offset_top = -27.0
+offset_right = 98.5
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "mBank"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -142,6 +176,107 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 max_value = 10.0
 show_percentage = false
+
+[node name="BankApp" type="PanelContainer" parent="." unique_id=1567671951]
+custom_minimum_size = Vector2(416, 740)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("8_65c4x")
+
+[node name="ColorRect" type="ColorRect" parent="BankApp" unique_id=1945954920]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BankApp" unique_id=1639354566]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BankApp/VBoxContainer" unique_id=848538974]
+custom_minimum_size = Vector2(416, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="BankApp/VBoxContainer/PanelContainer" unique_id=893078300]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("9_ac7u3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BankApp/VBoxContainer/PanelContainer" unique_id=1009422638]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "       mBank"
+
+[node name="MainBankView" type="VBoxContainer" parent="BankApp/VBoxContainer" unique_id=918936634]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="BalanceLabel" type="Label" parent="BankApp/VBoxContainer/MainBankView" unique_id=1503458495]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "2000zł"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BankApp/VBoxContainer/MainBankView" unique_id=814421423]
+layout_mode = 2
+alignment = 1
+
+[node name="OpenBlikButton" type="TextureButton" parent="BankApp/VBoxContainer/MainBankView/HBoxContainer" unique_id=1891278890]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("10_xeynh")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WirelessPay" type="TextureButton" parent="BankApp/VBoxContainer/MainBankView/HBoxContainer" unique_id=870782682]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("11_mpkmg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BlikView" type="VBoxContainer" parent="BankApp/VBoxContainer" unique_id=920158447]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TitleLabel" type="Label" parent="BankApp/VBoxContainer/BlikView" unique_id=2042486920]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Blik"
+
+[node name="BlikCodeLabel" type="Label" parent="BankApp/VBoxContainer/BlikView" unique_id=442906980]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "123 456"
+
+[node name="TimeProgressBar" type="ProgressBar" parent="BankApp/VBoxContainer/BlikView" unique_id=249045608]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+max_value = 10.0
+show_percentage = false
+
+[node name="BackButton" type="Button" parent="BankApp/VBoxContainer/BlikView" unique_id=448462409]
+layout_mode = 2
+text = "Wstecz"
 
 [node name="MessagesApp" type="PanelContainer" parent="." unique_id=1495389308]
 visible = false
