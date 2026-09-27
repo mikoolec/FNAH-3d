@@ -16,6 +16,8 @@ signal purchase_completed(item_title: String, item_price: int)
 @onready var blik_input: LineEdit = $VBoxContainer/Step2_BLIK/BLIKInput
 @onready var pay_button: Button = $VBoxContainer/Step2_BLIK/PayButton
 @onready var error_label: Label = $VBoxContainer/Step2_BLIK/ErrorLabel
+@onready var error_label2: Label = $VBoxContainer/Step1_Invoice/ErrorLabel
+
 
 @onready var browser: MarginContainer = get_node("../../../../..")
 
@@ -49,8 +51,8 @@ func start_checkout(title: String, price: int) -> void:
 
 func _on_next_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		# Prosta walidacja – czy chociaż jedno pole nie jest puste
-		if name_input.text.strip_edges().is_empty() or nip_input.text.strip_edges().is_empty():
+		if name_input.text != "ZHP Chorągiew Wielkopolska im. Powstańców Wielkopolskich 1918-19 Hufiec Wągrowiec" or nip_input.text != "778-144-02-51" or address_input.text != "ul. Wilków Morskich 23/25" or city_input.text != "60-480 Poznań":
+			error_label2.show()
 			return
 		
 		var success = await browser.loadProgress(1.5)

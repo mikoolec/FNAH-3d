@@ -43,6 +43,13 @@ placeholder_text = "Adres (Ulica, Numer)"
 layout_mode = 2
 placeholder_text = "Kod pocztowy i Miasto"
 
+[node name="ErrorLabel" type="Label" parent="VBoxContainer/Step1_Invoice" unique_id=1226123713]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Błędne dane"
+horizontal_alignment = 1
+
 [node name="NextToPaymentButton" type="Button" parent="VBoxContainer/Step1_Invoice" unique_id=402086465]
 custom_minimum_size = Vector2(316, 31)
 layout_mode = 2
