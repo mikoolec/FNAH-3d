@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cpjcjiqexmcqr" path="res://Assets/Phone/authentcator_app.gd" id="3_nv22b"]
 [ext_resource type="Texture2D" uid="uid://b0smq413iqwje" path="res://Assets/Phone/smsIcon.png" id="5_bjppc"]
 [ext_resource type="Script" uid="uid://cp37bxrrgjdm3" path="res://Assets/Phone/wiadomosci_icon.gd" id="6_bjppc"]
+[ext_resource type="Script" uid="uid://dvjypewg6narn" path="res://Assets/Phone/bank_icon.gd" id="6_mpkmg"]
 [ext_resource type="Script" uid="uid://co528ymyav82u" path="res://Assets/Phone/home_button.gd" id="7_ri0ti"]
 [ext_resource type="Script" uid="uid://cym4u6b36g6mt" path="res://Assets/Phone/bank_app.gd" id="8_65c4x"]
 [ext_resource type="Script" uid="uid://lvtboclbme1a" path="res://Assets/Phone/messages_app.gd" id="8_bjppc"]
@@ -70,7 +71,7 @@ mouse_filter = 1
 texture_normal = ExtResource("9_ac7u3")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("3_i6t3s")
+script = ExtResource("6_mpkmg")
 
 [node name="Label" type="Label" parent="BankIcon" unique_id=1834686786]
 layout_mode = 1

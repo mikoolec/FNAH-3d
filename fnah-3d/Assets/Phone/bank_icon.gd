@@ -10,10 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		$"../../AuthentcatorApp".visible = false
-		$"../../MessagesApp".visible = false
-		$"../../BankApp".visible = false
-		SMSManager.receive_sms("Bank", "Stan konta: 2500zł")
-		SMSManager.receive_sms("Krystian", "Do roboty a nie się opierdalasz.")
+		$"../BankApp".visible = true

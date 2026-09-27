@@ -1,7 +1,5 @@
 extends PanelContainer
 
-# Portfel gracza (możesz go powiązać z globalnym menedżerem stanu gry)
-var account_balance: int = 1500
 
 # Czas ważności kodu BLIK w sekundach
 @export var blik_duration: float = 30.0
@@ -24,6 +22,9 @@ func _ready() -> void:
 	blik_view.hide()
 	main_bank_view.show()
 	
+	if not BankManager.balance_changed.is_connected(_on_balance_changed):
+		BankManager.balance_changed.connect(_on_balance_changed)
+	
 	# Podłączenie przycisków przez gui_input (bezproblemowe w SubViewport)
 	open_blik_button.gui_input.connect(_on_open_blik_gui_input)
 	back_button.gui_input.connect(_on_back_gui_input)
@@ -40,22 +41,21 @@ func _process(delta: float) -> void:
 		# Gdy czas minie, generujemy nowy kod automatycznie
 		if current_time_left <= 0:
 			generate_new_blik()
+	update_balance_display()
 
 func update_balance_display() -> void:
-	balance_label.text = "%d PLN" % account_balance
+	balance_label.text = "%d PLN" % BankManager.account_balance
 
 func generate_new_blik() -> void:
-	# Generowanie 6-cyfrowego kodu
-	var code = randi_range(100000, 999999)
-	current_blik_code = str(code)
+	var code = BankManager.generate_new_blik()
+	blik_code_label.text = code.left(3) + " " + code.right(3)
 	
-	# Sformatowanie z spacją w środku dla czytelności (np. "123 456")
-	blik_code_label.text = current_blik_code.left(3) + " " + current_blik_code.right(3)
-	
-	# Reset timera i paska postępu
 	current_time_left = blik_duration
 	time_progress_bar.max_value = blik_duration
 	time_progress_bar.value = blik_duration
+
+func _on_balance_changed(_new_balance: int) -> void:
+	update_balance_display()
 
 func update_progress_bar_color() -> void:
 	var ratio = current_time_left / blik_duration

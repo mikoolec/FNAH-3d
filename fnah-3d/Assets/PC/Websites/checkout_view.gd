@@ -51,9 +51,9 @@ func start_checkout(title: String, price: int) -> void:
 
 func _on_next_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if name_input.text != "ZHP Chorągiew Wielkopolska im. Powstańców Wielkopolskich 1918-19 Hufiec Wągrowiec" or nip_input.text != "778-144-02-51" or address_input.text != "ul. Wilków Morskich 23/25" or city_input.text != "60-480 Poznań":
-			error_label2.show()
-			return
+		#if name_input.text != "ZHP Chorągiew Wielkopolska im. Powstańców Wielkopolskich 1918-19 Hufiec Wągrowiec" or nip_input.text != "778-144-02-51" or address_input.text != "ul. Wilków Morskich 23/25" or city_input.text != "60-480 Poznań":
+			#error_label2.show()
+			#return
 		
 		var success = await browser.loadProgress(1.5)
 	
@@ -67,13 +67,16 @@ func _on_next_button_gui_input(event: InputEvent) -> void:
 
 func _on_pay_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var code = blik_input.text.strip_edges()
+		var entered_code = blik_input.text.strip_edges()
 		
-		# Sprawdzamy czy kod BLIK ma dokładnie 6 cyfr
-		if code.length() == 6 and code.is_valid_int():
+		# Prośba do BankManagera o weryfikację i pobranie kwoty
+		var result = BankManager.verify_and_pay(entered_code, current_item_price)
+		
+		if result["success"]:
 			process_successful_payment()
 		else:
-			error_label.text = "Niepoprawny kod BLIK! Wpisz 6 cyfr."
+			# Wyświetlamy błąd (np. błędny kod lub brak środków na koncie)
+			error_label.text = result["error"]
 
 func process_successful_payment() -> void:
 	hide()
