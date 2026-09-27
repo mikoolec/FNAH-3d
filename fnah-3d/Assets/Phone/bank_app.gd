@@ -127,7 +127,7 @@ func _on_wireless_amount_submitted(new_text: String) -> void:
 	if entered_amount <= BankManager.account_balance:
 		print("Płatność zbliżeniowa zaakceptowana: ", entered_amount, " PLN")
 		
-		GameplayNumbers.phone_transaction += entered_amount
+		GameplayNumbers.phone_transaction = entered_amount
 		
 		if wireless_tween and wireless_tween.is_running():
 			wireless_tween.kill()
