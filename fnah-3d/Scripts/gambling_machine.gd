@@ -9,8 +9,11 @@ var pos2: int
 var pos3: int
 var spinning: bool = false
 
+@export var display_label: Label3D
+
 var multiplier: float
-var money_input: float
+var money_input: float = 0.0
+var saved_money: float = 0.0
 
 @export var wh1: MeshInstance3D
 @export var wh2: MeshInstance3D
@@ -31,11 +34,13 @@ func _process(delta: float) -> void:
 
 func wireless_pay() -> void:
 	money_input += GameplayNumbers.phone_transaction
+	saved_money += GameplayNumbers.phone_transaction
 	if ( money_input > 0 ):
 		has_money = true
 		BankManager.account_balance -= GameplayNumbers.phone_transaction
 		BankManager.balance_changed.emit(BankManager.account_balance)
 		GameplayNumbers.phone_transaction = 0
+		update_display()
 
 func interact(player = null) -> void:
 	if ( ! spinning && has_money ):
@@ -75,8 +80,14 @@ func spin_slots():
 func _spin_single_reel(reel: MeshInstance3D, target_index: int, full_spins: int, is_last_reel: bool = false) -> void:
 	var tween = create_tween()
 	
+	var current_rot: float = fposmod(reel.rotation.z, TAU)
+	reel.rotation.z = current_rot
+	
 	# Docelowy kąt: stan obecny + pełne obroty + indeks symbolu
-	var final_target_angle: float = reel.rotation.z + (full_spins * TAU) + (target_index * step_angle)
+	var final_target_angle: float = (full_spins * TAU) + (target_index * step_angle)
+	# Żeby zawsze kręcił się w przód:
+	while final_target_angle < current_rot + (full_spins * TAU):
+		final_target_angle += TAU
 	# Punkt kończący fazę szybkiego kręcenia (1 pełny obrót przed metą)
 	var fast_spin_end: float = final_target_angle - TAU
 
@@ -103,40 +114,44 @@ func _spin_single_reel(reel: MeshInstance3D, target_index: int, full_spins: int,
 		if (is_last_reel):
 			spinning = false
 			if ( pos1 == pos2 && pos2 == pos3 ):
-				multiplier = 1.5
+				multiplier = 2
 			elif (pos1 == pos2 || pos1 == pos3 || pos2 == pos3):
-				multiplier = 1
+				multiplier = 1.5
 			else:
-				multiplier = 0.5
+				multiplier = 0.25
 			multiplier += check_pos(pos1)
 			multiplier += check_pos(pos2)
 			multiplier += check_pos(pos3)
 			money_input *= multiplier
+			print ( "wylosowano ", pos1, " ", pos2, " ", pos3, ", payout ", money_input, "\n")
+			update_display()
 	)
 
 func payout() -> void:
 	print(money_input)
-	if ( money_input > 0 ):
+	if ( money_input > 0 && !spinning ):
 		BankManager.account_balance += money_input
 		money_input = 0
+		saved_money = 0
 		animation.play("Animation")
 		has_money = false
+		update_display()
 			
 
 func check_pos(pos: int) -> float:
 	match pos:
 		0:
-			return 0.1
+			return 0.2
 		1:
-			return 0.05
+			return 0.15
 		2:
-			return 0.02
+			return 0.1
 		3:
-			return 0.015
+			return 0.05
 		4:
-			return 0.01
+			return 0.025
 		5:
-			return 0.0
+			return 0.1
 	return 0.0
 		
 
@@ -157,3 +172,16 @@ func spin_lever():
 	lever_tween.tween_property(lev, "rotation:z", original_rot, 1)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
+
+func update_display() -> void:
+	if display_label:
+		if ( money_input > saved_money ):
+			display_label.modulate = Color.GREEN
+			display_label.outline_modulate = Color.DARK_GREEN
+		elif ( money_input < saved_money ):
+			display_label.modulate = Color.RED
+			display_label.outline_modulate = Color.DARK_RED
+		else:
+			display_label.modulate = Color.WHITE
+			display_label.outline_modulate = Color.BLACK
+		display_label.text = str(snapped(money_input, 0.01)) + " PLN"
