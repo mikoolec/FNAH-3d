@@ -2,7 +2,7 @@
 extends Node
 
 var money: float = 1000.0
-var phone_transaction: float = 100.0
+var phone_transaction: float = 0
 
 enum paczko_firmy { INPOST, ORLEN, ALLEGRO, DHL, PP, DPD }
 enum paczka_zawartosc { C, M, Y, K, Shit }

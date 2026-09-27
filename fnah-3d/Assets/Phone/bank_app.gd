@@ -10,24 +10,45 @@ var current_blik_code: String = ""
 @onready var main_bank_view: VBoxContainer = $VBoxContainer/MainBankView
 @onready var balance_label: Label = $VBoxContainer/MainBankView/BalanceLabel
 @onready var open_blik_button: TextureButton = $VBoxContainer/MainBankView/HBoxContainer/OpenBlikButton
-@onready var wireless_pay: TextureButton = $VBoxContainer/MainBankView/HBoxContainer/WirelessPay
+
+@onready var wireless_pay_button: TextureButton = $VBoxContainer/MainBankView/HBoxContainer/WirelessPay
+@onready var wireless_view: VBoxContainer = $VBoxContainer/WirelessView
+@onready var wireless_amount_input: LineEdit = $VBoxContainer/WirelessView/Amount
+@onready var wireless_back_button: Button = $VBoxContainer/WirelessView/BackButton
+@onready var wireless_progress_bar: ProgressBar = $VBoxContainer/WirelessView/TimeProgressBar
+
 
 @onready var blik_view: VBoxContainer = $VBoxContainer/BlikView
 @onready var blik_code_label: Label = $VBoxContainer/BlikView/BlikCodeLabel
 @onready var time_progress_bar: ProgressBar = $VBoxContainer/BlikView/TimeProgressBar
-@onready var back_button: Button = $VBoxContainer/BlikView/BackButton
+@onready var blik_back_button: Button = $VBoxContainer/BlikView/BackButton
+
+# Zmienne dla odliczania WirelessPay
+var wireless_tween: Tween
+var is_wireless_cancelled: bool = false
 
 func _ready() -> void:
-	update_balance_display()
-	blik_view.hide()
-	main_bank_view.show()
-	
+	# Podłączenie sygnału zmiany stanu konta
 	if not BankManager.balance_changed.is_connected(_on_balance_changed):
 		BankManager.balance_changed.connect(_on_balance_changed)
 	
-	# Podłączenie przycisków przez gui_input (bezproblemowe w SubViewport)
+	update_balance_display()
+	
+	# Pokaż tylko ekran główny banku na start
+	main_bank_view.show()
+	blik_view.hide()
+	wireless_view.hide()
+	
+	# Podłączenie przycisków głównych przez gui_input
 	open_blik_button.gui_input.connect(_on_open_blik_gui_input)
-	back_button.gui_input.connect(_on_back_gui_input)
+	wireless_pay_button.gui_input.connect(_on_wireless_pay_gui_input)
+	
+	# Podłączenie przycisków powrotu
+	blik_back_button.gui_input.connect(_on_back_to_main_gui_input)
+	wireless_back_button.gui_input.connect(_on_back_to_main_gui_input)
+	
+	# Obsługa zatwierdzenia kwoty w LineEdit (po wciśnięciu Enter)
+	wireless_amount_input.text_submitted.connect(_on_wireless_amount_submitted)
 
 func _process(delta: float) -> void:
 	# Odliczanie czasu BLIK-a tylko gdy widok jest aktywny
@@ -42,6 +63,8 @@ func _process(delta: float) -> void:
 		if current_time_left <= 0:
 			generate_new_blik()
 	update_balance_display()
+	if wireless_tween and wireless_tween.is_running() and GameplayNumbers.phone_transaction == 0:
+		end_wireless_payment()
 
 func update_balance_display() -> void:
 	balance_label.text = "%d PLN" % BankManager.account_balance
@@ -80,3 +103,73 @@ func _on_back_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		blik_view.hide()
 		main_bank_view.show()
+
+func _on_wireless_pay_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		wireless_amount_input.clear()
+		wireless_progress_bar.value = 0
+		
+		main_bank_view.hide()
+		blik_view.hide()
+		wireless_view.show()
+
+# Funkcja porównująca wpisaną kwotę ze stanem konta
+func _on_wireless_amount_submitted(new_text: String) -> void:
+	var entered_amount = new_text.strip_edges().to_int()
+	
+	if entered_amount <= 0:
+		print("Wpisz poprawną kwotę!")
+		return
+	
+	# Porównanie ze stanem konta w BankManagerze
+	if entered_amount <= BankManager.account_balance:
+		print("Płatność zbliżeniowa zaakceptowana: ", entered_amount, " PLN")
+		
+		GameplayNumbers.phone_transaction += entered_amount
+		
+		if wireless_tween and wireless_tween.is_running():
+			wireless_tween.kill()
+
+		# Ustawiamy zakres paska od 0 do 10
+		wireless_progress_bar.max_value = 10.0
+		wireless_progress_bar.value = 10.0
+
+		# Tworzymy nowy Tween
+		wireless_tween = create_tween()
+		
+		# Animujemy właściwość 'value' paska od 10.0 do 0.0 w czasie 10.0 sekund
+		wireless_tween.tween_property(wireless_progress_bar, "value", 0.0, 10.0)
+		
+		# Po zakończeniu 10 sekund wywołujemy funkcję weryfikującą
+		wireless_tween.tween_callback(_on_wireless_timer_finished)
+	else:
+		print("Brak wystarczających środków na koncie!")
+		wireless_amount_input.clear()
+		wireless_amount_input.placeholder_text = "Brak środków!"
+
+func _on_wireless_timer_finished() -> void:
+	# Warunek sprawdzający zmienną przerywającą
+	if is_wireless_cancelled:
+		print("Odliczanie zostało przerwane – anulowano akcję!")
+		return
+
+	print("Czas minął (10s)! Anulowanie płatności zbliżeniowej z powodu limitu czasu.")
+	GameplayNumbers.phone_transaction = 0
+
+# Funkcja do ręcznego przerwania odliczania w dowolnym momencie
+func end_wireless_payment() -> void:
+	is_wireless_cancelled = true
+	if wireless_tween and wireless_tween.is_running():
+		wireless_tween.kill() # Natychmiast zatrzymuje animację i nie wywoła callbacku
+	print("Płatność zakonczona")
+
+# --- POWRÓT ---
+func _on_back_to_main_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		_show_main_view()
+
+func _show_main_view() -> void:
+	blik_view.hide()
+	wireless_view.hide()
+	main_bank_view.show()
+	update_balance_display()

@@ -7,3 +7,7 @@ extends Control
 
 func _ready() -> void:
 	pass
+
+
+func _on_back_button_pressed() -> void:
+	pass # Replace with function body.

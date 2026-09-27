@@ -33,8 +33,9 @@ func wireless_pay() -> void:
 	money_input += GameplayNumbers.phone_transaction
 	if ( money_input > 0 ):
 		has_money = true
+		BankManager.account_balance -= GameplayNumbers.phone_transaction
+		BankManager.balance_changed.emit(BankManager.account_balance)
 		GameplayNumbers.phone_transaction = 0
-		GameplayNumbers.money -= money_input
 
 func interact(player = null) -> void:
 	if ( ! spinning && has_money ):
@@ -116,7 +117,7 @@ func _spin_single_reel(reel: MeshInstance3D, target_index: int, full_spins: int,
 func payout() -> void:
 	print(money_input)
 	if ( money_input > 0 ):
-		GameplayNumbers.money += money_input
+		BankManager.account_balance += money_input
 		money_input = 0
 		animation.play("Animation")
 		has_money = false

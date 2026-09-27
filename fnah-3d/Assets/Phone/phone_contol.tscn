@@ -252,6 +252,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="BlikView" type="VBoxContainer" parent="BankApp/VBoxContainer" unique_id=920158447]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -277,6 +278,33 @@ show_percentage = false
 
 [node name="BackButton" type="Button" parent="BankApp/VBoxContainer/BlikView" unique_id=448462409]
 layout_mode = 2
+text = "Wstecz"
+
+[node name="WirelessView" type="VBoxContainer" parent="BankApp/VBoxContainer" unique_id=1658182563]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TitleLabel" type="Label" parent="BankApp/VBoxContainer/WirelessView" unique_id=1968531225]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="Amount" type="LineEdit" parent="BankApp/VBoxContainer/WirelessView" unique_id=1895407881]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+placeholder_text = "PLN"
+
+[node name="TimeProgressBar" type="ProgressBar" parent="BankApp/VBoxContainer/WirelessView" unique_id=1813181127]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+max_value = 10.0
+show_percentage = false
+
+[node name="BackButton" type="Button" parent="BankApp/VBoxContainer/WirelessView" unique_id=1009501732]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Wstecz"
 
 [node name="MessagesApp" type="PanelContainer" parent="." unique_id=1495389308]
