@@ -2,7 +2,15 @@ extends Control
 
 @onready var display: Label = $VBoxContainer/DisplayLabel
 @export var firma: GameplayNumbers.paczko_firmy
+@onready var otwarte: Button = $Otwarte
 var entered_code: String = ""
+
+
+func _process(delta: float) -> void:
+	if ( GameplayNumbers.check_paczkomat(firma) == "opened" ):
+		otwarte.show()
+	elif ( GameplayNumbers.check_paczkomat(firma) == "closed" ):
+		otwarte.hide()
 
 func _ready() -> void:
 	for button in $VBoxContainer/GridContainer.get_children():
@@ -20,7 +28,9 @@ func _on_button_pressed(digit: String) -> void:
 		for i in range (0, GameplayNumbers.paczki.size() ):
 			if entered_code.to_int() == GameplayNumbers.paczki[i].kod and firma == GameplayNumbers.paczki[i].firma:
 				print("dobry kod")
+				GameplayNumbers.open_paczkomat(firma)
 				$"../..".open(GameplayNumbers.paczki[i].zawartosc)
+				
 				GameplayNumbers.paczki.remove_at(i)
 				break
 		entered_code = ""

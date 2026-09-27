@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bdm2gggiley5n" path="res://Scenes/automaty paczkowe/paczkomat_inpost.tscn" id="26_ax3ff"]
 [ext_resource type="PackedScene" uid="uid://uxjs5dnqhbcc" path="res://Scenes/automaty paczkowe/dpdomat.tscn" id="27_4jgok"]
 [ext_resource type="PackedScene" uid="uid://bxbge4pqrebhx" path="res://Scenes/automaty paczkowe/dhlomat.tscn" id="28_a847e"]
+[ext_resource type="PackedScene" uid="uid://qsmcpyo65vmi" path="res://Scenes/automaty paczkowe/orlenomat.tscn" id="29_ymqv8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.903183, 1.6994629, 1.2485352)
@@ -95,7 +96,7 @@ transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 
 transform = Transform3D(0.9999999, 0, -3.5527137e-15, 0, 1, 0, 3.5527137e-15, 0, 0.9999999, 0, 0, -0.671906)
 
 [node name="Player" parent="." index="3" unique_id=985857779 instance=ExtResource("3_ijxm5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3334093, -0.24343824, 8.75412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.597381, -0.24343824, 21.077663)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4" unique_id=653292237]
 transform = Transform3D(-0.6340694, 0.5552442, -0.5382006, 0, 0.6960005, 0.7180413, 0.77327615, 0.455288, -0.4413126, 12.631382, 1.9368281, 2.0514464)
@@ -128,15 +129,6 @@ shape = SubResource("BoxShape3D_oppbp")
 
 [node name="view_point" type="Marker3D" parent="PC" index="2" unique_id=681111280]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.15, 0.25, 0)
-
-[node name="HarcowkaPodloga" parent="." index="6" unique_id=208947293]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
-
-[node name="HarcowkaSciany" parent="." index="8" unique_id=290119169]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
-
-[node name="HarcowkaSufit" parent="." index="9" unique_id=1234716044]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
 [node name="drzwi" parent="." index="10" unique_id=91442167 instance=ExtResource("6_flkvd")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, 1, 0, 4.371139e-08, 0.54758, -0.040350556, 2.0295227)
@@ -231,8 +223,11 @@ shape = SubResource("ConcavePolygonShape3D_8n43u")
 [node name="printer" parent="Drukarka" index="1" unique_id=20322248 instance=ExtResource("17_qvfyu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.18786418, 0)
 
+[node name="HarcowkaPodloga" parent="." index="31" unique_id=1482656254]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.007663965, 4.7683716e-07, -0.00025987625)
+
 [node name="BigTrash" parent="." index="32" unique_id=435024031 instance=ExtResource("17_tl1uk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.00468, 0.38102967, 20.525906)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -47.04511, 0.38103348, -14.296452)
 
 [node name="BaseSlot4" parent="." index="33" unique_id=127520544 groups=["slots"] instance=ExtResource("12_qao3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.95451, -0.5166364, 20.71238)
@@ -265,7 +260,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4077301, -1.9684144, -6.16
 shape = SubResource("BoxShape3D_qvfyu")
 
 [node name="RTV_Tower" parent="." index="36" unique_id=461998840 instance=ExtResource("19_x4d3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.695668, 0.9237114, 25.28426)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 44.416733, 0.9237114, -11.366381)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="37" unique_id=427808505]
 environment = SubResource("Environment_coq7e")
@@ -334,13 +329,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.0023766756, 0
 shape = SubResource("BoxShape3D_a847e")
 
 [node name="dhlomat" parent="." index="47" unique_id=935601138 instance=ExtResource("28_a847e")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 11.612258, 0.94167733, 34.157925)
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -4.164365, 0.94167733, 32.917538)
 
 [node name="dpdomat" parent="." index="48" unique_id=1947690293 instance=ExtResource("27_4jgok")]
-transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 19.389444, 0.9416783, 31.798862)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 3.7288237, 0.9416783, 32.40538)
 
 [node name="paczkomat" parent="." index="49" unique_id=530363288 instance=ExtResource("26_ax3ff")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22.497335, 0.94167733, 25.41338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.703867, 0.94167733, 32.17083)
+
+[node name="orlenomat" parent="." index="50" unique_id=647127689 instance=ExtResource("29_ymqv8")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -12.380043, 0.9416783, 33.588043)
+
+[node name="HarcowkaSciany" parent="." index="52" unique_id=731268298]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.010752201, -0.0055971146)
+
+[node name="HarcowkaSufit" parent="." index="53" unique_id=2029602097]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
 [editable path="Chair"]
 [editable path="kanapa"]

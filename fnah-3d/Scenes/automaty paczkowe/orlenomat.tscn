@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://qsmcpyo65vmi"]
+
+[ext_resource type="PackedScene" uid="uid://ceyc83k3tbeyt" path="res://Assets/blend/automaty paczkowe/orlenomat.blend" id="1_moawk"]
+[ext_resource type="Script" uid="uid://chvmcyqpd4glb" path="res://Scripts/paczkomat_model_handler.gd" id="2_akg21"]
+[ext_resource type="PackedScene" uid="uid://cg0kbbckawmtl" path="res://Scenes/automaty paczkowe/paczkomat_ui.tscn" id="3_6wnrq"]
+[ext_resource type="PackedScene" uid="uid://xkdmfbdncti2" path="res://Scenes/base_slot.tscn" id="3_e6tgm"]
+[ext_resource type="Script" uid="uid://g57f3ypy4yd7" path="res://Scripts/paczko_screen_area.gd" id="4_e6tgm"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2jkkb"]
+size = Vector2(0.67, 0.72)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4icn8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybp7h"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_4icn8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2uxd"]
+size = Vector3(0.7709961, 1.0311279, 0.097595215)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xo27j"]
+size = Vector3(0.6801758, 0.7408447, 0.010864258)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6tgm"]
+size = Vector3(4.1635437, 0.15795898, 0.9835205)
+
+[node name="orlenomat" unique_id=647127689 node_paths=PackedStringArray("viewport", "screen_mesh") instance=ExtResource("1_moawk")]
+script = ExtResource("2_akg21")
+slot_scene = ExtResource("3_e6tgm")
+viewport = NodePath("SubViewport")
+screen_mesh = NodePath("ScreenDisplay")
+
+[node name="ScreenDisplay" type="MeshInstance3D" parent="." index="51" unique_id=267512743]
+transform = Transform3D(1, 0, 0, 0, 0.98930293, 0.14587583, 0, -0.14587583, 0.98930293, -1.9450303, -0.17429382, 0.4677102)
+mesh = SubResource("QuadMesh_2jkkb")
+surface_material_override/0 = SubResource("StandardMaterial3D_ybp7h")
+
+[node name="drzwiczki" type="Node" parent="." index="52" unique_id=1798344714]
+
+[node name="SubViewport" type="SubViewport" parent="." index="53" unique_id=1658342382]
+size = Vector2i(670, 720)
+render_target_update_mode = 4
+
+[node name="PaczkomatUI" parent="SubViewport" index="0" unique_id=2147159687 instance=ExtResource("3_6wnrq")]
+firma = 1
+
+[node name="InteractArea" type="Area3D" parent="." index="54" unique_id=1420928178 node_paths=PackedStringArray("view_point", "main_area_collision", "static_body_collision", "screen_area", "viewport", "screen_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9416187, -0.26559293, 0.5396421)
+script = ExtResource("4_e6tgm")
+view_point = NodePath("view_point")
+main_area_collision = NodePath("CollisionShape3D")
+static_body_collision = NodePath("../StaticBody3D/CollisionShape3D")
+screen_area = NodePath("../ScreenArea")
+viewport = NodePath("../SubViewport")
+screen_mesh = NodePath("../ScreenDisplay")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" index="0" unique_id=382969264]
+shape = SubResource("BoxShape3D_e2uxd")
+
+[node name="view_point" type="Node3D" parent="InteractArea" index="1" unique_id=599485082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07903227, 1.1627176)
+
+[node name="ScreenArea" type="Area3D" parent="." index="55" unique_id=339153550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0276291, -0.25236773, 0.45654273)
+
+[node name="ScreenCollision" type="CollisionShape3D" parent="ScreenArea" index="0" unique_id=1415532393]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.08178711, 0.07769352, 0.07342261)
+shape = SubResource("BoxShape3D_xo27j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="56" unique_id=1275210348]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1129456066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0833282, 1.3209229, -0.008239746)
+shape = SubResource("BoxShape3D_e6tgm")
+
+[node name="miejsca" type="Node" parent="." index="57" unique_id=1522763342]
+
+[node name="M11" type="Node3D" parent="miejsca" index="0" unique_id=2004159419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7015233, 0.84752, 0.1621474)
+
+[node name="M12" type="Node3D" parent="miejsca" index="1" unique_id=1388837981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9736915, 0.8477415, 0.2371546)
+
+[node name="M13" type="Node3D" parent="miejsca" index="2" unique_id=1188634874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1574154, 0.84752, 0.1621474)
+
+[node name="M14" type="Node3D" parent="miejsca" index="3" unique_id=1854042217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37638474, 0.8385426, 0.1621474)
+
+[node name="M15" type="Node3D" parent="miejsca" index="4" unique_id=401230586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60681564, 0.84752, 0.8950702)
+
+[node name="M16" type="Node3D" parent="miejsca" index="5" unique_id=1781077551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75289035, 0.8564975, 1.6830524)
+
+[node name="M17" type="Node3D" parent="miejsca" index="6" unique_id=763025357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37685323, 0.8295654, 2.3671072)
+
+[node name="M18" type="Node3D" parent="miejsca" index="7" unique_id=655701339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1847799, 0.84752, 2.439148)
+
+[node name="M21" type="Node3D" parent="miejsca" index="8" unique_id=1066978907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7015233, 0.36274216, 0.1621474)
+
+[node name="M22" type="Node3D" parent="miejsca" index="9" unique_id=1177961322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9474244, 0.36274216, 0.1621474)
+
+[node name="M23" type="Node3D" parent="miejsca" index="10" unique_id=1292200824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1574159, 0.36274216, 0.1621474)
+
+[node name="M24" type="Node3D" parent="miejsca" index="11" unique_id=864011374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34945303, 0.36274216, 0.1621474)
+
+[node name="M25" type="Node3D" parent="miejsca" index="12" unique_id=302214962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7370207, 0.36274216, 0.8679146)
+
+[node name="M26" type="Node3D" parent="miejsca" index="13" unique_id=2090483531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6291696, 0.36274204, 1.6623389)
+
+[node name="M27" type="Node3D" parent="miejsca" index="14" unique_id=2009747316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38003397, 0.36274216, 2.388925)
+
+[node name="M28" type="Node3D" parent="miejsca" index="15" unique_id=999585257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1009688, 0.36274216, 2.446538)
+
+[node name="M31" type="Node3D" parent="miejsca" index="16" unique_id=232517859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7015233, -0.12203577, 0.1621474)
+
+[node name="M32" type="Node3D" parent="miejsca" index="17" unique_id=148031120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1656085, -0.12203577, 0.1621474)
+
+[node name="M34" type="Node3D" parent="miejsca" index="18" unique_id=1493746963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40331697, -0.12203577, 0.1621474)
+
+[node name="M35" type="Node3D" parent="miejsca" index="19" unique_id=1316522239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7459976, -0.12203577, 0.8679146)
+
+[node name="M36" type="Node3D" parent="miejsca" index="20" unique_id=320092208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5753051, -0.12203589, 1.6623389)
+
+[node name="M37" type="Node3D" parent="miejsca" index="21" unique_id=543404720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3531022, -0.12203577, 2.388925)
+
+[node name="M38" type="Node3D" parent="miejsca" index="22" unique_id=1178411496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1279006, -0.12203577, 2.446538)
+
+[node name="M41" type="Node3D" parent="miejsca" index="23" unique_id=698971811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7015233, -0.67863274, 0.1621474)
+
+[node name="M42" type="Node3D" parent="miejsca" index="24" unique_id=1111832557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1659511, -0.67863274, 0.1621474)
+
+[node name="M44" type="Node3D" parent="miejsca" index="25" unique_id=1070716855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40331697, -0.67863274, 0.1621474)
+
+[node name="M45" type="Node3D" parent="miejsca" index="26" unique_id=334302236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7459976, -0.67863274, 0.8679146)
+
+[node name="M46" type="Node3D" parent="miejsca" index="27" unique_id=1936770374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5753051, -0.67863286, 1.6623389)
+
+[node name="M47" type="Node3D" parent="miejsca" index="28" unique_id=623676061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3531022, -0.67863274, 2.388925)
+
+[node name="M48" type="Node3D" parent="miejsca" index="29" unique_id=500438033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1279006, -0.67863274, 2.446538)
+
+[node name="M51" type="Node3D" parent="miejsca" index="30" unique_id=1856836961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7015233, -1.1993203, 0.1621474)
+
+[node name="M52" type="Node3D" parent="miejsca" index="31" unique_id=1188752199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9653792, -1.1993203, 0.1621474)
+
+[node name="M53" type="Node3D" parent="miejsca" index="32" unique_id=942197619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.139461, -1.1993203, 0.1621474)
+
+[node name="M54" type="Node3D" parent="miejsca" index="33" unique_id=2065352654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40331697, -1.1993203, 0.1621474)
+
+[node name="M55" type="Node3D" parent="miejsca" index="34" unique_id=384940377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7459976, -1.1993203, 0.8679146)
+
+[node name="M56" type="Node3D" parent="miejsca" index="35" unique_id=725919100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5753051, -1.1993204, 1.6623389)
+
+[node name="M57" type="Node3D" parent="miejsca" index="36" unique_id=1580243237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3531022, -1.1993203, 2.388925)
+
+[node name="M58" type="Node3D" parent="miejsca" index="37" unique_id=1883312243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1279006, -1.1993203, 2.446538)

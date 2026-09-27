@@ -10,6 +10,7 @@ enum SlotType { SPAWNER, SINGLE, TRASH, PRINTER, BIGTRASH, PARCEL }
 var current_item: String = ItemDB.NONE
 var trash_capacity: int = 0
 var is_sheet_printed = false
+var paczkomat_origin: GameplayNumbers.paczko_firmy
 
 @onready var drukarka: StaticBody3D = get_node_or_null("../Drukarka")
 
@@ -105,6 +106,7 @@ func interact(player) -> void:
 			if ( player.holding_item == ItemDB.NONE ):
 				player.collect_item(current_item)
 				current_item = ItemDB.NONE
+				GameplayNumbers.close_paczkomat(paczkomat_origin)
 				call_deferred("queue_free")
 
 # Failsafe: szuka w całej grze slotu typu SINGLE, który zgubił ten przedmiot i go respi

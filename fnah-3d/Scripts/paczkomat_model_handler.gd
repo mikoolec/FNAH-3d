@@ -6,10 +6,14 @@ var rng = RandomNumberGenerator.new()
 @export var viewport: SubViewport       # Upewnij się, że masz to przypisane
 @export var screen_mesh: MeshInstance3D # Upewnij się, że masz to przypisane
 
+var laststate: String = "closed"
+
+var firma: GameplayNumbers.paczko_firmy
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var material = screen_mesh.get_active_material(0)
-
+	firma = $SubViewport/PaczkomatUI.firma
 	if material:
 		# Wciskamy wygenerowaną teksturę z Viewportu prosto do albedo
 		material.albedo_texture = viewport.get_texture()
@@ -20,7 +24,23 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if ( GameplayNumbers.check_paczkomat(firma) != laststate ):
+		if ( laststate == "opened" ):
+			laststate = "closed"
+			close()
+		else:
+			laststate = "opened"
+	
+func close() -> void:
+	for i in range (1, 5):
+		for j in range (1, 8):
+			if( ! ( i==3 && ( j == 3 || j == 4 ) ) ):
+				
+				var nazwa_mesha = "D" + str(i) + str(j)
+				var drzwiczki = get_node_or_null(nazwa_mesha)
+				var tween = create_tween()
+				tween.tween_property(drzwiczki, "rotation_degrees:y", 00.0, 0.5).set_trans(Tween.TRANS_SINE)
+
 
 func open( srodek: GameplayNumbers.paczka_zawartosc ) -> void:
 	print("lepszy kod")
@@ -61,7 +81,7 @@ func open( srodek: GameplayNumbers.paczka_zawartosc ) -> void:
 					new_slot.default_item = ItemDB.SHIT
 					
 			new_slot.current_item = new_slot.default_item
-			
+			new_slot.paczkomat_origin = firma
 			new_slot.add_to_group("slots")
 			# Dodajemy do sceny (jako dziecko głównego węzła paczkomatu)
 			# 1. Dodajemy slot do głównej sceny (root), żeby operował w przestrzeni całego świata
@@ -78,7 +98,9 @@ func open( srodek: GameplayNumbers.paczka_zawartosc ) -> void:
 			print("Próba postawienia na: ", punkt_spawnu.global_position)
 
 			print("postawiono slota ig bruv")
-
+			
+			
+			
 		else:
 			print("nie ma slot scene")
 	else:
