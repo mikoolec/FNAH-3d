@@ -183,6 +183,7 @@ max_value = 10.0
 show_percentage = false
 
 [node name="BankApp" type="PanelContainer" parent="." unique_id=1567671951]
+visible = false
 custom_minimum_size = Vector2(416, 740)
 layout_mode = 1
 anchors_preset = 15
@@ -224,7 +225,6 @@ theme_override_font_sizes/font_size = 45
 text = "       mBank"
 
 [node name="MainBankView" type="VBoxContainer" parent="BankApp/VBoxContainer" unique_id=918936634]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 60
 
@@ -232,7 +232,7 @@ theme_override_constants/separation = 60
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
-text = "2000zł"
+text = "2000 PLN"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BankApp/VBoxContainer/MainBankView" unique_id=814421423]
@@ -285,6 +285,7 @@ layout_mode = 2
 text = "Wstecz"
 
 [node name="WirelessView" type="VBoxContainer" parent="BankApp/VBoxContainer" unique_id=1658182563]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

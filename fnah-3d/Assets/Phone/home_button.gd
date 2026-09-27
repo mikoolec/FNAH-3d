@@ -15,5 +15,5 @@ func _gui_input(event: InputEvent) -> void:
 		$"../../AuthentcatorApp".visible = false
 		$"../../MessagesApp".visible = false
 		$"../../BankApp".visible = false
-		SMSManager.receive_sms("Bank", "Stan konta: 2500zł")
+		SMSManager.receive_sms("Bank", "Stan konta: %dzł" % BankManager.account_balance)
 		SMSManager.receive_sms("Krystian", "Do roboty a nie się opierdalasz.")
