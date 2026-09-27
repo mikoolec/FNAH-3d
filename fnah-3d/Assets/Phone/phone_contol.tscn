@@ -18,6 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://ciyi18npa33em" path="res://Assets/Phone/blik.png" id="10_xeynh"]
 [ext_resource type="Texture2D" uid="uid://dsmmnuwo5uovx" path="res://Assets/Phone/payment.jpg" id="11_mpkmg"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mpkmg"]
+color = Color(0, 1, 0, 1)
+thickness = 20
+
 [node name="PhoneContol" type="Control" unique_id=1272140481]
 custom_minimum_size = Vector2(416, 740)
 layout_mode = 3
@@ -297,8 +301,9 @@ theme_override_font_sizes/font_size = 30
 placeholder_text = "PLN"
 
 [node name="TimeProgressBar" type="ProgressBar" parent="BankApp/VBoxContainer/WirelessView" unique_id=1813181127]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxLine_mpkmg")
 max_value = 10.0
 show_percentage = false
 

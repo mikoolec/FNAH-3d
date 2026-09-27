@@ -119,6 +119,8 @@ func _on_wireless_amount_submitted(new_text: String) -> void:
 	
 	if entered_amount <= 0:
 		print("Wpisz poprawną kwotę!")
+		wireless_amount_input.clear()
+		wireless_amount_input.placeholder_text = "Liczba majster."
 		return
 	
 	# Porównanie ze stanem konta w BankManagerze
@@ -151,17 +153,24 @@ func _on_wireless_timer_finished() -> void:
 	# Warunek sprawdzający zmienną przerywającą
 	if is_wireless_cancelled:
 		print("Odliczanie zostało przerwane – anulowano akcję!")
+		wireless_amount_input.clear()
+		wireless_amount_input.placeholder_text = "PLN"
 		return
 
-	print("Czas minął (10s)! Anulowanie płatności zbliżeniowej z powodu limitu czasu.")
+	print("Czas minął! Anulowanie płatności zbliżeniowej z powodu limitu czasu.")
 	GameplayNumbers.phone_transaction = 0
+	wireless_amount_input.clear()
+	wireless_amount_input.placeholder_text = "Timed out."
 
 # Funkcja do ręcznego przerwania odliczania w dowolnym momencie
 func end_wireless_payment() -> void:
 	is_wireless_cancelled = true
 	if wireless_tween and wireless_tween.is_running():
-		wireless_tween.kill() # Natychmiast zatrzymuje animację i nie wywoła callbacku
+		wireless_tween.kill()
+		wireless_progress_bar.value = 0
 	print("Płatność zakonczona")
+	wireless_amount_input.placeholder_text = "PLN"
+	wireless_amount_input.clear()
 
 # --- POWRÓT ---
 func _on_back_to_main_gui_input(event: InputEvent) -> void:
