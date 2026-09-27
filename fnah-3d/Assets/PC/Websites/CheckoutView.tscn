@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://sjw4w56jbb5u"]
+
+[ext_resource type="Script" uid="uid://b6k7xberhp4qd" path="res://Assets/PC/Websites/checkout_view.gd" id="1_ldi8s"]
+
+[node name="CheckoutView" type="Control" unique_id=1971405855]
+custom_minimum_size = Vector2(683, 320)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 683.0
+offset_bottom = 320.0
+script = ExtResource("1_ldi8s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1673987861]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_right = 158.0
+offset_bottom = 349.0
+grow_horizontal = 2
+
+[node name="Step1_Invoice" type="VBoxContainer" parent="VBoxContainer" unique_id=2125927691]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Step1_Invoice" unique_id=1911138771]
+layout_mode = 2
+text = "Dane do faktury"
+
+[node name="NameInput" type="LineEdit" parent="VBoxContainer/Step1_Invoice" unique_id=475668920]
+layout_mode = 2
+placeholder_text = "Nazwa firmy"
+
+[node name="NIPInput" type="LineEdit" parent="VBoxContainer/Step1_Invoice" unique_id=143543362]
+layout_mode = 2
+placeholder_text = "NIP"
+
+[node name="AddressInput" type="LineEdit" parent="VBoxContainer/Step1_Invoice" unique_id=781545655]
+layout_mode = 2
+placeholder_text = "Adres (Ulica, Numer)"
+
+[node name="CityInput" type="LineEdit" parent="VBoxContainer/Step1_Invoice" unique_id=1667664201]
+layout_mode = 2
+placeholder_text = "Kod pocztowy i Miasto"
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer/Step1_Invoice" unique_id=1226123713]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Błędne dane"
+horizontal_alignment = 1
+
+[node name="NextToPaymentButton" type="Button" parent="VBoxContainer/Step1_Invoice" unique_id=402086465]
+custom_minimum_size = Vector2(316, 31)
+layout_mode = 2
+text = "Dalej"
+
+[node name="Step2_BLIK" type="VBoxContainer" parent="VBoxContainer" unique_id=1536164435]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Step2_BLIK" unique_id=1690286887]
+layout_mode = 2
+text = "Płatność BLIK"
+
+[node name="InfoLabel" type="Label" parent="VBoxContainer/Step2_BLIK" unique_id=493465648]
+layout_mode = 2
+text = "Wpisz 6-cyfrowy kod z aplikacji bankowej"
+
+[node name="BLIKInput" type="LineEdit" parent="VBoxContainer/Step2_BLIK" unique_id=1633768548]
+layout_mode = 2
+placeholder_text = "000 000"
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer/Step2_BLIK" unique_id=1240761064]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Błędny kod blik"
+horizontal_alignment = 1
+
+[node name="PayButton" type="Button" parent="VBoxContainer/Step2_BLIK" unique_id=771792331]
+layout_mode = 2
+text = "Zapłać"

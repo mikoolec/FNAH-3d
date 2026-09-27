@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://qegv0lnmb8kj"]
+
+[ext_resource type="Texture2D" uid="uid://c85csshb0uirc" path="res://Assets/PC/HufiecStrona.png" id="1_br3vj"]
+
+[node name="HufiecStrona" type="Control" unique_id=1370930856]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=287173863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer" unique_id=1689971585]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_br3vj")
+expand_mode = 3
+stretch_mode = 6
