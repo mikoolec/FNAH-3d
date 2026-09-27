@@ -13,10 +13,11 @@ static var sellers: Array[String] = [
 
 # Baza możliwych przedmiotów z sugerowanym zakresem cenowym [cena_min, cena_max]
 static var items_catalog: Array[Dictionary] = [
-	{"name": "Laptop Gamingowy RTX 4060", "min_price": 3200, "max_price": 4500},
-	{"name": "Smartfon 6.7\" 120Hz 256GB", "min_price": 1200, "max_price": 2200},
-	{"name": "Klawiatura Mechaniczna RGB", "min_price": 150, "max_price": 350},
-	{"name": "Myszka Bezprzewodowa 26k DPI", "min_price": 180, "max_price": 290},
+	{"name": "Tusz C", "zawartosc": GameplayNumbers.paczka_zawartosc.C, "min_price": 200, "max_price": 4500},
+	{"name": "Tusz M", "zawartosc": GameplayNumbers.paczka_zawartosc.M, "min_price": 300, "max_price": 2200},
+	{"name": "Tusz Y", "zawartosc": GameplayNumbers.paczka_zawartosc.Y, "min_price": 150, "max_price": 350},
+	{"name": "Tusz K", "zawartosc": GameplayNumbers.paczka_zawartosc.K, "min_price": 180, "max_price": 290},
+	{"name": "Tusz Smyk", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 180, "max_price": 290},
 	{"name": "Słuchawki Wokółuszne ANC", "min_price": 250, "max_price": 600},
 	{"name": "Monitor 27\" IPS 165Hz", "min_price": 650, "max_price": 950},
 	{"name": "Konsola do gier 1TB", "min_price": 1800, "max_price": 2400},
@@ -32,7 +33,7 @@ static func generate_random_auction() -> Dictionary:
 	
 	var price = randi_range(item_data["min_price"], item_data["max_price"])
 	# Wylosowanie czasu trwania oferty (np. od 15 do 60 sekund)
-	var duration = randf_range(40.0, 70.0)
+	var duration = randf_range(70.0, 120.0)
 	
 	return {
 		"title": item_data["name"],

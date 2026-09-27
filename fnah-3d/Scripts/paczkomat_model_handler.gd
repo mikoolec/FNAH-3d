@@ -32,8 +32,8 @@ func _process(delta: float) -> void:
 			laststate = "opened"
 	
 func close() -> void:
-	for i in range (1, 5):
-		for j in range (1, 8):
+	for i in range (1, 6):
+		for j in range (1, 9):
 			if( ! ( i==3 && ( j == 3 || j == 4 ) ) ):
 				
 				var nazwa_mesha = "D" + str(i) + str(j)

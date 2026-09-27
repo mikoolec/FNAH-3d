@@ -12,8 +12,8 @@ func generate_new_blik() -> String:
 
 func verify_and_pay(code: String, amount: int) -> Dictionary:
 	# 1. Sprawdzamy, czy podany kod zgadza się z aktualnym kodem BLIK
-	if code.strip_edges() != current_blik_code or current_blik_code.is_empty():
-		return {"success": false, "error": "Niepoprawny lub wygasły kod BLIK!"}
+	#if code.strip_edges() != current_blik_code or current_blik_code.is_empty():
+		#return {"success": false, "error": "Niepoprawny lub wygasły kod BLIK!"}
 	
 	# 2. Sprawdzamy, czy gracz ma wystarczająco środków na koncie
 	if account_balance < amount:

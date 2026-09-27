@@ -11,6 +11,8 @@ extends Control
 var item_pending_purchase: Node = null
 
 func _ready() -> void:
+	GameplayNumbers.wyslij_paczke.connect(_on_wyslij_paczke)
+	
 	# Podłączamy sygnał zakończenia zakupu z widoku CheckoutView
 	if checkout_view:
 		checkout_view.purchase_completed.connect(_on_purchase_completed)
@@ -39,10 +41,17 @@ func open_checkout(title: String, price: int, item_node: Node) -> void:
 
 # Reakcja na udaną płatność BLIK
 func _on_purchase_completed(_title: String, _price: int) -> void:
+	var p = GameplayNumbers.paczka.new(GameplayNumbers.paczko_firmy.INPOST, randi_range(100000, 1000000), get_zawartosc_by_name(_title))
+	
+	# Dajemy paczce losowy czas odliczania np. od 3 do 10 sekund
+	GameplayNumbers.zarejestruj_paczke(p, 3.0, 10.0)
+	
 	# Jeśli kupiony przedmiot wciąż istnieje na liście, usuwamy go
 	if is_instance_valid(item_pending_purchase):
 		item_pending_purchase.queue_free()
 		item_pending_purchase = null
+	
+	
 
 func add_random_auction() -> void:
 	var auction_data = AllegroDatabase.generate_random_auction()
@@ -67,3 +76,17 @@ func schedule_next_spawn() -> void:
 	# Nowe oferty będą się pojawiać losowo co 3 do 8 sekund
 	var random_delay = randf_range(30.0, 60.0)
 	spawn_timer.start(random_delay)
+
+
+func _on_wyslij_paczke(p: GameplayNumbers.paczka) -> void:
+	print("Wysyłam paczkę z zawartością: ", p.zawartosc)
+	# Tutaj podpinasz swoją własną logikę wysyłania!
+
+static func get_zawartosc_by_name(item_name: String):
+	for item in AllegroDatabase.items_catalog:
+		if item["name"] == item_name:
+			# Pobieramy wartość klucza "zawartosc", a jeśli go nie ma, zwracamy null
+			return item.get("zawartosc", null)
+	
+	# Jeśli przedmiot o takiej nazwie w ogóle nie istnieje w katalogu
+	return null

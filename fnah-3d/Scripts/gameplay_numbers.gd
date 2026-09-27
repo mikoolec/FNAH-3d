@@ -32,6 +32,42 @@ var active_ladder_zones: int = 0
 var paczkomaty: Array[stan_paczkomatu] = []
 var paczki: Array[paczka] = []
 
+#----------------------------------------------------------
+
+signal wyslij_paczke(p: paczka)
+
+# Słownik aktywnych paczek i ich timerów
+var aktywne_paczki: Array[paczka] = []
+
+# Funkcja dodająca paczkę do kolejki i uruchamiająca odliczanie
+func zarejestruj_paczke(nowa_paczka: paczka, min_czas: float = 5.0, max_czas: float = 20.0) -> void:
+	aktywne_paczki.append(nowa_paczka)
+	
+	var losowy_czas = randf_range(min_czas, max_czas)
+	print("Paczka [kod: %d] oczekuje na wysyłkę (%d sek)..." % [nowa_paczka.kod, losowy_czas])
+	
+	# Uruchamiamy niezależne odliczanie dla tej konkretnej instancji paczki
+	_odliczaj_dla_paczki(nowa_paczka, losowy_czas)
+
+func _odliczaj_dla_paczki(p: paczka, czas: float) -> void:
+	# Czekamy w tle określoną liczbę sekund
+	await get_tree().create_timer(czas).timeout
+	
+	# Sprawdzamy czy paczka nadal znajduje się w liście aktywnych (czy nie została anulowana)
+	if p in aktywne_paczki:
+		aktywne_paczki.erase(p)
+		print("Czas minął! Emituję event wysłania dla paczki o kodzie: ", p.kod)
+		wyslij_paczke.emit(p)
+		paczki.append(p)
+
+# Opcjonalna funkcja do anulowania odliczania paczki (np. anulowanie zamówienia)
+func anuluj_paczke(p: paczka) -> void:
+	if p in aktywne_paczki:
+		aktywne_paczki.erase(p)
+		print("Anulowano wysyłkę paczki o kodzie: ", p.kod)
+
+#----------------------------------------------------------
+
 func _ready() -> void:
 	fill_paczkomaty()
 	prepare_package(paczko_firmy.INPOST, 111111, paczka_zawartosc.K)
