@@ -40,8 +40,8 @@ func open_checkout(title: String, price: int, item_node: Node) -> void:
 		items_container.hide()
 
 # Reakcja na udaną płatność BLIK
-func _on_purchase_completed(_title: String, _price: int) -> void:
-	var p = GameplayNumbers.paczka.new(randi_range(0, 3), randi_range(100000, 999999), get_zawartosc_by_name(_title))
+func _on_purchase_completed(_title: String, _price: int, _firma: int) -> void:
+	var p = GameplayNumbers.paczka.new(_firma, randi_range(100000, 999999), get_zawartosc_by_name(_title))
 	
 	# Dajemy paczce losowy czas odliczania np. od 3 do 10 sekund
 	GameplayNumbers.zarejestruj_paczke(p, 3.0, 10.0)
