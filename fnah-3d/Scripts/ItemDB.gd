@@ -25,7 +25,8 @@ const ITEM_SCENES = {
 	TUSZC: "res://Scenes/Items/tusz_c.tscn",
 	TUSZM: "res://Scenes/Items/tusz_m.tscn",
 	TUSZY: "res://Scenes/Items/tusz_y.tscn",
-	TUSZK: "res://Scenes/Items/tusz_k.tscn"
+	TUSZK: "res://Scenes/Items/tusz_k.tscn",
+	SHIT: "res://Scenes/Items/shit_item.tscn"
 }
 
 # Bezpieczna funkcja do pobierania sceny

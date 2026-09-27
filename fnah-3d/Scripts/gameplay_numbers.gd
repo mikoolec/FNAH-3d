@@ -37,7 +37,7 @@ func _ready() -> void:
 	prepare_package(paczko_firmy.INPOST, 111111, paczka_zawartosc.K)
 	prepare_package(paczko_firmy.DPD, 111111, paczka_zawartosc.C)
 	prepare_package(paczko_firmy.DHL, 111111, paczka_zawartosc.Y)
-	prepare_package(paczko_firmy.ORLEN, 111111, paczka_zawartosc.M)
+	prepare_package(paczko_firmy.ORLEN, 111111, paczka_zawartosc.Shit)
 
 func is_player_in_any_zone() -> bool:
 	return active_ladder_zones > 0

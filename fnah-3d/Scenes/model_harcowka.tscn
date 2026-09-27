@@ -256,6 +256,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.278313, -0.23170185, -8.69
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18493652, 6.0387115, -0.3393278)
 shape = SubResource("BoxShape3D_pr21s")
 
+[node name="BaseSlot" parent="LadderCollider" index="1" unique_id=1468495647 instance=ExtResource("12_qao3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.922092, -0.28493404, 24.289066)
+slot_type = 0
+default_item = "shit"
+
 [node name="BaseSlot5" parent="." index="37" unique_id=2036686769 groups=["slots"] instance=ExtResource("12_qao3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5374703, 0.8061031, 6.908432)
 slot_type = 0
