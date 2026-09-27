@@ -13,6 +13,7 @@ const INTERNET_PAGES = {
 	"skibidi.pl": "res://Assets/PC/Websites/skibidi_pl.tscn",
 	"sharepoint.com": "res://Assets/PC/Websites/sharepoint.tscn",
 	"email.com": "res://Assets/PC/Websites/email.tscn",
+	"allegro.pl": "res://Assets/PC/Websites/allegro.tscn",
 	"noIntenet": "res://Assets/PC/Websites/noInternet.tscn",
 	"404": "res://Assets/PC/Websites/error_404.tscn" # Strona, gdy link nie istnieje
 }

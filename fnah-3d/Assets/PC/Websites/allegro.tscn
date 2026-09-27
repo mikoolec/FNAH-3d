@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dfwmv2vh2w10c"]
+
+[ext_resource type="Script" uid="uid://ch18s2gfe8cqs" path="res://Assets/PC/Websites/allegro.gd" id="1_7dcmb"]
+[ext_resource type="PackedScene" uid="uid://cx1r02dt4yln8" path="res://Assets/PC/AuctionItem.tscn" id="2_a77ps"]
+[ext_resource type="Texture2D" uid="uid://dm3xhl0hx24k7" path="res://Assets/PC/allegroBaner.png" id="2_vy1rp"]
+[ext_resource type="PackedScene" uid="uid://sjw4w56jbb5u" path="res://Assets/PC/Websites/CheckoutView.tscn" id="4_7dn6x"]
+
+[node name="AllegroPage" type="Control" unique_id=361012666]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7dcmb")
+auction_item_scene = ExtResource("2_a77ps")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1648929847]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer" unique_id=2068192761]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_vy1rp")
+expand_mode = 1
+
+[node name="CheckoutView" parent="VBoxContainer" unique_id=1971405855 instance=ExtResource("4_7dn6x")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1972438834]
+custom_minimum_size = Vector2(683, 320)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ItemsContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1731299014]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=541238167]
