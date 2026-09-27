@@ -18,12 +18,12 @@ static var items_catalog: Array[Dictionary] = [
 	{"name": "Tusz Y", "zawartosc": GameplayNumbers.paczka_zawartosc.Y, "min_price": 150, "max_price": 350},
 	{"name": "Tusz K", "zawartosc": GameplayNumbers.paczka_zawartosc.K, "min_price": 180, "max_price": 290},
 	{"name": "Tusz Smyk", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 180, "max_price": 290},
-	{"name": "Słuchawki Wokółuszne ANC", "min_price": 250, "max_price": 600},
-	{"name": "Monitor 27\" IPS 165Hz", "min_price": 650, "max_price": 950},
-	{"name": "Konsola do gier 1TB", "min_price": 1800, "max_price": 2400},
-	{"name": "Karta Graficzna 12GB VRAM", "min_price": 1600, "max_price": 2300},
-	{"name": "Pendrive 256GB USB 3.2", "min_price": 45, "max_price": 90},
-	{"name": "Fotel Ergonomiczny Biurowy", "min_price": 400, "max_price": 850}
+	{"name": "Słuchawki Wokółuszne ANC", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 250, "max_price": 600},
+	{"name": "Monitor 27\" IPS 165Hz", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 650, "max_price": 950},
+	{"name": "Konsola do gier 1TB", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 1800, "max_price": 2400},
+	{"name": "Karta Graficzna 12GB VRAM", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 1600, "max_price": 2300},
+	{"name": "Pendrive 256GB USB 3.2", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 45, "max_price": 90},
+	{"name": "Fotel Ergonomiczny Biurowy", "zawartosc": GameplayNumbers.paczka_zawartosc.Shit, "min_price": 400, "max_price": 850}
 ]
 
 # Funkcja generująca losową ofertę

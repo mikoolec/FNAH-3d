@@ -4,7 +4,7 @@ extends Node
 var money: float = 1000.0
 var phone_transaction: float = 0
 
-enum paczko_firmy { INPOST, ORLEN, ALLEGRO, DHL, PP, DPD }
+enum paczko_firmy { INPOST, ORLEN, DHL, DPD, ALLEGRO, PP }
 enum paczka_zawartosc { C, M, Y, K, Shit }
 enum paczkomat_state {CLOSED, OPENED}
 

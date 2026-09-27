@@ -41,7 +41,7 @@ func open_checkout(title: String, price: int, item_node: Node) -> void:
 
 # Reakcja na udaną płatność BLIK
 func _on_purchase_completed(_title: String, _price: int) -> void:
-	var p = GameplayNumbers.paczka.new(GameplayNumbers.paczko_firmy.INPOST, randi_range(100000, 1000000), get_zawartosc_by_name(_title))
+	var p = GameplayNumbers.paczka.new(randi_range(0, 3), randi_range(100000, 999999), get_zawartosc_by_name(_title))
 	
 	# Dajemy paczce losowy czas odliczania np. od 3 do 10 sekund
 	GameplayNumbers.zarejestruj_paczke(p, 3.0, 10.0)
@@ -79,7 +79,7 @@ func schedule_next_spawn() -> void:
 
 
 func _on_wyslij_paczke(p: GameplayNumbers.paczka) -> void:
-	print("Wysyłam paczkę z zawartością: ", p.zawartosc)
+	print("Wysyłam paczkę z zawartością: ", p.zawartosc, " ", p.firma)
 	# Tutaj podpinasz swoją własną logikę wysyłania!
 
 static func get_zawartosc_by_name(item_name: String):
