@@ -134,7 +134,7 @@ func _process(_delta: float) -> void:
 		return
 
 	# 3. Wykrywanie myszki przy górnej krawędzi (przejście do PEEKING)
-	if current_phone_state == PhoneState.ACTIVE:
+	'''if current_phone_state == PhoneState.ACTIVE:
 		var mouse_y = get_viewport().get_mouse_position().y
 		if mouse_y <= 200.0: # Myszka przy samej górze
 			set_phone_state(PhoneState.PEEKING)
@@ -146,7 +146,7 @@ func _process(_delta: float) -> void:
 		
 		# Patrzenie w dół w Godocie to kąt ujemny (np. -20 stopni jest niżej niż -15)
 		if camera_pitch_deg < PEEK_LOOK_DOWN_THRESHOLD:
-			set_phone_state(PhoneState.ACTIVE)
+			set_phone_state(PhoneState.ACTIVE)'''
 
 func _physics_process(delta: float) -> void:
 	%InteractText.hide()
