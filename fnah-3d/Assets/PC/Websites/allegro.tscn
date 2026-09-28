@@ -29,6 +29,7 @@ texture = ExtResource("2_vy1rp")
 expand_mode = 1
 
 [node name="CheckoutView" parent="VBoxContainer" unique_id=1971405855 instance=ExtResource("4_7dn6x")]
+visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1972438834]

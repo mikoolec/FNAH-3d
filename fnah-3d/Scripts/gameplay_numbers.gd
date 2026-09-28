@@ -59,6 +59,8 @@ func _odliczaj_dla_paczki(p: paczka, czas: float) -> void:
 		print("Czas minął! Emituję event wysłania dla paczki o kodzie: ", p.kod)
 		wyslij_paczke.emit(p)
 		paczki.append(p)
+		SMSManager.receive_sms("Allegro", "Kod paczki: %d" % p.kod)
+		print(paczki, p.firma)
 
 # Opcjonalna funkcja do anulowania odliczania paczki (np. anulowanie zamówienia)
 func anuluj_paczke(p: paczka) -> void:
