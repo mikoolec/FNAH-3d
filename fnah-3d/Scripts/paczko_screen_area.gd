@@ -4,9 +4,6 @@ extends Area3D
 @export var view_point: Node3D
 @export var main_area_collision: CollisionShape3D # InteractCollision
 
-# NOWA ZMIENNA: Główna kolizja całego modelu paczkomatu (StaticBody3D)
-@export var static_body_collision: CollisionShape3D 
-
 # Referencje dla mechaniki klikania po UI
 @export var screen_area: Area3D           
 @export var viewport: SubViewport         
@@ -17,8 +14,7 @@ var is_player_focused: bool = false:
 	set(value):
 		is_player_focused = value
 		# Kiedy skrypt gracza zdejmuje focus (ustawia na false), włączamy z powrotem kolizję paczkomatu
-		if not value and static_body_collision:
-			static_body_collision.set_deferred("disabled", false)
+		
 
 var is_cover_open: bool = false 
 var player_ref: CharacterBody3D = null
@@ -45,8 +41,7 @@ func focus_player() -> void:
 		main_area_collision.set_deferred("disabled", true)
 		
 	# Wyłączamy główną kolizję bryły, aby nie zasłaniała myszki
-	if static_body_collision:
-		static_body_collision.set_deferred("disabled", true)
+	
 		
 	player_ref.enter_panel(self)
 
