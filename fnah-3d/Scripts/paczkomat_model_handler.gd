@@ -10,6 +10,11 @@ var laststate: String = "closed"
 
 var firma: GameplayNumbers.paczko_firmy
 
+# Tablica przechowująca pary: { "door": Node3D, "spawn": Node3D }
+var lockers: Array[Dictionary] = []
+# Referencja do aktualnie otwartych drzwiczek (żeby zamykać tylko te, które są otwarte)
+var active_door: Node3D = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var material = screen_mesh.get_active_material(0)
@@ -18,8 +23,15 @@ func _ready() -> void:
 		# Wciskamy wygenerowaną teksturę z Viewportu prosto do albedo
 		material.albedo_texture = viewport.get_texture()
 	
-	 # Replace with function body.
-	
+	var miejsca_node = get_node_or_null("miejsca")
+	if miejsca_node:
+		for marker in miejsca_node.get_children():
+			if marker.name.begins_with("M"):
+				var suffix = marker.name.substr(1) # Wyciąga sam numer, np. "12", "34"
+				var door = get_node_or_null("D" + suffix)
+				if door:
+					lockers.append({ "door": door, "spawn": marker })
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,35 +44,29 @@ func _process(delta: float) -> void:
 			laststate = "opened"
 	
 func close() -> void:
-	for i in range (1, 6):
-		for j in range (1, 9):
-			if( ! ( i==3 && ( j == 3 || j == 4 ) ) ):
-				
-				var nazwa_mesha = "D" + str(i) + str(j)
-				var drzwiczki = get_node_or_null(nazwa_mesha)
-				var tween = create_tween()
-				tween.tween_property(drzwiczki, "rotation_degrees:y", 00.0, 0.5).set_trans(Tween.TRANS_SINE)
+	if active_door:
+		var tween = create_tween()
+		tween.tween_property(active_door, "rotation_degrees:y", 0.0, 0.5).set_trans(Tween.TRANS_SINE)
+		active_door = null
 
 
 func open( srodek: GameplayNumbers.paczka_zawartosc ) -> void:
-	print("lepszy kod")
-	var x = -1
-	var y = -1
-	while ( (x == 3 and y == 3) or ( x == 3 and y == 4 ) or ( x<1 and y<1 ) ):
-		x = randi()%8+1
-		y = randi()%5+1
-	print("x ",x," y ",y)
+	#print("lepszy kod")
 	
-	var nazwa_mesha = "D" + str(y) + str(x)
-	var drzwiczki = get_node_or_null(nazwa_mesha)
+	if lockers.is_empty():
+		print("Brak skonfigurowanych skrytek w modelu!")
+		return
+
+	# Losujemy jedną wolną/dowolną skrytkę z naszej tablicy
+	var chosen_locker: Dictionary = lockers.pick_random()
+	var drzwiczki: Node3D = chosen_locker["door"]
+	var punkt_spawnu: Node3D = chosen_locker["spawn"]
+
+	active_door = drzwiczki
 	var tween = create_tween()
-	if drzwiczki:
-		tween.tween_property(drzwiczki, "rotation_degrees:y", -90.0, 0.5).set_trans(Tween.TRANS_SINE)
-		print("rotato rotato")
-	else:
-		print("blad brak drzwiczek")
+	tween.tween_property(drzwiczki, "rotation_degrees:y", -90.0, 0.5).set_trans(Tween.TRANS_SINE)
 	
-	var punkt_spawnu = get_node_or_null("miejsca/M" + str(y) + str(x) )
+	
 	if punkt_spawnu:
 		if slot_scene:
 			var new_slot = slot_scene.instantiate()
@@ -94,14 +100,14 @@ func open( srodek: GameplayNumbers.paczka_zawartosc ) -> void:
 			# 2. Ręcznie przypisujemy mu globalną transformację markera M...
 			#   new_slot.global_position = $".".global_position + punkt_spawnu.global_position
 			
-			print("Globalna pozycja po wymuszeniu: ", new_slot.global_position)
-			print("Próba postawienia na: ", punkt_spawnu.global_position)
+			#print("Globalna pozycja po wymuszeniu: ", new_slot.global_position)
+			#print("Próba postawienia na: ", punkt_spawnu.global_position)
 
-			print("postawiono slota ig bruv")
+			print("postawiono paczkę ", srodek)
 			
 			
 			
 		else:
 			print("nie ma slot scene")
 	else:
-		print("Nie znaleziono markera: x", x,", y",y)
+		print("Nie znaleziono markera spawn")

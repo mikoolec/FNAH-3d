@@ -25,12 +25,12 @@
 [ext_resource type="PackedScene" uid="uid://cd2s7p1epdb4f" path="res://Scenes/rtv_tower.tscn" id="19_x4d3l"]
 [ext_resource type="PackedScene" uid="uid://dtldg80lddwet" path="res://Scenes/ladder_collider.tscn" id="20_ip1yl"]
 [ext_resource type="PackedScene" uid="uid://cqlfj7dc3nbgt" path="res://Scenes/router.tscn" id="21_coq7e"]
-[ext_resource type="PackedScene" uid="uid://b3xencevhale2" path="res://Assets/blend/automaty paczkowe/pocztapolskomat.blend" id="24_cuka7"]
 [ext_resource type="PackedScene" uid="uid://bdm2gggiley5n" path="res://Scenes/automaty paczkowe/paczkomat_inpost.tscn" id="26_ax3ff"]
 [ext_resource type="PackedScene" uid="uid://uxjs5dnqhbcc" path="res://Scenes/automaty paczkowe/dpdomat.tscn" id="27_4jgok"]
 [ext_resource type="PackedScene" uid="uid://bxbge4pqrebhx" path="res://Scenes/automaty paczkowe/dhlomat.tscn" id="28_a847e"]
 [ext_resource type="PackedScene" path="res://Scenes/automaty paczkowe/orlenomat.tscn" id="29_ymqv8"]
 [ext_resource type="PackedScene" uid="uid://gljn8olioo66" path="res://Scenes/gambling_machine.tscn" id="30_u38um"]
+[ext_resource type="PackedScene" uid="uid://dtxxw5v3cc26i" path="res://Scenes/automaty paczkowe/pocztapolskomat.tscn" id="31_cuka7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oppbp"]
 size = Vector3(0.903183, 1.6994629, 1.2485352)
@@ -274,9 +274,6 @@ default_item = "shit"
 [node name="gambling machine" parent="LadderCollider" index="2" unique_id=1062082609 instance=ExtResource("30_u38um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.092625, -0.27131963, 28.10332)
 
-[node name="pocztapolskomat" parent="LadderCollider" index="3" unique_id=906543463 instance=ExtResource("24_cuka7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7981377, 1.1733787, -1.4602766)
-
 [node name="BaseSlot5" parent="." index="37" unique_id=2036686769 groups=["slots"] instance=ExtResource("12_qao3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5374703, 0.8061031, 6.908432)
 slot_type = 0
@@ -350,6 +347,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.039186, -0.51332355, 17.38
 
 [node name="BigTrash" parent="." index="57" unique_id=435024031 instance=ExtResource("17_tl1uk")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -37.960228, 0.3810287, 0.4885292)
+
+[node name="pocztapolskomat" parent="." index="60" unique_id=1014151608 instance=ExtResource("31_cuka7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.433132, 0.9336667, -9.48647)
 
 [editable path="Chair"]
 [editable path="kanapa"]
