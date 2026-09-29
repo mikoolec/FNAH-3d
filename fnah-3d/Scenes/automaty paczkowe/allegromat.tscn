@@ -138,8 +138,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4851177, -1.3761206, 1.7297
 [node name="M24" type="Node3D" parent="miejsca" index="23" unique_id=2094416146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5302863, -0.68297154, 1.7026937)
 
-[node name="M25" type="Node3D" parent="miejsca" index="24" unique_id=222881212]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.512866, -0.6414403, 2.4967334)
+[node name="M25" type="Node3D" parent="miejsca" index="24" unique_id=762677298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.717828, -1.1806269, 2.306825)
 
-[node name="M26" type="Node3D" parent="miejsca" index="25" unique_id=762677298]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.717828, -1.2828805, 2.306825)
+[node name="M26" type="Node3D" parent="miejsca" index="25" unique_id=222881212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.512866, -0.6414403, 2.4967334)

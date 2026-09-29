@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://chvmcyqpd4glb" path="res://Scripts/paczkomat_model_handler.gd" id="2_y2eup"]
 [ext_resource type="PackedScene" uid="uid://cg0kbbckawmtl" path="res://Scenes/automaty paczkowe/paczkomat_ui.tscn" id="3_1hk1u"]
 [ext_resource type="PackedScene" uid="uid://xkdmfbdncti2" path="res://Scenes/base_slot.tscn" id="3_1rdl7"]
-[ext_resource type="Script" path="res://Scripts/paczko_screen_area.gd" id="4_wvjut"]
+[ext_resource type="Script" uid="uid://g57f3ypy4yd7" path="res://Scripts/paczko_screen_area.gd" id="4_wvjut"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1hk1u"]
 size = Vector3(0.73706055, 0.46166992, 0.030517578)
@@ -34,229 +34,229 @@ slot_scene = ExtResource("3_1rdl7")
 viewport = NodePath("SubViewport")
 screen_mesh = NodePath("ScreenDisplay")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D11" parent_id_path=PackedInt32Array(180170103) index="0" unique_id=7534419]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D11" parent_id_path=PackedInt32Array(2011733849) index="0" unique_id=7534419]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D11/StaticBody3D" index="0" unique_id=1262586321]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D12" parent_id_path=PackedInt32Array(2009669586) index="0" unique_id=1591277960]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D12" parent_id_path=PackedInt32Array(1653454391) index="0" unique_id=1591277960]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D12/StaticBody3D" index="0" unique_id=1868993301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D13" parent_id_path=PackedInt32Array(1765514614) index="0" unique_id=1147017061]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D13" parent_id_path=PackedInt32Array(1363495530) index="0" unique_id=1147017061]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D13/StaticBody3D" index="0" unique_id=341072128]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D14" parent_id_path=PackedInt32Array(443571417) index="0" unique_id=1406631674]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D14" parent_id_path=PackedInt32Array(1402932620) index="0" unique_id=1406631674]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D14/StaticBody3D" index="0" unique_id=431831056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D15" parent_id_path=PackedInt32Array(10152817) index="0" unique_id=1085290267]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D15" parent_id_path=PackedInt32Array(499008612) index="0" unique_id=1085290267]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D15/StaticBody3D" index="0" unique_id=1996159560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D16" parent_id_path=PackedInt32Array(1521147002) index="0" unique_id=1028334006]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D16" parent_id_path=PackedInt32Array(1348483617) index="0" unique_id=1028334006]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D16/StaticBody3D" index="0" unique_id=641803805]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D17" parent_id_path=PackedInt32Array(1952471889) index="0" unique_id=1065969391]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D17" parent_id_path=PackedInt32Array(1902664771) index="0" unique_id=1065969391]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D17/StaticBody3D" index="0" unique_id=982946848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D18" parent_id_path=PackedInt32Array(1833041010) index="0" unique_id=149140071]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D18" parent_id_path=PackedInt32Array(2109741108) index="0" unique_id=149140071]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D18/StaticBody3D" index="0" unique_id=986880563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D21" parent_id_path=PackedInt32Array(176209647) index="0" unique_id=1964909682]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D21" parent_id_path=PackedInt32Array(96468701) index="0" unique_id=1964909682]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D21/StaticBody3D" index="0" unique_id=1396466824]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D22" parent_id_path=PackedInt32Array(1947481937) index="0" unique_id=897998723]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D22" parent_id_path=PackedInt32Array(382654285) index="0" unique_id=897998723]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D22/StaticBody3D" index="0" unique_id=631896683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D23" parent_id_path=PackedInt32Array(1119043866) index="0" unique_id=1302014875]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D23" parent_id_path=PackedInt32Array(1303293272) index="0" unique_id=1302014875]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D23/StaticBody3D" index="0" unique_id=1082602638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D24" parent_id_path=PackedInt32Array(1309290105) index="0" unique_id=201849560]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D24" parent_id_path=PackedInt32Array(1421879227) index="0" unique_id=201849560]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D24/StaticBody3D" index="0" unique_id=340788539]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D25" parent_id_path=PackedInt32Array(1402958331) index="0" unique_id=290567871]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D25" parent_id_path=PackedInt32Array(1666556868) index="0" unique_id=290567871]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D25/StaticBody3D" index="0" unique_id=1910623279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D26" parent_id_path=PackedInt32Array(1952817593) index="0" unique_id=134157101]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D26" parent_id_path=PackedInt32Array(602981146) index="0" unique_id=134157101]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D26/StaticBody3D" index="0" unique_id=1248594535]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D27" parent_id_path=PackedInt32Array(1402040130) index="0" unique_id=1105468112]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D27" parent_id_path=PackedInt32Array(2100403866) index="0" unique_id=1105468112]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D27/StaticBody3D" index="0" unique_id=1049047370]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D28" parent_id_path=PackedInt32Array(1913462924) index="0" unique_id=2136810229]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D28" parent_id_path=PackedInt32Array(1509508222) index="0" unique_id=2136810229]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D28/StaticBody3D" index="0" unique_id=64642317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D31" parent_id_path=PackedInt32Array(1422226454) index="0" unique_id=487116068]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D31" parent_id_path=PackedInt32Array(1043586595) index="0" unique_id=487116068]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D31/StaticBody3D" index="0" unique_id=327905543]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D32" parent_id_path=PackedInt32Array(2049573106) index="0" unique_id=1948075489]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D32" parent_id_path=PackedInt32Array(1961164321) index="0" unique_id=1948075489]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D32/StaticBody3D" index="0" unique_id=954570223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D43" parent_id_path=PackedInt32Array(1254225899) index="0" unique_id=1464264649]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="D43/StaticBody3D" index="0" unique_id=2050301229]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
-shape = SubResource("BoxShape3D_1hk1u")
-
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D35" parent_id_path=PackedInt32Array(386969136) index="0" unique_id=16360752]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D35" parent_id_path=PackedInt32Array(1795773316) index="0" unique_id=16360752]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D35/StaticBody3D" index="0" unique_id=1717816559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D36" parent_id_path=PackedInt32Array(143445247) index="0" unique_id=1721196327]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D36" parent_id_path=PackedInt32Array(235487768) index="0" unique_id=1721196327]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D36/StaticBody3D" index="0" unique_id=1941318794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D37" parent_id_path=PackedInt32Array(1546576880) index="0" unique_id=244884620]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D37" parent_id_path=PackedInt32Array(1344065060) index="0" unique_id=244884620]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D37/StaticBody3D" index="0" unique_id=611856056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D38" parent_id_path=PackedInt32Array(1079432032) index="0" unique_id=525705053]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D38" parent_id_path=PackedInt32Array(1611331435) index="0" unique_id=525705053]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D38/StaticBody3D" index="0" unique_id=1863419075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D41" parent_id_path=PackedInt32Array(82350665) index="0" unique_id=1983377579]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D41" parent_id_path=PackedInt32Array(61700454) index="0" unique_id=1983377579]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D41/StaticBody3D" index="0" unique_id=716858055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D42" parent_id_path=PackedInt32Array(1428405841) index="0" unique_id=452907967]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D42" parent_id_path=PackedInt32Array(783776498) index="0" unique_id=452907967]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D42/StaticBody3D" index="0" unique_id=531896784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D44" parent_id_path=PackedInt32Array(1861661615) index="0" unique_id=68553321]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D43" parent_id_path=PackedInt32Array(1906700540) index="0" unique_id=1464264649]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D43/StaticBody3D" index="0" unique_id=2050301229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
+shape = SubResource("BoxShape3D_1hk1u")
+
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D44" parent_id_path=PackedInt32Array(1183119757) index="0" unique_id=68553321]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D44/StaticBody3D" index="0" unique_id=2140713872]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D45" parent_id_path=PackedInt32Array(141109442) index="0" unique_id=210513176]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D45" parent_id_path=PackedInt32Array(420849992) index="0" unique_id=210513176]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D45/StaticBody3D" index="0" unique_id=1463270578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D46" parent_id_path=PackedInt32Array(1503522267) index="0" unique_id=853207575]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D46" parent_id_path=PackedInt32Array(2050380293) index="0" unique_id=853207575]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D46/StaticBody3D" index="0" unique_id=32700015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D47" parent_id_path=PackedInt32Array(1761552630) index="0" unique_id=378352938]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D47" parent_id_path=PackedInt32Array(432836326) index="0" unique_id=378352938]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D47/StaticBody3D" index="0" unique_id=372514802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D48" parent_id_path=PackedInt32Array(1434242211) index="0" unique_id=645268617]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D48" parent_id_path=PackedInt32Array(77300908) index="0" unique_id=645268617]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D48/StaticBody3D" index="0" unique_id=111583757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D51" parent_id_path=PackedInt32Array(350799026) index="0" unique_id=1884781939]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D51" parent_id_path=PackedInt32Array(1631865250) index="0" unique_id=1884781939]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D51/StaticBody3D" index="0" unique_id=1995181808]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D52" parent_id_path=PackedInt32Array(749342062) index="0" unique_id=1611506848]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D52" parent_id_path=PackedInt32Array(1361838422) index="0" unique_id=1611506848]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D52/StaticBody3D" index="0" unique_id=1843703110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D53" parent_id_path=PackedInt32Array(265332704) index="0" unique_id=574151272]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D53" parent_id_path=PackedInt32Array(1406284352) index="0" unique_id=574151272]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D53/StaticBody3D" index="0" unique_id=1428237435]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D54" parent_id_path=PackedInt32Array(847516317) index="0" unique_id=1471881657]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D54" parent_id_path=PackedInt32Array(1699553056) index="0" unique_id=1471881657]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D54/StaticBody3D" index="0" unique_id=754625197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D55" parent_id_path=PackedInt32Array(1053127774) index="0" unique_id=1918007737]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D55" parent_id_path=PackedInt32Array(1490563513) index="0" unique_id=1918007737]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D55/StaticBody3D" index="0" unique_id=247507940]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D56" parent_id_path=PackedInt32Array(1806622938) index="0" unique_id=1410428575]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D56" parent_id_path=PackedInt32Array(290464485) index="0" unique_id=1410428575]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D56/StaticBody3D" index="0" unique_id=1423976511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D57" parent_id_path=PackedInt32Array(1282447730) index="0" unique_id=1363673578]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D57" parent_id_path=PackedInt32Array(1027845172) index="0" unique_id=1363673578]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D57/StaticBody3D" index="0" unique_id=1887907408]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
 shape = SubResource("BoxShape3D_1hk1u")
 
-[node name="StaticBody3D" type="AnimatableBody3D" parent="D58" parent_id_path=PackedInt32Array(1061673443) index="0" unique_id=564587773]
+[node name="StaticBody3D" type="AnimatableBody3D" parent="D58" parent_id_path=PackedInt32Array(2065015161) index="0" unique_id=564587773]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="D58/StaticBody3D" index="0" unique_id=741480971]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34484863, -0.3651123, 0.014770478)
@@ -275,12 +275,11 @@ render_target_update_mode = 4
 
 [node name="PaczkomatUI" parent="SubViewport" index="0" unique_id=2147159687 instance=ExtResource("3_1hk1u")]
 
-[node name="InteractArea" type="Area3D" parent="." index="47" unique_id=659556473 node_paths=PackedStringArray("view_point", "main_area_collision", "static_body_collision", "screen_area", "viewport", "screen_mesh")]
+[node name="InteractArea" type="Area3D" parent="." index="47" unique_id=659556473 node_paths=PackedStringArray("view_point", "main_area_collision", "screen_area", "viewport", "screen_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1662884, -0.26559293, 0.5396421)
 script = ExtResource("4_wvjut")
 view_point = NodePath("view_point")
 main_area_collision = NodePath("CollisionShape3D")
-static_body_collision = NodePath("../D11/StaticBody3D/CollisionShape3D")
 screen_area = NodePath("../ScreenArea")
 viewport = NodePath("../SubViewport")
 screen_mesh = NodePath("../ScreenDisplay")
@@ -360,7 +359,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7015233, -0.12203577, 0.16
 [node name="M32" type="Node3D" parent="miejsca" index="17" unique_id=575976622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9653792, -0.12203577, 0.1621474)
 
-[node name="M34" type="Node3D" parent="miejsca" index="18" unique_id=262194489]
+[node name="M43" type="Node3D" parent="miejsca" index="18" unique_id=262194489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40331697, -0.12203577, 0.1621474)
 
 [node name="M35" type="Node3D" parent="miejsca" index="19" unique_id=1425449220]

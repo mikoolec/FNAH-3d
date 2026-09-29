@@ -31,7 +31,7 @@ func _ready() -> void:
 				var door = get_node_or_null("D" + suffix)
 				if door:
 					lockers.append({ "door": door, "spawn": marker })
-
+	#test_open_and_fill_all.call_deferred()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -111,3 +111,51 @@ func open( srodek: GameplayNumbers.paczka_zawartosc ) -> void:
 			print("nie ma slot scene")
 	else:
 		print("Nie znaleziono markera spawn")
+
+func test_open_and_fill_all(srodek: GameplayNumbers.paczka_zawartosc = GameplayNumbers.paczka_zawartosc.C) -> void:
+	if lockers.is_empty():
+		print("Test przerwany: brak skrytek w 'lockers'!")
+		return
+		
+	if not slot_scene:
+		print("Test przerwany: brak przypisanego 'slot_scene'!")
+		return
+
+	print("Rozpoczynam napełnianie i otwieranie wszystkich skrytek: ", lockers.size())
+
+	for locker in lockers:
+		var drzwiczki: Node3D = locker["door"]
+		var punkt_spawnu: Node3D = locker["spawn"]
+		
+		# 1. Otwieranie drzwiczek
+		if drzwiczki:
+			var tween = create_tween()
+			tween.tween_property(drzwiczki, "rotation_degrees:y", -90.0, 0.5).set_trans(Tween.TRANS_SINE)
+		
+		# 2. Tworzenie i konfiguracja paczki/slota
+		if punkt_spawnu:
+			var new_slot = slot_scene.instantiate()
+			new_slot.slot_type = new_slot.SlotType.PARCEL
+			
+			match srodek:
+				GameplayNumbers.paczka_zawartosc.C:
+					new_slot.default_item = ItemDB.TUSZC
+				GameplayNumbers.paczka_zawartosc.M:
+					new_slot.default_item = ItemDB.TUSZM
+				GameplayNumbers.paczka_zawartosc.Y:
+					new_slot.default_item = ItemDB.TUSZY
+				GameplayNumbers.paczka_zawartosc.K:
+					new_slot.default_item = ItemDB.TUSZK
+				GameplayNumbers.paczka_zawartosc.Shit:
+					new_slot.default_item = ItemDB.SHIT
+
+			new_slot.current_item = new_slot.default_item
+			new_slot.paczkomat_origin = firma
+			new_slot.add_to_group("slots")
+			
+			# 3. Dodanie do sceny i pozycjonowanie
+			get_tree().current_scene.add_child(new_slot)
+			
+			var obrocona_pozycja_m = global_basis * punkt_spawnu.position
+			new_slot.global_position = global_position + obrocona_pozycja_m
+			new_slot.global_rotation = global_rotation + punkt_spawnu.rotation
