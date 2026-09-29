@@ -10,10 +10,7 @@ extends Area3D
 @export var screen_mesh: MeshInstance3D   
 
 # Używamy settera, aby wykryć, kiedy gracz wciska ESC i wychodzi
-var is_player_focused: bool = false:
-	set(value):
-		is_player_focused = value
-		# Kiedy skrypt gracza zdejmuje focus (ustawia na false), włączamy z powrotem kolizję paczkomatu
+var is_player_focused: bool = false
 		
 
 var is_cover_open: bool = false 
