@@ -118,7 +118,7 @@ func _spin_single_reel(reel: MeshInstance3D, target_index: int, full_spins: int,
 			elif (pos1 == pos2 || pos1 == pos3 || pos2 == pos3):
 				multiplier = 1.5
 			else:
-				multiplier = 0.25
+				multiplier = 0.35
 			multiplier += check_pos(pos1)
 			multiplier += check_pos(pos2)
 			multiplier += check_pos(pos3)
