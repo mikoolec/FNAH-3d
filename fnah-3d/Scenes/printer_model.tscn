@@ -1,5 +1,15 @@
 [gd_scene format=3 uid="uid://dbu1cmyjeiihj"]
 
 [ext_resource type="PackedScene" uid="uid://o5g6c4fvj73n" path="res://Assets/blend/printer.blend" id="1_dftyo"]
+[ext_resource type="PackedScene" uid="uid://ewuhrwvuuye5" path="res://Scenes/printer_inks_animations.tscn" id="2_twqjn"]
+[ext_resource type="PackedScene" uid="uid://dggj0fkfl73bc" path="res://Scenes/tusze_display.tscn" id="3_3irum"]
 
 [node name="printer" unique_id=20322248 instance=ExtResource("1_dftyo")]
+
+[node name="Skeleton3D" parent="ArmaturePaper" parent_id_path=PackedInt32Array(1268026851) index="0" unique_id=1094624234]
+bones/0/position = Vector3(0.13937363, -0.43761146, -5.879698e-08)
+
+[node name="printer_inks_animations" parent="." index="4" unique_id=462069368 instance=ExtResource("2_twqjn")]
+
+[node name="tusze_display" parent="." index="5" unique_id=1019394067 instance=ExtResource("3_3irum")]
+transform = Transform3D(-0.17299998, 0, 1.5124138e-08, 0, 0.99999994, 0, -1.5124138e-08, 0, -0.17299998, 0.3021462, -0.04988693, 0.29887977)

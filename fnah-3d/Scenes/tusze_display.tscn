@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dggj0fkfl73bc"]
+
+[ext_resource type="Script" uid="uid://caau7nn3gmnmv" path="res://Scripts/tusze_display.gd" id="1_4rgxk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plxiu"]
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vqkh"]
+bg_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rgxk"]
+bg_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kokkj"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ackr6"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4rgxk"]
+
+[node name="tusze_display" type="Node3D" unique_id=1019394067]
+script = ExtResource("1_4rgxk")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1032898612]
+transparent_bg = true
+render_target_update_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport" unique_id=2080818898]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="BarC" type="ProgressBar" parent="SubViewport/VBoxContainer" unique_id=164458933]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_plxiu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3vqkh")
+show_percentage = false
+
+[node name="BarM" type="ProgressBar" parent="SubViewport/VBoxContainer" unique_id=187981509]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_plxiu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4rgxk")
+show_percentage = false
+
+[node name="BarY" type="ProgressBar" parent="SubViewport/VBoxContainer" unique_id=1358829312]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_plxiu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kokkj")
+show_percentage = false
+
+[node name="BarK" type="ProgressBar" parent="SubViewport/VBoxContainer" unique_id=1511865957]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_plxiu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ackr6")
+show_percentage = false
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="." unique_id=2075380008]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_4rgxk")

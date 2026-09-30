@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfr14rjyslotr"
-path="res://.godot/imported/kartka.blend-e1a1323fc69b054af916e3b2f89e5296.scn"
+uid="uid://c0dw0bxtjopql"
+path="res://.godot/imported/shitItem.blend-c8e9cc4c27346e0be1aef6cb7d117a6c.scn"
 
 [deps]
 
-source_file="res://Assets/blend/kartka.blend"
-dest_files=["res://.godot/imported/kartka.blend-e1a1323fc69b054af916e3b2f89e5296.scn"]
+source_file="res://Assets/blend/items/shitItem.blend"
+dest_files=["res://.godot/imported/shitItem.blend-c8e9cc4c27346e0be1aef6cb7d117a6c.scn"]
 
 [params]
 

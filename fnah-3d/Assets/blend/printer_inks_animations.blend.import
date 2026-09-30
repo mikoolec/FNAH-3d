@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bxnxu20ox7odi"
-path="res://.godot/imported/tuszC.blend-eca4983c03183dc27bc629633296d796.scn"
+uid="uid://dqgmf518fajff"
+path="res://.godot/imported/printer_inks_animations.blend-8bd183f874e95686c0de894db3771329.scn"
 
 [deps]
 
-source_file="res://Assets/blend/tuszC.blend"
-dest_files=["res://.godot/imported/tuszC.blend-eca4983c03183dc27bc629633296d796.scn"]
+source_file="res://Assets/blend/printer_inks_animations.blend"
+dest_files=["res://.godot/imported/printer_inks_animations.blend-8bd183f874e95686c0de894db3771329.scn"]
 
 [params]
 
