@@ -7,6 +7,9 @@ extends StaticBody3D
 var kartkaIn:bool = false
 var kartkaSave:bool = false
 
+var tusze:Array[int] = [100, 100, 100, 100]
+enum kolory { CYAN, MAGENTA, YELLOW, KEY }
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	anim_player.play("Use")
@@ -21,3 +24,9 @@ func _process(delta: float) -> void:
 	elif !kartkaIn and kartkaSave:
 		kartkaSave = false
 		anim_player.play("Use")
+		
+		print("Poziom tuszu:")
+		for i in range(4):
+			tusze[i] -= randi_range(5, 20)
+			if tusze[i] < 0: tusze[i] = 0
+			print("%d" % tusze[i])

@@ -36,16 +36,25 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	#rozpocznij_drukowanie(dropped_file_name)
 
 func rozpocznij_drukowanie(file_name: String) -> void:
-	if drukarka.kartkaIn:
-		print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
-		drukarka.kartkaIn = false
-		$LabelPrinterApp.text = "Drukowanie..."
-		file_load_window.start_download(file_name, true)
-	else:
+	if not drukarka.kartkaIn:
 		print("Drukarka: Brak papieru.")
 		#$LabelPrinterApp.text = "Drukarka: Brak papieru."
 		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", randi_range(10, 20), 0.03)
+		return
 	
+	var tusz:bool = true
+	for i in range(4):
+		if drukarka.tusze[i] == 0:
+			tusz = false
+			WindowManager.spawn_window_cascade("DAJ MNIE %s" % drukarka.kolory.keys()[i], randi_range(1, 3), 0.03)
+	
+	if not tusz: return
+	
+	
+	print("Drukarka przyjęła plik: ", file_name, ". Rozpoczynam drukowanie...")
+	drukarka.kartkaIn = false
+	$LabelPrinterApp.text = "Drukowanie..."
+	file_load_window.start_download(file_name, true)
 
 
 func _on_print_btn_pressed() -> void:
