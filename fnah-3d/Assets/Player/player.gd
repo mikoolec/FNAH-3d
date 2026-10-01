@@ -64,6 +64,11 @@ var current_phone_state: PhoneState = PhoneState.HIDDEN
 
 var active_tween: Tween
 
+var is_paying_wireless: bool = false
+
+@export var slot_scene: PackedScene
+
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	set_phone_state(PhoneState.HIDDEN)
@@ -72,7 +77,7 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	# 1. Obsługa przycisku TAB (wyciąganie/chowanie telefonu)
-	if event.is_action_pressed("ui_focus_next") and not is_using_computer and not is_using_panel:
+	if event.is_action_pressed("ui_focus_next") and not is_using_computer and not is_using_panel and not is_paying_wireless:
 		toggle_phone()
 		get_viewport().set_input_as_handled()
 		return
@@ -128,6 +133,8 @@ func _unhandled_input(event):
 	
 	if is_using_panel and event.is_action_pressed("ui_cancel"):
 		exit_panel()
+	
+	
 
 func _process(_delta: float) -> void:
 	if current_phone_state == PhoneState.HIDDEN:
@@ -152,30 +159,59 @@ func _physics_process(delta: float) -> void:
 	%InteractText.hide()
 	%Interact2Text.hide()
 	
-	if %SeeCast.is_colliding() and !is_using_computer:
-		var target = %SeeCast.get_collider()
-		
-		if target != null and is_instance_valid(target) and target.has_method("interact"):
+	var can_interact_world = not is_using_computer and not is_using_panel and current_phone_state != PhoneState.ACTIVE
+
+	if can_interact_world:
+		var target = get_focused_interactive_target()
+		var is_valid_target = target != null and is_instance_valid(target)
+		var is_slot = is_valid_target and target.has_method("_update_visuals")
+
+		# Przedmioty podnoszone/obsługiwane pod RMB
+		var is_pickup_item = is_slot and ("slot_type" in target) and (
+			target.slot_type == target.SlotType.SINGLE or 
+			target.slot_type == target.SlotType.PARCEL or 
+			target.slot_type == target.SlotType.SPAWNER
+		)
+
+		# Stacje i urządzenia slotowe działające pod LMB (Drukarka, Śmietniki)
+		var is_machine_slot = is_slot and ("slot_type" in target) and (
+			target.slot_type == target.SlotType.PRINTER or 
+			target.slot_type == target.SlotType.TRASH or 
+			target.slot_type == target.SlotType.BIGTRASH
+		)
+
+		# =========================================================================
+		# 1. LEWY PRZYCISK MYSZY (LMB / interact) - Świat, PC, Drukarka, Śmietniki
+		# =========================================================================
+		if is_valid_target and not is_pickup_item and target.has_method("interact"):
 			if target == computer:
-				if current_state == State.SITTING:  
+				if current_state == State.SITTING:
 					%InteractText.show()
 					if Input.is_action_just_pressed("interact"):
 						target.interact()
 			else:
-				# Dla wszystkich innych obiektów (sloty, krzesła itp.)
 				%InteractText.show()
 				if Input.is_action_just_pressed("interact"):
-					# Sprawdzamy, czy obiekt to nasz slot (czy oczekuje argumentu 'player')
-					if is_instance_valid(target):
-						if target.has_method("_update_visuals"): # Tylko ItemSlot ma tę funkcję
-							target.interact(self)
-						else:
-							target.interact() # Dla krzesła i reszty świata bez argumentu
-		if target != null and is_instance_valid(target):
-			if target.has_method("interact2"):
-				%Interact2Text.show()
-				if Input.is_action_just_pressed("interact2"):
-					target.interact2()
+					if is_machine_slot:
+						target.interact(self) # Przekazuje gracza do śmietnika / drukarki
+					else:
+						target.interact()
+
+		# =========================================================================
+		# 2. PRAWY PRZYCISK MYSZY (RMB / interact2) - Podnoszenie, interact2, odkładanie
+		# =========================================================================
+		if is_pickup_item:
+			%Interact2Text.show()
+			if Input.is_action_just_pressed("interact2"):
+				target.interact(self)
+		elif is_valid_target and target.has_method("interact2"):
+			%Interact2Text.show()
+			if Input.is_action_just_pressed("interact2"):
+				target.interact2()
+		else:
+			# Brak celu ze slotem RMB / interact2 -> odłożenie przedmiotu z dłoni
+			if Input.is_action_just_pressed("interact2"):
+				try_drop_item()
 	
 	# Dodawanie grawitacji (Naprawiony podwójny minus)
 	if not is_on_floor():
@@ -584,3 +620,138 @@ func _animate_phone_to(target_position: Vector3) -> void:
 
 	active_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	active_tween.tween_property(phone_model, "position", target_position, 0.25)
+
+func pay_wireless(pay_punkt: Node3D, on_paid_callback: Callable = Callable()) -> void:
+	if not phone_model or not is_instance_valid(pay_punkt) or is_paying_wireless:
+		return
+
+	is_paying_wireless = true
+
+	# 1. Jeśli telefon był otwarty, natychmiast chowamy kursor i ustawiamy stan na HIDDEN
+	if current_phone_state == PhoneState.ACTIVE:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		current_phone_state = PhoneState.HIDDEN
+
+	if active_tween and active_tween.is_running():
+		active_tween.kill()
+
+	# 2. Odpinamy telefon od kamery i przepinamy do świata (z zachowaniem pozycji w przestrzeni)
+	var original_parent = phone_model.get_parent() # To nasza Camera3D
+	phone_model.reparent(get_tree().current_scene, true)
+
+	var tween = create_tween()
+
+	# 3. Lot do czytnika NFC (0.2s)
+	tween.tween_property(phone_model, "global_transform", pay_punkt.global_transform, 0.2)\
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+	# 4. Zawiśnięcie przy czytniku (0.25s)
+	tween.tween_interval(0.5)
+
+	# 5. Wywołanie płatności (dźwięk, potrącenie gotówki)
+	if on_paid_callback.is_valid():
+		tween.tween_callback(on_paid_callback)
+
+	# 6. Lot powrotny w kierunku schowanej pozycji pod kamerą
+	# Wyliczamy gdzie w świecie znajduje się aktualnie punkt PHONE_POS_HIDDEN
+	tween.tween_method(
+		func(t: float):
+			var target_world_pos = original_parent.to_global(PHONE_POS_HIDDEN)
+			phone_model.global_position = phone_model.global_position.lerp(target_world_pos, t),
+		0.0, 1.0, 0.25
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	# 7. Po zakończeniu: powrót do pierwotnej hierarchii i reset flag
+	tween.finished.connect(func():
+		phone_model.reparent(original_parent, false)
+		phone_model.position = PHONE_POS_HIDDEN
+		phone_model.rotation = Vector3.ZERO
+		is_paying_wireless = false
+	)
+
+
+const DROP_REACH_DISTANCE: float = 4.0 # Zasięg odkładania w metrach
+
+func try_drop_item() -> void:
+	if holding_item == ItemDB.NONE or not slot_scene:
+		return
+
+	# 1. Tworzymy dłuższy promień bezpośrednio z kamery
+	var space_state = get_world_3d().direct_space_state
+	var ray_origin = camera.global_position
+	var ray_end = ray_origin + camera.project_ray_normal(get_viewport().get_mouse_position()) * DROP_REACH_DISTANCE
+
+	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	# Wykluczamy gracza z kolizji raycasta
+	query.exclude = [self]
+	query.collide_with_bodies = true
+	query.collide_with_areas = false # Nie chcemy trafiać w inne sloty / trigger areas
+
+	var result = space_state.intersect_ray(query)
+
+	# 2. Sprawdzamy czy promień w cokolwiek trafił
+	if result.is_empty():
+		return
+
+	# 3. Sprawdzamy kąt płaszczyzny (przynajmniej 75% zgodności z wektorem UP)
+	var normal: Vector3 = result.normal
+	if Vector3.UP.dot(normal) < 0.75:
+		return
+
+	var hit_point: Vector3 = result.position
+	var target_pos = hit_point #+ normal * 0.02
+
+	# 4. Pobieramy ID i czyścimy dłoń
+	var item_id = drop_item()
+
+	# 5. Instancjonujemy slot
+	var new_slot = slot_scene.instantiate()
+	new_slot.slot_type = new_slot.SlotType.PARCEL
+	new_slot.default_item = item_id
+	new_slot.current_item = item_id
+	new_slot.paczkomat_origin = GameplayNumbers.paczko_firmy.NONE
+	new_slot.add_to_group("slots")
+
+	# 6. Dodajemy do korzenia sceny
+	get_tree().current_scene.add_child(new_slot)
+	new_slot.global_position = target_pos
+	new_slot.global_rotation.y = head.global_rotation.y
+
+
+# Zwraca najlepszy obiekt interakcji - z priorytetem dla małych przedmiotów
+func get_focused_interactive_target() -> Node:
+	var space_state = get_world_3d().direct_space_state
+	var ray_origin = camera.global_position
+	var ray_end = ray_origin + camera.project_ray_normal(get_viewport().get_mouse_position()) * 2.5
+
+	var excluded: Array[RID] = [self.get_rid()]
+	var best_target: Node = null
+	
+	for i in range(5):
+		var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+		query.exclude = excluded
+		query.collide_with_areas = true
+		query.collide_with_bodies = true
+		
+		var result = space_state.intersect_ray(query)
+		if result.is_empty():
+			break
+			
+		var hit_collider = result.collider
+		
+		# Małe przedmioty z najwyższym priorytetem: SINGLE, PARCEL oraz SPAWNER
+		var is_pickup_item = hit_collider.has_method("_update_visuals") and ("slot_type" in hit_collider) and (
+			hit_collider.slot_type == hit_collider.SlotType.SINGLE or 
+			hit_collider.slot_type == hit_collider.SlotType.PARCEL or
+			hit_collider.slot_type == hit_collider.SlotType.SPAWNER
+		)
+		
+		if is_pickup_item:
+			return hit_collider
+		
+		if best_target == null:
+			best_target = hit_collider
+			
+		excluded.append(result.rid)
+
+	return best_target

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c0dw0bxtjopql"
-path="res://.godot/imported/shitItem.blend-c966a5a3ae7d4253d12ecf71ef5ae39e.scn"
+uid="uid://c2f61ixbixj3k"
+path="res://.godot/imported/WorekSmieci.blend-53beb8fd3e5c4960bc5450ffeb9da554.scn"
 
 [deps]
 
-source_file="res://Assets/blend/shitItem.blend"
-dest_files=["res://.godot/imported/shitItem.blend-c966a5a3ae7d4253d12ecf71ef5ae39e.scn"]
+source_file="res://Assets/blend/items/WorekSmieci.blend"
+dest_files=["res://.godot/imported/WorekSmieci.blend-53beb8fd3e5c4960bc5450ffeb9da554.scn"]
 
 [params]
 

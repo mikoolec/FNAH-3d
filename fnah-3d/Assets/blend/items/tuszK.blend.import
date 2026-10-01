@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://carvyqgiawaig"
-path="res://.godot/imported/kartkazapis.blend-5144217242f307dd173758338ae81aaf.scn"
+uid="uid://b0wosojalbodj"
+path="res://.godot/imported/tuszK.blend-6b11dd5b9389fa61e9a1c81f80faaf70.scn"
 
 [deps]
 
-source_file="res://Assets/blend/kartkazapis.blend"
-dest_files=["res://.godot/imported/kartkazapis.blend-5144217242f307dd173758338ae81aaf.scn"]
+source_file="res://Assets/blend/items/tuszK.blend"
+dest_files=["res://.godot/imported/tuszK.blend-6b11dd5b9389fa61e9a1c81f80faaf70.scn"]
 
 [params]
 

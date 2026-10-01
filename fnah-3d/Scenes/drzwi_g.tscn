@@ -13,10 +13,16 @@ size = Vector3(0.19384766, 2.0095215, 1.2002563)
 [node name="drzwi_G" unique_id=828573807 instance=ExtResource("1_o0ab8")]
 script = ExtResource("2_35m10")
 
-[node name="BoneAttachment3D_L" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(843607147) index="5" unique_id=811387511]
-transform = Transform3D(1, -7.1054274e-15, 2.3841848e-07, 1.7185997e-07, 0.6931087, -0.72083294, -1.6524996e-07, 0.72083306, 0.69310856, 0, 0, -1.2)
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(2054164311) index="0" unique_id=1707600880]
+bones/0/rotation = Quaternion(0.30267116, 0.5840772, -0.248668, 0.71092075)
+bones/1/rotation = Quaternion(0.9646976, -3.633512e-08, 1.4267806e-07, -0.26336008)
+bones/2/rotation = Quaternion(-0.30436942, -0.583481, -0.25006336, 0.7101954)
+bones/3/rotation = Quaternion(0.96811235, 1.2147751e-08, -4.908647e-08, 0.25051644)
+
+[node name="BoneAttachment3D_L" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="5" unique_id=811387511]
+transform = Transform3D(0.19403619, 0.7071332, 0.6799358, 1.4901161e-07, 0.6931088, -0.72083294, -0.98099446, 0.13986781, 0.13448802, 0, 0, -1.2)
 bone_name = "Drzwi L"
-bone_idx = 3
+bone_idx = 0
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="Armature/Skeleton3D/BoneAttachment3D_L" index="0" unique_id=216818044]
 script = ExtResource("3_fsumm")
@@ -25,10 +31,10 @@ script = ExtResource("3_fsumm")
 transform = Transform3D(1, 1.7146637e-07, 7.27602e-08, -1.7146633e-07, 0.6948216, 0.71918225, 7.276016e-08, -0.7191823, 0.6948218, -0.0008545568, 1.107275, -0.35359925)
 shape = SubResource("BoxShape3D_pldky")
 
-[node name="BoneAttachment3D_R" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(843607147) index="6" unique_id=184611473]
-transform = Transform3D(1, 0, 0, 0, 0.689655, 0.724138, 0, -0.72413796, 0.68965507, 0, 0, 1.2)
+[node name="BoneAttachment3D_R" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="6" unique_id=184611473]
+transform = Transform3D(0.19403654, 0.71037513, -0.67654777, -1.4901161e-07, 0.6896551, 0.7241379, 0.9809942, -0.14050905, 0.13381845, 0, 0, 1.2)
 bone_name = "Drzwi R"
-bone_idx = 1
+bone_idx = 2
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="Armature/Skeleton3D/BoneAttachment3D_R" index="0" unique_id=1760271736]
 script = ExtResource("3_fsumm")

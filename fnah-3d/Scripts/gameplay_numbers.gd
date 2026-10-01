@@ -4,7 +4,7 @@ extends Node
 var money: float = 1000.0
 var phone_transaction: float = 0
 
-enum paczko_firmy { INPOST, ORLEN, DHL, DPD, ALLEGRO, PP }
+enum paczko_firmy { INPOST, ORLEN, DHL, DPD, ALLEGRO, PP, NONE }
 enum paczka_zawartosc { C, M, Y, K, Shit }
 enum paczkomat_state {CLOSED, OPENED}
 
@@ -77,6 +77,7 @@ func _ready() -> void:
 	prepare_package(paczko_firmy.DHL, 111111, paczka_zawartosc.Y)
 	prepare_package(paczko_firmy.ORLEN, 111111, paczka_zawartosc.Shit)
 	prepare_package(paczko_firmy.PP, 111111, paczka_zawartosc.Shit)
+	prepare_package(paczko_firmy.ALLEGRO, 111111, paczka_zawartosc.C)
 
 func is_player_in_any_zone() -> bool:
 	return active_ladder_zones > 0

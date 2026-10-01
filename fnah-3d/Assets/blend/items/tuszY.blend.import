@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dvpm1woibxlg5"
-path="res://.godot/imported/tuszM.blend-932fdc3c7232782193bc30ee9b69369d.scn"
+uid="uid://boj6ofpn2xuof"
+path="res://.godot/imported/tuszY.blend-50e1d36010bb817c1a081aacde7cf82c.scn"
 
 [deps]
 
-source_file="res://Assets/blend/tuszM.blend"
-dest_files=["res://.godot/imported/tuszM.blend-932fdc3c7232782193bc30ee9b69369d.scn"]
+source_file="res://Assets/blend/items/tuszY.blend"
+dest_files=["res://.godot/imported/tuszY.blend-50e1d36010bb817c1a081aacde7cf82c.scn"]
 
 [params]
 

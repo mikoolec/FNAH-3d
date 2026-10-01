@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c2f61ixbixj3k"
-path="res://.godot/imported/WorekSmieci.blend-c07643c72f0f648a87739097edf72bc4.scn"
+uid="uid://df3q3er2mp7e2"
+path="res://.godot/imported/Klucz.blend-c166f9f074bf25427c9da965a540b259.scn"
 
 [deps]
 
-source_file="res://Assets/blend/WorekSmieci.blend"
-dest_files=["res://.godot/imported/WorekSmieci.blend-c07643c72f0f648a87739097edf72bc4.scn"]
+source_file="res://Assets/blend/items/Klucz.blend"
+dest_files=["res://.godot/imported/Klucz.blend-c166f9f074bf25427c9da965a540b259.scn"]
 
 [params]
 

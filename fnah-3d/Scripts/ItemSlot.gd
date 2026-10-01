@@ -33,6 +33,7 @@ func _update_visuals() -> void:
 		var scene = ItemDB.get_item_scene(current_item)
 		if scene:
 			var item_instance = scene.instantiate()
+			item_instance.position = Vector3.ZERO
 			item_instance.rotation = Vector3.ZERO # Zeruje rotację pod spawner
 			item_instance.scale = Vector3.ONE
 			add_child(item_instance)
@@ -90,15 +91,38 @@ func interact(player) -> void:
 				
 			
 		SlotType.PRINTER:
-			if ( player.holding_item == ItemDB.SHEET ) :
-				var destroyed_item = player.drop_item()
-				_handle_failsafe(destroyed_item)
-				print("Drukarka kartka in")
-				drukarka.kartkaIn = true
 			if ( player.holding_item == ItemDB.NONE and is_sheet_printed ):
 				player.collect_item(current_item)
 				current_item = ItemDB.NONE
 				_update_visuals()
+			if ( player.holding_item == ItemDB.SHEET ) :
+				if ( !drukarka.kartkaIn ):
+					var destroyed_item = player.drop_item()
+					_handle_failsafe(destroyed_item)
+					print("Drukarka kartka in")
+					drukarka.kartkaIn = true
+			if ( !drukarka.pouring ):
+				if ( player.holding_item == ItemDB.TUSZC ) :
+					if ( drukarka.tusze_level(drukarka.kolory.CYAN) < 100 ):
+						var destroyed_item = player.drop_item()
+						_handle_failsafe(destroyed_item)
+						drukarka.fill_tusz(drukarka.kolory.CYAN)
+				if ( player.holding_item == ItemDB.TUSZM ) :
+					if ( drukarka.tusze_level(drukarka.kolory.MAGENTA) < 100 ):
+						var destroyed_item = player.drop_item()
+						_handle_failsafe(destroyed_item)
+						drukarka.fill_tusz(drukarka.kolory.MAGENTA)
+				if ( player.holding_item == ItemDB.TUSZY ) :
+					if ( drukarka.tusze_level(drukarka.kolory.YELLOW) < 100 ):
+						var destroyed_item = player.drop_item()
+						_handle_failsafe(destroyed_item)
+						drukarka.fill_tusz(drukarka.kolory.YELLOW)
+				if ( player.holding_item == ItemDB.TUSZK ) :
+					if ( drukarka.tusze_level(drukarka.kolory.KEY) < 100 ):
+						var destroyed_item = player.drop_item()
+						_handle_failsafe(destroyed_item)
+						drukarka.fill_tusz(drukarka.kolory.KEY)
+			
 			
 			_update_visuals()
 		
@@ -106,7 +130,8 @@ func interact(player) -> void:
 			if ( player.holding_item == ItemDB.NONE ):
 				player.collect_item(current_item)
 				current_item = ItemDB.NONE
-				GameplayNumbers.close_paczkomat(paczkomat_origin)
+				if ( paczkomat_origin != GameplayNumbers.paczko_firmy.NONE ):
+					GameplayNumbers.close_paczkomat(paczkomat_origin)
 				call_deferred("queue_free")
 
 # Failsafe: szuka w całej grze slotu typu SINGLE, który zgubił ten przedmiot i go respi

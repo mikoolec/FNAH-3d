@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://sbho8gswvts2"
-path="res://.godot/imported/allegromat.blend-5e2dc97075d0233e998b1f612bd13b5b.scn"
+uid="uid://bxnxu20ox7odi"
+path="res://.godot/imported/tuszC.blend-426128083015d10b593bd0ff6b076e6d.scn"
 
 [deps]
 
-source_file="res://Assets/blend/automaty paczkowe/allegromat.blend"
-dest_files=["res://.godot/imported/allegromat.blend-5e2dc97075d0233e998b1f612bd13b5b.scn"]
+source_file="res://Assets/blend/items/tuszC.blend"
+dest_files=["res://.godot/imported/tuszC.blend-426128083015d10b593bd0ff6b076e6d.scn"]
 
 [params]
 

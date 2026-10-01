@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ewuhrwvuuye5"]
+
+[ext_resource type="PackedScene" uid="uid://dqgmf518fajff" path="res://Assets/blend/printer_inks_animations.blend" id="1_c5j1g"]
+
+[node name="printer_inks_animations" unique_id=462069368 instance=ExtResource("1_c5j1g")]
+
+[node name="Skeleton3D" parent="ArmatureInks" parent_id_path=PackedInt32Array(112684554) index="0" unique_id=1058648585]
+bones/1/position = Vector3(0.67396235, -0.91782117, -0.38273108)
+bones/1/rotation = Quaternion(-1.6671231e-07, 0.7071068, -5.9604645e-08, -0.7071067)
+bones/1/scale = Vector3(0.21187878, 0.21187878, 0.21187878)
