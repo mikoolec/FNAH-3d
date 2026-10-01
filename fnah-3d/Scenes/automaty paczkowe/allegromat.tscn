@@ -67,22 +67,22 @@ shape = SubResource("BoxShape3D_f685j")
 [node name="miejsca" type="Node" parent="." index="52" unique_id=1593738877]
 
 [node name="M1" type="Node3D" parent="miejsca" index="0" unique_id=1806675944]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5243206, -1.2062507, 0.1621474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5243206, -1.2830044, 0.1621474)
 
 [node name="M2" type="Node3D" parent="miejsca" index="1" unique_id=107703862]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4920423, -0.6770983, 0.2371546)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4920423, -0.7778375, 0.2371546)
 
 [node name="M3" type="Node3D" parent="miejsca" index="2" unique_id=1982804368]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5087957, -0.1981399, 0.2794217)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5087957, -0.27009654, 0.2794217)
 
 [node name="M4" type="Node3D" parent="miejsca" index="3" unique_id=127821885]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.495841, 0.30075336, 0.1621474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.495841, 0.23359382, 0.1621474)
 
 [node name="M5" type="Node3D" parent="miejsca" index="4" unique_id=777346797]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48367, 0.7788496, 0.2371546)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48367, 0.7404728, 0.2371546)
 
 [node name="M6" type="Node3D" parent="miejsca" index="5" unique_id=1001641804]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6974195, -1.2214634, 0.2967242)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6974195, -1.2838258, 0.2967242)
 
 [node name="M7" type="Node3D" parent="miejsca" index="6" unique_id=1515618529]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7068449, -0.6667043, 0.2967242)

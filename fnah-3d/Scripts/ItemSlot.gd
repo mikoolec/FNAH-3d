@@ -96,10 +96,11 @@ func interact(player) -> void:
 				current_item = ItemDB.NONE
 				_update_visuals()
 			if ( player.holding_item == ItemDB.SHEET ) :
-				var destroyed_item = player.drop_item()
-				_handle_failsafe(destroyed_item)
-				print("Drukarka kartka in")
-				drukarka.kartkaIn = true
+				if ( !drukarka.kartkaIn ):
+					var destroyed_item = player.drop_item()
+					_handle_failsafe(destroyed_item)
+					print("Drukarka kartka in")
+					drukarka.kartkaIn = true
 			if ( !drukarka.pouring ):
 				if ( player.holding_item == ItemDB.TUSZC ) :
 					if ( drukarka.tusze_level(drukarka.kolory.CYAN) < 100 ):

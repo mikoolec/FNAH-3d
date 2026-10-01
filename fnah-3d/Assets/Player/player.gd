@@ -699,7 +699,7 @@ func try_drop_item() -> void:
 		return
 
 	var hit_point: Vector3 = result.position
-	var target_pos = hit_point + normal * 0.02
+	var target_pos = hit_point #+ normal * 0.02
 
 	# 4. Pobieramy ID i czyścimy dłoń
 	var item_id = drop_item()

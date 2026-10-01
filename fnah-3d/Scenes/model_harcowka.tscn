@@ -183,7 +183,7 @@ transform = Transform3D(-0.77679425, 0, 0.62975436, 0, 1, 0, -0.62975436, 0, -0.
 default_item = "klucz"
 
 [node name="CollisionShape3D" parent="SlotKey" index="0" unique_id=1643366966]
-transform = Transform3D(0.99999964, 0, 1.4901161e-07, 0, 1, 0, -1.4901161e-07, 0, 0.99999964, 0.007724285, -0.10795969, -0.06171608)
+transform = Transform3D(0.99999964, 0, 1.4901161e-07, 0, 1, 0, -1.4901161e-07, 0, 0.99999964, 0.007724285, -0.03341037, -0.06171608)
 shape = SubResource("BoxShape3D_8n43u")
 
 [node name="TrashSlot" parent="." index="23" unique_id=271659622 groups=["slots"] instance=ExtResource("12_qao3v")]
@@ -192,7 +192,7 @@ slot_type = 2
 default_item = "woreksmieci"
 
 [node name="CollisionShape3D" parent="TrashSlot" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11021423, 0.35510254, 0.22006226)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11021423, 0.38942218, 0.22006226)
 shape = SubResource("BoxShape3D_1bw2u")
 
 [node name="DrukarkaSlot" parent="." index="24" unique_id=1884734402 instance=ExtResource("12_qao3v")]
@@ -292,35 +292,35 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 44.4
 transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -3.2397957, 1.5557268, -1.0602815)
 
 [node name="SlotTuszC" parent="." index="41" unique_id=484161059 groups=["slots"] instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.037951, 0.34239852, 3.9657485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.037951, -0.0008352995, 3.9657485)
 default_item = "tuszC"
 
 [node name="CollisionShape3D" parent="SlotTuszC" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.0023766756, 0.03252554)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.33742398, 0.03252554)
 shape = SubResource("BoxShape3D_a847e")
 
 [node name="SlotTuszM" parent="." index="42" unique_id=1791251590 groups=["slots"] instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.540279, 0.34239852, 3.9657485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.540279, -0.0008352995, 3.9657485)
 default_item = "tuszM"
 
 [node name="CollisionShape3D" parent="SlotTuszM" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.0023766756, 0.03252554)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.33742398, 0.03252554)
 shape = SubResource("BoxShape3D_a847e")
 
 [node name="SlotTuszY" parent="." index="43" unique_id=333253532 groups=["slots"] instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.045618, 0.34239852, 3.9657485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.045618, -0.0008352995, 3.9657485)
 default_item = "tuszY"
 
 [node name="CollisionShape3D" parent="SlotTuszY" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.0023766756, 0.03252554)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.33742398, 0.03252554)
 shape = SubResource("BoxShape3D_a847e")
 
 [node name="SlotTuszK" parent="." index="44" unique_id=2118752491 groups=["slots"] instance=ExtResource("12_qao3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.538532, 0.34239852, 3.9657485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.538532, -0.0008352995, 3.9657485)
 default_item = "tuszK"
 
 [node name="CollisionShape3D" parent="SlotTuszK" index="0" unique_id=1643366966]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.0023766756, 0.03252554)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009552002, 0.33742398, 0.03252554)
 shape = SubResource("BoxShape3D_a847e")
 
 [node name="dhlomat" parent="." index="45" unique_id=935601138 instance=ExtResource("28_a847e")]
@@ -356,6 +356,11 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.0
 
 [node name="allegromat" parent="." index="61" unique_id=705060002 instance=ExtResource("32_a7vxs")]
 transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -7.4038734, 0.874786, 39.411602)
+
+[node name="BaseSlot" parent="." index="62" unique_id=818314197 instance=ExtResource("12_qao3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.240213, -0.5166359, 18.049007)
+slot_type = 0
+default_item = "tuszK"
 
 [editable path="Chair"]
 [editable path="kanapa"]

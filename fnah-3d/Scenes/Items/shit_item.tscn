@@ -4,5 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://1e74bwwgk7ff" path="res://Scenes/stairs_tripper.tscn" id="2_bqr04"]
 
 [node name="shitItem" unique_id=382878146 instance=ExtResource("1_nppce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10951644, 0)
 
 [node name="StairsTripper" parent="." index="1" unique_id=834129770 instance=ExtResource("2_bqr04")]
