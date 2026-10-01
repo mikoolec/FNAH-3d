@@ -263,8 +263,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.922092, -0.28493404, 24.2
 slot_type = 0
 default_item = "shit"
 
-[node name="gambling machine" parent="LadderCollider" index="2" unique_id=1062082609 instance=ExtResource("30_u38um")]
+[node name="gambling machine" parent="LadderCollider" index="2" unique_id=1062082609 node_paths=PackedStringArray("player") instance=ExtResource("30_u38um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.092625, -0.27131963, 28.10332)
+player = NodePath("../../Player")
 
 [node name="BaseSlot5" parent="." index="37" unique_id=2036686769 groups=["slots"] instance=ExtResource("12_qao3v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5374703, 0.8061031, 6.908432)
@@ -343,8 +344,9 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.006162405, 0.0107522
 [node name="HarcowkaSufit" parent="." index="53" unique_id=728842604]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0027632713, 0.0043365955, 0.0028467178)
 
-[node name="gambling machine" parent="." index="56" unique_id=1973243283 instance=ExtResource("30_u38um")]
+[node name="gambling machine" parent="." index="56" unique_id=1973243283 node_paths=PackedStringArray("player") instance=ExtResource("30_u38um")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.039186, -0.51332355, 17.381332)
+player = NodePath("../Player")
 
 [node name="BigTrash" parent="." index="57" unique_id=435024031 instance=ExtResource("17_tl1uk")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -37.960228, 0.3810287, 0.4885292)

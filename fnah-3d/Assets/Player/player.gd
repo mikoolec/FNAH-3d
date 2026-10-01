@@ -64,6 +64,8 @@ var current_phone_state: PhoneState = PhoneState.HIDDEN
 
 var active_tween: Tween
 
+var is_paying_wireless: bool = false
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	set_phone_state(PhoneState.HIDDEN)
@@ -72,7 +74,7 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	# 1. Obsługa przycisku TAB (wyciąganie/chowanie telefonu)
-	if event.is_action_pressed("ui_focus_next") and not is_using_computer and not is_using_panel:
+	if event.is_action_pressed("ui_focus_next") and not is_using_computer and not is_using_panel and not is_paying_wireless:
 		toggle_phone()
 		get_viewport().set_input_as_handled()
 		return
@@ -584,3 +586,51 @@ func _animate_phone_to(target_position: Vector3) -> void:
 
 	active_tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	active_tween.tween_property(phone_model, "position", target_position, 0.25)
+
+func pay_wireless(pay_punkt: Node3D, on_paid_callback: Callable = Callable()) -> void:
+	if not phone_model or not is_instance_valid(pay_punkt) or is_paying_wireless:
+		return
+
+	is_paying_wireless = true
+
+	# 1. Jeśli telefon był otwarty, natychmiast chowamy kursor i ustawiamy stan na HIDDEN
+	if current_phone_state == PhoneState.ACTIVE:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		current_phone_state = PhoneState.HIDDEN
+
+	if active_tween and active_tween.is_running():
+		active_tween.kill()
+
+	# 2. Odpinamy telefon od kamery i przepinamy do świata (z zachowaniem pozycji w przestrzeni)
+	var original_parent = phone_model.get_parent() # To nasza Camera3D
+	phone_model.reparent(get_tree().current_scene, true)
+
+	var tween = create_tween()
+
+	# 3. Lot do czytnika NFC (0.2s)
+	tween.tween_property(phone_model, "global_transform", pay_punkt.global_transform, 0.2)\
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+	# 4. Zawiśnięcie przy czytniku (0.25s)
+	tween.tween_interval(0.5)
+
+	# 5. Wywołanie płatności (dźwięk, potrącenie gotówki)
+	if on_paid_callback.is_valid():
+		tween.tween_callback(on_paid_callback)
+
+	# 6. Lot powrotny w kierunku schowanej pozycji pod kamerą
+	# Wyliczamy gdzie w świecie znajduje się aktualnie punkt PHONE_POS_HIDDEN
+	tween.tween_method(
+		func(t: float):
+			var target_world_pos = original_parent.to_global(PHONE_POS_HIDDEN)
+			phone_model.global_position = phone_model.global_position.lerp(target_world_pos, t),
+		0.0, 1.0, 0.25
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	# 7. Po zakończeniu: powrót do pierwotnej hierarchii i reset flag
+	tween.finished.connect(func():
+		phone_model.reparent(original_parent, false)
+		phone_model.position = PHONE_POS_HIDDEN
+		phone_model.rotation = Vector3.ZERO
+		is_paying_wireless = false
+	)

@@ -2,6 +2,8 @@ extends Node3D
 
 var has_money: bool = false
 
+@export var player: CharacterBody3D
+
 var rand: int
 var chosen_position: int
 var pos1: int
@@ -26,6 +28,7 @@ var step_angle: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	step_angle = TAU / float(6)
+	update_display()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -175,6 +178,7 @@ func spin_lever():
 
 func update_display() -> void:
 	if display_label:
+		display_label.text = str(snapped(money_input, 0.01)) + " PLN"
 		if ( money_input > saved_money ):
 			display_label.modulate = Color.GREEN
 			display_label.outline_modulate = Color.DARK_GREEN
@@ -184,4 +188,6 @@ func update_display() -> void:
 		else:
 			display_label.modulate = Color.WHITE
 			display_label.outline_modulate = Color.BLACK
-		display_label.text = str(snapped(money_input, 0.01)) + " PLN"
+		if ( money_input == 0 and saved_money == 0 ):
+			display_label.text = "GRAJ"
+		
