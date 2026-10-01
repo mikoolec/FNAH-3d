@@ -3,3 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://bxnxu20ox7odi" path="res://Assets/blend/items/tuszC.blend" id="1_ntjxt"]
 
 [node name="tuszC" unique_id=905183319 instance=ExtResource("1_ntjxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14927661, 0)

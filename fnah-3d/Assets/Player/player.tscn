@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://phicum10035h"]
 
 [ext_resource type="Script" uid="uid://5sumin7y571o" path="res://Assets/Player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://xkdmfbdncti2" path="res://Scenes/base_slot.tscn" id="2_5jfoa"]
 [ext_resource type="PackedScene" uid="uid://bkmtn8cvairpl" path="res://Assets/Player/phone_model.tscn" id="2_6miq6"]
 [ext_resource type="PackedScene" uid="uid://bcks7362cjf0d" path="res://Assets/Phone/phone_interface.tscn" id="3_8ft5u"]
 
@@ -11,6 +12,7 @@ points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4
 
 [node name="Player" type="CharacterBody3D" unique_id=985857779 groups=["Player"]]
 script = ExtResource("1_4flbx")
+slot_scene = ExtResource("2_5jfoa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1778240965]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0208476, 0)

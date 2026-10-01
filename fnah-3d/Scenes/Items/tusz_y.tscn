@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://boj6ofpn2xuof" path="res://Assets/blend/items/tuszY.blend" id="1_dt85f"]
 
 [node name="tuszY" unique_id=181481797 instance=ExtResource("1_dt85f")]
+
+[node name="Cylinder" parent="." index="0" unique_id=695836501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.120788574, 0)

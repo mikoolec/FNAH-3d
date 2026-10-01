@@ -12,6 +12,8 @@ var animki: Array[String] = [ "PourC", "PourM", "PourY", "PourK" ]
 var tusze:Array[int] = [10, 10, 10, 10]
 enum kolory { CYAN, MAGENTA, YELLOW, KEY }
 
+var pouring: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	anim_player.play("Use")
@@ -53,8 +55,14 @@ func fill_tusz_old(type: kolory) -> void:
 func fill_tusz(type: kolory) -> void:
 	for i in range(4):
 		if i == type:
+			pouring = true
 			var anim_name = animki[i]
 			ink_player.play(anim_name)
+			
+			ink_player.animation_finished.connect(func(finished_anim: StringName):
+				if finished_anim == anim_name:
+					pouring = false
+			, CONNECT_ONE_SHOT)
 			
 			# --- PARAMETRY CZASOWE I ILOŚCIOWE ---
 			var delay_start: float = 1.2   # 'n' - opóźnienie od startu animacji
@@ -88,5 +96,7 @@ func fill_tusz(type: kolory) -> void:
 				func(val: float): tusze[i] = int(round(val)),
 				v1, v2, seg2_duration
 			).set_trans(Tween.TRANS_LINEAR)
+			
+			
 			
 			break
