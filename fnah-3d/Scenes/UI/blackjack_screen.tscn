@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dev2rermfno7w"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ims28"]
+
+[node name="Node3D" type="Node3D" unique_id=713582891]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1221089386]
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="." unique_id=1991326772]
+mesh = SubResource("QuadMesh_ims28")

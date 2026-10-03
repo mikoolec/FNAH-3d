@@ -51,27 +51,34 @@ func start_download(file_name: String, stage: bool) -> void:
 		# Jeśli w trakcie pobierania gracz straci połączenie z Drukarką:
 		if not NetworkManager.current_wifi_name == "Drukarka":
 			if !stage: _cancel_download("Wgrywanie przerwane: brak połączenia z drukarką.", stage)
-			else: _cancel_download("Drukowanie przerwane: brak połączenia z drukarką.", stage)
+			else: 
+				_cancel_download("Drukowanie przerwane: brak połączenia z drukarką.", stage)
+				#drukarka_skryptowa.print_sheet("blank")
 			drukarka.plikWgrany = false
 			label_printer.text = "Upuść tu plik"
 			return # Przerywamy wykonywanie funkcji
 		
 		if progress_bar.value >= fail_at_percent and will_fail:
 			if !stage: _cancel_download("Wgrywanie przerwane: Nie udało się wgrać pliku.", stage)
-			else: _cancel_download("Drukowanie przerwane: Nie udało się wydrukować pliku.", stage)
+			else: 
+				_cancel_download("Drukowanie przerwane: Nie udało się wydrukować pliku.", stage)
+				#drukarka_skryptowa.print_sheet("blank")
 			return
 			
 		# Czekamy na następną klatkę przed kolejnym sprawdzeniem
 		await get_tree().process_frame
 		
 	# Jeśli pętla zakończyła się naturalnie (pasek postępu osiągnął 100%)
-	_on_download_finished()
+	_on_download_finished( file_name )
 
 # Funkcja pomocnicza w razie błędu/anulowania
 func _cancel_download(reason: String, stage) -> void:
 	if current_download_tween and current_download_tween.is_running():
 		current_download_tween.kill()
-		
+	
+	if ( stage ):
+		drukarka_skryptowa.print_sheet( "blank" )
+	
 	visible = false
 	hide()
 	print(reason)
@@ -83,14 +90,20 @@ func _cancel_download(reason: String, stage) -> void:
 	
 	if chance < 0.3:
 		WindowManager.spawn_window_cascade("CRITICAL SYSTEM ERROR 0x000000", randi_range(10, 20), 0.03)
+		#if ( stage ):
+			#drukarka_skryptowa.print_sheet("blank")
 	else:
 		for i in range(randi_range(3, 6)):
-			if !stage: WindowManager.spawn_error("Wgrywanie przerwane: Nie udało się wgrać pliku.")
-			else: WindowManager.spawn_error("Drukowanie przerwane: Nie udało się wydrukować pliku.")
+			if !stage: 
+				WindowManager.spawn_error("Wgrywanie przerwane: Nie udało się wgrać pliku.")
+				
+			else: 
+				WindowManager.spawn_error("Drukowanie przerwane: Nie udało się wydrukować pliku.")
+				#drukarka_skryptowa.print_sheet("blank")
 			await get_tree().create_timer(0.1).timeout
 
 # Funkcja wywoływana po pomyślnym zakończeniu ładowania
-func _on_download_finished() -> void:
+func _on_download_finished( file_name: String ) -> void:
 	visible = false
 	hide()
 	input_blocker.hide()
@@ -101,7 +114,7 @@ func _on_download_finished() -> void:
 	for i in range(randi_range(3, 6)):
 				if !Stage: WindowManager.spawn_error("Plik wgrany do drukarki.")
 				else:
-					drukarka_skryptowa.print_sheet()
+					drukarka_skryptowa.print_sheet( file_name )
 					WindowManager.spawn_error("Plik wydrukowany.")
 					label_printer.text = "Upuść tu plik"
 				await get_tree().create_timer(0.1).timeout

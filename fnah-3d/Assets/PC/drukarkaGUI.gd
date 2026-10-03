@@ -44,7 +44,7 @@ func rozpocznij_drukowanie(file_name: String) -> void:
 	
 	var tusz:bool = true
 	for i in range(4):
-		if drukarka.tusze[i] == 0:
+		if drukarka.tusze[i] < 10:
 			tusz = false
 			WindowManager.spawn_window_cascade("DAJ MNIE %s" % drukarka.kolory.keys()[i], randi_range(1, 3), 0.03)
 	
@@ -81,6 +81,7 @@ func _on_print_btn_pressed() -> void:
 	else:
 		plikWgrany = false
 		drukarka.kartkaIn = false
+		drukarka_skryptowa.print_sheet("blank")
 		$LabelPrinterApp.text = "Upuść tu plik"
 
 

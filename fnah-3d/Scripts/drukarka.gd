@@ -9,7 +9,7 @@ var kartkaIn:bool = false
 var kartkaSave:bool = false
 
 var animki: Array[String] = [ "PourC", "PourM", "PourY", "PourK" ]
-var tusze:Array[int] = [10, 10, 10, 10]
+var tusze:Array[int] = [100, 100, 100, 100]
 enum kolory { CYAN, MAGENTA, YELLOW, KEY }
 
 var pouring: bool = false

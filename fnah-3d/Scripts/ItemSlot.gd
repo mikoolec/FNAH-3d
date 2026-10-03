@@ -145,8 +145,11 @@ func _handle_failsafe(item_id: String) -> void:
 				slot._update_visuals()
 				break
 
-func print_sheet():
+func print_sheet( file_name : String):
 	if slot_type == SlotType.PRINTER:
-		current_item = ItemDB.FILLEDSHEET
+		if( file_name == "blank" ):
+			current_item = ItemDB.SHEET
+		else:
+			current_item = ItemDB.FILLEDSHEET
 		is_sheet_printed = true
 		_update_visuals()

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://o5g6c4fvj73n" path="res://Assets/blend/printer.blend" id="1_dftyo"]
 [ext_resource type="PackedScene" uid="uid://ewuhrwvuuye5" path="res://Scenes/printer_inks_animations.tscn" id="2_twqjn"]
-[ext_resource type="PackedScene" uid="uid://dggj0fkfl73bc" path="res://Scenes/tusze_display.tscn" id="3_3irum"]
+[ext_resource type="PackedScene" uid="uid://dggj0fkfl73bc" path="res://Scenes/UI/tusze_display.tscn" id="3_3irum"]
 
 [node name="printer" unique_id=20322248 instance=ExtResource("1_dftyo")]
 

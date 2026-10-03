@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wtcsgm3kjh3r"]
 
 [ext_resource type="PackedScene" uid="uid://bib6awp16ryj" path="res://Assets/blend/drzwi.blend" id="1_t4vj5"]
-[ext_resource type="Script" uid="uid://cnah4opp0m3ku" path="res://Scenes/doors.gd" id="2_7b6sn"]
+[ext_resource type="Script" uid="uid://cnah4opp0m3ku" path="res://Scripts/doors.gd" id="2_7b6sn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4vj5"]
 resource_local_to_scene = true
