@@ -3,6 +3,8 @@ extends Control
 @onready var browserWindow = $BrowserWindow
 @onready var printerWindow = $PrinterWindow
 @onready var download_window: PanelContainer = $BrowserWindow/DownloadWindow
+@onready var browser: MarginContainer = $BrowserWindow/MarginContainer
+@onready var zegar: Label = $TaskBar/GridContainer/Zegar
 var pc_mouse_pos:Vector2 = Vector2(512, 512)
 
 @export var panel_windows:Array[DraggablePanelContainer]
@@ -15,6 +17,8 @@ var all_received_emails: Array = []
 # Referencja do instancji aplikacji (gdy jest otwarta, ma wartość. Gdy zamknięta = null)
 var active_email_app: Control = null
 
+var czas: String = "00:00"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Przykładowy stoper generujący maile
@@ -23,10 +27,13 @@ func _ready() -> void:
 	timer.autostart = true
 	timer.timeout.connect(_on_email_timer_timeout)
 	add_child(timer)
+	
+	GameManager.time_changed.connect(func(t): czas = t)
+	GameManager.start_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	zegar.text = czas
 
 func update_cursor_pos():
 	mouse_cursor.position = pc_mouse_pos
@@ -43,6 +50,8 @@ func spawn_file_on_desktop(file_name: String) -> void:
 
 func _on_browser_icon_pressed() -> void:
 	browserWindow.visible = true
+	if not browser.current_page_url == "":
+		browser._on_url_submitted(browser.current_page_url)
 
 func _on_printer_icon_pressed() -> void:
 	printerWindow.visible = true

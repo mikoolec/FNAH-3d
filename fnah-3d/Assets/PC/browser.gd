@@ -20,6 +20,7 @@ const INTERNET_PAGES = {
 }
 
 var current_page_node: Node = null
+var current_page_url: String = ""
 
 func _ready() -> void:
 	progress_bar.value = 0.0
@@ -39,6 +40,7 @@ func load_page(url: String) -> void:
 	# 1. Usunięcie starej strony z ekranu, jeśli jakaś jest
 	if current_page_node:
 		current_page_node.queue_free()
+	current_page_url = url
 	
 	# 2. Sprawdzenie, czy strona istnieje w naszym "internecie"
 	var page_path = ""

@@ -152,6 +152,7 @@ func _on_wireless_amount_submitted(new_text: String) -> void:
 func _on_wireless_timer_finished() -> void:
 	# Warunek sprawdzający zmienną przerywającą
 	if is_wireless_cancelled:
+		is_wireless_cancelled = false;
 		print("Odliczanie zostało przerwane – anulowano akcję!")
 		wireless_amount_input.clear()
 		wireless_amount_input.placeholder_text = "PLN"
