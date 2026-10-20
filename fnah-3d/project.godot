@@ -30,6 +30,7 @@ SMSManager="*uid://va2f5uldfsr1"
 AllegroDatabase="*uid://dmbgq1715llek"
 BankManager="*uid://e5ejcrt8ay3y"
 GameManager="*uid://dcp8l4ie3534p"
+FatigueManager="*uid://dp0kifq71x5h5"
 
 [display]
 

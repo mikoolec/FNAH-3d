@@ -112,6 +112,7 @@ func _on_wireless_pay_gui_input(event: InputEvent) -> void:
 		main_bank_view.hide()
 		blik_view.hide()
 		wireless_view.show()
+		#wireless_amount_input.
 
 # Funkcja porównująca wpisaną kwotę ze stanem konta
 func _on_wireless_amount_submitted(new_text: String) -> void:

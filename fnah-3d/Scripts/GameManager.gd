@@ -4,7 +4,7 @@ extends Node
 ## Inne skrypty tylko czytaja ten stan albo podpinaja sie pod sygnaly.
 
 enum GameState { NONE, PLAYING, NIGHT_WON, GAME_WON, LOST }
-enum LoseReason { CAUGHT, TIME_UP }
+enum LoseReason { CAUGHT, TIME_UP, ASLEEP }
 
 signal state_changed(new_state: GameState)
 signal night_started(night: int)
@@ -98,6 +98,9 @@ func player_caught(culprit: String = "") -> void:
 	if state == GameState.PLAYING:
 		_lose(LoseReason.CAUGHT, culprit)
 
+func player_fell_asleep() -> void:
+	if state == GameState.PLAYING:
+		_lose(LoseReason.ASLEEP, "")
 
 # =========================================================================
 # WYMAGANE WYDRUKI
