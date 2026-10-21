@@ -5,7 +5,7 @@ extends Node
 signal fatigue_changed(value: float)
 
 # --- Ustawienia (do tuningu) ---
-const FATIGUE_PER_SECOND: float = 1.0 / 60.0  # 1 min do zaśnięcia bez kawy
+const FATIGUE_PER_SECOND: float = 1.0 / 240.0  # 4 min do zaśnięcia bez kawy
 const DARKEN_START: float = 0.25               # od tego zmęczenia zaczyna się ściemnianie
 const DARKEN_SMOOTH: float = 1.5               # szybkość wygładzania ściemniania
 const FALL_START: float = 0.4                  # od tego zmęczenia zaczynają się upadki

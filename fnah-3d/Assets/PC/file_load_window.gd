@@ -3,7 +3,6 @@ extends PanelContainer
 @onready var file_name_label: Label = $VBoxContainer/FileNameLabel
 @onready var progress_bar: ProgressBar = $VBoxContainer/ProgressBar
 @onready var input_blocker: Control = $"../InputBlocker"
-@onready var grid_container: GridContainer = $"../../GridContainer"
 
 @onready var drukarka: Control = $"../MarginContainer/App/GUI"
 @onready var label_printer: Label = $"../MarginContainer/App/GUI/LabelPrinterApp"

@@ -2,16 +2,11 @@
 
 [ext_resource type="Script" uid="uid://gt8mfkj3p1lu" path="res://Assets/PC/pc_control.gd" id="1_70naa"]
 [ext_resource type="Texture2D" uid="uid://b71hv8lhlq8vc" path="res://Assets/PC/cursor.png" id="2_0myl8"]
-[ext_resource type="PackedScene" uid="uid://bi73yqijptqai" path="res://Assets/PC/Aplikacje/Ikony/desktop_file.tscn" id="2_7rc43"]
-[ext_resource type="Texture2D" uid="uid://bxpt4gob1fxc5" path="res://Assets/PC/Aplikacje/Ikony/printer.png" id="3_gvvqa"]
 [ext_resource type="Script" uid="uid://bvdnfpb4oklm7" path="res://Assets/PC/draggable_panel.gd" id="3_h4i1i"]
 [ext_resource type="Texture2D" uid="uid://tu8fdc8e5d4c" path="res://Assets/Wifi/images/wifi.png" id="4_aurmi"]
-[ext_resource type="Texture2D" uid="uid://cnyl6qit6adpv" path="res://Assets/PC/Aplikacje/Ikony/trashIcon.png" id="4_xa222"]
 [ext_resource type="Script" uid="uid://chhd0of65raek" path="res://Assets/PC/browser.gd" id="5_1sy4e"]
-[ext_resource type="Script" uid="uid://dyxo40ckkhjki" path="res://Assets/PC/trash_icon.gd" id="5_4v0dk"]
 [ext_resource type="Texture2D" uid="uid://i4sbshf3d5lf" path="res://Assets/PC/Aplikacje/Przyciski/close_button.png" id="5_gvvqa"]
 [ext_resource type="Script" uid="uid://cmr2texxxqren" path="res://Assets/PC/wifi_button.gd" id="5_rakx0"]
-[ext_resource type="Texture2D" uid="uid://dn4idxx7cs1yu" path="res://Assets/PC/Aplikacje/Ikony/chrome.png" id="5_vupqa"]
 [ext_resource type="Texture2D" uid="uid://smcxgn3tlreu" path="res://Assets/Wifi/images/NoInternet.png" id="6_xa222"]
 [ext_resource type="Script" uid="uid://po0njib63phb" path="res://Assets/PC/drukarkaGUI.gd" id="7_dfng5"]
 [ext_resource type="Script" uid="uid://ccst3jwykkv7v" path="res://Assets/PC/Websites/download_window.gd" id="7_j7r86"]
@@ -36,80 +31,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("CompressedTexture2D_vupqa")
 expand_mode = 1
-
-[node name="GridContainer" type="GridContainer" parent="." unique_id=1118968193]
-custom_minimum_size = Vector2(115, 150)
-layout_mode = 1
-offset_left = 860.0
-offset_top = 450.0
-offset_right = 975.0
-offset_bottom = 600.0
-
-[node name="DesktopFile" parent="GridContainer" unique_id=35603737 instance=ExtResource("2_7rc43")]
-layout_mode = 2
-
-[node name="BrowserIcon" type="TextureButton" parent="." unique_id=1760967398]
-layout_mode = 0
-offset_left = 860.0
-offset_top = 222.0
-offset_right = 975.0
-offset_bottom = 337.0
-texture_normal = ExtResource("5_vupqa")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="BrowserIcon" unique_id=1528482124]
-layout_mode = 0
-offset_top = 110.0
-offset_right = 115.0
-offset_bottom = 152.0
-theme_override_font_sizes/font_size = 30
-text = "Chrome"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="PrinterIcon" type="TextureButton" parent="." unique_id=1255545113]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 222.0
-offset_right = 156.0
-offset_bottom = 337.0
-texture_normal = ExtResource("3_gvvqa")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="PrinterIcon" unique_id=44529717]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 111.0
-offset_right = 113.0
-offset_bottom = 153.0
-theme_override_font_sizes/font_size = 30
-text = "Printer"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="TrashIcon" type="TextureButton" parent="." unique_id=252698346]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 450.0
-offset_right = 156.0
-offset_bottom = 565.0
-texture_normal = ExtResource("4_xa222")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("5_4v0dk")
-
-[node name="Label" type="Label" parent="TrashIcon" unique_id=514112079]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 111.0
-offset_right = 113.0
-offset_bottom = 153.0
-theme_override_font_sizes/font_size = 30
-text = "ZHR"
-horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="BrowserWindow" type="PanelContainer" parent="." unique_id=852004038]
 visible = false
@@ -366,8 +287,6 @@ scale = Vector2(0.06989794, 0.06989794)
 texture = ExtResource("2_0myl8")
 offset = Vector2(210, 420)
 
-[connection signal="pressed" from="BrowserIcon" to="." method="_on_browser_icon_pressed"]
-[connection signal="pressed" from="PrinterIcon" to="." method="_on_printer_icon_pressed"]
 [connection signal="pressed" from="BrowserWindow/MarginContainer/App/PasekAdresu/Search" to="BrowserWindow/MarginContainer" method="_on_search_pressed"]
 [connection signal="pressed" from="BrowserWindow/PasekKontrolny/CloseBrowserButton" to="." method="_on_close_browser_button_pressed"]
 [connection signal="pressed" from="PrinterWindow/MarginContainer/App/GUI/PrintBtn" to="PrinterWindow/MarginContainer/App/GUI" method="_on_print_btn_pressed"]
