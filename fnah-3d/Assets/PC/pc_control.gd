@@ -69,6 +69,8 @@ var settings_window: DraggablePanelContainer
 var start_button: Button
 var search_box: LineEdit
 var start_menu: StartMenu
+var settings_app: SettingsApp
+var password_strength: Dictionary = PasswordStrength.none_result()
 
 var _overlays: Array[Control] = []
 var _updating_search: bool = false
@@ -77,6 +79,8 @@ var _updating_search: bool = false
 func _ready() -> void:
 	_setup_desktop()
 	_setup_windows()
+	_setup_printer_skin()
+	_setup_browser_skin()
 	_setup_taskbar()
 	_setup_power()
 
@@ -173,9 +177,10 @@ func _setup_windows() -> void:
 	cmd_body.add_child(cmd_app)
 	cmd_window = _create_window("CmdWindow", "Wiersz polecenia", Vector2(150, 200), Vector2(660, 420), cmd_body, &"cmd")
 
-	var settings_body := ColorRect.new()   # na razie puste
-	settings_body.color = Color(0.95, 0.95, 0.97)
-	settings_window = _create_window("SettingsWindow", "Ustawienia", Vector2(220, 160), Vector2(620, 440), settings_body, &"settings")
+	settings_app = SettingsApp.new()
+	settings_app.pc = self
+	settings_app.username = USER_NAME
+	settings_window = _create_window("SettingsWindow", "Ustawienia", Vector2(80, 90), Vector2(860, 600), settings_app, &"settings")
 
 
 # Okno w tym samym stylu co przeglądarka i drukarka (przesuwane za pasek tytułu)
@@ -221,6 +226,23 @@ func _create_window(win_name: String, title: String, win_pos: Vector2, win_size:
 
 	return win
 
+# Nowy wygląd okna drukarki (dokłada się do istniejących węzłów, nic nie przenosi)
+func _setup_printer_skin() -> void:
+	var skin := PrinterSkin.new()
+	skin.name = "PrinterSkin"
+	printer_gui.add_child(skin)
+	printer_gui.move_child(skin, 0)   # pod etykietą i przyciskiem
+
+
+# Używane do podświetlania strefy upuszczania, gdy plik jest nad oknem drukarki
+func is_printer_drop_target(pos: Vector2) -> bool:
+	return get_drop_target(pos) == DropTarget.PRINTER
+
+# Nowy wygląd okna przeglądarki (dokłada się do istniejących węzłów, nic nie przenosi)
+func _setup_browser_skin() -> void:
+	var skin := BrowserSkin.new()
+	skin.name = "BrowserSkin"
+	browserWindow.add_child(skin)
 
 # =========================================================================
 # PASEK ZADAŃ: przycisk Start + wyszukiwarka + menu
@@ -394,9 +416,10 @@ func _setup_power() -> void:
 	_set_cursor_visible(false)
 
 
-# Ustawianie hasła (np. z przyszłej aplikacji Ustawienia). "" = brak hasła.
+# Ustawianie hasła. "" = brak hasła. Zapisuje też ocenę siły (password_strength).
 func set_user_password(p: String) -> void:
 	user_password = p
+	password_strength = PasswordStrength.evaluate(p, USER_NAME)   # dla "" zwraca poziom -1
 
 
 func _set_cursor_visible(v: bool) -> void:
@@ -484,6 +507,7 @@ func _close_all_apps() -> void:
 	for w in get_tree().get_nodes_in_group("error_windows"):
 		w.queue_free()
 	cmd_app.reset()
+	settings_app.reset()
 
 
 # =========================================================================
