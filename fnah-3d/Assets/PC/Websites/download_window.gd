@@ -13,6 +13,8 @@ var pulpit_ref: Control = null # Referencja do Twojego pulpitu
 
 var current_download_tween: Tween
 
+var _download_id: int = 0   # nowe pobieranie unieważnia stare
+
 func start_download(file_name: String, pulpit: Control) -> void:
 	target_file_name = file_name
 	pulpit_ref = pulpit
@@ -20,47 +22,40 @@ func start_download(file_name: String, pulpit: Control) -> void:
 	progress_bar.value = 0.0
 	visible = true
 	input_blocker.show()
-	
-	# 1. Losujemy, czy to pobieranie zakończy się błędem (np. 30% szans)
+
+	_download_id += 1
+	var my_id := _download_id
+
+	# Losujemy, czy to pobieranie zakończy się błędem (30% szans) i w którym momencie
 	var fail_chance: float = 0.3
 	var will_fail: bool = randf() < fail_chance
 	var fail_at_percent: float = 100.0
-	
-	# 2. Jeśli ma się nie udać, losujemy moment przerwania (np. między 10% a 90%)
 	if will_fail:
 		fail_at_percent = randf_range(10.0, 90.0)
-	
-	# Jeśli poprzednie pobieranie jakimś cudem jeszcze działa, zabijamy je
-	if current_download_tween and current_download_tween.is_running():
-		current_download_tween.kill()
-	
-	# Obliczamy czas pobierania
-	var final_time = download_time * NetworkManager.current_speed_multiplier
-	
-	# Płynna animacja paska postępu
-	current_download_tween = create_tween()
-	current_download_tween.tween_property(progress_bar, "value", 100.0, final_time)\
-		.set_trans(Tween.TRANS_LINEAR)
-		
-	# Pętla monitorująca połączenie w każdej klatce gry
-	while current_download_tween and current_download_tween.is_running():
-		# Jeśli w trakcie pobierania gracz straci połączenie:
+
+	# Postęp liczony ręcznie: tempo zależy od szybkości sieci i od liczby transferów dzielących łącze
+	var progress := 0.0
+	while progress < 100.0:
+		if my_id != _download_id:
+			return   # rozpoczęto nowsze pobieranie - to jest nieaktualne
 		if not NetworkManager.is_connected_to_internet:
 			_cancel_download("Pobieranie przerwane: brak połączenia z siecią.")
-			return # Przerywamy wykonywanie funkcji
-		
-		if progress_bar.value >= fail_at_percent and will_fail:
+			return
+		if progress >= fail_at_percent and will_fail:
 			_cancel_download("Błąd pobierania pliku!")
 			return
-			
-		# Czekamy na następną klatkę przed kolejnym sprawdzeniem
+
+		NetworkManager.report_transfer(&"browser_download")
+		progress += get_process_delta_time() / (download_time * NetworkManager.effective_multiplier()) * 100.0
+		progress_bar.value = progress
 		await get_tree().process_frame
-		
-	# Jeśli pętla zakończyła się naturalnie (sukces)
+
+	NetworkManager.end_transfer(&"browser_download")
 	_on_download_finished()
 
 # Funkcja pomocnicza w razie błędu/anulowania
 func _cancel_download(reason: String) -> void:
+	NetworkManager.end_transfer(&"browser_download")
 	if current_download_tween and current_download_tween.is_running():
 		current_download_tween.kill()
 	

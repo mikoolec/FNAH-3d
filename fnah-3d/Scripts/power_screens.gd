@@ -19,7 +19,8 @@ var _name_label: Label
 var _pw_edit: LineEdit
 var _error_label: Label
 var _clock_label: Label
-
+var _update: Control
+var _update_pct: Label
 
 func _init() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -31,6 +32,7 @@ func _ready() -> void:
 	_boot = _build_boot()
 	_wake = _build_wake()
 	_status = _build_status()
+	_update = _build_update()
 	_login = _build_login()
 	_show_only(_black)
 
@@ -64,6 +66,9 @@ func set_wallpaper(tex: Texture2D) -> void:
 
 func set_user_name(n: String) -> void:
 	_name_label.text = n
+	
+func set_update_progress(pct: int) -> void:
+	_update_pct.text = "Ukończono %d%%" % pct
 
 func show_login(has_password: bool) -> void:
 	_pw_edit.clear()
@@ -79,9 +84,12 @@ func show_login_error(msg: String) -> void:
 	_pw_edit.clear()
 	_pw_edit.grab_focus.call_deferred()
 
+func show_update() -> void:
+	set_update_progress(0)
+	_show_only(_update)
 
 func _show_only(screen: Control) -> void:
-	for s in [_black, _boot, _wake, _status, _login]:
+	for s in [_black, _boot, _wake, _status, _update, _login]:
 		s.visible = (s == screen)
 	visible = (screen != null)
 
@@ -220,3 +228,21 @@ func _build_login() -> Control:
 	_clock_label.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT, Control.PRESET_MODE_MINSIZE, 40)
 
 	return root
+
+func _build_update() -> Control:
+	var s := _make_screen(BLUE_BG)
+	var v := _center(s)
+	v.add_child(_spinner(56))
+	v.add_child(_gap(36))
+	for text in ["Praca nad aktualizacjami"]:
+		var l := UiStyle.label(text, 30, Color.WHITE)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		v.add_child(l)
+	_update_pct = UiStyle.label("Ukończono 0%", 30, Color.WHITE)
+	_update_pct.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(_update_pct)
+	v.add_child(_gap(10))
+	var warn := UiStyle.label("Nie wyłączaj komputera.", 30, Color.WHITE)
+	warn.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(warn)
+	return s

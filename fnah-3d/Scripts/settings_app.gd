@@ -24,6 +24,7 @@ const NAV_ITEMS := [
 	["personalization", "Personalizacja"],
 	["accounts", "Konta"],
 	["privacy", "Prywatność i bezpieczeństwo"],
+	["windowsupdate", "Windows Update"],
 ]
 
 # [klucz, tytuł, opis, wartość domyślna]
@@ -87,6 +88,19 @@ var _tips_label: Label
 var _pw_error: Label
 var _pw_save: Button
 var _pw_cancel: Button
+var _upd: UpdateManager
+var _upd_icon: WinIcon
+var _upd_title: Label
+var _upd_sub: Label
+var _upd_err: Label
+var _btn_check: Button
+var _btn_dl: Button
+var _btn_inst: Button
+var _upd_list: VBoxContainer
+var _upd_rows := {}          # id aktualizacji -> {"status": Label, "deadline": Label}
+var _upd_sig: String = ""
+var _hist_card: PanelContainer
+var _hist_list: VBoxContainer
 
 
 func _ready() -> void:
@@ -152,6 +166,8 @@ func _build() -> void:
 		_pages[item[0]] = page
 		if item[0] == "privacy":
 			_fill_privacy(page)
+		elif item[0] == "windowsupdate":
+			_fill_update(page)
 		else:
 			page.add_child(_wrap(UiStyle.label("W tej sekcji nie ma jeszcze żadnych ustawień.", 18, COL_DIM)))
 
@@ -539,3 +555,228 @@ func _btn_box(bg: Color, border: Color) -> StyleBoxFlat:
 	s.content_margin_left = 16
 	s.content_margin_right = 16
 	return s
+
+# =========================================================================
+# STRONA "Windows Update"
+# =========================================================================
+
+func _process(_delta: float) -> void:
+	if _upd != null and _pages["windowsupdate"].visible and is_visible_in_tree():
+		_refresh_update_view()
+
+
+func _fill_update(page: VBoxContainer) -> void:
+	_upd = pc.update_manager
+
+	# --- karta stanu: ikona + tytuł + podtytuł + przyciski ---
+	var card := PanelContainer.new()
+	card.add_theme_stylebox_override("panel", _card_style(20))
+	page.add_child(card)
+
+	var h := HBoxContainer.new()
+	h.add_theme_constant_override("separation", 18)
+	card.add_child(h)
+
+	_upd_icon = WinIcon.new()
+	_upd_icon.custom_minimum_size = Vector2(56, 56)
+	_upd_icon.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	h.add_child(_upd_icon)
+
+	var v := VBoxContainer.new()
+	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	v.add_theme_constant_override("separation", 6)
+	h.add_child(v)
+
+	_upd_title = _wrap(UiStyle.label("", 24, COL_TEXT))
+	v.add_child(_upd_title)
+	_upd_sub = _wrap(UiStyle.label("", 15, COL_DIM))
+	v.add_child(_upd_sub)
+	_upd_err = _wrap(UiStyle.label("", 15, COL_ERR))
+	_upd_err.visible = false
+	v.add_child(_upd_err)
+
+	var btns := HBoxContainer.new()
+	btns.add_theme_constant_override("separation", 8)
+	v.add_child(btns)
+	_btn_check = _button("Sprawdź dostępność aktualizacji", true)
+	_btn_check.pressed.connect(func(): _upd.start_check())
+	_btn_dl = _button("Pobierz", true)
+	_btn_dl.pressed.connect(func(): _upd.start_download())
+	_btn_inst = _button("Zainstaluj teraz", true)
+	_btn_inst.pressed.connect(func(): _upd.start_install())
+	for b in [_btn_check, _btn_dl, _btn_inst]:
+		btns.add_child(b)
+
+	# --- lista znalezionych aktualizacji ---
+	_upd_list = VBoxContainer.new()
+	_upd_list.add_theme_constant_override("separation", 6)
+	page.add_child(_upd_list)
+
+	# --- wiersze jak w prawdziwym Windows Update (poza historią - tylko dekoracja) ---
+	page.add_child(_gap(10))
+	page.add_child(_link_row("Wstrzymaj aktualizacje na 7 dni",
+		"Odwiedź opcje zaawansowane, aby zmienić okres wstrzymania"))
+	page.add_child(_link_row("Zmień godziny aktywności", "Obecnie od 8:00 do 17:00"))
+	page.add_child(_link_row("Wyświetl historię aktualizacji",
+		"Zobacz aktualizacje zainstalowane na tym urządzeniu", _toggle_history))
+	page.add_child(_link_row("Opcje zaawansowane", "Dodatkowe opcje i ustawienia aktualizacji"))
+
+	_hist_card = PanelContainer.new()
+	_hist_card.add_theme_stylebox_override("panel", _card_style(12))
+	_hist_card.visible = false
+	page.add_child(_hist_card)
+	_hist_list = VBoxContainer.new()
+	_hist_list.add_theme_constant_override("separation", 8)
+	_hist_card.add_child(_hist_list)
+
+	_refresh_update_view()
+
+
+func _link_row(title: String, desc: String, action: Callable = Callable()) -> Button:
+	var b := Button.new()
+	b.custom_minimum_size = Vector2(0, 64)
+	b.focus_mode = Control.FOCUS_NONE
+	b.add_theme_stylebox_override("normal", UiStyle.box(Color.WHITE, 4, COL_BORDER, 1))
+	b.add_theme_stylebox_override("hover", UiStyle.box(Color(0.93, 0.95, 0.99), 4, COL_BORDER, 1))
+	b.add_theme_stylebox_override("pressed", UiStyle.box(Color(0.88, 0.92, 0.98), 4, COL_BORDER, 1))
+	b.add_theme_stylebox_override("hover_pressed", UiStyle.box(Color(0.88, 0.92, 0.98), 4, COL_BORDER, 1))
+	b.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+
+	var m := MarginContainer.new()
+	m.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	m.add_theme_constant_override("margin_left", 16)
+	m.add_theme_constant_override("margin_right", 16)
+	b.add_child(m)
+	m.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var v := VBoxContainer.new()
+	v.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	v.alignment = BoxContainer.ALIGNMENT_CENTER
+	v.add_theme_constant_override("separation", 0)
+	v.add_child(UiStyle.label(title, 17, COL_TEXT))
+	v.add_child(UiStyle.label(desc, 14, COL_DIM))
+	m.add_child(v)
+
+	if action.is_valid():
+		b.pressed.connect(action)
+	return b
+
+
+func _toggle_history() -> void:
+	_hist_card.visible = not _hist_card.visible
+
+
+# Odświeżane co klatkę, gdy strona jest widoczna
+func _refresh_update_view() -> void:
+	var u := _upd
+	var vis := u.visible_items()
+
+	# lista przebudowuje się tylko, gdy zmieni się jej skład lub stany
+	var parts := PackedStringArray()
+	for it in vis:
+		parts.append("%d:%d" % [it.id, it.state])
+	parts.append("h%d" % u.history.size())
+	var sig := ",".join(parts)
+	if sig != _upd_sig:
+		_upd_sig = sig
+		_rebuild_update_list(vis)
+		_rebuild_history()
+
+	# teksty na żywo: postęp i odliczanie
+	for it in vis:
+		var row: Dictionary = _upd_rows.get(it.id, {})
+		if row.is_empty():
+			continue
+		row["status"].text = "Stan: " + u.status_text(it)
+		if row.has("deadline"):
+			row["deadline"].text = u.deadline_text(it)
+
+	# nagłówek
+	var kind := WinIcon.Kind.CHECK
+	var col := Color(0.10, 0.62, 0.30)
+	var title := "Masz aktualną wersję"
+	var sub := "Ostatnie sprawdzenie: " + u.last_check_text
+	var err := ""
+	if u.checking:
+		kind = WinIcon.Kind.SPINNER
+		col = COL_ACCENT
+		title = "Sprawdzanie dostępności aktualizacji..."
+		sub = "Poczekaj chwilę."
+	elif u.has_state(UpdateManager.State.DOWNLOADING):
+		kind = WinIcon.Kind.SPINNER
+		col = COL_ACCENT
+		title = "Pobieranie aktualizacji"
+		sub = ""
+	elif u.has_state(UpdateManager.State.INSTALLING):
+		kind = WinIcon.Kind.SPINNER
+		col = COL_ACCENT
+		title = "Instalowanie aktualizacji"
+		sub = ""
+	elif u.check_error != "":
+		kind = WinIcon.Kind.WARNING
+		col = Color(0.85, 0.20, 0.20)
+		title = "Wystąpił problem z aktualizacjami"
+		err = u.check_error
+	elif not vis.is_empty():
+		kind = WinIcon.Kind.UPDATE
+		col = COL_ACCENT
+		title = "Dostępne są aktualizacje"
+
+	if _upd_icon.kind != kind:
+		_upd_icon.kind = kind
+	if _upd_icon.color != col:
+		_upd_icon.color = col
+	_upd_title.text = title
+	_upd_sub.text = sub
+	_upd_sub.visible = sub != ""
+	_upd_err.text = err
+	_upd_err.visible = err != ""
+
+	# przyciski: w trakcie pracy ukryte
+	var busy := u.is_busy()
+	_btn_check.visible = not busy
+	_btn_dl.visible = not busy and u.has_state(UpdateManager.State.FOUND)
+	_btn_inst.visible = not busy and u.has_state(UpdateManager.State.READY)
+
+
+func _rebuild_update_list(vis: Array) -> void:
+	for c in _upd_list.get_children():
+		_upd_list.remove_child(c)
+		c.queue_free()
+	_upd_rows.clear()
+
+	for it in vis:
+		var card := PanelContainer.new()
+		card.add_theme_stylebox_override("panel", _card_style(12))
+		var v := VBoxContainer.new()
+		v.add_theme_constant_override("separation", 2)
+		card.add_child(v)
+		v.add_child(_wrap(UiStyle.label(it.title, 17, COL_TEXT)))
+		var st := _wrap(UiStyle.label("", 15, COL_DIM))
+		v.add_child(st)
+		var row := {"status": st}
+		if UpdateManager.SHOW_DEADLINE:
+			var dl := _wrap(UiStyle.label("", 14, Color(0.72, 0.42, 0.0)))
+			v.add_child(dl)
+			row["deadline"] = dl
+		_upd_rows[it.id] = row
+		_upd_list.add_child(card)
+
+
+func _rebuild_history() -> void:
+	for c in _hist_list.get_children():
+		_hist_list.remove_child(c)
+		c.queue_free()
+	if _upd.history.is_empty():
+		_hist_list.add_child(_wrap(UiStyle.label(
+			"Na tym urządzeniu nie zainstalowano jeszcze żadnych aktualizacji.", 15, COL_DIM)))
+		return
+	for entry in _upd.history:
+		var v := VBoxContainer.new()
+		v.add_theme_constant_override("separation", 0)
+		v.add_child(_wrap(UiStyle.label(entry["title"], 16, COL_TEXT)))
+		var when := "Pomyślnie zainstalowano - dzisiaj, %s" % entry["when"]
+		if entry["auto"]:
+			when += " (automatycznie)"
+		v.add_child(_wrap(UiStyle.label(when, 14, COL_DIM)))
+		_hist_list.add_child(v)

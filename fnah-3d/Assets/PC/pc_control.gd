@@ -1,7 +1,7 @@
 extends Control
 
 enum DropTarget { NONE, DESKTOP, BROWSER, PRINTER, TRASH }
-enum PowerState { OFF, BOOTING, LOGIN, LOGGING_IN, DESKTOP, SLEEPING, WAKING, SHUTTING_DOWN }
+enum PowerState { OFF, BOOTING, LOGIN, LOGGING_IN, DESKTOP, SLEEPING, WAKING, SHUTTING_DOWN, UPDATING }
 
 const DESKTOP_FILE_SCENE = preload("res://Assets/PC/Aplikacje/Ikony/desktop_file.tscn")
 const CLOSE_TEX = preload("res://Assets/PC/Aplikacje/Przyciski/close_button.png")
@@ -14,6 +14,8 @@ const WAKE_TIME := 0.8           # wybudzenie z uśpienia
 const SHUTDOWN_TIME := 2.5       # ekran "Zamykanie systemu"
 const RESTART_PAUSE := 1.0       # czarny ekran między zamknięciem a bootem przy restarcie
 const USER_NAME := "User"
+const FORCED_BLACK_TIME := 1.0     # czarny ekran tuż po nagłym wyłączeniu
+const UPDATE_END_PAUSE := 1.0      # czarny ekran po zakończeniu aktualizacji, przed bootem
 
 # --- Siatka pulpitu ---
 const GRID_ORIGIN := Vector2(10, 10)
@@ -61,6 +63,7 @@ var icon_layer: Control
 var power_state: PowerState = PowerState.OFF
 var user_password: String = ""        # puste = brak hasła (pole hasła niewidoczne)
 var power_layer: PowerLayer
+var update_manager: UpdateManager
 
 # --- Okna i menu ---
 var cmd_app: CmdApp
@@ -77,6 +80,7 @@ var _updating_search: bool = false
 
 
 func _ready() -> void:
+	_setup_updates()
 	_setup_desktop()
 	_setup_windows()
 	_setup_printer_skin()
@@ -144,7 +148,7 @@ func launch_app(id: StringName) -> void:
 	if id == &"browser" and not win.visible:
 		_on_browser_icon_pressed()   # otwiera i ładuje ostatnią stronę
 	win.visible = true
-	move_child(win, -1)
+	(win as DraggablePanelContainer).bring_to_front()
 	if id == &"cmd":
 		cmd_app.focus_input.call_deferred()
 
@@ -439,7 +443,8 @@ func power_action(action: StringName) -> void:
 
 
 func _run_boot() -> void:
-	if power_state != PowerState.OFF and power_state != PowerState.SHUTTING_DOWN:
+	if power_state != PowerState.OFF and power_state != PowerState.SHUTTING_DOWN \
+		and power_state != PowerState.UPDATING:
 		return
 	power_state = PowerState.BOOTING
 	_set_cursor_visible(false)
@@ -508,6 +513,57 @@ func _close_all_apps() -> void:
 		w.queue_free()
 	cmd_app.reset()
 	settings_app.reset()
+
+
+# =========================================================================
+# WINDOWS UPDATE
+# =========================================================================
+
+func _setup_updates() -> void:
+	update_manager = UpdateManager.new()
+	update_manager.name = "UpdateManager"
+	update_manager.pc = self
+	add_child(update_manager)
+	update_manager.forced_update_due.connect(_on_forced_update_due)
+
+
+# Komputer jest włączony (pulpit lub uśpiony) - wtedy chodzi zegar usługi aktualizacji
+func is_system_running() -> bool:
+	return power_state == PowerState.DESKTOP or power_state == PowerState.SLEEPING
+
+
+func _on_forced_update_due(count: int) -> void:
+	force_update(count)
+
+
+# Deadline minął: natychmiastowe wyłączenie -> ekran aktualizacji -> boot -> logowanie
+func force_update(count: int) -> void:
+	if not is_system_running():
+		return
+	power_state = PowerState.UPDATING
+	_close_menus()
+	get_viewport().gui_release_focus()
+	_close_all_apps()
+	_set_cursor_visible(false)
+	power_layer.show_black()
+	await get_tree().create_timer(FORCED_BLACK_TIME).timeout
+	power_layer.show_update()
+	await _run_update_screen(maxf(float(count), 1.0) * UpdateManager.FORCED_TIME_PER_UPDATE)
+	update_manager.complete_forced()
+	power_layer.show_black()
+	await get_tree().create_timer(UPDATE_END_PAUSE).timeout
+	_run_boot()
+
+
+# Postęp skacze nieregularnie, jak w prawdziwym Windowsie; całość trwa ok. total_time
+func _run_update_screen(total_time: float) -> void:
+	var p := 0.0
+	while p < 100.0:
+		var step := randf_range(1.0, 6.0)
+		p = minf(p + step, 100.0)
+		power_layer.set_update_progress(int(p))
+		var wait := total_time * step / 100.0 * randf_range(0.5, 1.5)
+		await get_tree().create_timer(wait).timeout
 
 
 # =========================================================================

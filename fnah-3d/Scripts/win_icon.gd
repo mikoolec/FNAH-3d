@@ -2,7 +2,7 @@ extends Control
 class_name WinIcon
 ## Ikony rysowane kodem (nie wymagają plików ani czcionek).
 
-enum Kind { LOGO, POWER, GEAR, SEARCH, USER, CMD, SPINNER }
+enum Kind { LOGO, POWER, GEAR, SEARCH, USER, CMD, SPINNER, CHECK, UPDATE, WARNING }
 
 @export var kind: Kind = Kind.LOGO:
 	set(value):
@@ -40,6 +40,9 @@ func _draw() -> void:
 		Kind.USER: _draw_user(c, s)
 		Kind.CMD: _draw_cmd(c, s)
 		Kind.SPINNER: _draw_spinner(c, s)
+		Kind.CHECK: _draw_check_badge(c, s)
+		Kind.UPDATE: _draw_update(c, s)
+		Kind.WARNING: _draw_warning_badge(c, s)
 
 
 func _draw_logo(c: Vector2, s: float) -> void:
@@ -107,3 +110,35 @@ func _draw_spinner(c: Vector2, s: float) -> void:
 		var e := p * p * (3.0 - 2.0 * p)
 		var a := -PI / 2.0 + TAU * e
 		draw_circle(c + Vector2.from_angle(a) * r, dot, color)
+
+# Kółko z "ptaszkiem" (kolor kółka = color)
+func _draw_check_badge(c: Vector2, s: float) -> void:
+	draw_circle(c, s * 0.5, color)
+	var w := maxf(s * 0.09, 2.0)
+	draw_polyline(PackedVector2Array([
+		c + Vector2(-s * 0.22, 0), c + Vector2(-s * 0.07, s * 0.16), c + Vector2(s * 0.24, -s * 0.16)
+	]), Color.WHITE, w, true)
+
+# Kółko z wykrzyknikiem
+func _draw_warning_badge(c: Vector2, s: float) -> void:
+	draw_circle(c, s * 0.5, color)
+	var w := maxf(s * 0.1, 2.0)
+	draw_line(c + Vector2(0, -s * 0.24), c + Vector2(0, s * 0.06), Color.WHITE, w, true)
+	draw_circle(c + Vector2(0, s * 0.22), w * 0.6, Color.WHITE)
+
+
+# Dwie strzałki w kółko (ikona Windows Update)
+func _draw_update(c: Vector2, s: float) -> void:
+	var r := s * 0.34
+	var w := maxf(s * 0.09, 2.0)
+	draw_arc(c, r, deg_to_rad(-160), deg_to_rad(-30), 24, color, w, true)
+	draw_arc(c, r, deg_to_rad(20), deg_to_rad(150), 24, color, w, true)
+	_arrow_head(c, r, deg_to_rad(-30), s * 0.14)
+	_arrow_head(c, r, deg_to_rad(150), s * 0.14)
+
+
+func _arrow_head(c: Vector2, r: float, a: float, sz: float) -> void:
+	var n := Vector2(cos(a), sin(a))
+	var t := Vector2(-sin(a), cos(a))
+	var p := c + n * r
+	draw_colored_polygon(PackedVector2Array([p + t * sz * 1.3, p + n * sz * 0.9, p - n * sz * 0.9]), color)

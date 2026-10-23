@@ -25,7 +25,7 @@ static var networks = {
 		"password": "", # Brak hasła = otwarta sieć
 		"speed_multiplier": 2.5, # Pobieranie trwa 2.5x dłużej (wolny net)
 		"security": "Brak (Niezabezpieczona)",
-		"is_available": false
+		"is_available": true
 	},
 	"UKRYTA_SIEC_CORP": {
 		"password": "super_tajne_haslo_123",

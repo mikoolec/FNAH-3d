@@ -74,34 +74,34 @@ func load_page(url: String) -> void:
 func _on_search_pressed() -> void:
 	_on_url_submitted(url_input.text)
 
+var _load_id: int = 0   # nowe ładowanie wypiera stare
+
 func loadProgress(load_time: float):
-	if current_tween and current_tween.is_running():
-		current_tween.kill()
-		
-	var final_load_time = load_time * NetworkManager.current_speed_multiplier
-	
+	_load_id += 1
+	var my_id := _load_id
 	progress_bar.value = 0.0
 	progress_bar.show()
-	
-	current_tween = create_tween()
-	current_tween.tween_property(progress_bar, "value", 100.0, final_load_time)\
-		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_OUT)
-	
-	
-	# Monitorujemy proces ręcznie w pętli
-	while current_tween and current_tween.is_running():
-		# KLUCZ: Jeśli w dowolnym momencie (klatce) wypadnie internet:
+
+	var progress := 0.0   # 0..1
+	while progress < 1.0:
+		if my_id != _load_id:
+			return NetworkManager.is_connected_to_internet   # wyparte przez nowsze ładowanie
+
+		# W dowolnym momencie może wypaść internet
 		if not NetworkManager.is_connected_to_internet:
-			current_tween.kill() # Natychmiast zabijamy tweena
-			progress_bar.hide()  # Ukrywamy pasek
-			return false         # Przerywamy funkcję i zwracamy porażkę
-			
-		# Czekamy dokładnie jedną klatkę fizyki/procesu przed kolejnym sprawdzeniem
+			NetworkManager.end_transfer(&"browser_page")
+			progress_bar.hide()
+			return false
+
+		NetworkManager.report_transfer(&"browser_page")
+		progress += get_process_delta_time() / (load_time * NetworkManager.effective_multiplier())
+		progress_bar.value = 100.0 * sin(clampf(progress, 0.0, 1.0) * PI / 2.0)
 		await get_tree().process_frame
-	
+
+	NetworkManager.end_transfer(&"browser_page")
 	progress_bar.hide()
-	
-	if not NetworkManager.is_connected_to_internet: return false
-	
+
+	if not NetworkManager.is_connected_to_internet:
+		return false
+
 	return true
